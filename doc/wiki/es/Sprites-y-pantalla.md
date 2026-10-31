@@ -1,4 +1,4 @@
-<!-- Hecha por tools/wiki.py desde doc/wiki/es/fuentes/Sprites.md: se edita la plantilla, no esta página. -->
+<!-- Hecha por tools/wiki.py desde doc/wiki/es/fuentes/Sprites-y-pantalla.md: se edita la plantilla, no esta página. -->
 # Los sprites y la pantalla
 
 [Inicio](Inicio.md) · anterior: [Los personajes y su movimiento](Personajes.md) · siguiente: [Alturas y búsqueda de caminos](Caminos.md)

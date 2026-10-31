@@ -1,7 +1,7 @@
 <!-- Hecha por tools/wiki.py desde doc/wiki/es/fuentes/Personajes.md: se edita la plantilla, no esta página. -->
 # Los personajes y su movimiento
 
-[Inicio](Inicio.md) · anterior: [Las salas y el motor isométrico](Motor-isometrico.md) · siguiente: [Los sprites y la pantalla](Sprites.md)
+[Inicio](Inicio.md) · anterior: [Las salas y el motor isométrico](Motor-isometrico.md) · siguiente: [Los sprites y la pantalla](Sprites-y-pantalla.md)
 
 Todo el movimiento está en `src/c64/juego_final/personajes.s`: los registros de los personajes, los pasos y los giros,
 la lectura de las alturas, las órdenes de movimiento de los monjes, la animación y la proyección a la pantalla.

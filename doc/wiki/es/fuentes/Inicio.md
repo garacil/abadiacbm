@@ -32,7 +32,7 @@ fichero y sus números de línea enlazados, así que siempre coincide con el có
 | [El reloj y las ceremonias](Reloj.md) | días y horas, su duración, qué pasa en cada hora, la noche |
 | [Las salas y el motor isométrico](Motor-isometrico.md) | la tabla de salas, el intérprete de bloques, las baldosas, la profundidad, la cámara |
 | [Los personajes y su movimiento](Personajes.md) | los registros de personaje, pasos, giros, alturas, animación y proyección |
-| [Los sprites y la pantalla](Sprites.md) | la tabla de sprites, la composición por rectángulos, la luz, el volcado |
+| [Los sprites y la pantalla](Sprites-y-pantalla.md) | la tabla de sprites, la composición por rectángulos, la luz, el volcado |
 | [Alturas y búsqueda de caminos](Caminos.md) | el búfer de alturas, las búsquedas dentro de una sala y entre salas, las órdenes de movimiento |
 | [La mente de los monjes](Monjes.md) | los guiones de comportamiento y su máquina virtual, los conductores, cada personaje |
 | [Objetos, puertas y el espejo](Objetos.md) | portadores, coger y dejar, llaves y puertas, el enigma del espejo |

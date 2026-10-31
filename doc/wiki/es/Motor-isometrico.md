@@ -376,7 +376,7 @@ Una sala iluminada se dibuja desde el búfer de baldosas en espiral, del centro 
 cada baldosa son 8 líneas en el formato multicolor del C64, 4 bytes por línea; las baldosas por debajo de 0Bh se copian
 opacas y las demás se mezclan con las tablas AND/OR.  Las baldosas viven debajo de la E/S (`$D000`), así que el dibujo
 desconecta la E/S mientras las lee.  Una sala a oscuras (las de la biblioteca en el piso alto, todas menos una) deja el
-área de juego en negro y solo se ve la luz de la lámpara (ver [Los sprites y la pantalla](Sprites.md)).
+área de juego en negro y solo se ve la luz de la lámpara (ver [Los sprites y la pantalla](Sprites-y-pantalla.md)).
 
 ## Todas las rutinas del motor
 

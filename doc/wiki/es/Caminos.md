@@ -1,7 +1,7 @@
 <!-- Hecha por tools/wiki.py desde doc/wiki/es/fuentes/Caminos.md: se edita la plantilla, no esta página. -->
 # Alturas y búsqueda de caminos
 
-[Inicio](Inicio.md) · anterior: [Los sprites y la pantalla](Sprites.md) · siguiente: [La mente de los monjes](Monjes.md)
+[Inicio](Inicio.md) · anterior: [Los sprites y la pantalla](Sprites-y-pantalla.md) · siguiente: [La mente de los monjes](Monjes.md)
 
 Los monjes andan solos por toda la abadía: suben y bajan escaleras, cruzan puertas, van de una sala a otra y de un
 piso a otro.  Lo hacen con dos búsquedas en anchura (una dentro de una sala y otra entre salas) y un escritor que
