@@ -1,0 +1,7 @@
+Downloaded from archive.org item "amstrad-cpc-cdt-collection" (Amstrad CPC Cassette Image (CDT)
+Collection), file AmstradCPC-CDT_Collection.zip:
+  CDT/Abadia del Crimen (S), La.cdt               -> abadia.cdt
+  CDT/Abadia del Crimen (S), La - Promotional.cdt -> abadia_promotional.cdt
+Tape images (TZX/CDT format) of the original cassette releases, to check the 64 KiB game of the disk
+transfer (original/archive.org/amstrad_abadia_del_crimen_64.dsk, a 2006 repack with CNGSoft's
+LZ2PACKER) against the original tape.

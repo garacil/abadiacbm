@@ -1,0 +1,28 @@
+--- juego/m6502/sombra6502.c	2026-10-17 16:10:57.210276852 +0200
++++ juego/m6502/sombra6502.c	2026-10-17 16:10:57.242623512 +0200
+@@ -543,6 +543,25 @@
+         const bloque_t *b = &bloques[k];
+         if (b->cpc >= 0 && b->modo == 'c' && memcmp(Mem + b->c64, sinc64 + b->c64, b->len64)) a_cpc(k, Mem, cpc);
+     }
++    {   /* the bitmap the 6502 drew since the last sync, back into the CPC screen for the Z80 original (a routine
++         * that merges with the screen, e.g. the tiles of 4A5F after a 6502 fill): each changed C64 pixel as two
++         * CPC pixels of its pen (exact for uniform bytes) */
++        static const uint8_t pen[4] = { 3, 0, 1, 2 };   /* bit pair -> CPC pen */
++        unsigned a;
++        for (a = 0xC000; a <= 0xFFFF; ++a) {
++            int alto;
++            uint16_t b;
++            uint8_t n, n0, pl, pr;
++            if ((a & 0x7FF) >= 0x600) continue;
++            b = bitmap_de((uint16_t)a, &alto);
++            if (Mem[b] == sinc64[b]) continue;
++            n = alto ? (uint8_t)(Mem[b] >> 4) : (uint8_t)(Mem[b] & 0x0F);
++            n0 = alto ? (uint8_t)(sinc64[b] >> 4) : (uint8_t)(sinc64[b] & 0x0F);
++            if (n == n0) continue;
++            pl = pen[n >> 2]; pr = pen[n & 3];
++            cpc[a] = (uint8_t)((pl & 1) * 0xC0 | (pl >> 1) * 0x0C | (pr & 1) * 0x30 | (pr >> 1) * 0x03);
++        }
++    }
+     memcpy(previo, cpc, sizeof cpc);
+     memcpy(ram_host, ram, sizeof ram);
+     memcpy(ram, cpc, sizeof ram);

@@ -1,0 +1,2 @@
+instructions 60000000
+A=02 F=01 B=05 C=0B D=38 E=08 H=02 L=68 SP=BFF6 PC=3A30

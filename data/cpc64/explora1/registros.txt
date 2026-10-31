@@ -1,0 +1,2 @@
+instructions 80000000
+A=43 F=00 B=00 C=FF D=43 E=00 H=23 L=B9 SP=BFF6 PC=2556

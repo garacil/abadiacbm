@@ -1,0 +1,2 @@
+instructions 19270601
+A=00 F=44 B=00 C=42 D=00 E=14 H=2B L=34 SP=C000 PC=2179

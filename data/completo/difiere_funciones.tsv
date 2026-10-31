@@ -1,0 +1,103 @@
+addr64	name	pc	file	ops	A_instr	B_instr	first_A	first_B
+----	(before the first function)			1	0	477		
+0038	sys_interrupt		f_principal.c	17	175	226	0104 ld c,026h	0403 push af; 0404 ld a,00fh; 0406 call 00465h; 0409 xor a; 040A call 00465h; 040D pop af; 040E call 00465h; 0411 ld a,001h; 0413 ld de,04e20h; 0416 call 00422h; 0419 ld a,008h; 041B call 00465h; 041E call 0043ah; 0421 ret; 0422 push af; 0423 dec de; 0424 ld a,e; 0425 or d; 0426 jr nz,$-3; 0428 pop af; 0429 dec a; 042A jr nz,$-8; 042C ret
+082F	chr_path_build_grid	1000:1041	f_camino.c	4	8	8	08FA inc e; 08FB add hl,bc	0C8A xor h; 0C8B inc c
+0BF8	chr_path_reset_alternatives	1000:1498, CPC 6128 0F88	f_objetos_sonido.c	1	3	3	0C4F cp 03ch; 0C51 jp z,03633h; 0C54 cp 0eeh	0FDF ld e,004h; 0FE1 jr nz,$-55; 0FE3 ld hl,0eef5h
+0F0B	snd_vol_env_next		f_objetos_sonido.c	2	8	6	0F76 cp 08bh; 0F78 rrca; 0F79 defb 0fdh,09ah,00fh ;illegal sequence; 0F7C ei; 0F7D xor c; 0F7E rrca	1306 cp 01bh; 1308 inc de; 1309 ld iy,(0fb13h); 130D add hl,sp; 130E inc de
+0FE6	snd_silence_all	1000:63A3 snd_silence_if_idle, CPC 6128 1376	f_objetos_sonido.c	43	228	240	106F ld (bc),a; 1070 djnz $-4; 1072 ccf; 1073 djnz $+91	13FF sub d; 1400 inc de; 1401 jp m,013cfh; 1404 ld e,c
+1295	iso_put_tile	1000:28A7	f_motor_iso.c	38	138	157	12F8 add hl,bc	1696 rst 18h; 1697 sbc a,0fdh; 1699 call m,0fe5fh; 169C dec de; 169D ld a,(0693ah); 16A0 add hl,sp; 16A1 add hl,sp; 16A2 jr z,$+11
+1611	iso_draw_room	1000:2945	f_motor_iso.c	2	0	2		19F2 out (c),c
+16B2	vid_fill_play_area	1000:29F6	f_motor_iso.c	24	52	50	16CE ld d,e; 16CF inc de	1A99 ld b,017h
+17F1	iso_enter_block	1000:2A1E	f_motor_iso.c	53	139	167	1831 and a; 1832 ret nc; 1833 ret; 1834 out (096h),a	1BFC jp pe,0dcd0h; 1BFF in a,(096h)
+1BC6	iso_block_depth	1000:287D	f_motor_iso.c	1	53	28	1BEE ld b,b; 1BEF inc e; 1BF0 sbc a,a; 1BF1 inc e; 1BF2 xor h; 1BF3 inc e; 1BF4 defb 0ddh,01ch,0e1h ;illegal sequence; 1BF7 inc e; 1BF8 push hl; 1BF9 inc e; 1BFA push af; 1BFB inc e; 1BFC inc bc; 1BFD dec e; 1BFE ld c,a; 1BFF dec e; 1C00 ld e,l; 1C01 inc e; 1C02 ld h,b; 1C03 inc e; 1C04 ld h,e; 1C05 inc e; 1C06 ld h,(hl); 1C07 inc e; 1C08 ld l,c; 1C09 inc e; 1C0A ld (hl),h; 1C0B inc e; 1C0C add a,l; 1C0D inc e ...	1FE0 ld (09120h),a; 1FE3 jr nz,$-96; 1FE5 jr nz,$-47; 1FE7 jr nz,$-43; 1FE9 jr nz,$-39; 1FEB jr nz,$-23; 1FED jr nz,$-9; 1FEF jr nz,$+67; 1FF1 ld hl,0204fh; 1FF4 ld d,d; 1FF5 jr nz,$+87; 1FF7 jr nz,$+90; 1FF9 jr nz,$+93; 1FFB jr nz,$+104; 1FFD jr nz,$+121; 1FFF jr nz,$+115; 2001 jr nz,$-123; 2003 jr nz,$+127; 2005 jr nz,$-74; 2007 ld hl,020eeh; 200A and c; 200B ld hl,0218dh; 200E adc a,l; 200F ld hl,0218dh; 2012 adc a,l; 2013 ld hl,0218dh; 2016 xor d; 2017 ld hl,0e3ddh
+1E4B	game_exit	-	f_principal.c	4	5	3		223D jp 0249ah
+1E6E	vid_set_crtc		f_motor_iso.c	1	20	9	1E6E pop hl; 1E6F ld b,0bch; 1E71 ld c,(hl); 1E72 inc hl; 1E73 push hl; 1E74 inc c; 1E75 ret z; 1E76 dec c; 1E77 pop hl; 1E78 out (c),c; 1E7A inc b; 1E7B ld c,(hl); 1E7C out (c),c; 1E7E inc hl; 1E7F jr $-16; 1E81 xor (hl); 1E82 jr nz,$-85; 1E84 jr nz,$-79; 1E86 jr nz,$-70; 1E88 jr nz,$+2	225D adc a,d; 225E inc h; 225F add a,l; 2260 inc h; 2261 adc a,e; 2262 inc h; 2263 sub h; 2264 inc h; 2265 nop
+20BE	game_main	1000:1F00-...	f_principal.c	5	11	47	20C4 call nz,03568h	24A0 jr z,$+105; 24A2 ld a,00dh; 24A4 ld (000feh),a; 24A7 ld bc,07f8dh; 24AA out (c),c; 24AC call 03f3ah; 24AF ld hl,0659dh; 24B2 ld de,0c000h; 24B5 push de; 24B6 ld bc,01000h; 24B9 push bc; 24BA ldir; 24BC ld bc,07fc5h; 24BF out (c),c; 24C1 pop bc; 24C2 pop hl; 24C3 ld de,07000h; 24C6 ldir; 24C8 ld bc,07fc0h; 24CB out (c),c; 24CD ld a,0c3h; 24CF ld (00038h),a; 24D2 ld hl,02d48h; 24D5 ld (00039h),hl; 24D8 ld hl,08000h; 24DB ld a,00bh; 24DD ld (01086h),a; 24E0 call 0103fh; 24E3 di; 24E4 ld ix,07300h ...
+22D4	vid_clear_play_area	1000:29DD	f_personajes.c	1	2	64	22D4 xor a; 22D5 jp 016b2h	2712 ld hl,0c640h; 2715 ld b,008h; 2717 push bc; 2718 push hl; 2719 ld e,l; 271A ld d,h; 271B inc de; 271C ld (hl),0ffh; 271E ld bc,0018fh; 2721 ldir; 2723 pop hl; 2724 ld bc,00800h; 2727 add hl,bc; 2728 pop bc; 2729 djnz $-18; 272B ret; 272C ld bc,07fc7h; 272F out (c),c; 2731 ld de,06328h; 2734 ld hl,0c648h; 2737 ld b,004h; 2739 push bc; 273A push hl; 273B ld b,008h; 273D push bc; 273E push hl; 273F ld bc,00040h; 2742 ex de,hl; 2743 ldir; 2745 ex de,hl ...
+2632	chr_project	1000:2556	f_personajes.c	8	49	38	2703 ld l,b; 2704 add hl,hl; 2705 add a,a; 2706 dec hl	2BAE rla; 2BAF ld l,036h; 2BB1 jr nc,$-113; 2BB3 jr z,$+61; 2BB5 dec (hl); 2BB6 sbc a,a; 2BB7 ld sp,02e2bh; 2BBA ld b,l; 2BBB jr nc,$+60; 2BBD inc l
+2855	iso_select_room	1000:27C8	f_personajes.c	3	1	3	285C jr z,$+19	2D07 jr z,$+23
+28AD	chr_backup_args	1000:2834	f_personajes.c	26	128	111	28B9 ld d,l; 28BA nop; 28BB nop; 28BC ld b,0c0h; 28BE ld h,c; 28BF ld sp,00000h	2D68 ld bc,03e23h; 2D6B jr nz,$+20; 2D6D inc de; 2D6E ld a,b; 2D6F inc b; 2D70 cp c; 2D71 jr c,$+2
+2D50	sys_read_keyboard	1000:2D6F	f_personajes.c	2	3	77	2D52 ld c,0f4h	3201 ld (07ecdh),a; 3204 inc sp; 3205 jr c,$+34; 3207 ei; 3208 ld b,014h; 320A push bc; 320B call 01020h; 320E ld bc,007d0h; 3211 call 0490eh; 3214 pop bc; 3215 djnz $-11; 3217 ld hl,032bch; 321A ld (03312h),hl; 321D xor a; 321E ld (03309h),a; 3221 dec a; 3222 ld (03469h),a; 3225 di; 3226 ret; 3227 ld ix,036ach; 322B ld bc,00800h; 322E call 033b6h; 3231 ld bc,00800h; 3234 call 033b6h; 3237 ld bc,00800h; 323A call 033b6h; 323D dec iy; 323F dec iy; 3241 dec iy; 3243 ld a,(iy+000h) ...
+2D99	game_input_and_mirror	1000:2DD8	f_personajes.c	7	6	84		3305 ld a,c; 3306 and 00fh; 3308 cp 000h; 330A ret nc; 330B ld b,(iy+000h); 330E inc iy; 3310 ret
+2EC4	obj_close_mirror	1000:2F90	f_personajes.c	3	3	4		34BA ld bc,07fc6h; 34BD out (c),c
+2F57	spr_flip_graphics_h	1000:3028	f_personajes.c	8	32	8		355D ld b,0a1h
+2FB9	sys_check_pause_save_load	1000:311E	f_estado_texto.c	3	1	13		3591 dec h; 3592 set 6,h; 3594 ld l,000h; 3596 ld de,0a200h; 3599 ld bc,000ffh; 359C ret
+2FD7	game_state_gather	-	f_principal.c	6	4	60		35CA ld a,017h; 35CC call 03482h; 35CF call nz,036f2h; 35D2 jr z,$+76
+2FEF	game_state_restore	-	f_principal.c	6	8	30		3656 push bc
+304F	spr_unflip_monk_faces	1000:3283	f_estado_texto.c	2	0	18		36F2 ld b,00ah
+3087	obj_fix_owner_pointers	1000:32DF	f_estado_texto.c	1	11	23	30F0 adc a,c; 30F1 dec hl; 30F2 sbc a,b; 30F3 dec hl; 30F4 and a; 30F5 dec hl; 30F6 or (hl); 30F7 dec hl; 30F8 push bc; 30F9 dec hl; 30FA call nc,0c92bh	3783 jr c,$+50; 3785 ld b,a; 3786 jr nc,$+88; 3788 jr nc,$+103; 378A jr nc,$+118; 378C jr nc,$-123; 378E jr nc,$+2; 3790 djnz $-14; 3792 nop; 3793 ret p; 3794 ret p; 3795 ret p; 3796 djnz $+2; 3798 nop; 3799 nop; 379A ret p; 379B nop; 379C djnz $+18; 379E nop; 379F djnz $-14; 37A1 djnz $+2; 37A3 nop; 37A4 ret
+3111	game_for_each_state_block	1000:3367	f_estado_texto.c	4	35	31	3134 di; 3135 scf	37DC and (hl); 37DD inc a
+3176	game_init_new_game	1000:33BB	f_estado_texto.c	2	2	2	31AB ld (ix+001h),001h	3853 ld (ix+001h),a
+31C1	util_delay_units	-	f_principal.c	4	62	29	31C1 push af	3868 ld hl,(03312h); 386B push hl; 386C ld hl,032bch; 386F ld (03312h),hl; 3872 xor a; 3873 ld (03309h),a; 3876 ld hl,(033d1h); 3879 dec hl; 387A ld bc,07fc5h; 387D out (c),c; 387F ld a,(hl); 3880 add a,008h; 3882 ld (hl),a; 3883 ld bc,07fc0h; 3886 out (c),c; 3888 pop hl; 3889 ld de,031ffh; 388C and a; 388D sbc hl,de; 388F call z,00495h; 3892 call 03f3ah; 3895 ld bc,07fc5h; 3898 out (c),c; 389A ld hl,07000h; 389D ld de,0c000h; 38A0 push de; 38A1 ld bc,01000h
+3254	game_state_checksum	-	f_principal.c	1	7	1	325A xor a; 325B add a,(hl); 325C inc hl; 325D dec bc; 325E inc b; 325F djnz $-4; 3261 ret	38B5 ldir
+3262	tape_menu_leave	-	f_principal.c	1	70	0	3267 ld c,054h; 3269 out (c),c; 326B call 02d50h; 326E ld a,042h; 3270 call 02e8dh; 3273 jr nz,$-8; 3275 ret; 3276 ld hl,0c000h; 3279 ld de,0328bh; 327C ld b,008h; 327E ld c,(hl); 327F ld a,(de); 3280 ld (hl),a; 3281 ld a,c; 3282 ld (de),a; 3283 inc de; 3284 ld a,h; 3285 add a,008h; 3287 ld h,a; 3288 djnz $-10; 328A ret; 328B nop; 328C nop; 328D rrca; 328E rrca; 328F ret p; 3290 ret p; 3291 rst 38h; 3292 rst 38h; 3293 ld bc,0f600h ...	
+32AB	tape_load_block	-	f_principal.c	2	56	3	32FE lddr; 3300 dec h; 3301 dec h; 3302 dec h; 3303 dec a; 3304 jr nz,$-9; 3306 ccf; 3307 ld de,0003fh; 330A jr $+25; 330C di; 330D ld a,006h; 330F ld hl,0bfffh; 3312 ld de,0fcffh; 3315 ld bc,00500h; 3318 lddr; 331A dec d; 331B dec d; 331C dec d; 331D dec a; 331E jr nz,$-9; 3320 ld hl,0003fh; 3323 ld c,040h; 3325 lddr; 3327 ret; 3328 call 0bb06h; 332B cp 0fch; 332D jr nc,$-62; 332F cp 031h; 3331 jr c,$-9; 3333 cp 03ah ...	38C5 ldir; 38C7 ld a,008h; 38C9 ld (01086h),a
+3371	tape_save_block	-	f_principal.c	5	128	73	3373 call 033b9h; 3376 call 06000h; 3379 jr $-3; 337B pop hl; 337C ld (033b7h),hl; 337F ld hl,03ec9h; 3382 ld de,0be80h; 3385 ld bc,00021h	
+3456	chr_hbuf_fill_room	1000:34C3	f_estado_texto.c	3	0	8		3951 ld (03938h),a; 3954 ld (039f0h),a
+346E	chr_hbuf_fill_list	1000:34E5, a different algorithm	f_estado_texto.c	7	131	101	346E ld c,(ix+000h); 3471 inc c	3973 ld a,(ix+000h); 3976 cp 0ffh
+3558	vid_next_line	1000:3718 for the CGA	f_estado_texto.c	2	1	29	3563 or 0c0h	3A37 ld h,a; 3A38 add hl,de; 3A39 ld de,00018h; 3A3C ex af,af'; 3A3D push bc; 3A3E push hl; 3A3F ld b,c; 3A40 ld (hl),a; 3A41 inc hl; 3A42 djnz $-2; 3A44 pop hl; 3A45 add hl,de; 3A46 pop bc; 3A47 djnz $-10; 3A49 jp 03973h; 3A4C ret; 3A4D ld a,h; 3A4E add a,008h; 3A50 jr c,$+4
+3568	sys_startup_init		f_estado_texto.c	2	40	22	3568 ld a,00dh; 356A ld (000feh),a	3A61 ld hl,0a100h; 3A64 ld a,l; 3A65 and 0f0h; 3A67 ld c,a; 3A68 ld a,l; 3A69 and 00fh; 3A6B rl c; 3A6D rra; 3A6E rl c; 3A70 rra; 3A71 rl c; 3A73 rra; 3A74 rl c; 3A76 rra; 3A77 rl c; 3A79 or c; 3A7A ld (hl),a; 3A7B inc l; 3A7C jr nz,$-24; 3A7E ld hl,05086h; 3A81 ld bc,07fc6h; 3A84 out (c),c
+35C3	game_init_mirror	1000:3724, its second half	f_estado_texto.c	5	4	6	35DF jr nz,$+22	3AA4 jr nz,$+27
+3778	vid_xy_to_offset	1000:3960 for the CGA	f_estado_texto.c	4	14	23		3C42 push de; 3C43 ld a,l; 3C44 ex af,af'
+3786	util_clip_span		f_estado_texto.c	6	121	111	378F ld l,000h; 3791 add a,e; 3792 cp d; 3793 jr nc,$+4; 3795 ld a,e; 3796 ret; 3797 ld a,d; 3798 sub h; 3799 scf; 379A ret; 379B ld hl,00000h; 379E ld a,e; 379F cp d; 37A0 ret c; 37A1 scf; 37A2 ld a,d; 37A3 ret; 37A4 ld h,000h; 37A6 neg; 37A8 ld l,a; 37A9 cp e; 37AA ret nc; 37AB neg; 37AD add a,e; 37AE cp d; 37AF ret c; 37B0 scf; 37B1 ret z; 37B2 ld a,d	3C61 ld de,00008h; 3C64 add hl,de; 3C65 pop de
+3A5D	util_jump_table_inline	1000:5D97	f_estado_texto.c	2	1	7		3F2B inc c; 3F2C inc d; 3F2D inc e; 3F2E rlca; 3F2F inc e
+3A8D	vid_palette_night	1000:5DC0	f_estado_texto.c	1	2	9	3AAB ld a,03ah; 3AAD jr $+28	3F67 ld c,b; 3F68 ld d,h; 3F69 call 0afc1h; 3F6C push ix; 3F6E ld e,0ffh; 3F70 call 03f7fh; 3F73 ld e,000h; 3F75 call 03f7fh; 3F78 pop ix
+3AAF	vid_spiral_wipe	1000:5DC4	f_logica_a.c	1	0	2697		3F7B ld (02d75h),a; 3F7E ret; 3F7F ld hl,00000h; 3F82 ld ix,03f67h; 3F86 ld (ix+000h),03fh; 3F8A ld (ix+001h),04fh; 3F8E ld (ix+002h),03fh; 3F92 ld (ix+003h),04eh; 3F96 ld b,020h; 3F98 xor a; 3F99 push bc; 3F9A ld b,(ix+000h); 3F9D jr $+9; 3F9F push bc; 3FA0 ld b,(ix+000h); 3FA3 dec (ix+000h); 3FA6 dec (ix+000h); 3FA9 call 03fe6h; 3FAC inc l; 3FAD djnz $-4; 3FAF ld b,(ix+001h); 3FB2 dec (ix+001h); 3FB5 dec (ix+001h); 3FB8 call 03fe6h; 3FBB inc h; 3FBC inc h; 3FBD djnz $-5; 3FBF ld b,(ix+002h); 3FC2 dec (ix+002h); 3FC5 dec (ix+002h) ...
+3B3B	obj_lamp_reset	1000:5E6B	f_logica_a.c	1	2	1	3B5F add a,c; 3B60 dec hl	4F1B jr nc,$+50
+3B66	obj_malachi_leaves_key3	1000:5EA5	f_logica_a.c	1	2	1	3B74 ld (hl),a; 3B75 dec hl	4F30 ld h,030h
+3B7B	obj_remove_glasses	1000:5EBC	f_logica_a.c	1	3	2	3B95 ld h,e; 3B96 dec hl; 3B97 nop	4F51 ld (de),a; 4F52 jr nc,$+2
+3B9C	chr_bernardo_arrives	1000:5EDB	f_logica_a.c	1	1	2	3BA5 call nz,0002bh	4F61 ld (hl),e; 4F62 jr nc,$+2
+3BAC	chr_jorge_appears	1000:5EEB	f_logica_a.c	1	2	2	3BB5 out (02bh),a; 3BB7 inc bc	4F71 add a,d; 4F72 jr nc,$+5
+3BBC	chr_berengar_vanishes	1000:5EFB	f_logica_a.c	1	1	2	3BD1 call nz,0002bh	4F8D ld (hl),e; 4F8E jr nc,$+2
+3C1B	obj_abbot_wants_parchment	1000:5F59, obj_abbot_takemask := 10h	f_logica_a.c	1	0	1		4FD7 ld a,010h
+3C1C	obj_place_parchment	1000:5F5F	f_logica_a.c	2	3	3		4FDA ld (02e06h),a
+3C26	obj_place_parchment_unused	1000:5F69	f_logica_a.c	1	5	4	3C27 add a,h; 3C28 inc a; 3C29 ld l,b; 3C2A dec hl; 3C2B nop	4FE8 ld b,l; 4FE9 ld b,c; 4FEA rla; 4FEB jr nc,$+2
+3C30	obj_book_to_jorge	1000:5F73	f_logica_a.c	2	6	4	3C38 ld e,c; 3C39 dec hl; 3C3A add a,b	4FF9 ex af,af'; 4FFA jr nc,$-126
+3C3F	obj_place_lamp	1000:5F82	f_logica_a.c	1	2	1	3C4B add a,c; 3C4C dec hl	500C jr nc,$+50
+3C52	obj_place_key1	1000:5F99	f_logica_a.c	1	5	4	3C53 add a,h; 3C54 inc a; 3C55 ld l,l; 3C56 dec hl; 3C57 nop	5014 ld b,l; 5015 ld b,c; 5016 inc e; 5017 jr nc,$+2
+3C5C	obj_remove_key1	1000:5FA3	f_logica_a.c	1	3	2	3C5F ld l,l; 3C60 dec hl; 3C61 nop	5020 inc e; 5021 jr nc,$+2
+3C66	obj_place_key3	1000:5FAD	f_logica_a.c	1	3	1	3C69 ld (hl),d; 3C6A dec hl; 3C6B nop	502A ld hl,00030h
+3C70	obj_place_glasses	1000:5FB7	f_logica_a.c	1	3	2	3C73 ld h,e; 3C74 dec hl; 3C75 nop	5034 ld (de),a; 5035 jr nc,$+2
+3C7A	obj_remove_key1_unused	1000:5FC1	f_logica_a.c	1	5	4	3C7B add a,h; 3C7C inc a; 3C7D ld l,l; 3C7E dec hl; 3C7F nop	503C ld b,l; 503D ld b,c; 503E inc e; 503F jr nc,$+2
+3D15	game_camera_update	1000:60C0	f_logica_a.c	1	11	9	3D30 add a,a; 3D31 dec hl; 3D32 sub (hl); 3D33 dec hl; 3D34 and l; 3D35 dec hl; 3D36 or h; 3D37 dec hl; 3D38 jp 0d22bh; 3D3B dec hl; 3D3C ld a,(037dah)	50F1 ld (hl),030h; 50F3 ld b,l; 50F4 jr nc,$+86; 50F6 jr nc,$+101; 50F8 jr nc,$+116; 50FA jr nc,$-125; 50FC jr nc,$+60; 50FE adc a,l; 50FF inc a
+3D87	obj_jorge_takes_book	1000:6151	f_logica_a.c	1	3	2	3DA0 ld e,c; 3DA1 dec hl; 3DA2 nop	5161 ex af,af'; 5162 jr nc,$+2
+3DA8	game_compute_percentage	1000:6173	f_logica_a.c	3	7	7	3DDA ld a,020h	
+3E29	game_check_end	1000:6215	f_logica_a.c	3	5	4	3E2A call po,0a737h	51E8 sub a; 51E9 inc a; 51EA and a
+3EC6	game_ending	1000:6295, the ending	f_logica_a.c	1	19	3	3EC6 jp 03346h; 3EC9 exx; 3ECA ld bc,0f8ffh; 3ECD out (c),c; 3ECF ld bc,07f89h; 3ED2 out (c),c; 3ED4 exx; 3ED5 ex af,af'; 3ED6 xor a; 3ED7 ld (0b11ah),a; 3EDA ld (0b15fh),a; 3EDD ex af,af'; 3EDE call 00044h; 3EE1 call 00800h; 3EE4 ld c,0ffh; 3EE6 pop hl; 3EE7 jp 00077h; 3EEA rst 10h; 3EEB jr z,$-53	527D ld hl,00000h; 5280 ld (02d86h),hl; 5283 ret
+3F56	ai_parchment_check	1000:633B	f_logica_a.c	2	3	2	3F73 dec a; 3F74 ld (bc),a; 3F75 ld bc,00603h	530A call 00105h
+3F92	chr_path_room_to_marked	1000:397E	f_logica_a.c	1	1	1	3F94 add hl,hl	532B dec l
+441E	chr_path_floor_cell_ptr	1000:3F5B	f_logica_a.c	1	12	16	4441 cp e; 4442 defb 0edh;next byte illegal after ed; 4443 set 5,h; 4445 cp e; 4446 in c,(c); 4448 defb 0edh;next byte illegal after ed; 4449 in a,(0ebh); 444B ld e,c; 444C ex de,hl; 444D in a,(0ebh); 444F ld d,e; 4450 call pe,0e000h	57D8 sub b; 57D9 or b; 57DA and b; 57DB xor a; 57DC sub b; 57DD or b; 57DE dec e; 57DF or b; 57E0 or b; 57E1 xor (hl); 57E2 ld l,0aeh; 57E4 or b; 57E5 xor (hl); 57E6 jr z,$-79; 57E8 nop; 57E9 ret po
+447D	spr_draw_all	1000:14B6	f_logica_a.c	15	42	8	45D9 jp nc,04597h	
+4717	spr_mirror_byte		f_logica_a.c	1	16	0	4717 exx; 4718 ld h,a; 4719 ld l,000h; 471B rra; 471C adc hl,hl; 471E rra; 471F adc hl,hl; 4721 rra; 4722 adc hl,hl; 4724 rra; 4725 adc hl,hl; 4727 rra; 4728 and 0f0h; 472A or l; 472B exx; 472C ret	
+47E7	spr_blit_to_screen	1000:1840	f_logica_a.c	3	4	8	4878 jr nc,$+11; 487A ld a,040h	5BAB and 038h; 5BAD jr nz,$+15; 5BAF ld a,h; 5BB0 sub 008h; 5BB2 and 0c7h; 5BB4 ld h,a; 5BB5 ld a,050h
+491B	spr_tile_unmark_hook	1000:1A2A	f_logica_a.c	2	0	45		5C54 ld a,l; 5C55 sub h; 5C56 jr z,$+19; 5C58 jr c,$+25; 5C5A cp d; 5C5B jr nc,$+38; 5C5D ld h,a; 5C5E ld l,000h; 5C60 add a,e; 5C61 cp d; 5C62 jr nc,$+4; 5C64 ld a,e; 5C65 ret; 5C66 ld a,d; 5C67 sub h; 5C68 ret; 5C69 ld hl,00000h; 5C6C ld a,e; 5C6D cp d; 5C6E ret c; 5C6F ld a,d; 5C70 ret; 5C71 ld h,000h; 5C73 neg; 5C75 ld l,a; 5C76 cp e; 5C77 jr nc,$+10; 5C79 neg; 5C7B add a,e; 5C7C cp d ...
+4925	spr_draw_tiles_in_depth_range	1000:1A35	f_logica_a.c	9	15	7	4949 xor a; 494A ld (04a2ch),a; 494D ld (04a48h),a; 4950 ld a,(02928h); 4953 sub 004h; 4955 ld (04a28h),a; 4958 ld (04a44h),a	
+49E5	spr_tile_to_buffer	1000:1B3D	f_logica_a.c	14	39	17	49E7 ld l,a	5D4B ld l,(ix+002h)
+4A5F	iso_draw_room_spiral	1000:1BD6	f_logica_a.c	8	26	50	4A62 ld a,0fch	5DB5 ld ix,090aah; 5DB9 ld a,004h
+4AC8	iso_draw_tile	1000:1C53 iso_draw_tile_run, one tile	f_logica_a.c	1	1	44	4ACA call 049e5h	5E3F ld h,000h; 5E41 ld l,a; 5E42 add hl,hl; 5E43 add hl,hl; 5E44 add hl,hl; 5E45 add hl,hl; 5E46 add hl,hl; 5E47 ld c,a; 5E48 ld a,06dh; 5E4A add a,h; 5E4B ld h,a; 5E4C bit 7,c; 5E4E exx; 5E4F ld h,09dh; 5E51 jr z,$+4; 5E53 ld h,09fh; 5E55 exx; 5E56 ld c,008h; 5E58 ld b,004h; 5E5A ld a,(hl); 5E5B exx; 5E5C ld l,a; 5E5D ld c,(hl); 5E5E inc h; 5E5F ld b,(hl); 5E60 ld a,(de); 5E61 and b; 5E62 or c; 5E63 ld (de),a; 5E64 dec h ...
+52C3	ai_malaquias_rise		f_logica_b.c	1	4	3	52C4 rst 28h; 52C5 ld a,0c3h; 52C7 xor b; 52C8 add hl,sp	666E add a,(hl); 666F ld b,e; 6670 jp 03e5bh
+5402	found		f_logica_b.c	2	4	3	5422 ld (hl),c; 5423 ld c,e	67CC dec de; 67CD ld d,b
+5495	ai_berengar_think	1000:42ED, 44C4, 457A	f_logica_b.c	2	6	6	54D9 add hl,sp; 54DA call 039aeh; 54DD jr nz,$+9	6883 ld a,0cdh; 6885 ld h,c; 6886 ld a,020h; 6888 rlca
+5582	chr_berengar_hooded		f_logica_b.c	1	2	2	5583 ret c; 5584 dec sp	692D sub h; 692E ld b,b
+55D2	tells		f_logica_b.c	1	2	1	566B ld a,h; 566C ld c,e	6A15 ld h,050h
+56B2	he		f_logica_b.c	1	1	2	56BF and 03eh	6A69 ld a,l; 6A6A ld b,e
+5761	without		f_logica_b.c	2	5	3	5781 add hl,sp; 5782 rst 8	6B2B ld a,0cfh
+57C2	obj_jorge_takes_book		f_logica_b.c	2	3	3	57EB ld c,e	6B95 ld d,b
+593E	out		f_logica_b.c	1	1	1	5959 ld c,e	6D03 ld d,b
+59E2	hud_blink_yes_no		f_logica_b.c	1	2	2	59E3 cp e; 59E4 ld c,e	6D8D ld h,l; 6D8E ld d,b
+5A4F	ai_hour_change_events	1000:4A76	f_logica_b.c	1	10	14	5A64 ld (hl),l; 5A65 ld e,d; 5A66 sub c; 5A67 ld e,d; 5A68 jp po,0e95ah; 5A6B ld e,d; 5A6C call m,00f5ah; 5A6F ld e,e; 5A70 inc de; 5A71 ld e,e	6E0E rra; 6E0F ld e,a; 6E10 dec sp; 6E11 ld e,a; 6E12 adc a,h; 6E13 ld e,a; 6E14 sub e; 6E15 ld e,a; 6E16 and (hl); 6E17 ld e,a; 6E18 cp c; 6E19 ld e,a; 6E1A cp l; 6E1B ld e,a
+5A9E	snd_stub_event		f_logica_b.c	1	2	2	5AA8 dec sp; 5AA9 dec sp	6E52 rst 30h; 6E53 ccf
+5B97	obj_abbot_drops_parchment		f_logica_b.c	1	1	1	5B99 dec sp	6F43 ld b,b
+5BD6	ai_check_guillermo_at_mass		f_logica_b.c	1	3	3	5BE4 defb 0ddh,05fh,0cdh ;illegal sequence; 5BE7 halt; 5BE8 ld h,b	6F8E add a,a; 6F8F ld h,h; 6F90 call 06520h
+5BEA	prima		f_logica_b.c	1	2	2	5BF4 dec d; 5BF5 ccf	6F9E xor h; 6F9F ld b,e
+5C10	ai_check_guillermo_at_refectory		f_logica_b.c	1	1	1	5C12 ccf	6FBC ld b,e
+5C81	completas		f_logica_b.c	2	7	5	5CEC add hl,sp; 5CED jr nz,$+19; 5CEF rst 8; 5CF0 sbc a,c	7096 ld a,020h; 7098 ld de,099cfh
+5D75	looks		f_logica_b.c	1	3	3	5D8E xor (hl); 5D8F add hl,sp; 5D90 jr nz,$+5	7138 ld h,c; 7139 ld a,020h; 713B inc bc
+5D9B	day		f_logica_b.c	1	3	1	5DA0 ld d,b; 5DA1 ld e,(hl); 5DA2 rst 8	714A jp m,0cf62h
+5DA2	nona		f_logica_b.c	1	2	2	5E5A dec h; 5E5B ld e,a	7204 rst 8; 7205 ld h,e
+5E62	presents		f_logica_b.c	2	3	3	5E8A dec h; 5E8B ld e,a	7234 rst 8; 7235 ld h,e
+5EAA	snd_stub_counter		f_logica_b.c	2	4	3	5EC3 ld a,h; 5EC4 ld c,e	726D ld h,050h
+5F18	time		f_logica_b.c	1	1	1	5F23 ld e,a	72CD ld h,e
+5FA1	ai_say_phrase_param		f_logica_b.c	1	2	1	5FCB inc h; 5FCC ld d,c	7375 adc a,055h
+5FDD	ai_abbot_count_vespers	1000:51AE	f_logica_b.c	1	9	12	5FE0 xor 05fh; 5FE2 xor 05fh; 5FE4 ret m; 5FE5 ld e,a; 5FE6 xor 05fh; 5FE8 nop; 5FE9 ld h,b; 5FEA ld (de),a; 5FEB ld h,b	738A sbc a,b; 738B ld h,h; 738C sbc a,b; 738D ld h,h; 738E and d; 738F ld h,h; 7390 sbc a,b; 7391 ld h,h; 7392 xor d; 7393 ld h,h; 7394 cp h; 7395 ld h,h
+5FF8	ai_ready_adso_sev_mal	1000:51D5	f_logica_b.c	1	0	2488		73AA rst 8; 73AB xor h; 73AC ld bc,0203eh; 73AF ex af,af'; 73B0 rst 10h; 73B1 and d; 73B2 ld b,b; 73B3 jr nz,$-39; 73B5 and e; 73B6 nop; 73B7 ret; 73B8 rst 10h; 73B9 and e; 73BA ld bc,0d7c9h; 73BD and e; 73BE sub a; 73BF ret; 73C0 call 03f10h; 73C3 pop de; 73C4 ld h,h; 73C5 rst 10h; 73C6 ld h,h; 73C7 sbc a,064h; 73C9 sbc a,b; 73CA ld h,h; 73CB cp h; 73CC ld h,h; 73CD call po,00064h; 73D0 nop; 73D1 rst 10h ...

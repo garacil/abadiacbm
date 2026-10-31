@@ -1,0 +1,131 @@
+--- sombra6502.c.orig	2026-10-17 17:16:45.654663621 +0200
++++ sombra6502.c	2026-10-17 17:16:45.697516000 +0200
+@@ -58,6 +58,9 @@
+ static int16_t bloque_c64_de[0x10000];      /* C64 address -> copia block + 1 */
+ 
+ typedef struct { int bloque; uint16_t cpc, h, off; uint8_t w; } subgraf_t;
++typedef struct { int bloque; uint16_t cpc; unsigned w, h, off; } marco_t;      /* PANTALLA:doble: the sprite frames */
++static marco_t marcos[512];
++static int nmarcos;
+ static subgraf_t subgrafs[64];
+ static int nsubgrafs;
+ static uint8_t nib[256];                    /* CPC mode 1 byte -> C64 nibble (rule sim of c64_graficos.py) */
+@@ -299,6 +302,11 @@
+         char blk[64]; unsigned cpc, w, h, off, v;
+         if (l[0] == '#' || sscanf(l, "%63s %x %u %u %u", blk, &cpc, &w, &h, &off) != 5) continue;
+         k = bloque_por_nombre(blk);
++        if ((!strcmp(blk, "baldosas") || !strcmp(blk, "caras") || !strcmp(blk, "habitos") || !strcmp(blk, "personajes")
++             || !strcmp(blk, "puerta")) && nmarcos < 512) {
++            marcos[nmarcos].bloque = k; marcos[nmarcos].cpc = (uint16_t)cpc;
++            marcos[nmarcos].w = w; marcos[nmarcos].h = h; marcos[nmarcos].off = off; ++nmarcos;
++        }
+         if (!gfx_c64[cpc]) gfx_c64[cpc] = (uint16_t)(bloques[k].c64 + off);
+         for (v = 0; v < w * h; ++v)
+             if (!gfx_c64[(uint16_t)(cpc + v)])
+@@ -372,7 +380,8 @@
+                 if (!strncmp(t, "PANTALLA", 8)) {
+                     ru->pantalla = 1;
+                     ru->regla = !strcmp(t, "PANTALLA:der") ? 'd' : !strcmp(t, "PANTALLA:izq") ? 'i'
+-                              : !strcmp(t, "PANTALLA:par") || !strcmp(t, "PANTALLA:detalle") ? 'p' : 's';
++                              : !strcmp(t, "PANTALLA:par") || !strcmp(t, "PANTALLA:detalle") ? 'p'
++                              : !strcmp(t, "PANTALLA:doble") ? 'x' : 's';
+                 }
+                 else if (!strcmp(t, "INLINE")) ru->linea = 1;
+                 else if (!strcmp(t, ">HL:INLINE")) ru->hl_linea_entra = 1;
+@@ -677,6 +686,76 @@
+     return 1;
+ }
+ 
++/* PANTALLA:doble: the Z80 original run a second time on doubled graphics: every tile (00h-D9h but the object
++ * slots, at their places after the start-up), every sprite frame of marcos64.tsv (characters, faces, robes, door,
++ * objects) and the visible screen replaced by their C64 form as the 6502 memory holds it at the entry, each C64
++ * pixel as two equal CPC pixels.  The Z80's merges (pen 0 / pen 2 / pen 1 transparent, mirrors, copies) then act on
++ * pixel pairs exactly as the C64 code acts on its pixels, so its screen converts exactly to what the 6502 routine
++ * must draw: an exact comparison of tile and sprite composition (the per-byte rules cannot give one: the tiles'
++ * detalle conversion depends on the neighbours and merges do not commute with any per-byte conversion). */
++static uint8_t dbl_de(uint8_t n)
++{
++    static const uint8_t pen[4] = { 3, 0, 1, 2 };
++    uint8_t p[4], b = 0;
++    unsigned i;
++    p[0] = p[1] = pen[(n >> 2) & 3]; p[2] = p[3] = pen[n & 3];
++    for (i = 0; i < 4; ++i) b = (uint8_t)(b | ((p[i] & 1) << (7 - i)) | (((p[i] >> 1) & 1) << (3 - i)));
++    return b;
++}
++
++static void doble_esperado(const rutina_t *r, const z80 *ce, const uint8_t *ram_e, uint8_t *esp)
++{
++    static uint8_t rd[0x10000], ram_host[0x10000];
++    z80 cpu_host = cpu;
++    plataforma_t ph;
++    unsigned a, l, x;
++    int m, n;
++    memcpy(rd, ram_e, sizeof rd);
++    for (a = 0xC000; a <= 0xFFFF; ++a) {           /* the screen */
++        int alto;
++        uint16_t b;
++        if ((a & 0x7FF) >= 0x600) continue;
++        b = bitmap_de((uint16_t)a, &alto);
++        rd[a] = dbl_de(alto ? (uint8_t)(antes[b] >> 4) : (uint8_t)(antes[b] & 15));
++    }
++    for (n = 1; n <= 0xD9; ++n) {                  /* the tiles: 80h-D9h at 8300h + 32n, below 80h in the screen's gaps */
++        uint16_t src = (uint16_t)(n * 32);
++        if ((n >= 0x2D && n <= 0x2F) || (n >= 0xA1 && n <= 0xA6)) continue;
++        if (n & 0x80) src = (uint16_t)((((src >> 8) + 0x83) << 8) | (src & 0xFF));
++        else src = (uint16_t)(((0xC6 + (((n & 0x70) >> 1) | ((n >> 3) & 1))) << 8) | (src & 0xFF));
++        for (l = 0; l < 8; ++l)
++            for (x = 0; x < 4; ++x) {
++                uint8_t c = antes[(uint16_t)(0xD000 + 16 * n + 8 * (x >> 1) + l)];
++                rd[(uint16_t)(src + 4 * l + x)] = dbl_de((x & 1) ? (uint8_t)(c & 15) : (uint8_t)(c >> 4));
++            }
++    }
++    for (m = 0; m < nmarcos; ++m) {                /* the sprite frames */
++        const marco_t *g = &marcos[m];
++        for (l = 0; l < g->h; ++l)
++            for (x = 0; x < g->w; ++x) {
++                uint8_t c = antes[(uint16_t)(bloques[g->bloque].c64 + g->off + l * ((g->w + 1) / 2) + x / 2)];
++                rd[(uint16_t)(g->cpc + l * g->w + x)] = dbl_de((x & 1) ? (uint8_t)(c & 15) : (uint8_t)(c >> 4));
++            }
++    }
++    memcpy(ram_host, ram, sizeof ram);
++    memcpy(ram, rd, sizeof ram);
++    hibrido_plataforma(&ph);
++    cpu = *ce;
++    llama_z80(codigo_z80[r->dir]);
++    memcpy(rd, ram, sizeof rd);
++    memcpy(ram, ram_host, sizeof ram);
++    hibrido_pon_plataforma(&ph);
++    cpu = cpu_host;
++    memcpy(esp, antes, 0x10000);
++    for (a = 0xC000; a <= 0xFFFF; ++a) {
++        int alto;
++        uint16_t b;
++        if ((a & 0x7FF) >= 0x600) continue;
++        b = bitmap_de((uint16_t)a, &alto);
++        esp[b] = alto ? (uint8_t)((esp[b] & 0x0F) | nib_izq[rd[a]] << 4) : (uint8_t)((esp[b] & 0xF0) | nib_izq[rd[a]]);
++    }
++}
++
+ /* the call of t: entry state (ce, ram_e), the Z80's result (zz, ram_z).  Nothing when t has no routine. */
+ void sombra6502_comprueba(const char *nombre, const z80 *ce, const uint8_t *ram_e, const z80 *zz, const uint8_t *ram_z,
+                           const plataforma_t *pe, const plataforma_t *pz)
+@@ -771,7 +850,18 @@
+                     break;
+                 }
+         }
+-        if (r->pantalla) {                     /* the screen: the Z80's result converted (its rule), cells 4-35 of rows 0-23 */
++        if (r->pantalla && r->regla == 'x') {  /* PANTALLA:doble: exact, cells 4-35 of rows 0-24 */
++            static uint8_t esp[0x10000];
++            doble_esperado(r, ce, ram_e, esp);
++            for (k = 0xE000; k < 0xFF40 && lmsg < sizeof msg - 64; ++k) {
++                unsigned col = (k - 0xE000) % 320 / 8;
++                if (col < 4 || col >= 36 || Mem[k] == esp[k]) continue;
++                lmsg += (size_t)snprintf(msg + lmsg, sizeof msg - lmsg, " [doble %04X] %02X/%02X (before %02X)", k, Mem[k], esp[k], antes[k]);
++                mal = 1;
++                break;
++            }
++        }
++        else if (r->pantalla) {                     /* the screen: the Z80's result converted (its rule), cells 4-35 of rows 0-23 */
+             for (k = 0xC000; k <= 0xFFFF && lmsg < sizeof msg - 64; ++k) {
+                 int alto;
+                 uint16_t b;

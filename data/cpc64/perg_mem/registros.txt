@@ -1,0 +1,2 @@
+instructions 2000000
+A=C8 F=88 B=00 C=C8 D=6E E=EA H=C9 L=1E SP=BFEC PC=672C

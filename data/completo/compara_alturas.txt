@@ -1,0 +1,4 @@
+floor0: 65536 windows, 0 differ, 0 with a write outside the buffer; first: None
+floor1: 65536 windows, 0 differ, 0 with a write outside the buffer; first: None
+floor2: 65536 windows, 0 differ, 0 with a write outside the buffer; first: None
+floor2_closed: 65536 windows, 0 differ, 0 with a write outside the buffer; first: None

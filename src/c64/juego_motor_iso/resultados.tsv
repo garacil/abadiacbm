@@ -1,0 +1,32 @@
+# What each 6502 routine must leave like the Z80 function (what its callers use): registers A B C D E
+# H L IXH IXL IYH IYL BC DE HL IX IY, flags CF ZF; REG:target a register pair (BC DE HL IX IY) that returns a
+# pointer (compared relocated to the C64), >REG:target one that brings a pointer (relocated at the entry),
+# !BLOCK a block of mapa64.tsv left out of the comparison (targets as in punteros64.tsv).  Memory is always
+# compared (the blocks of mapa64.tsv, in C64 form; c64/CODIGO6502.md).
+util_add_bx_al	HL	A
+iso_put_tile	A	HL	BC
+iso_draw_room	PANTALLA:par
+iso_build_room	>IX:D64_ISO_ROOM_TABLE	IX:D64_ISO_ROOM_TABLE	A
+vid_fill_play_area_ff	PANTALLA
+iso_clear_tile_buffer	PANTALLA
+vid_fill_play_area	PANTALLA
+iso_block_depth
+iso_tile_run	INLINE	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	HL	BC	A
+iso_put_tile_step	HL	A	BC
+iso_put_tile_times	HL	A	BC	ZF
+iso_expression	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	BC	A
+iso_fetch_word	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE
+iso_fetch_operand	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+iso_operand_value	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+vid_set_crtc	INLINE
+iso_update_camera_room	A
+iso_floor_base	B	A	CF
+iso_orient_relative	A
+iso_rotate_cam0	HL	A
+iso_rotate_cam1	HL	A
+iso_rotate_cam2	HL	A
+iso_rotate_cam3	HL	A
+chr_fill_height_buffer	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO
+chr_mark_hbuf	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO
+spr_update_char_sprite	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO
+iso_grid_cell_ptr	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	DE	HL	A	CF

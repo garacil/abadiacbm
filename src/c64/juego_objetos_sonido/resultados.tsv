@@ -1,0 +1,46 @@
+# What each 6502 routine must leave like the Z80 function (what its callers use): registers A B C D E
+# H L IXH IXL IYH IYL BC DE HL IX IY, flags CF ZF; REG:target a register pair (BC DE HL IX IY) that returns a
+# pointer (compared relocated to the C64), >REG:target one that brings a pointer (relocated at the entry),
+# !BLOCK a block of mapa64.tsv left out of the comparison (targets as in punteros64.tsv).  Memory is always
+# compared (the blocks of mapa64.tsv, in C64 form; c64/CODIGO6502.md).
+util_add_bx_al	HL A
+iso_floor_base	B A CF
+iso_orient_relative	A
+iso_grid_cell_ptr	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	DE	HL	A	CF
+iso_fetch_operand	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+iso_operand_value	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG
+# group objetos_sonido (objetos_sonido.s).  spr_project_entity's HL and C (visible only) are checked through its
+# callers; the IX lists of the door cells also hold the blocks whose CPC addresses IX brings as junk from the path
+# search (08CC), so that the traps' C64 -> CPC conversion gives them back unchanged
+obj_redraw_one_object	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS	A	ZF	CF
+obj_for_each_visible	>HL:code	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS
+obj_object_sprite_update	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS
+obj_door_sprite_update	>IX:D64_SPR_TABLE	>IY:D64_OBJ_DOORS
+obj_door_mark_cells	>IY:D64_OBJ_DOORS	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	A
+obj_door_cells	>IY:D64_OBJ_DOORS	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	BC	CF
+spr_project_entity	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS	A	ZF	CF
+obj_door_camera_adjust	>IX:D64_SPR_TABLE	BC
+obj_door_adjust_grid_pos	>IX:D64_SPR_TABLE	>HL:D64_OBJ_DOOR_CAMERA_OFFSETS|D64_OBJ_DOOR_ORIENT_TABLE	HL:D64_OBJ_DOOR_CAMERA_OFFSETS|D64_OBJ_DOOR_ORIENT_TABLE	A
+obj_door_check_open_close	>IX:D64_SPR_TABLE	>IY:D64_OBJ_DOORS
+obj_door_unpermitted_near	>HL:D64_CHR_BACKUP	CF
+util_read_indirect_pair	>HL:D64_CHR_BACKUP	HL:D64_CHR_BACKUP	A	B
+chr_path_reset_alternatives	DE:D64_CHR_PATH_SLOT	A
+snd_start_if_idle	>HL:D64_SND_DATA
+snd_start	>IX:D64_SND_MIXER	>HL:D64_SND_DATA
+snd_interrupt	A	BC	DE	HL	IX	CF	ZF
+snd_channel_output	>IX:D64_SND_MIXER
+snd_channel_tick	>IX:D64_SND_MIXER
+snd_tone_env_next	>IX:D64_SND_MIXER
+snd_vol_env_step	>IX:D64_SND_MIXER
+snd_vol_env_next	>IX:D64_SND_MIXER
+snd_cmd_jump	>BC:D64_SND_DATA	DE:D64_SND_DATA
+snd_cmd_start_b	>BC:D64_SND_DATA	A
+snd_cmd_start_c	>BC:D64_SND_DATA	A
+snd_cmd_tone_env	>IX:D64_SND_MIXER	>BC:D64_SND_DATA
+snd_cmd_vol_env	>IX:D64_SND_MIXER	>BC:D64_SND_DATA
+snd_add_hl_a	>HL:D64_SND_NOTE_PERIODS|D64_SND_DATA	HL:D64_SND_NOTE_PERIODS|D64_SND_DATA
+snd_shift_right	HL	A	ZF
+# stubs called by objetos_sonido (traps until their groups translate them): pointer registers both ways
+spr_save_old_rect	>IX:D64_SPR_TABLE	IX:D64_SPR_TABLE
+iso_grid_cell_of	>IY:D64_OBJ_DOORS|D64_OBJ_OBJECTS	IY:D64_OBJ_DOORS|D64_OBJ_OBJECTS	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT
+spr_flip_graphics_h	>HL:gfx

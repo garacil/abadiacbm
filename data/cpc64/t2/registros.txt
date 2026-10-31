@@ -1,0 +1,2 @@
+instructions 259600
+A=20 F=20 B=40 C=00 D=BF E=F4 H=00 L=00 SP=00FE PC=EF21

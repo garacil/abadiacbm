@@ -1,0 +1,65 @@
+# What each 6502 routine must leave like the Z80 function (what its callers use): registers A B C D E
+# H L IXH IXL IYH IYL BC DE HL IX IY, flags CF ZF; REG:target a register pair (BC DE HL IX IY) that returns a
+# pointer (compared relocated to the C64), >REG:target one that brings a pointer (relocated at the entry),
+# !BLOCK a block of mapa64.tsv left out of the comparison (targets as in punteros64.tsv).  Memory is always
+# compared (the blocks of mapa64.tsv, in C64 form; c64/CODIGO6502.md).
+util_add_bx_al	HL A
+iso_floor_base	B A CF
+iso_orient_relative	A
+iso_grid_cell_ptr	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	DE	HL	A	CF
+iso_fetch_operand	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+iso_operand_value	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG
+# ---- group personajes (personajes.s; c64/juego_personajes/NOTAS.md) ----
+game_run_npc_behaviours
+spr_draw_or_darken	PANTALLA
+spr_place_light	PANTALLA
+vid_clear_play_area	PANTALLA
+chr_step_table	>IY:var	HL:D64_CHR_STEP_TABLE_2X2
+util_add_bx_8al	>HL:var	HL:var
+chr_to_hbuf_coords	HL	CF
+chr_probe_ahead_flat	>IY:var	>HL:var	A	C	HL:var
+chr_probe_ahead	>IY:var	>HL:var	A	C	HL:var
+chr_probe_cells	>IY:var	>HL:var	A	C	HL:var
+chr_guillermo_behaviour	>IY:var	>IX:var
+chr_mark_hbuf	>IY:var	>IX:var	IX:var
+chr_update	>HL:D64_CHR_TABLE	IX:var	IY:var
+chr_think_or_step	>IY:var	>IX:var
+chr_try_advance	>IY:var	>IX:var	>HL:var
+chr_orientation_parity	>IY:var	A	ZF
+chr_try_advance_2x2	>IY:var	>IX:var	>HL:var
+chr_apply_step	>IY:var	>HL:var	HL:var	A
+chr_step_level	>IY:var	>IX:var	>HL:var
+chr_step_and_animate	>IY:var	>IX:var	>HL:var
+chr_turn	>IY:var	>IX:var
+chr_animate	>IY:var	>IX:var
+chr_select_frame	>IY:var	>IX:var	HL:D64_CHR_ANIM_GUILLERMO
+spr_save_old_rect	>IX:var	A
+spr_mark_leaving	>IX:var	A	ZF
+chr_load_params	>HL:D64_CHR_TABLE
+chr_command_bit	>IY:var	A	CF	ZF
+chr_ai_follow_commands	>IY:var	>IX:var
+iso_select_room	HL:D64_ISO_ROOM_TABLE
+chr_fill_height_buffer	>IY:var
+sys_tick	A	B	C	D	E	H	L	IX	IY	CF	ZF
+chr_backup_args	>IY:var	HL:var	DE:D64_CHR_BACKUP
+sys_read_keyboard
+game_input_and_mirror
+game_check_qr_mirror	E	IX:D64_CHR_GUILLERMO
+sys_test_key	>DE:D64_SYS_KEYS_DOWN	A	ZF	CF	C	DE:D64_SYS_KEYS_DOWN	HL:D64_SYS_BIT_MASKS
+sys_key_pressed	A	ZF	CF	C	DE	HL
+sys_key_down	A	ZF	CF	C	DE	HL
+sys_key_bit	>DE:D64_SYS_KEYS_DOWN	A	ZF	CF	C	DE:D64_SYS_KEYS_DOWN	HL:D64_SYS_BIT_MASKS
+obj_init_mirror	A	BC	HL:D64_ISO_ROOM_TABLE
+obj_close_mirror	A	BC	HL:D64_ISO_ROOM_TABLE
+spr_flip_adso
+spr_flip_malachi
+spr_flip_abbot
+spr_flip_berengar
+spr_flip_severin
+spr_flip_guillermo
+spr_flip_graphics_h	>HL:gfx	!D64_CHR_HEIGHT_BUFFER	!D64_CHR_FLOOR2_HEIGHTS
+# stubs the group calls (other groups' functions): their pointer registers, relocated at the trap
+iso_grid_cell_of	>IY:var	>IX:var	IX:var	IY:var
+iso_grid_set_origin	>IY:var	IY:var
+iso_mirror_draw_callback	>IX:var	>IY:var	IX:var	IY:var
+hud_say_now	INLINE

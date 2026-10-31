@@ -1,0 +1,25 @@
+      the first stage ("abadia", 20053 bytes) loaded by the KERNAL and started: 50592887 cycles = 51.4 s from LOAD typed to its main
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/1_pergamino.png
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/2_rosa.png
+ok    the loader's start (pink): the screen memory as the model after 0 nibbles (0 bytes differ; 0 outside cells not black)
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/3_linea_1.png
+ok    the picture's line 7 complete: the screen memory as the model after 1536 nibbles (0 bytes differ; 0 outside cells not black)
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/4_lineas_4.png
+ok    four lines: the screen memory as the model after 6144 nibbles (0 bytes differ; 0 outside cells not black)
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/5_imagen_antes_de_arreglos.png
+ok    the picture complete, before its colour fixes: the screen memory as the model after 12288 nibbles (0 bytes differ; 0 outside cells not black)
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/6_imagen_completa.png
+ok    the end of the data: the screen memory as the model after 12288 nibbles with the final colours (0 bytes differ; 0 outside cells not black)
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/7_salto.png
+      the load: line 7 of the picture complete at 5.6 s, the picture at 32.6 s (25.9 % of the load), the data at 125.6 s, principal_inicio at 123889168 cycles = 125.7 s
+ok    principal_inicio: the RAM equals juego.bin over 60826 bytes (the game's segments but BSS and the merge tables, the zero page, the play area)
+      bytes different from the image anywhere: 3787 (the stack page, the screen RAM, BSS, the merge tables where the loader was...: all outside what the game needs)
+ok    the game's first frame: the 2320 bytes of the merge tables rebuilt as in the image (0 differ)
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/8_juego_frame_1.png
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/9_juego_frame_200.png
+      the ending ("final", 18225 bytes) loaded by plat_final's KERNAL LOAD in 46181477 cycles = 46.9 s
+      picture: /home/german/proyectos/abadia64ks/c64/disco/resultados/10_final.png
+ok    plat_final loaded "FINAL" from the disk and the ending parchment runs (its main, 40 characters)
+ok    frame 50: the screen as with the image written straight into the RAM (0 pixels differ)
+ok    frame 200: the screen as with the image written straight into the RAM (0 pixels differ)
+all checks passed

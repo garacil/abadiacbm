@@ -1,0 +1,2 @@
+instructions 270920
+A=00 F=54 B=09 C=FC D=BE E=64 H=FF L=FB SP=0100 PC=0007

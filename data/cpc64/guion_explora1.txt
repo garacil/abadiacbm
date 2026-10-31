@@ -1,0 +1,9 @@
+# frame row:bit [frames held]   CPC matrix: cursor up 0:0, right 0:1, down 0:2, left 1:0, space 5:7
+300 5:7 120
+800 0:0 200
+1010 1:0 12
+1030 0:0 200
+1240 0:1 12
+1260 0:0 300
+1570 1:0 12
+1590 0:0 300

@@ -1,0 +1,18 @@
+# CPC hardware colour -> Commodore 64 colour, chosen by hue (keeping the CPC colours).  The Lab
+# nearest colour (tools/c64_colores.py) is given for reference; with the colodore
+# palette the CPC cyan comes out grey, which loses the hue, so the hue match is used.
+# cpc_hw	cpc_rgb	c64	c64_name	lab_nearest_colodore
+06	0,128,128	3	cyan	12 grey
+0E	255,128,0	8	orange	8 orange
+03	255,255,128	7	yellow	7 yellow
+14	0,0,0	0	black	0 black
+# parchment (inks of the CPC parchment, code 610Fh: pen 0 07, pen 1 1C, pen 2 14, pen 3 0C, border 1C)
+07	255,128,128	10	light red	10 light red
+1C	128,0,0	2	red	2 red
+0C	255,0,0	2	red	8 orange (keeps the red of the capitals instead)
+# night palette (3A7Dh: pen 3 14, pen 2 00, pen 1 1D, pen 0 04, border 14), added for the game's data image
+# (c64/juego/datos64.py): Lab nearest gives blue for both 1D and 04; 1D is taken as purple by hue
+# so the two pens stay apart (to be confirmed)
+00	128,128,128	12	grey	12 grey
+1D	128,0,255	4	purple	6 blue
+04	0,0,128	6	blue	6 blue

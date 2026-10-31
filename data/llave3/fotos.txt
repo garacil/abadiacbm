@@ -1,0 +1,10 @@
+# frames for the pictures (prueba.sh)
+1057
+1095
+1114
+1129
+1170
+1200
+1211
+1212
+1230

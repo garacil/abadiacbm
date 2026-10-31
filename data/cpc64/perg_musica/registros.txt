@@ -1,0 +1,2 @@
+instructions 40000000
+A=08 F=A8 B=08 C=AD D=70 E=2F H=D9 L=AF SP=BFE8 PC=672F

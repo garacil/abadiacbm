@@ -1,0 +1,7 @@
+first_frame_inside 89
+first_frame_after 241
+frames 152
+seconds 3.035
+frame_step_min 0
+frame_step_max 2
+antes_frame 2

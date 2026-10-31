@@ -1,0 +1,571 @@
+Modules list:
+-------------
+main.c.825095.0.o:
+    CODE              Offs=000000  Size=00096D  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=00000C  Align=00001  Fill=0000
+    BSS               Offs=000000  Size=00005E  Align=00001  Fill=0000
+espera.s.825095.1.o:
+    CODE              Offs=00096D  Size=000131  Align=00001  Fill=0000
+    BSS               Offs=00005E  Size=000008  Align=00001  Fill=0000
+pixel.s.825095.2.o:
+    CODE              Offs=000A9E  Size=0008AC  Align=00001  Fill=0000
+    RODATA            Offs=00000C  Size=000317  Align=00001  Fill=0000
+    BSS               Offs=000066  Size=00015D  Align=00001  Fill=0000
+musica.s.825095.3.o:
+    CODE              Offs=00134A  Size=0004D2  Align=00001  Fill=0000
+    RODATA            Offs=000323  Size=000018  Align=00001  Fill=0000
+    BSS               Offs=0001C3  Size=000066  Align=00001  Fill=0000
+sid.s.825095.4.o:
+    CODE              Offs=00181C  Size=000389  Align=00001  Fill=0000
+    RODATA            Offs=00033B  Size=000239  Align=00001  Fill=0000
+    BSS               Offs=000229  Size=00004C  Align=00001  Fill=0000
+datos_final.c.825095.5.o:
+    RODATA            Offs=000574  Size=00220D  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(addeqsp.o):
+    CODE              Offs=001BA5  Size=000011  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(addysp.o):
+    CODE              Offs=001BB6  Size=00000E  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax1.o):
+    CODE              Offs=001BC4  Size=000008  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax2.o):
+    CODE              Offs=001BCC  Size=00000B  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax3.o):
+    CODE              Offs=001BD7  Size=00000E  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax4.o):
+    CODE              Offs=001BE5  Size=000011  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(asrax2.o):
+    CODE              Offs=001BF6  Size=00000F  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(callmain.o):
+    CODE              Offs=001C05  Size=000017  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000004  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(condes.o):
+    CODE              Offs=001C1C  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000004  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(crt0.o):
+    STARTUP           Offs=000000  Size=000033  Align=00001  Fill=0000
+    ONCE              Offs=00000C  Size=00001A  Align=00001  Fill=0000
+    INIT              Offs=000000  Size=00001C  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(decax3.o):
+    CODE              Offs=001C28  Size=000007  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(decax8.o):
+    CODE              Offs=001C2F  Size=000007  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(decaxy.o):
+    CODE              Offs=001C36  Size=000009  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(exehdr.o):
+    EXEHDR            Offs=000000  Size=00000C  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(icmp.o):
+    CODE              Offs=001C3F  Size=00002E  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax1.o):
+    CODE              Offs=001C6D  Size=000007  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax2.o):
+    CODE              Offs=001C74  Size=000007  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax3.o):
+    CODE              Offs=001C7B  Size=000005  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax5.o):
+    CODE              Offs=001C80  Size=000005  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax6.o):
+    CODE              Offs=001C85  Size=000005  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax7.o):
+    CODE              Offs=001C8A  Size=000005  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incaxy.o):
+    CODE              Offs=001C8F  Size=00000B  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incsp1.o):
+    CODE              Offs=001C9A  Size=000007  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incsp2.o):
+    CODE              Offs=001CA1  Size=000016  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incsp4.o):
+    CODE              Offs=001CB7  Size=000005  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(kernal.o):
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(ldaxi.o):
+    CODE              Offs=001CBC  Size=00000D  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(ldaxsp.o):
+    CODE              Offs=001CC9  Size=000009  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(ldptr1sp.o):
+    CODE              Offs=001CD2  Size=00000C  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(loadaddr.o):
+    LOADADDR          Offs=000000  Size=000002  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(makebool.o):
+    CODE              Offs=001CDE  Size=00002C  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(memcpy.o):
+    CODE              Offs=001D0A  Size=00003C  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(memset.o):
+    CODE              Offs=001D46  Size=00005D  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(mul8.o):
+    CODE              Offs=001DA3  Size=00003A  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(mulax3.o):
+    CODE              Offs=001DDD  Size=000011  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(popptr1.o):
+    CODE              Offs=001DEE  Size=00000E  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(pusha.o):
+    CODE              Offs=001DFC  Size=000016  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(pushax.o):
+    CODE              Offs=001E12  Size=00001A  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(pushwsp.o):
+    CODE              Offs=001E2C  Size=00001C  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(shrax3.o):
+    CODE              Offs=001E48  Size=00000E  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(staspidx.o):
+    CODE              Offs=001E56  Size=000016  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(sub.o):
+    CODE              Offs=001E6C  Size=000015  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(udiv.o):
+    CODE              Offs=001E81  Size=00004F  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(umod.o):
+    CODE              Offs=001ED0  Size=000011  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(zerobss.o):
+    CODE              Offs=001EE1  Size=000023  Align=00001  Fill=0000
+/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+ZEROPAGE              000002  00001B  00001A  00001
+LOADADDR              0007FF  000800  000002  00001
+EXEHDR                000801  00080C  00000C  00001
+STARTUP               00080D  00083F  000033  00001
+CODE                  000840  002743  001F04  00001
+RODATA                002744  004EC4  002781  00001
+DATA                  004EC5  004EED  000029  00001
+INIT                  004EEE  004F09  00001C  00001
+BSS                   004F0A  00517E  000275  00001
+ONCE                  004F0A  004F2F  000026  00001
+
+
+Exports list by name:
+---------------------
+BSOUT                     00FFD2 RLA    __BSS_RUN__               004F0A RLA    
+__BSS_SIZE__              000275 REA    __CONSTRUCTOR_COUNT__     000000 REA    
+__CONSTRUCTOR_TABLE__     004F30 RLA    __DESTRUCTOR_COUNT__      000000 REA    
+__DESTRUCTOR_TABLE__      004EC5 RLA    __EXEHDR__                000001 REA    
+__HEADER_LAST__           00080D RLA    __HIMEM__                 00D000 REA    
+__LOADADDR__              000001 REA    __MAIN_SIZE__             00C7F3 REA    
+__MAIN_START__            00080D RLA    __ONCE_RUN__              004F0A RLA    
+__STACKSIZE__             000800 REA    __STARTUP__               000001 REA    
+___bzero                  002586 RLA    _cap_usadas               004F22 RLA    
+_cap_wx                   004F33 RLA    _cap_wy                   004F3B RLA    
+_cap_xb_hi                004F2B RLA    _cap_xb_lo                004F23 RLA    
+_espera                   0011AD RLA    _main                     00112A RLA    
+_memcpy                   00254A RLA    _memset                   00258E RLA    
+_musica_inicia            001BB8 RLA    _musica_irq_on            0022B1 RLA    
+_musica_para              00204A RLA    _musica_registro          00205C RLA    
+_musica_reinicia          001CC2 RLA    _musica_tick              001FF7 RLA    
+_pasa_pagina              00142D RLA    _perg_anillo              005045 RLA    
+_perg_blanco_bitmap       00478A RLA    _perg_blanco_celda        004676 RLA    
+_perg_blanco_color        00472E RLA    _perg_blanco_n            004675 RLA    
+_perg_color_borde         004A72 RLA    _perg_color_pluma         004A6E RLA    
+_perg_fila_cap            004F73 RLA    _perg_glifo_desp          003621 RLA    
+_perg_glifos              0036DB RLA    _perg_musica              004A73 RLA    
+_perg_reproductor         004E73 RLA    _perg_texto               002CB8 RLA    
+_tecla_espacio            0012C2 RLA    addeq0sp                  0023E5 RLA    
+addysp                    0023F7 RLA    addysp1                   0023F6 RLA    
+aslax1                    002404 RLA    aslax2                    00240C RLA    
+aslax4                    002425 RLA    asrax2                    002436 RLA    
+booleq                    002524 RLA    c_sp                      000002 RLZ    
+callmain                  002445 RLA    decax3                    002468 RLA    
+decax8                    00246F RLA    decaxy                    002476 RLA    
+donelib                   00245C RLA    incax1                    0024AD RLA    
+incax2                    0024B4 RLA    incax3                    0024BB RLA    
+incax4                    0024CF RLA    incax5                    0024C0 RLA    
+incax6                    0024C5 RLA    incax7                    0024CA RLA    
+incaxy                    0024D1 RLA    incsp1                    0024DA RLA    
+incsp2                    0024E9 RLA    incsp4                    0024F7 RLA    
+initlib                   004F0A RLA    ldax0sp                   002509 RLA    
+ldaxi                     0024FC RLA    ldaxysp                   00250B RLA    
+ldptr10sp                 002512 RLA    mulax3                    00261D RLA    
+popax                     0024E1 RLA    popptr1                   00262E RLA    
+ptr1                      00000A RLZ    ptr2                      00000C RLZ    
+ptr3                      00000E RLZ    ptr4                      000010 RLZ    
+pusha                     002640 RLA    pusha0                    002654 RLA    
+pushax                    002656 RLA    pushwysp                  00266E RLA    
+regsave                   000006 RLZ    shlax2                    00240C RLA    
+shlax3                    002417 RLA    shlax4                    002425 RLA    
+shrax3                    002688 RLA    sreg                      000004 RLZ    
+staspidx                  002696 RLA    tmp1                      000012 RLZ    
+tmp2                      000013 RLZ    tmp3                      000014 RLZ    
+tmp4                      000015 RLZ    tosicmp                   002481 RLA    
+tossubax                  0026AE RLA    tosudiva0                 0026C1 RLA    
+tosumoda0                 002710 RLA    tosumula0                 0025E3 RLA    
+udiv16                    0026D2 RLA    zerobss                   002721 RLA    
+
+
+
+Exports list by value:
+----------------------
+__CONSTRUCTOR_COUNT__     000000 REA    __DESTRUCTOR_COUNT__      000000 REA    
+__EXEHDR__                000001 REA    __LOADADDR__              000001 REA    
+__STARTUP__               000001 REA    c_sp                      000002 RLZ    
+sreg                      000004 RLZ    regsave                   000006 RLZ    
+ptr1                      00000A RLZ    ptr2                      00000C RLZ    
+ptr3                      00000E RLZ    ptr4                      000010 RLZ    
+tmp1                      000012 RLZ    tmp2                      000013 RLZ    
+tmp3                      000014 RLZ    tmp4                      000015 RLZ    
+__BSS_SIZE__              000275 REA    __STACKSIZE__             000800 REA    
+__HEADER_LAST__           00080D RLA    __MAIN_START__            00080D RLA    
+_main                     00112A RLA    _espera                   0011AD RLA    
+_tecla_espacio            0012C2 RLA    _pasa_pagina              00142D RLA    
+_musica_inicia            001BB8 RLA    _musica_reinicia          001CC2 RLA    
+_musica_tick              001FF7 RLA    _musica_para              00204A RLA    
+_musica_registro          00205C RLA    _musica_irq_on            0022B1 RLA    
+addeq0sp                  0023E5 RLA    addysp1                   0023F6 RLA    
+addysp                    0023F7 RLA    aslax1                    002404 RLA    
+aslax2                    00240C RLA    shlax2                    00240C RLA    
+shlax3                    002417 RLA    aslax4                    002425 RLA    
+shlax4                    002425 RLA    asrax2                    002436 RLA    
+callmain                  002445 RLA    donelib                   00245C RLA    
+decax3                    002468 RLA    decax8                    00246F RLA    
+decaxy                    002476 RLA    tosicmp                   002481 RLA    
+incax1                    0024AD RLA    incax2                    0024B4 RLA    
+incax3                    0024BB RLA    incax5                    0024C0 RLA    
+incax6                    0024C5 RLA    incax7                    0024CA RLA    
+incax4                    0024CF RLA    incaxy                    0024D1 RLA    
+incsp1                    0024DA RLA    popax                     0024E1 RLA    
+incsp2                    0024E9 RLA    incsp4                    0024F7 RLA    
+ldaxi                     0024FC RLA    ldax0sp                   002509 RLA    
+ldaxysp                   00250B RLA    ldptr10sp                 002512 RLA    
+booleq                    002524 RLA    _memcpy                   00254A RLA    
+___bzero                  002586 RLA    _memset                   00258E RLA    
+tosumula0                 0025E3 RLA    mulax3                    00261D RLA    
+popptr1                   00262E RLA    pusha                     002640 RLA    
+pusha0                    002654 RLA    pushax                    002656 RLA    
+pushwysp                  00266E RLA    shrax3                    002688 RLA    
+staspidx                  002696 RLA    tossubax                  0026AE RLA    
+tosudiva0                 0026C1 RLA    udiv16                    0026D2 RLA    
+tosumoda0                 002710 RLA    zerobss                   002721 RLA    
+_perg_texto               002CB8 RLA    _perg_glifo_desp          003621 RLA    
+_perg_glifos              0036DB RLA    _perg_blanco_n            004675 RLA    
+_perg_blanco_celda        004676 RLA    _perg_blanco_color        00472E RLA    
+_perg_blanco_bitmap       00478A RLA    _perg_color_pluma         004A6E RLA    
+_perg_color_borde         004A72 RLA    _perg_musica              004A73 RLA    
+_perg_reproductor         004E73 RLA    __DESTRUCTOR_TABLE__      004EC5 RLA    
+__BSS_RUN__               004F0A RLA    __ONCE_RUN__              004F0A RLA    
+initlib                   004F0A RLA    _cap_usadas               004F22 RLA    
+_cap_xb_lo                004F23 RLA    _cap_xb_hi                004F2B RLA    
+__CONSTRUCTOR_TABLE__     004F30 RLA    _cap_wx                   004F33 RLA    
+_cap_wy                   004F3B RLA    _perg_fila_cap            004F73 RLA    
+_perg_anillo              005045 RLA    __MAIN_SIZE__             00C7F3 REA    
+__HIMEM__                 00D000 REA    BSOUT                     00FFD2 RLA    
+
+
+
+Imports list:
+-------------
+BSOUT (kernal.o):
+    crt0.o                    c64/crt0.s:10
+__BSS_RUN__ ([linker generated]):
+    zerobss.o                 common/zerobss.s:8
+__BSS_SIZE__ ([linker generated]):
+    zerobss.o                 common/zerobss.s:8
+__CONSTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s:18
+__CONSTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s:18
+__DESTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s:19
+__DESTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s:19
+__EXEHDR__ (exehdr.o):
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:6
+__HEADER_LAST__ ([linker generated]):
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:14
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:14
+__HIMEM__ ([linker generated]):
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:14
+__LOADADDR__ (loadaddr.o):
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:5
+__MAIN_SIZE__ ([linker generated]):
+    crt0.o                    c64/crt0.s:11
+__MAIN_START__ ([linker generated]):
+    crt0.o                    c64/crt0.s:11
+__ONCE_RUN__ ([linker generated]):
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
+__STACKSIZE__ ([linker generated]):
+    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
+__STARTUP__ (crt0.o):
+    main.c.825095.0.o         main.c.825095.0.s:13
+___bzero (memset.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+_cap_usadas (main.c.825095.0.o):
+    pixel.s.825095.2.o        pagina.s:49
+_cap_wx (main.c.825095.0.o):
+    pixel.s.825095.2.o        pagina.s:49
+_cap_wy (main.c.825095.0.o):
+    pixel.s.825095.2.o        pagina.s:49
+_cap_xb_hi (main.c.825095.0.o):
+    pixel.s.825095.2.o        pagina.s:49
+_cap_xb_lo (main.c.825095.0.o):
+    pixel.s.825095.2.o        pagina.s:49
+_espera (espera.s.825095.1.o):
+    pixel.s.825095.2.o        pagina.s:47
+    main.c.825095.0.o         main.c.825095.0.s:32
+_main (main.c.825095.0.o):
+    callmain.o                runtime/callmain.s:11
+_memcpy (memcpy.o):
+    main.c.825095.0.o         main.c.825095.0.s:14
+_memset (memset.o):
+    main.c.825095.0.o         main.c.825095.0.s:15
+_musica_inicia (musica.s.825095.3.o):
+    main.c.825095.0.o         main.c.825095.0.s:16
+_musica_irq_on (sid.s.825095.4.o):
+    main.c.825095.0.o         main.c.825095.0.s:19
+_musica_para (musica.s.825095.3.o):
+    main.c.825095.0.o         main.c.825095.0.s:18
+_musica_registro (sid.s.825095.4.o):
+    musica.s.825095.3.o       musica.s:12
+_musica_reinicia (musica.s.825095.3.o):
+    main.c.825095.0.o         main.c.825095.0.s:17
+_musica_tick (musica.s.825095.3.o):
+    sid.s.825095.4.o          sid.s:34
+_pasa_pagina (pixel.s.825095.2.o):
+    main.c.825095.0.o         main.c.825095.0.s:40
+_perg_anillo (pixel.s.825095.2.o):
+    main.c.825095.0.o         main.c.825095.0.s:31
+_perg_blanco_bitmap (datos_final.c.825095.5.o):
+    pixel.s.825095.2.o        pagina.s:48
+    main.c.825095.0.o         main.c.825095.0.s:30
+_perg_blanco_celda (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:28
+_perg_blanco_color (datos_final.c.825095.5.o):
+    pixel.s.825095.2.o        pagina.s:48
+    main.c.825095.0.o         main.c.825095.0.s:29
+_perg_blanco_n (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:27
+_perg_color_borde (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:26
+_perg_color_pluma (datos_final.c.825095.5.o):
+    pixel.s.825095.2.o        pixel.s:17
+    main.c.825095.0.o         main.c.825095.0.s:24
+_perg_fila_cap (pixel.s.825095.2.o):
+    main.c.825095.0.o         main.c.825095.0.s:39
+_perg_glifo_desp (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:25
+_perg_glifos (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:23
+_perg_musica (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:20
+_perg_reproductor (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:21
+_perg_texto (datos_final.c.825095.5.o):
+    main.c.825095.0.o         main.c.825095.0.s:22
+_tecla_espacio (espera.s.825095.1.o):
+    main.c.825095.0.o         main.c.825095.0.s:33
+addeq0sp (addeqsp.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+addysp (addysp.o):
+    incsp4.o                  runtime/incsp4.s:8
+addysp1 (addysp.o):
+    sub.o                     runtime/sub.s:8
+aslax1 (aslax1.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+aslax2 (aslax2.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+aslax4 (aslax4.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+asrax2 (asrax2.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+booleq (makebool.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+c_sp (zeropage.o):
+    addysp.o                  runtime/addysp.s:8
+    sub.o                     runtime/sub.s:9
+    staspidx.o                runtime/staspidx.s:9
+    pushwsp.o                 runtime/pushwsp.s:8
+    pushax.o                  runtime/pushax.s:8
+    pusha.o                   runtime/pusha.s:8
+    popptr1.o                 runtime/popptr1.s:9
+    memset.o                  common/memset.s:20
+    memcpy.o                  common/memcpy.s:15
+    ldptr1sp.o                runtime/ldptr1sp.s:8
+    ldaxsp.o                  runtime/ldaxsp.s:8
+    incsp2.o                  runtime/incsp2.s:8
+    incsp1.o                  runtime/incsp1.s:8
+    icmp.o                    runtime/icmp.s:9
+    crt0.o                    /home/german/proyectos/abadia64ks/herramientas/cc65/asminc/zeropage.inc:11
+    addeqsp.o                 runtime/addeqsp.s:8
+    main.c.825095.0.o         main.c.825095.0.s:10
+callmain (callmain.o):
+    crt0.o                    c64/crt0.s:9
+decax3 (decax3.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+decax8 (decax8.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+decaxy (decaxy.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+donelib (condes.o):
+    crt0.o                    c64/crt0.s:8
+incax1 (incax1.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incax2 (incax2.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incax3 (incax3.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incax4 (incaxy.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incax5 (incax5.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incax6 (incax6.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incax7 (incax7.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incaxy (incaxy.o):
+    incax7.o                  runtime/incax7.s:8
+    incax6.o                  runtime/incax6.s:8
+    incax5.o                  runtime/incax5.s:8
+    incax3.o                  runtime/incax3.s:8
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incsp1 (incsp1.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incsp2 (incsp2.o):
+    staspidx.o                runtime/staspidx.s:8
+    popptr1.o                 runtime/popptr1.s:8
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+incsp4 (incsp4.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+initlib (condes.o):
+    crt0.o                    c64/crt0.s:8
+ldax0sp (ldaxsp.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+ldaxi (ldaxi.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+ldaxysp (ldaxsp.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+ldptr10sp (ldptr1sp.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+mulax3 (mulax3.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+popax (incsp2.o):
+    memset.o                  common/memset.s:19
+    memcpy.o                  common/memcpy.s:14
+    musica.s.825095.3.o       musica.s:12
+popptr1 (popptr1.o):
+    umod.o                    runtime/umod.s:8
+    udiv.o                    runtime/udiv.s:9
+    mul8.o                    runtime/mul8.s:9
+    memcpy.o                  common/memcpy.s:14
+ptr1 (zeropage.o):
+    zerobss.o                 common/zerobss.s:9
+    udiv.o                    runtime/udiv.s:10
+    staspidx.o                runtime/staspidx.s:9
+    popptr1.o                 runtime/popptr1.s:9
+    mulax3.o                  runtime/mulax3.s:9
+    mul8.o                    runtime/mul8.s:10
+    memset.o                  common/memset.s:20
+    memcpy.o                  common/memcpy.s:15
+    ldptr1sp.o                runtime/ldptr1sp.s:8
+    ldaxi.o                   runtime/ldaxi.s:8
+    sid.s.825095.4.o          sid.s:35
+    musica.s.825095.3.o       musica.s:13
+    pixel.s.825095.2.o        pixel.s:18
+    espera.s.825095.1.o       espera.s:13
+    main.c.825095.0.o         main.c.825095.0.s:11
+ptr2 (zeropage.o):
+    memset.o                  common/memset.s:20
+    memcpy.o                  common/memcpy.s:15
+    musica.s.825095.3.o       musica.s:13
+    pixel.s.825095.2.o        pixel.s:18
+    espera.s.825095.1.o       espera.s:13
+    main.c.825095.0.o         main.c.825095.0.s:11
+ptr3 (zeropage.o):
+    memset.o                  common/memset.s:20
+    memcpy.o                  common/memcpy.s:15
+    pixel.s.825095.2.o        pixel.s:18
+ptr4 (zeropage.o):
+    umod.o                    runtime/umod.s:9
+    udiv.o                    runtime/udiv.s:10
+    mul8.o                    runtime/mul8.s:10
+    pixel.s.825095.2.o        pixel.s:18
+pusha (pusha.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+pusha0 (pushax.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+pushax (pushax.o):
+    callmain.o                runtime/callmain.s:11
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+pushwysp (pushwsp.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+regsave (zeropage.o):
+    pixel.s.825095.2.o        pagina.s:50
+shlax2 (aslax2.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+shlax3 (aslax3.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+shlax4 (aslax4.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+    main.c.825095.0.o         main.c.825095.0.s:1402
+shrax3 (shrax3.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+sreg (zeropage.o):
+    umod.o                    runtime/umod.s:9
+    udiv.o                    runtime/udiv.s:10
+    icmp.o                    runtime/icmp.s:9
+    pixel.s.825095.2.o        pagina.s:50
+    main.c.825095.0.o         main.c.825095.0.s:10
+staspidx (staspidx.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+tmp1 (zeropage.o):
+    staspidx.o                runtime/staspidx.s:9
+    shrax3.o                  runtime/shrax3.s:8
+    incaxy.o                  runtime/incaxy.s:8
+    decaxy.o                  runtime/decaxy.s:8
+    asrax2.o                  runtime/asrax2.s:8
+    aslax4.o                  runtime/aslax4.s:8
+    aslax3.o                  runtime/aslax3.s:8
+    aslax2.o                  runtime/aslax2.s:8
+    aslax1.o                  runtime/aslax1.s:8
+    sid.s.825095.4.o          sid.s:35
+    musica.s.825095.3.o       musica.s:13
+    espera.s.825095.1.o       espera.s:13
+tmp2 (zeropage.o):
+    sid.s.825095.4.o          sid.s:35
+    musica.s.825095.3.o       musica.s:13
+    pixel.s.825095.2.o        pixel.s:18
+    espera.s.825095.1.o       espera.s:13
+tmp3 (zeropage.o):
+    musica.s.825095.3.o       musica.s:13
+    pixel.s.825095.2.o        pixel.s:18
+    espera.s.825095.1.o       espera.s:13
+tmp4 (zeropage.o):
+    musica.s.825095.3.o       musica.s:13
+    pixel.s.825095.2.o        pixel.s:18
+tosicmp (icmp.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+tossubax (sub.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+tosudiva0 (udiv.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+tosumoda0 (umod.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+tosumula0 (mul8.o):
+    main.c.825095.0.o         main.c.825095.0.s:1402
+udiv16 (udiv.o):
+    umod.o                    runtime/umod.s:8
+zerobss (zerobss.o):
+    crt0.o                    c64/crt0.s:9
+

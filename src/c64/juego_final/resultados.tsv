@@ -1,0 +1,272 @@
+# What each 6502 routine must leave like the Z80 function (what its callers use): registers A B C D E
+# H L IXH IXL IYH IYL BC DE HL IX IY, flags CF ZF; REG:target a register pair (BC DE HL IX IY) that returns a
+# pointer (compared relocated to the C64), >REG:target one that brings a pointer (relocated at the entry),
+# !BLOCK a block of mapa64.tsv left out of the comparison (targets as in punteros64.tsv).  Memory is always
+# compared (the blocks of mapa64.tsv, in C64 form; c64/CODIGO6502.md).
+# merged by tools/resultados64.py from the groups' resultados.tsv: each translated
+# routine with its owner's lines, each function still a trap with the stub lines
+# ---- juego_motor_iso
+util_add_bx_al	HL	A
+iso_put_tile	A	HL	BC
+# (the next line is the integration's own: --cambia)
+iso_draw_room	PANTALLA:doble
+iso_build_room	>IX:D64_ISO_ROOM_TABLE	IX:D64_ISO_ROOM_TABLE	A
+vid_fill_play_area_ff	PANTALLA
+iso_clear_tile_buffer	PANTALLA
+vid_fill_play_area	PANTALLA
+iso_block_depth
+iso_tile_run	INLINE	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	HL	BC	A
+iso_put_tile_step	HL	A	BC
+iso_put_tile_times	HL	A	BC	ZF
+iso_expression	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	BC	A
+iso_fetch_word	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE
+iso_fetch_operand	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+iso_operand_value	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+vid_set_crtc	INLINE
+iso_update_camera_room	A
+iso_floor_base	B	A	CF
+iso_orient_relative	A
+iso_rotate_cam0	HL	A
+iso_rotate_cam1	HL	A
+iso_rotate_cam2	HL	A
+iso_rotate_cam3	HL	A
+spr_update_char_sprite	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO
+# ---- juego_camino
+iso_grid_cell_ptr	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	DE	HL	A	CF
+chr_path_add_targets_around	>HL:D64_CHR_GUILLERMO|D64_OBJ_OBJECTS|D64_GAME_BOOK_POISON_COUNT	>DE:D64_CHR_PATH_SLOT	IX:D64_CHR_GUILLERMO|D64_OBJ_OBJECTS|D64_GAME_BOOK_POISON_COUNT	IY:D64_CHR_PATH_SLOT
+chr_path_add_target_beside	>IX:D64_CHR_GUILLERMO|D64_OBJ_OBJECTS|D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_PATH_SLOT	IX:D64_CHR_GUILLERMO|D64_OBJ_OBJECTS|D64_GAME_BOOK_POISON_COUNT	IY:D64_CHR_PATH_SLOT	B
+ai_check_planned_move	>IY:D64_CHR_GUILLERMO
+chr_cmd_discard	>IY:D64_CHR_GUILLERMO	HL:D64_CHR_COMMAND_BUFFERS	A	BC	DE	CF	ZF
+chr_path_find	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_GUILLERMO|D64_CHR_PATH_SLOT	CF
+chr_path_face_target	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_GUILLERMO|D64_CHR_PATH_SLOT	CF
+chr_cmd_rewind	>IY:D64_CHR_GUILLERMO	A
+chr_room_coords	>IY:D64_CHR_GUILLERMO	A	HL
+chr_path_via_rooms	>IY:D64_CHR_GUILLERMO	CF
+chr_path_search_to_dest	>IY:D64_CHR_GUILLERMO	CF
+chr_path_restore_screen_grid	A	BC	DE	HL:D64_CHR_HEIGHT_BUFFER	CF
+iso_grid_set_origin	>IY:D64_CHR_GUILLERMO|D64_CHR_BACKUP	A	B
+chr_path_clear_grid_marks	A	BC
+chr_path_build_grid	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO
+iso_grid_cell_of	>IY:D64_CHR_GUILLERMO|D64_OBJ_DOORS|D64_OBJ_OBJECTS|D64_CHR_PATH_SLOT|D64_CHR_BACKUP	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	A	BC	DE	HL	CF
+chr_cmd_write_bits	>IY:D64_CHR_GUILLERMO	>DE:D64_CHR_COMMAND_BUFFERS	DE:D64_CHR_COMMAND_BUFFERS	HL	B	A	CF
+chr_room_distance_near	A	C	CF	ZF
+# ---- juego_personajes
+game_run_npc_behaviours
+# (the next line is the integration's own: --cambia)
+spr_draw_or_darken	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	!D64_SPR_TILE_TEST_JUMP	PANTALLA:doble
+spr_place_light	PANTALLA
+vid_clear_play_area	PANTALLA
+chr_step_table	>IY:var	HL:D64_CHR_STEP_TABLE_2X2
+util_add_bx_8al	>HL:var	HL:var
+chr_to_hbuf_coords	HL	CF
+chr_probe_ahead_flat	>IY:var	>HL:var	A	C	HL:var
+chr_probe_ahead	>IY:var	>HL:var	A	C	HL:var
+chr_probe_cells	>IY:var	>HL:var	A	C	HL:var
+chr_guillermo_behaviour	>IY:var	>IX:var
+chr_mark_hbuf	>IY:var	>IX:var	IX:var
+chr_update	>HL:D64_CHR_TABLE	IX:var	IY:var
+chr_think_or_step	>IY:var	>IX:var
+chr_try_advance	>IY:var	>IX:var	>HL:var
+chr_orientation_parity	>IY:var	A	ZF
+chr_try_advance_2x2	>IY:var	>IX:var	>HL:var
+chr_apply_step	>IY:var	>HL:var	HL:var	A
+chr_step_level	>IY:var	>IX:var	>HL:var
+chr_step_and_animate	>IY:var	>IX:var	>HL:var
+chr_turn	>IY:var	>IX:var
+chr_animate	>IY:var	>IX:var
+chr_select_frame	>IY:var	>IX:var	HL:D64_CHR_ANIM_GUILLERMO
+spr_save_old_rect	>IX:var	A
+spr_mark_leaving	>IX:var	A	ZF
+chr_load_params	>HL:D64_CHR_TABLE
+chr_command_bit	>IY:var	A	CF	ZF
+chr_ai_follow_commands	>IY:var	>IX:var
+iso_select_room	HL:D64_ISO_ROOM_TABLE
+chr_fill_height_buffer	>IY:var
+# (the next line is the integration's own: --cambia)
+sys_tick	A	B	C	D	E	H	L	IX	IY	CF	ZF	PANTALLA:fuente
+chr_backup_args	>IY:var	HL:var	DE:D64_CHR_BACKUP
+sys_read_keyboard
+game_input_and_mirror
+game_check_qr_mirror	E	IX:D64_CHR_GUILLERMO
+sys_test_key	>DE:D64_SYS_KEYS_DOWN	A	ZF	CF	C	DE:D64_SYS_KEYS_DOWN	HL:D64_SYS_BIT_MASKS
+sys_key_pressed	A	ZF	CF	C	DE	HL
+sys_key_down	A	ZF	CF	C	DE	HL
+sys_key_bit	>DE:D64_SYS_KEYS_DOWN	A	ZF	CF	C	DE:D64_SYS_KEYS_DOWN	HL:D64_SYS_BIT_MASKS
+obj_init_mirror	A	BC	HL:D64_ISO_ROOM_TABLE
+obj_close_mirror	A	BC	HL:D64_ISO_ROOM_TABLE
+spr_flip_adso
+spr_flip_malachi
+spr_flip_abbot
+spr_flip_berengar
+spr_flip_severin
+spr_flip_guillermo
+spr_flip_graphics_h	>HL:gfx	!D64_CHR_HEIGHT_BUFFER	!D64_CHR_FLOOR2_HEIGHTS
+# ---- juego_estado_texto
+obj_open_left_wing_doors	HL
+sys_check_pause_save_load	A	ZF
+spr_unflip_monk_faces
+obj_fix_owner_pointers
+spr_tile_ptr_check	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	CF
+game_snapshot_initial_state	A	ZF
+game_for_each_state_block	>HL:code	A	ZF
+game_state_block_save	>HL:D64_GAME_INITIAL_STATE	>DE:var	BC
+game_state_block_restore	>HL:D64_GAME_INITIAL_STATE	>DE:var	BC
+game_init_new_game	A	HL:D64_SPR_TABLE
+chr_hbuf_fill_room	IX	C	ZF
+chr_hbuf_fill_list	>IX:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	IX:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	C	ZF
+chr_hbuf_clip_x	A	DE	HL	CF
+chr_hbuf_clip_y	A	DE	HL	CF
+util_clip_span	A	HL	CF
+chr_hbuf_skip_list	>HL:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	HL:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	A	ZF
+sys_startup_init	HL:D64_ISO_ROOM_TABLE
+game_init_mirror	HL:D64_ISO_ROOM_TABLE
+vid_init_stub
+txt_draw_char_inverted	PANTALLA:fuente
+txt_draw_char	PANTALLA:fuente
+txt_phrase_tick	B	C	DE	HL	IX	IY	PANTALLA:fuente
+txt_skip_words	>HL:D64_TXT_WORDS	HL:D64_TXT_WORDS	B
+ai_script_eval	>HL:INLINE	HL:INLINE	A	C
+ai_stay	A
+ai_guillermo_is_close	>IY:D64_CHR_GUILLERMO	ZF
+ai_next_state_on_arrival	>IX:D64_GAME_BOOK_POISON_COUNT	A	ZF
+obj_set_door_permissions	A	B	C	HL:D64_CHR_ROOM_LINKS
+util_bits_set_or_clear	A	ZF
+ai_hour_update
+ai_say_phrase_param
+vid_palette_black
+vid_palette_day
+vid_palette_night
+# ---- juego_objetos_sonido
+obj_redraw_one_object	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS	A	ZF	CF
+obj_for_each_visible	>HL:code	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS
+obj_object_sprite_update	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS
+obj_door_sprite_update	>IX:D64_SPR_TABLE	>IY:D64_OBJ_DOORS
+obj_door_mark_cells	>IY:D64_OBJ_DOORS	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	A
+obj_door_cells	>IY:D64_OBJ_DOORS	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER|D64_SPR_TABLE|D64_CHR_ROOM_LINKS|D64_CHR_PATH_SLOT	BC	CF
+spr_project_entity	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS|D64_OBJ_DOORS	A	ZF	CF
+obj_door_camera_adjust	>IX:D64_SPR_TABLE	BC
+obj_door_adjust_grid_pos	>IX:D64_SPR_TABLE	>HL:D64_OBJ_DOOR_CAMERA_OFFSETS|D64_OBJ_DOOR_ORIENT_TABLE	HL:D64_OBJ_DOOR_CAMERA_OFFSETS|D64_OBJ_DOOR_ORIENT_TABLE	A
+obj_door_check_open_close	>IX:D64_SPR_TABLE	>IY:D64_OBJ_DOORS
+obj_door_unpermitted_near	>HL:D64_CHR_BACKUP	CF
+util_read_indirect_pair	>HL:D64_CHR_BACKUP	HL:D64_CHR_BACKUP	A	B
+chr_path_reset_alternatives	DE:D64_CHR_PATH_SLOT	A
+snd_start_if_idle	>HL:D64_SND_DATA
+snd_start	>IX:D64_SND_MIXER	>HL:D64_SND_DATA
+snd_interrupt	A	BC	DE	HL	IX	CF	ZF
+snd_channel_output	>IX:D64_SND_MIXER
+snd_channel_tick	>IX:D64_SND_MIXER
+snd_tone_env_next	>IX:D64_SND_MIXER
+snd_vol_env_step	>IX:D64_SND_MIXER
+snd_vol_env_next	>IX:D64_SND_MIXER
+snd_cmd_jump	>BC:D64_SND_DATA	DE:D64_SND_DATA
+snd_cmd_start_b	>BC:D64_SND_DATA	A
+snd_cmd_start_c	>BC:D64_SND_DATA	A
+snd_cmd_tone_env	>IX:D64_SND_MIXER	>BC:D64_SND_DATA
+snd_cmd_vol_env	>IX:D64_SND_MIXER	>BC:D64_SND_DATA
+snd_add_hl_a	>HL:D64_SND_NOTE_PERIODS|D64_SND_DATA	HL:D64_SND_NOTE_PERIODS|D64_SND_DATA
+snd_shift_right	HL	A	ZF
+# ---- juego_logica_a
+vid_spiral_wipe	A	B	C	D	E	H	L	IX	IY	CF	ZF	PANTALLA
+vid_spiral_pass	A	B	C	DE	HL	IX:D64_VID_SPIRAL_SIDES	IY	ZF	PANTALLA
+vid_spiral_put	A	BC	DE	HL	IX	IY	PANTALLA
+obj_remove_glasses	PANTALLA:par
+chr_berengar_hooded	HL:D64_SPR_MONK_FACES	DE:gfx
+util_store_dx_at_bx	>HL:var	>DE:gfx	HL:var
+obj_jorge_drops_book	A	CF	ZF	IX	IY
+obj_abbot_drops_parchment	A	CF	ZF	IX	IY
+obj_place_lamp	A
+obj_jorge_takes_book	PANTALLA:par
+game_idle_camera_check	A	ZF
+ai_jorge_book_talk_with_gloves	CF
+game_speed_default	A	CF	ZF
+util_return_zero	A	CF	ZF
+game_set_c004_inline	A	INLINE
+game_camera_from_ch_unused	A	CF	ZF
+game_camera_update	DE:D64_CHR_GUILLERMO	HL:D64_CHR_RECORD_PTRS
+ai_lamp_tick	C
+ai_night_end_tick	C
+game_compute_percentage	A	BC	HL
+game_update_bonus_and_poison	PANTALLA
+ai_stop_hour_countdown	HL
+ai_check_guillermo_at_mass	A	C
+ai_check_guillermo_at_refectory	A	C
+ai_check_guillermo_at	A	C
+ai_parchment_check	ZF
+chr_path_room_to_marked	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	A
+chr_path_room_search	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	A
+chr_path_floor_to_screen	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	A
+chr_path_floor_search	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	DE	A
+chr_path_floor_cell_ptr	IX:D64_CHR_ROOM_LINKS	DE	A
+chr_adso_step_guillermo_dir	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER
+chr_adso_step_aside	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER
+chr_adso_step_prepare	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	A	C
+chr_adso_step_restore	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER
+chr_cmd_write_one_step	>IY:D64_CHR_GUILLERMO	HL
+chr_cmd_turn_and_step	>IY:D64_CHR_GUILLERMO	A
+chr_cmd_write_path	>IY:D64_CHR_GUILLERMO	A	IX:D64_SPR_BUFFER
+chr_cmd_write_step	>IY:D64_CHR_GUILLERMO	>HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2	A	BC	DE	HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2
+chr_cmd_write_turn	>IY:D64_CHR_GUILLERMO	A	BC	DE:D64_CHR_CMD_TURN_LEN|D64_CHR_COMMAND_BUFFERS|D64_CHR_CMD_STEP_TABLE	HL
+chr_cmd_generate	>IY:D64_CHR_GUILLERMO	HL
+util_delay_cx	A	BC	CF	ZF
+spr_draw_all	>IX:D64_SPR_TABLE	>IY:D64_SPR_TABLE	IX:D64_SPR_TABLE	IY:D64_SPR_TABLE	HL:D64_SPR_TABLE	DE	A	C	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	!D64_SPR_TILE_TEST_JUMP	PANTALLA:doble	PANTALLA:doble
+spr_blit_to_screen	>IX:D64_SPR_TABLE	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	PANTALLA:par
+spr_rect_union_old	A	C	DE
+util_mul_al_bx	A	B	DE	HL
+spr_rect_tile_align	A	BC	DE	HL
+spr_tile_unmark_hook	>IX:D64_ISO_TILE_BUFFER
+spr_draw_tiles_in_depth_range	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	!D64_SPR_TILE_TEST_JUMP
+spr_tile_to_buffer	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	PANTALLA:par
+iso_draw_room_spiral	PANTALLA:doble
+iso_draw_tile	PANTALLA:par
+# (the next line is the integration's own: --cambia)
+txt_print_inline	A	ZF	INLINE	PANTALLA:fuente
+hud_clear_phrase_area	PANTALLA
+hud_say_now	A	CF	B	DE:D64_TXT_PHRASE_SOUND	HL:D64_TXT_PHRASES	INLINE	PANTALLA
+hud_say	A	CF	INLINE
+txt_skip_strings	>HL:D64_TXT_PHRASES	HL:D64_TXT_PHRASES	B	A
+# (the next line is the integration's own: --cambia)
+hud_blink_yes_no	PANTALLA:fuente
+obj_play_inventory_sound	A	CF	ZF	BC
+obj_update_inventory	A	ZF	BC	HL:D64_OBJ_OBJECTS	PANTALLA:par
+# ---- juego_logica_b
+obj_pick_up_objects	>IX:D64_CHR_BACKUP	IX:D64_CHR_BACKUP
+hud_draw_guillermo_objects	PANTALLA
+hud_draw_objects	PANTALLA
+obj_update_key_permissions	A
+obj_drop_on_space
+obj_drop_object	>IX:D64_CHR_BACKUP
+obj_front_position	>IX:D64_CHR_BACKUP	A	B	C	DE:D64_CHR_GUILLERMO	HL:D64_CHR_STEP_TABLE_2X2
+iso_mirror_update	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO	IX:D64_SPR_TABLE	IY:D64_CHR_GUILLERMO
+iso_mirror_character	>HL:gfx	>BC:D64_CHR_BACKUP	>DE:D64_CHR_ANIM_GUILLERMO	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO	IX:D64_SPR_TABLE	IY:D64_CHR_GUILLERMO
+iso_mirror_reflect	>HL:gfx	>BC:D64_CHR_BACKUP	>DE:D64_CHR_ANIM_GUILLERMO	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO	IX:D64_SPR_TABLE	IY:D64_CHR_GUILLERMO	L
+iso_mirror_draw_callback	>IX:D64_SPR_TABLE
+# (the next line is the integration's own: --cambia)
+hud_scroll_hour_name	PANTALLA:fuente
+ai_clock_init	A
+ai_clock_redraw	PANTALLA:par
+ai_clock_load_duration	HL
+ai_clock_tick	PANTALLA:par
+ai_clock_advance_hour	PANTALLA:par
+hud_set_and_draw_day	PANTALLA:par
+hud_draw_day_numeral	>DE:D64_AI_HOUR_DURATIONS	DE:D64_AI_HOUR_DURATIONS	HL	PANTALLA:par
+ai_timers_tick	A	BC	DE	HL	PANTALLA:par
+hud_obsequium_minus_2	PANTALLA:der
+hud_obsequium_sub	INLINE	PANTALLA:der
+hud_fill_bar	HL	PANTALLA:der
+obj_read_manuscript	PANTALLA:par
+obj_set_mirror_numeral
+game_update_camera_and_bonus	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_malachi_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_berengar_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_severin_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_adso_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_hour_change_events	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_abbot_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_abbot_count_vespers	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_ber_adso_sev_mal	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_adso_sev_mal	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_vespers_day5	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_adso	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_abbot_count_prima	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_abbot_count_sexta	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_abbot_wait_ceremony	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par

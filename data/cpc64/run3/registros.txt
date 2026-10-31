@@ -1,0 +1,2 @@
+instructions 60000000
+A=01 F=00 B=01 C=00 D=6F E=19 H=D5 L=6A SP=BFEC PC=672C

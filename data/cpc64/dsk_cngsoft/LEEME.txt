@@ -1,0 +1,10 @@
+The CPC 64 KiB game as the disk transfer original/archive.org/amstrad_abadia_del_crimen_64.dsk has it
+(a 2006 repack with CNGSoft's LZ2PACKER, run from ABADIA64.BAS).  At first it was the project's
+reference; since then the reference is the original cassette (original/archive.org/cdt, extracted by
+tools/cinta64.py into data/cpc64/cinta/): juego/ram.bin and inicio_juego/ were
+replaced by the tape's.  The disk repack differs from the tape only in 446 bytes of code: 31C5h,
+323Ch-323Dh, 3250h-3251h, 32ABh-3445h (the tape save/load and loading routines, rewritten for AMSDOS)
+and 3EC6h-3EE9h (its firmware restart stub for loading the ending from disk, which overwrote the end of
+the game's message and 3EE6h ai_stop_hour_countdown: on the disk version a call of 3EE6h restarts the
+game).  From the game's start the 8 exploration sessions give the same memory, screen included,
+outside those bytes.

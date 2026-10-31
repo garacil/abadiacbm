@@ -1,0 +1,9 @@
+# The introduction parchment in British English (a fresh translation of the tape's Spanish text, not taken from any published
+# English edition of the novel).  Paragraphs are separated by a blank line; ~ marks the places a word may be broken with a
+# hyphen at the end of a line (as the tape's text does by hand).  Only characters the font has: letters, digits 0-3 6 7,
+# the marks , - . : ;  (no apostrophes, no question marks).
+At the very end of my life as a sin~ner, while I await the mo~ment of los~ing my~self in the fath~om~less abyss of the de~sert~ed and si~lent di~vin~i~ty; in this cell of my be~lov~ed mon~as~ter~y at Melk, where my heav~y and ail~ing bod~y still holds me back, I set about leav~ing a rec~ord on this parch~ment of the as~ton~ish~ing and ter~ri~ble events that it was grant~ed me to wit~ness in my youth.
+
+The Lord grants me the grace of bear~ing faith~ful wit~ness to the events that took place in the ab~bey whose name it is now fit~ting to cov~er with a pi~ous man~tle of si~lence; to~wards the end of 1327, when my fa~ther de~cid~ed that I should ac~com~pa~ny Broth~er Wil~liam of Oc~cam, a learn~ed Fran~cis~can on the point of be~gin~ning a mis~sion in the course of which he would pass through ma~ny fa~mous cit~ies and most an~cient ab~beys. So it was that I be~came at once his scribe and his dis~ci~ple; and I had no cause to re~pent, for with him I wit~nessed events wor~thy of be~ing re~cord~ed, for the mem~o~ry of those who come af~ter.
+
+So, as the days went by and I came to know my mas~ter bet~ter, we reached the foot~hills of the moun~tain where the ab~bey stood. And it is high time that my tale, like us then, drew near to it, and may my hand not trem~ble as I set out to tell what hap~pened af~ter~wards...

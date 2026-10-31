@@ -1,0 +1,446 @@
+addr	names	len_to_next	read	written	code_bytes	area	comment
+0000	D64_OP_NOP	12	0	3	1	low	the opcodes stored there
+000C	D64_OP_INC_C	1	0	0	0	low	
+000D	D64_OP_DEC_C	9	0	3	1	low	
+0016	D64_ISO_DARK_FLOOR	2	0	0	0	low	the floor base whose rooms can be dark (CP 16h at 1FCD; PC reads it from iso_dark_floor)
+0018	D64_CHR_HBUF_SIZE	12	0	0	0	low	the buffer is 24 x 24
+0024	D64_ISO_INSN_INC_H	1	0	0	0	low	the step instructions the program writes or keeps at the SMC sites
+0025	D64_ISO_INSN_DEC_H	7	0	0	0	low	
+002C	D64_ISO_INSN_INC_L	1	0	0	0	low	
+002D	D64_ISO_INSN_DEC_L	18	0	3	3	low	
+003F	D64_OP_CCF	39	0	0	0	low	
+0066	D64_BIT4_HL	8	0	0	0	low	
+006E	D64_BIT5_HL	8	0	0	0	low	
+0076	D64_BIT6_HL	136	1	0	0	low	the values of D64_CHR_PATH_FLOOR_TARGET_TEST
+00FE	D64_SYS_STARTUP_DONE	5	1	1	0	low	byte: 0Dh once sys_startup_init (3568) has run; 20BE skips it then
+0103	D64_GAME_INITIAL_STATE	45	45	45	0	code area	A7h bytes: copy of the 16 state blocks taken at start-up; PC game_initial_state
+0130	D64_CHR_ROOM_LINKS_SIZE	209	122	122	0	code area	
+0201	D64_CHR_PATH_SLOT	2	0	0	0	code area	candidate slot - 2 for the four positions around a target (PC AAC1)
+0203	D64_CHR_PATH_ALTERNATIVES	16	16	16	0	code area	candidate destinations, 3 bytes each (x, y, orient<<6 | z), FF end; CHR_PATH_ALTERNATIVES
+0213	D64_CHR_PATH_ALT_PTR	2	2	2	0	code area	the candidate being tried; CHR_PATH_ALT_PTR
+0215	D64_CHR_BESIDE_OFFSETS	8	8	0	0	code area	dx, dy per orientation beside a target; CHR_BESIDE_OFFSETS
+021D	D64_OBJ_DOOR_ORIENT_TABLE	32	6	0	0	code area	door sprites, 4 entries of 8 bytes by (door orientation - camera) & 3: screen dx, dy, depth, flip bi
+023D	D64_CHR_ROOM_LINKS	3	3	3	0	code area	room links of the 3 floors, 130h bytes (ground floor 023D, 02ED, 02F5); CHR_ROOM_LINKS
+0240	D64_CHR_HBUF_SIZE	173	173	173	0	code area	24 x 24 cells
+02ED	D64_CHR_ROOM_LINKS_FLOOR1	8	8	8	0	code area	room links of the first floor (PC ABAD)
+02F5	D64_CHR_ROOM_LINKS_FLOOR2	443	120	120	303	code area	room links of the second floor (PC ABB5)
+04B0	D64_AI_BERENGAR_DOOR_MASK	336	0	0	332	code area	script var A9 (SMC: operand of LD C,3Fh at 04AFh); PC AI_BERENGAR_DOOR_MASK
+0600	D64_CHR_GUILLERMO_ANIM_COPY	146	0	1	53	code area	operand of LD A,n at 05FF: copy of [2B87] taken by the main loop (217D); odd = mid-step; CHR_GUILLER
+0692	D64_CHR_STAIRS_HEIGHT	217	0	0	191	code area	operand of CP n at 0691: height of the stairs cells (0Dh up, 01h down); CHR_STAIRS_HEIGHT
+076B	D64_CHR_EXIT_MARK_ROUTINE	21	0	2	20	code area	operand of CALL nn at 076A: the exit band routine; CHR_EXIT_MARK_ROUTINE
+0780	D64_ISO_TILE_BUFFER_SIZE	288	0	0	273	code area	
+08A0	D64_CHR_GRID_OWNER	90	2	2	69	code area	operand of LD BC,nn at 089F: the character the grid is built for; CHR_GRID_OWNER
+08FA	D64_CHR_EXIT_TABLE	192	16	0	148	code area	per exit direction: word routine, word grid target; CHR_EXIT_TABLE
+09BA	D64_OBJ_ENTITY_CALLBACK	26	0	2	26	code area	word, SMC: the operand of CALL NC at 09B9, the callback of obj_for_each_visible (0A2B objects, 0A42 
+09D4	D64_OBJ_FOR_EACH_PATCH	153	0	1	135	code area	SMC: 00h (NOP) obj_for_each_visible goes on, C9h (RET, set by obj_redraw_one_object) it stops after 
+0A6D	D64_OBJ_ROOM_REDRAW	2	0	1	2	code area	SMC: the operand of OR at 0A6C (written by 21B4), ORed into byte 0 of every door sprite; PC obj_room
+0A6F	D64_OBJ_DOOR_MOVED	69	0	1	68	code area	SMC: the operand of OR at 0A6E, 80h while the door being processed changes state, else 0; PC obj_doo
+0AB4	D64_OBJ_DOOR_CELL_STEPS	89	8	0	78	code area	words: the height-buffer step along a door leaf by door orientation, +1, -24, -1, +24; PC obj_door_c
+0B0D	D64_OBJ_DOOR_CAMERA_OFFSETS	249	4	0	232	code area	door sprites, entry (3 - camera) & 3 of 4 bytes: screen dx, dy, grid dx, dy; PC obj_door_camera_offs
+0C06	D64_SND_MIXER	1	1	1	0	code area	the AY mixer (register 7) the interrupt builds: 3Fh, each channel XORs its enable bits
+0C07	D64_SND_CHANNEL_MASK_COPY D64_SND_MIXER_SENT	1	1	1	0	code area	byte: copy of the PSG mixer value; the pause sets 3Fh; PC snd_channel_mask_copy
+0C08	D64_SND_TEMPO	1	1	1	0	code area	the tempo counter 6..0: the sequences advance when it is 0
+0C09	D64_SND_ENV_PERIOD_LO	1	0	0	0	code area	the AY envelope period (register 11) of a volume envelope entry 8xh
+0C0A	D64_SND_ENV_PERIOD_HI	1	0	0	0	code area	(register 12)
+0C0B	D64_SND_ENV_SHAPE	1	0	0	0	code area	the AY envelope shape (register 13)
+0C0C	D64_SND_NOISE_PERIOD	4	3	0	0	code area	the AY noise period (register 6) of the last note with noise
+0C10	D64_SND_CHANNEL_A	24	24	21	0	code area	the channel records, 18h apart (fields below)
+0C28	D64_SND_CHANNEL_B	24	24	21	0	code area	
+0C40	D64_SND_CHANNEL_C	21	21	21	0	code area	
+0C55	D64_SND_NOTE_PERIODS	801	10	1	633	code area	12 words: the AY tone periods of the lowest octave (EEEh ... 7E9h)
+0F76	D64_SND_COMMANDS	131	13	0	93	code area	6 entries of 3 bytes: a sequence command byte and its handler (FE start channel B, FD start channel 
+0FF9	D64_SND_VOICE_TONE_A	3	3	1	0	code area	byte: low 3 bits of each letter printed; PC snd_voice_tone_a
+0FFC	D64_SND_VOICE_TONE_NEG	3	3	1	0	code area	byte: their negation; PC snd_voice_tone_neg
+0FFF	D64_SND_VOICE_TONE_B	51	33	1	0	code area	byte: = snd_voice_tone_a; PC snd_voice_tone_b
+1032	D64_SND_VOICE_LEVEL	60	15	1	0	code area	byte: 6 while a letter is printed, 0 for a blank; PC snd_voice_level
+106E	D64_SND_SEQ_MUSIC	130	0	0	0	code area	channel C
+10F0	D64_SND_SEQ_MIRROR_OPEN	22	0	0	0	code area	channel A (starts 10FD on channel B)
+1106	D64_SND_SEQ_FOOTSTEP	9	9	0	0	code area	channel C
+110F	D64_SND_SEQ_OBJECT_TAKEN	9	9	0	0	code area	channel B
+1118	D64_SND_SEQ_OBJECT_DROPPED	9	9	0	0	code area	channel B
+1121	D64_SND_SEQ_BEEP	6	6	0	0	code area	channel C
+1127	D64_SND_PHRASE_VOICE	3	3	1	0	code area	voice/pitch byte of the current phrase (PC SND_PHRASE_VOICE C16D)
+112A	D64_SND_SEQ_TERCIA_BELLS	45	45	0	0	code area	channel A (starts 1142 on channel B)
+1157	D64_SND_SEQ_DOOR_OPEN	12	0	0	0	code area	channel B
+1163	D64_SND_SEQ_HOUR_BELLS	93	0	0	0	code area	channel A (starts 11AE, 11B7 on channel B)
+11C0	D64_SND_SEQ_SEVERINO	16	0	0	0	code area	channel B
+11D0	D64_SND_SEQ_DOOR_CLOSE	10	0	0	0	code area	channel B
+11DA	D64_ISO_ROOM_PTR	2	2	2	0	code area	word: the record of the current room in the room table 6100h (written by iso_select_room 2855); PC i
+11DC	D64_ISO_ROOM_DARK	1	1	1	0	code area	not 0 when the room is dark (PC ISO_ROOM_DARK B71C)
+11DD	D64_ISO_BLOCK_TABLE	227	116	0	49	code area	words: block type (entry byte 0 & FEh) -> block (word tile list, then the script); PC iso_block_tabl
+12C0	D64_ISO_PUT_TILE_JUMP	2	0	2	2	code area	word, SMC: target of the JP at 12BF in iso_put_tile: 12C9h (cell update) or 12C2h (tile at cell + 78
+12C2	D64_ISO_PUT_TILE_MARK	7	0	0	0	code area	the other form: the tile number at cell + 780h (set by iso_draw_room after building)
+12C9	D64_ISO_PUT_TILE_UPDATE	886	757	0	87	code area	the cell update of iso_put_tile (set by iso_draw_room before building)
+163F	D64_ISO_TAG_NEXT_ENTRY	88	0	0	88	code area	END returns here: the next entry of the room (iso_build_room)
+1697	D64_ISO_CUR_BLOCK	41	0	2	37	code area	word, SMC: operand of LD HL,nn at 1696: the block of the room entry being built; PC iso_cur_block
+16C0	D64_VID_FILL_BYTE	302	267	1	14	code area	byte, SMC: operand of LD (HL),n at 16BF: the fill byte of vid_fill_play_area
+17EE	D64_ISO_ENTER_BLOCK_KEEP	3	0	0	0	code area	iso_enter_block_keep_tiles, the vector of CALL_KEEP
+17F1	D64_ISO_ENTER_BLOCK	1003	544	0	40	code area	iso_enter_block, the vector of CALL
+1BDC	D64_ISO_KEEP_FLAG	1	1	1	0	code area	byte: set by CALL_KEEP, the next END keeps the mirror state; PC iso_keep_flag
+1BDD	D64_ISO_BLOCK_TILES	12	11	12	0	code area	bytes:12, registers 61h-6Ch (t1-t12): the tile list of the block; PC iso_block_tiles
+1BE9	D64_ISO_BLOCK_P1	1	1	1	0	code area	byte, register 6Dh: p1 (bits 5-7 of entry byte 1); with p2 the word BC; PC iso_block_p1
+1BEA	D64_ISO_BLOCK_P2	1	1	1	0	code area	byte, register 6Eh: p2 (bits 5-7 of entry byte 2); PC iso_block_p2
+1BEB	D64_ISO_BLOCK_HEIGHT	1	1	1	0	code area	byte, register 6Fh: the entry's height, FF = none; PC iso_block_height
+1BEC	D64_ISO_DEPTH_X	1	1	1	0	code area	byte, register 70h: depth x put with every tile; PC iso_depth_x
+1BED	D64_ISO_DEPTH_Y	1	1	1	0	code area	byte, register 71h: depth y; PC iso_depth_y
+1BEE	D64_ISO_BLOCK_OPCODE_TABLE	82	40	0	26	code area	words:28, the handlers of opcodes FF down to E4 (index (~op * 2) & FFh); PC iso_block_opcode_table
+1C40	D64_ISO_OP_END	29	0	0	29	code area	FF END
+1C5D	D64_ISO_OP_Y_INC	3	0	0	2	code area	F6
+1C60	D64_ISO_OP_X_INC_INSN D64_ISO_OP_X_INC	3	1	1	3	code area	byte, SMC: the instruction of X_INC (F5): INC L (2Ch), DEC L (2Dh) while mirroring
+1C63	D64_ISO_OP_Y_DEC	3	0	0	2	code area	F4
+1C66	D64_ISO_OP_X_DEC_INSN D64_ISO_OP_X_DEC	3	1	1	3	code area	byte, SMC: the instruction of X_DEC (F3): DEC L (2Dh), INC L (2Ch) while mirroring
+1C69	D64_ISO_OP_Y_ADD	11	0	0	11	code area	F2 expr
+1C74	D64_ISO_OP_X_ADD	11	0	0	11	code area	F1 expr
+1C7F	D64_ISO_OP_P2_INC	6	0	0	6	code area	EF
+1C85	D64_ISO_OP_P1_INC	6	0	0	6	code area	F0
+1C8B	D64_ISO_OP_P2_DEC	6	0	0	0	code area	ED
+1C91	D64_ISO_OP_P1_DEC	14	0	0	9	code area	EE
+1C9F	D64_ISO_OP_LOOP_P1	13	0	0	13	code area	FE
+1CAC	D64_ISO_OP_LOOP_P2	49	0	0	49	code area	FD
+1CDD	D64_ISO_OP_PUSH_POS	4	0	0	4	code area	FC
+1CE1	D64_ISO_OP_POP_POS	4	0	0	2	code area	FB
+1CE5	D64_ISO_OP_NEXT	16	0	0	16	code area	FA
+1CF5	D64_ISO_OP_TILES_UP	3	0	0	3	code area	F9 tiles
+1CF8	D64_ISO_STEP_UP_INSN	4	1	0	3	code area	byte: the step after the CALL of TILES_UP (F9): DEC H (25h)
+1CFC	D64_ISO_OP_TILES_LEFT	3	0	0	0	code area	EB tiles
+1CFF	D64_ISO_STEP_LEFT_INSN	4	0	0	0	code area	byte: the step after the CALL of TILES_LEFT (EB): DEC L (2Dh)
+1D03	D64_ISO_OP_TILES_RIGHT	3	0	0	3	code area	F8 tiles
+1D06	D64_ISO_STEP_RIGHT_INSN	35	1	1	31	code area	byte, SMC: the step after the CALL of TILES_RIGHT (F8): INC L (2Ch), DEC L while mirroring
+1D29	D64_ISO_TILE_STEP_INSN	38	0	1	11	code area	byte, SMC: the step instruction of iso_put_tile_step, copied by iso_tile_run from its caller
+1D4F	D64_ISO_OP_SET	76	0	0	71	code area	F7 reg expr
+1D9B	D64_ISO_OP_MIRROR	20	0	0	18	code area	E9-E5
+1DAF	D64_ISO_OP_JUMP	9	0	0	7	code area	EA addr
+1DB8	D64_ISO_OP_CALL_KEEP	10	0	0	0	code area	E4 block
+1DC2	D64_ISO_OP_CALL	58	0	0	58	code area	EC block
+1DFC	D64_ISO_ENTER_VECTOR	2	0	2	0	code area	word, SMC: operand of JP nn at 1DFB: 17F1h (CALL) or 17EEh (CALL_KEEP); PC iso_enter_vector
+1DFE	D64_ISO_TAG_CALL_RETURN	64	0	0	61	code area	END returns here: the end of a called block (iso_call_return)
+1E3E	D64_ISO_MIRROR	59	1	1	23	code area	byte, SMC: operand of XOR n at 1E3D: 1 while the block is mirrored (operands 70h/71h swap); PC iso_m
+1E79	D64_ISO_FLOOR0_MAP	8	0	0	8	code area	bytes, room map of floor 0 (room number per (Y << 4) | X)
+1E81	D64_ISO_CAMERA_ROTATIONS	136	17	0	0	code area	ptrs:4, the camera transform per orientation: 20AE, 20A9, 20AF, 20B8; PC iso_camera_rotations
+1F09	D64_ISO_FLOOR1_MAP	8	0	0	0	code area	room map of floor 1
+1F11	D64_ISO_FLOOR2_MAP	258	1	0	107	code area	room map of floor 2
+2013	D64_ISO_FLOOR_MAP_PTR	93	0	0	93	code area	word, SMC: operand of LD HL,nn at 2012: the map of the floor shown; PC iso_floor_map_ptr
+2070	D64_ISO_SETUP_SPRITE	4	0	2	4	code area	word, SMC: operand of LD IX,nn at 206E: the sprite of the chr_table entry being set up; PC iso_setup
+2074	D64_ISO_SETUP_RECORD	49	0	2	46	code area	word, SMC: operand of LD IY,nn at 2072: its character record; PC iso_setup_record
+20A5	D64_ISO_CAMERA_ORIENT	309	9	1	292	code area	byte, SMC: operand of SUB n at 20A4: the camera orientation of the room shown; PC iso_camera_orient
+21DA	D64_SYS_FRAME_TICKS	280	0	1	88	code area	frame budget of the main loop (PC SYS_FRAME_TICKS AE2B)
+22F2	D64_CHR_HBUF_ORIGIN_Y	12	1	1	12	code area	operand of SUB n at 22F1 (chr_to_hbuf_coords): world y of row 0; CHR_HBUF_ORIGIN_Y
+22FE	D64_CHR_HBUF_ORIGIN_X	118	1	1	117	code area	operand of SUB n at 22FD: world x of column 0; CHR_HBUF_ORIGIN_X
+2374	D64_CHR_PROBE_HEIGHT	4	0	1	4	code area	byte, operand of SUB at 2373: height of the character over its floor, subtracted from each probed ce
+2378	D64_CHR_PROBE_INNER	7	0	2	7	code area	word, operand of LD BC at 2377: inner stride of the 4x4 probe; PC CHR_PROBE_INNER
+237F	D64_CHR_PROBE_OUTER	35	0	2	35	code area	word, operand of LD BC at 237E: outer stride of the 4x4 probe; PC CHR_PROBE_OUTER
+23A2	D64_CHR_STEP_TABLE_2X2	6	6	0	0	code area	32 bytes: per orientation inner stride, outer stride, probe start, dx, dy (2x2 characters); PC CHR_S
+23A8	D64_CHR_STEP_TABLE	26	26	0	0	code area	steps per orientation, 8 bytes each (dx, dy, ...); PC 1800:AE39
+23C2	D64_CHR_STEP_TABLE_1X1	32	32	0	0	code area	32 bytes: the same for 1-cell characters (on stairs); PC CHR_STEP_TABLE_1X1
+23E2	D64_CHR_GUILLERMO_BEHAVIOUR	2	0	0	0	code area	code: Guillermo's behaviour routine (chr_table)
+23E4	D64_CHR_GUILLERMO_STATE	34	0	1	3	code area	0 normal, >1 scripted animation counter (PC CHR_GUILLERMO_STATE AE2D)
+2406	D64_CHR_GUILLERMO_FALL_DY	113	0	1	86	code area	sprite y step while chr_guillermo_state counts (PC CHR_GUILLERMO_FALL_DY AE2E)
+2477	D64_CHR_CUR_SPRITE	7	0	2	7	code area	word, operand of LD IX at 2475: sprite record of the character being updated; PC CHR_CUR_SPRITE
+247E	D64_CHR_CUR_DATA	40	0	2	39	code area	word, operand of LD IY at 247C: its position/state record; PC CHR_CUR_DATA
+24A6	D64_CHR_CUR_BEHAVIOUR	264	0	2	255	code area	word, operand of LD HL at 24A5 (then JP (HL)): its behaviour routine, 23E2 or 278F; PC CHR_CUR_BEHAV
+25AE	D64_CHR_CUR_FLIP	43	0	2	43	code area	SMC: operand of CALL NZ,nn at 25AD; PC CHR_CUR_FLIP
+25D9	D64_CHR_CUR_ANIM	93	0	2	93	code area	SMC: operand of LD DE,nn at 25D8; PC CHR_CUR_ANIM
+2636	D64_CHR_ROOM_ORIGIN_X	10	0	1	10	code area	byte, SMC: operand of SUB n at 2635 (chr_project): (room x & F0) - 0Ch; PC chr_room_origin_x
+2640	D64_CHR_ROOM_ORIGIN_Y	14	0	1	14	code area	byte, SMC: operand of SUB n at 263F: (room y & F0) - 0Ch; PC chr_room_origin_y
+264E	D64_CHR_ROOM_FLOOR	8	0	0	8	code area	byte, SMC: operand of CP n at 264D: the floor base of the room shown; PC chr_room_floor
+2656	D64_CHR_CAMERA_TRANSFORM	46	0	2	46	code area	word, SMC: operand of CALL nn at 2655: the camera transform; PC chr_camera_transform
+2684	D64_CHR_PROJECT_TEST	127	0	1	106	code area	SMC in chr_project: 00h (NOP) normal, C9h (RET) while spr_project_entity runs: it returns after the 
+2703	D64_CHR_TABLE	10	10	0	0	code area	6 entries x 10 bytes (sprite, data = record, ...); CHR_TABLE
+270D	D64_CHR_TABLE_ADSO	10	10	0	0	code area	chr_table entry of Adso (PC AE8E)
+2717	D64_CHR_TABLE_MALACHI	10	10	0	0	code area	chr_table entry of Malachi (PC AE98)
+2721	D64_CHR_TABLE_ABBOT	10	10	0	0	code area	chr_table entry of the abbot (PC AEA2)
+272B	D64_CHR_TABLE_BERENGAR	10	10	0	0	code area	chr_table entry of Berengar (PC AEAC)
+2735	D64_CHR_TABLE_SEVERIN	12	12	0	0	code area	chr_table entry of Severin (PC AEB6)
+2741	D64_CHR_PARAM_TARGETS	78	10	0	68	code area	5 words: where chr_load_params copies the 5 words of an entry (the 5 operands below); PC CHR_PARAM_T
+278F	D64_CHR_AI_FOLLOW_COMMANDS	269	0	0	241	code area	code: the behaviour routine of Adso and the monks (chr_table)
+289C	D64_SYS_TICKS	29	1	1	28	code area	the 300 Hz tick counter: operand of LD A,n at 289B in the interrupt handler 2899;
+28B9	D64_CHR_BACKUP	11	10	10	0	code area	10 bytes: copy of bytes 2-0Bh of the character moved by commands; PC CHR_BACKUP
+28C4	D64_ISO_CAMERA_RECORD	2	0	0	0	code area	pseudo record of the room shown (+2 x, +3 y, +4 z); ISO_CAMERA_RECORD
+28C6	D64_CHR_ROOM_X	1	1	1	0	code area	x & F0 of the room shown; CHR_ROOM_X
+28C7	D64_CHR_ROOM_Y	1	1	1	0	code area	y & F0 of the room shown; CHR_ROOM_Y
+28C8	D64_CHR_ROOM_Z	1	1	0	0	code area	floor base of the room shown; CHR_ROOM_Z
+28C9	D64_OBJ_DOOR_GFX_FLIPPED	7	1	1	0	code area	the current mirror state of the door graphic; PC obj_door_gfx_flipped B833
+28D0	D64_HUD_OBSEQUIUM	1	1	1	0	code area	0..1Fh; PC HUD_OBSEQUIUM
+28D1	D64_GAME_DAY	1	1	1	0	code area	day 1-7 (PC GAME_DAY B83D)
+28D2	D64_GAME_HOUR	1	1	1	0	code area	moment of the day 0 noche .. 6 completas (PC GAME_HOUR B83E)
+28D3	D64_HUD_HOUR_NAME_PTR	2	2	2	0	code area	word; PC HUD_HOUR_NAME_PTR
+28D5	D64_CHR_SPRITE_OFFSETS	2	2	2	0	code area	word: chr_sprite_offset_tables + 40h * orientation; PC chr_sprite_offsets
+28D7	D64_AI_HOUR_FRAMES_LEFT	2	2	2	0	code area	word: frames left in the moment of the day (PC AI_HOUR_FRAMES_LEFT B843)
+28D9	D64_CHR_CAMERA_TARGET	2	2	2	0	code area	word: record of the character followed by the camera; PC chr_camera_target
+28DB	D64_CHR_HBUF_PTR	2	2	2	0	code area	the height buffer in use; CHR_HBUF_PTR
+28DD	D64_OBJ_MIRROR_CLOSED	1	1	1	0	code area	PC OBJ_MIRROR_CLOSED
+28DE	D64_ISO_MIRROR_STATE_GUILLERMO	5	5	5	0	code area	4Ch bytes cleared by a new game (28DE-2929); PC iso_mirror_state_guillermo
+28E3	D64_ISO_MIRROR_STATE_ADSO	5	5	5	0	code area	PC ISO_MIRROR_STATE_ADSO
+28E8	D64_TXT_CURSOR	2	2	2	0	code area	word: text position, low byte x in bytes, high byte y in lines; PC txt_cursor
+28EA	D64_OBJ_GUILLERMO_OBJECTS_BEFORE	1	1	1	0	code area	Guillermo's objects at the start of obj_update_inventory (PC B856)
+28EB	D64_TXT_SCROLL_TIMER	1	1	1	0	code area	byte: interrupts counted by txt_phrase_tick, a character every 2Dh; PC txt_scroll_timer
+28EC	D64_TXT_TRAILING_BLANKS	1	1	1	0	code area	byte: blanks still to print after the phrase end (11h); PC txt_trailing_blanks
+28ED	D64_TXT_WORD_PTR	2	2	2	0	code area	word: next letter of the word being printed; PC txt_word_ptr
+28EF	D64_TXT_PHRASE_PTR	2	2	2	0	code area	word: next byte of the phrase; PC txt_phrase_ptr
+28F1	D64_TXT_WORD_DONE	1	1	1	0	code area	byte: 1 when the word is finished; PC txt_word_done
+28F2	D64_TXT_PHRASE_BUSY	1	1	1	0	code area	byte: copy of txt_phrase_active taken each frame; PC txt_phrase_busy
+28F3	D64_TXT_PHRASE_ACTIVE	3	3	3	0	code area	byte: nonzero while a phrase scrolls; PC txt_phrase_active
+28F6	D64_HUD_HOUR_SCROLL_STEPS	4	4	4	0	code area	PC HUD_HOUR_SCROLL_STEPS
+28FA	D64_CHR_PATH_FOUND_NOW	1	1	1	0	code area	1 when a route was found in this main-loop iteration; CHR_PATH_FOUND_NOW
+28FB	D64_AI_ADSO_BLOCKED_COUNT	5	5	5	0	code area	failed planned moves of Adso, 0..9; AI_ADSO_BLOCKED_COUNT
+2900	D64_OBJ_DOOR_FLIP_WANTED	1	1	1	0	code area	OR of the flip bits the visible doors need; PC obj_door_flip_wanted B86C
+2901	D64_CHR_PATH_SAVED_SP	2	2	2	0	code area	word: SP saved by the path searches, which use the stack as their queue (PC CHR_PATH_SAVED_SP B86D)
+2903	D64_CHR_PATH_ORIGIN	2	2	2	0	code area	start of the grid search, or destination room; CHR_PATH_ORIGIN
+2905	D64_CHR_PATH_DEST	2	2	2	0	code area	destination of the grid search, or start room; CHR_PATH_DEST
+2907	D64_CHR_PATH_RESULT	2	2	2	0	code area	FE not searched, 00 not found, FF found, FD already there; CHR_PATH_RESULT
+2909	D64_ISO_ROOM_CHANGED	2	2	2	0	code area	byte: not 0 when the camera changed room (the main loop redraws it); PC iso_room_changed
+290B	D64_CHR_SHOWN_FLOOR	2	2	2	0	code area	floor base (0, 0Bh, 16h) of the height buffer in use; CHR_SHOWN_FLOOR
+290D	D64_OBJ_MIRROR_NUMERAL	1	1	1	0	code area	stair numeral of the mirror riddle 1..3 (0 = not chosen); PC OBJ_MIRROR_NUMERAL
+290E	D64_ISO_ROOM_NUMBER	1	1	1	0	code area	script var 9A; PC ISO_ROOM_NUMBER
+290F	D64_GAME_BONUS2	1	1	1	0	code area	bonus bits, low byte of the word read by the percentage (PC GAME_BONUS2 B87B)
+2910	D64_GAME_BONUS	2	2	2	0	code area	bonus bits, high byte (PC GAME_BONUS B87C)
+2912	D64_CHR_MOVED	4	4	4	0	code area	FF when the character being updated moved or turned; CHR_MOVED
+2916	D64_CHR_PROBE	16	16	16	0	code area	4x4 cells in front of the character (chr_probe_ahead_flat); Adso tests +1 +2 +5 +6; CHR_PROBE
+2926	D64_SPR_RECT_POS	2	2	2	0	code area	x, y of the rectangle being composed (PC SPR_RECT_POS B893)
+2928	D64_SPR_RECT_SIZE	2	2	2	0	code area	w, h of the rectangle being composed (PC SPR_RECT_SIZE B895)
+292A	D64_OBJ_DOOR_PERMISSIONS	3	3	3	0	code area	6 x 3 bytes; PC obj_door_permissions
+292D	D64_OBJ_DOOR_PERMISSIONS_ADSO	16	16	13	0	code area	Adso's door bits (bit 4 key 3); PC 1800:B89A
+293D	D64_OBJ_CHAR_OBJECTS	3	3	3	0	code area	7-byte entries, +3 = the objects mask; PC obj_char_objects
+2940	D64_B2_GUILLERMO_OBJECTS D64_GUILLERMO_OBJECTS	4	4	4	0	code area	Guillermo's objects, holder 0 +3 (PC B2_GUILLERMO_OBJECTS B8AD)
+2944	D64_GAME_ADSO_LAMP	3	3	3	0	code area	the holder of the lamp when taken; PC game_adso_lamp
+2947	D64_OBJ_ADSO_OBJECTS	4	4	4	0	code area	Adso's objects, bit 1 key 3 (PC OBJ_ADSO_OBJECTS B8B4)
+294B	D64_OBJ_MALACHI_HOLDER	3	3	3	0	code area	holder 2 (Malaquias) +0 (PC OBJ_MALACHI_HOLDER B8B8)
+294E	D64_OBJ_MALACHI_OBJECTS	2	2	2	0	code area	Malaquias' objects, bit 1 key 3 (PC OBJ_MALACHI_OBJECTS B8BB)
+2950	D64_OBJ_MALACHI_TAKEMASK	2	2	2	0	code area	script var BA; PC OBJ_MALACHI_TAKEMASK
+2952	D64_OBJ_ABBOT_HOLDER	3	3	3	0	code area	holder 3 (the abbot) (PC 1800:B8BF)
+2955	D64_OBJ_ABBOT_OBJECTS	2	2	2	0	code area	the abbot's objects, bit 4 the parchment (PC OBJ_ABBOT_OBJECTS B8C2)
+2957	D64_OBJ_ABBOT_TAKEMASK	5	5	5	0	code area	objects the abbot may take (PC OBJ_ABBOT_TAKEMASK B8C4)
+295C	D64_OBJ_BERENGAR_OBJECTS	2	2	2	0	code area	objects of the Berengario slot (PC OBJ_BERENGAR_OBJECTS B8C9)
+295E	D64_OBJ_BERENGAR_TAKEMASK	2	2	2	0	code area	script var B0; PC OBJ_BERENGAR_TAKEMASK
+2960	D64_OBJ_SEVERIN_HOLDER	3	3	0	0	code area	holder 5 (Severino) (PC 1800:B8CD)
+2963	D64_OBJ_SEVERIN_OBJECTS	5	5	1	0	code area	objects of the Severino slot, 80h the book (PC OBJ_SEVERIN_OBJECTS B8D0)
+2968	D64_SPR_TABLE	60	46	46	0	code area	sprite records of 20 bytes, byte 0 FEh = inactive, FFh ends; PC spr_table
+29A4	D64_SPR_GUILLERMO	20	20	20	0	code area	Guillermo's sprite; PC B2_SPR_GUILLERMO
+29B8	D64_SPR_ADSO	180	78	77	0	code area	Adso's sprite; PC B2_SPR_ADSO
+2A6C	D64_OBJ_SPRITES	180	44	38	0	code area	object sprites, 14h bytes each; PC B2_SPR_OBJECTS (B9D9)
+2B20	D64_SPR_LIGHT	21	2	1	0	code area	the sprite record of the lamp light (FE = hidden); PC spr_light
+2B35	D64_OBJ_DOORS	26	26	26	0	code area	the doors, 5 bytes each (+1 bit 6 = open), FF end; OBJ_DOORS
+2B4F	D64_OBJ_DOOR_WING1	5	5	5	0	code area	script var 9F; PC OBJ_DOOR_WING1
+2B54	D64_OBJ_DOOR_WING2	5	5	1	0	code area	script var A0; PC OBJ_DOOR_WING2
+2B59	D64_OBJ_OBJECTS	15	15	15	0	code area	the objects, 5 bytes each; the first is the book; OBJ_OBJECTS
+2B68	D64_OBJ_PARCHMENT	31	29	22	0	code area	the parchment (object 3, OBJ_OBJECTS + 0Fh; PC BAD5)
+2B87	D64_CHR_GUILLERMO	2	2	2	0	code area	Guillermo's record; CHR_GUILLERMO
+2B89	D64_GUILLERMO_X	1	1	1	0	code area	script var 80; PC GUILLERMO_X (BAF6)
+2B8A	D64_GUILLERMO_Y	1	1	1	0	code area	script var 81; PC GUILLERMO_Y
+2B8B	D64_GUILLERMO_Z	11	6	6	0	code area	script var 82: height (>= 0Ch upstairs, >= 16h library); PC GUILLERMO_Z
+2B96	D64_CHR_ADSO	2	2	2	0	code area	Adso's record; CHR_ADSO
+2B98	D64_ADSO_X	2	2	2	0	code area	script var 83; PC ADSO_X
+2B9A	D64_ADSO_Z	11	11	8	0	code area	script var 85: Adso's height (>= 18h in the library); PC ADSO_Z
+2BA5	D64_CHR_MALACHI	15	15	9	0	code area	Malachi's record; CHR_MALACHI
+2BB4	D64_CHR_ABBOT	15	15	12	0	code area	the abbot's record; CHR_ABBOT
+2BC3	D64_CHR_BERENGAR	2	2	2	0	code area	Berengar's record; CHR_BERENGAR
+2BC5	D64_BERENGAR_X	1	1	1	0	code area	script var 9D: 0 = out of play; PC BERENGAR_X
+2BC6	D64_BERENGAR_Y	12	12	6	0	code area	script var 84; PC BERENGAR_Y
+2BD2	D64_CHR_SEVERIN	15	15	12	0	code area	Severin's record; CHR_SEVERIN
+2BE1	D64_SPR_SORTED_TOP	2	2	2	0	code area	word: the lowest address of the sprite list pushed on the stack (PC SPR_SORTED_TOP BB4E)
+2BE3	D64_SPR_SORTED_CURSOR	3	2	2	0	code area	word: the next entry of that list to compose (PC SPR_SORTED_CURSOR BB50)
+2BE6	D64_SPR_TILE_POS	2	2	2	0	code area	word: tile-buffer entry of the rectangle's first tile (PC SPR_TILE_POS BB53)
+2BE8	D64_SPR_MONK_FACES	8	8	0	0	code area	4 words: face graphics of the 4 monks; PC spr_monk_faces
+2BF0	D64_CHR_SPRITE_OFFSET_TABLES	256	146	0	0	code area	bytes:0x100, 4 orientations x 40h; PC chr_sprite_offset_tables
+2CF0	D64_CHR_ANIM_GUILLERMO	32	32	0	0	code area	PC CHR_ANIM_GUILLERMO
+2D10	D64_CHR_ANIM_ADSO	32	32	0	0	code area	PC CHR_ANIM_ADSO
+2D30	D64_CHR_ANIM_MONK	184	32	16	88	code area	32 bytes: the monks' shared body frames (graphics word = the face); PC CHR_ANIM_MONK
+2DE8	D64_SYS_KEYS_DOWN	10	10	10	0	code area	10 bytes: keys down now, one bit per CPC key (0 = down); PC SYS_KEYS_DOWN
+2DF2	D64_SYS_KEYS_PENDING	58	10	10	12	code area	10 bytes: presses not yet consumed by sys_key_pressed (0 = pending); PC SYS_KEYS_PENDING
+2E2C	D64_SYS_KEY_SINGLE	2	2	1	0	code area	2 bytes: the key being tested + FF; PC SYS_KEY_SINGLE
+2E2E	D64_SYS_KEY_ALIAS_LEFT	4	4	0	0	code area	4 bytes: key 8 and its aliases; PC SYS_KEY_ALIAS_LEFT
+2E32	D64_SYS_KEY_ALIAS_SPACE	4	4	0	0	code area	4 bytes: key 2Fh and its aliases; PC SYS_KEY_ALIAS_SPACE
+2E36	D64_SYS_KEY_ALIAS_012	52	12	0	40	code area	12 bytes: keys 0, 1, 2 and their aliases; PC SYS_KEY_ALIAS_012
+2E6A	D64_SYS_KEY_BITMAP	73	0	2	73	code area	word, operand of LD DE at 2E69: the bitmap being tested; PC SYS_KEY_BITMAP
+2EB3	D64_SYS_BIT_MASKS	43	8	0	33	code area	8 bytes: 01 02 04 .. 80; PC SYS_BIT_MASKS
+2EDE	D64_OBJ_MIRROR_HEIGHT_PTR	2	2	2	0	code area	word: the end of the second-floor height list; PC obj_mirror_height_ptr
+2EE0	D64_OBJ_MIRROR_CLOSED_HEIGHTS	5	5	0	0	code area	5 bytes: the heights with the mirror closed; PC OBJ_MIRROR_CLOSED_HEIGHTS
+2EE5	D64_OBJ_MIRROR_ENTRY_PTR	190	2	2	151	code area	word: byte 2 of the mirror block of room 72h (11h closed, 51h open); PC obj_mirror_entry_ptr
+2FA3	D64_SPR_FLIP_WIDTH	333	0	2	16	code area	word, operand of LD DE at 2FA2: row width of spr_flip_graphics_h; PC SPR_FLIP_WIDTH
+30F0	D64_CHR_POS_PTRS	58	0	0	43	code area	6 words: the characters' position pointers; PC chr_pos_ptrs
+312A	D64_GAME_STATE_BLOCK_FN	10	0	2	10	code area	word: operand of the CALL at 3129 (self-modified): 3166 save / 316B restore; PC game_state_block_fn
+3134	D64_GAME_STATE_BLOCKS	48	48	0	0	code area	16 x (word address, byte length) and a zero word; PC game_state_blocks
+3164	D64_GAME_STATE_BLOCKS_END	739	2	0	97	code area	the zero word that ends them
+3447	D64_TXT_PUNCTUATION	5	2	2	0	code area	5 glyph codes for the phrase bytes FA-FE; PC txt_punctuation
+344C	D64_TXT_GLYPH_BLANK	8	8	0	0	code area	8 zero bytes: the glyph of code 20h; PC txt_glyph_blank
+3454	D64_CHR_FLOOR_HEIGHTS_PTR	150	2	2	148	code area	word: height list of the current floor; PC chr_floor_heights_ptr
+34EA	D64_CHR_HBUF_FLAT_WIDTH_OP	38	0	1	38	code area	byte: operand of LD B,n at 34E9: visible columns of a flat block
+3510	D64_CHR_HBUF_SLOPE_WIDTH_OP	5	0	1	5	code area	byte: operand of LD A,n at 350F: visible columns of a slope
+3515	D64_CHR_HBUF_COL_STEP_OP	7	0	1	7	code area	byte: opcode at 3515, the height step per column: NOP, INC C or DEC C
+351C	D64_CHR_HBUF_ROW_STEP_OP	46	0	1	45	code area	byte: opcode at 351C, the height step per row: NOP, INC C or DEC C
+354A	D64_CHR_HBUF_WIN_X_OP	4	0	1	3	code area	byte: operand of LD L,n at 3549: the window's world x (= origin x)
+354E	D64_CHR_HBUF_WIN_Y_OP	26	0	1	24	code area	byte: operand of LD L,n at 354D: the window's world y (= origin y)
+3568	D64_CHR_COMMAND_BUFFERS	588	26	26	579	code area	movement command buffers, over the start-up code once it has run; PC chr_command_buffers
+37B4	D64_OBJ_DOOR_LINK_TABLE	30	30	0	0	code area	per door: (index into chr_room_links, bits) pairs, FFh ends; PC obj_door_link_table
+37D2	D64_GAME_BOOK_POISON_COUNT	2	2	2	0	code area	first of the 21h bytes cleared by a new game (37D2-37F2); PC game_book_poison_count
+37D4	D64_AI_LAMP_TIME	4	4	4	0	code area	word: frames the lamp has burnt (PC AI_LAMP_TIME BFF8)
+37D8	D64_AI_LAMP_IN_USE	1	1	1	0	code area	1 while Adso is in the library with the lamp (PC AI_LAMP_IN_USE BFFC)
+37D9	D64_AI_NIGHT_ENDING	1	1	1	0	code area	result of ai_night_end_tick (PC AI_NIGHT_ENDING BFFD)
+37DA	D64_AI_LAMP_EVENT	1	1	1	0	code area	result of ai_lamp_tick (PC AI_LAMP_EVENT BFFE)
+37DB	D64_AI_DARK_COUNT	1	1	1	0	code area	script var B6; PC AI_DARK_COUNT
+37DC	D64_GAME_CAMERA_OTHER	1	1	1	0	code area	not 0 when the camera follows another character; GAME_CAMERA_OTHER
+37DD	D64_AI_PARCHMENT_AT_ABBOT	1	1	1	0	code area	script var B3; PC AI_PARCHMENT_AT_ABBOT
+37DE	D64_OBJ_LAMP_PLACED	1	1	1	0	code area	the lamp was put in the kitchen (PC OBJ_LAMP_PLACED C002)
+37DF	D64_AI_CAMERA_TARGET	1	1	1	0	code area	character the camera should follow (PC AI_CAMERA_TARGET C003)
+37E0	D64_GAME_IDLE_FRAMES D64_AI_IDLE_FRAMES	1	1	1	0	code area	frames without movement keys (PC GAME_IDLE_FRAMES C004)
+37E1	D64_AI_PARCHMENT_REPORTED	1	1	1	0	code area	script var A5; PC AI_PARCHMENT_REPORTED
+37E2	D64_AI_LAST_HOUR_DONE	1	1	1	0	code area	script var AA; PC AI_LAST_HOUR_DONE
+37E3	D64_AI_READY_FOR_CEREMONY	1	1	1	0	code area	script var A3: 00 = the monks are at their places; PC AI_READY_FOR_CEREMONY
+37E4	D64_GAME_GUILLERMO_DEAD	1	1	1	0	code area	1 = Guillermo dies (PC GAME_GUILLERMO_DEAD C008)
+37E5	D64_AI_WAIT_COUNT	1	1	1	0	code area	script var 99; PC AI_WAIT_COUNT
+37E6	D64_AI_SLEEP_ANSWER_COUNT	1	1	1	0	code area	(PC AI_SLEEP_ANSWER_COUNT C00A)
+37E7	D64_AI_ADVANCE_HOUR	1	1	1	0	code area	byte: pass to the next hour when the phrase ends; PC ai_advance_hour
+37E8	D64_AI_GUILLERMO_IN_PLACE	1	1	1	0	code area	result of ai_check_guillermo_at (PC AI_GUILLERMO_IN_PLACE C00C)
+37E9	D64_AI_NO_ROUTE	1	1	1	0	code area	cleared by each driver; not 0 = no route wanted; AI_NO_ROUTE
+37EA	D64_AI_RANDOM	1	1	1	0	code area	byte: copy of chr_command_buffers[0]; PC ai_random
+37EB	D64_AI_MALACHI_WARN_COUNT	3	3	3	0	code area	script var 8F; PC AI_MALACHI_WARN_COUNT
+37EE	D64_AI_BERENGAR_SLOT_BUSY	1	1	1	0	code area	script var AB; PC AI_BERENGAR_SLOT_BUSY
+37EF	D64_AI_MALACHI_DYING	1	1	1	0	code area	(PC AI_MALACHI_DYING C013)
+37F0	D64_AI_SEVERIN_SLOT_BUSY	1	1	1	0	code area	script var AD; PC AI_SEVERIN_SLOT_BUSY
+37F1	D64_AI_SEVERIN_BOOK_TOLD	1	1	1	0	code area	script var B1; PC AI_SEVERIN_BOOK_TOLD
+37F2	D64_AI_MONK_FLAGS	1	1	1	0	code area	(PC AI_MONK_FLAGS C016)
+37F3	D64_OBJ_DOOR_CHECK_MASK	1	1	1	0	code area	byte: the doors whose permissions are applied; PC obj_door_check_mask
+37F4	D64_GAME_INVESTIGATION_OPEN	1	1	1	0	code area	0 = investigation solved (PC GAME_INVESTIGATION_OPEN C018)
+37F5	D64_AI_MALACHI_REACHED	1	1	1	0	code area	(PC AI_MALACHI_REACHED C019)
+37F6	D64_AI_MALACHI_STATE	1	1	1	0	code area	script var 8E; PC AI_MALACHI_STATE
+37F7	D64_AI_MALACHI_DEST	1	1	1	0	code area	script var 86; PC AI_MALACHI_DEST
+37F8	D64_AI_MALACHI_PLACES	27	5	0	0	code area	Malachi's places, 3 bytes each; [-1] destination, [-3] reached; AI_MALACHI_PLACES
+3813	D64_AI_ABBOT_REACHED	1	1	1	0	code area	script var 8A; PC AI_ABBOT_REACHED
+3814	D64_AI_ABBOT_STATE	1	1	1	0	code area	script var 8C: 0B expel, bit 7 offended; PC AI_ABBOT_STATE
+3815	D64_AI_ABBOT_DEST	1	1	1	0	code area	script var 8B; PC AI_ABBOT_DEST
+3816	D64_AI_ABBOT_PLACES	30	8	0	0	code area	the abbot's places; AI_ABBOT_PLACES
+3834	D64_AI_BERENGAR_REACHED	1	1	1	0	code area	script var 91; PC AI_BERENGAR_REACHED
+3835	D64_AI_BERENGAR_STATE	1	1	1	0	code area	script var 92; PC AI_BERENGAR_STATE
+3836	D64_AI_BERENGAR_DEST	1	1	1	0	code area	script var 90; PC AI_BERENGAR_DEST
+3837	D64_AI_BERENGAR_PLACES	21	5	0	0	code area	Berengar's places; AI_BERENGAR_PLACES
+384C	D64_AI_SEVERIN_REACHED	1	1	1	0	code area	script var 94; PC AI_SEVERIN_REACHED
+384D	D64_AI_SEVERIN_STATE	1	1	1	0	code area	(PC AI_SEVERIN_STATE C071)
+384E	D64_AI_SEVERIN_DEST	1	1	1	0	code area	script var 93; PC AI_SEVERIN_DEST
+384F	D64_AI_SEVERIN_PLACES	15	8	0	0	code area	Severin's places; AI_SEVERIN_PLACES
+385E	D64_AI_ADSO_REACHED	1	1	1	0	code area	script var 97; PC AI_ADSO_REACHED
+385F	D64_AI_ADSO_STATE	1	1	1	0	code area	script var 98; PC AI_ADSO_STATE
+3860	D64_AI_ADSO_DEST	1	1	1	0	code area	Adso's destination (FF = follow Guillermo); AI_ADSO_DEST
+3861	D64_AI_ADSO_PLACES	9	0	0	0	code area	Adso's places; AI_ADSO_PLACES
+386A	D64_AI_SCRIPT_VARS	130	70	0	0	code area	64 words: the address of script variable 80h+i; PC ai_script_vars
+38EC	D64_AI_CLOSE_BOX_TABLE	33	16	0	17	code area	4 x 4 bytes per orientation: x offset, x size, y offset, y size; PC ai_close_box_table
+390D	D64_AI_SCRIPT_DEST_PTR	279	0	2	264	code area	word: operand of LD (nn),A at 390C (self-modified): the variable assigned; PC ai_script_dest_ptr
+3A24	D64_OBJ_DOOR_ALLOW_OP	55	0	1	38	code area	byte: opcode at 3A24, CCF (3Fh, door allowed) or NOP (door forbidden)
+3A5B	D64_AI_PHRASE_PARAM	24	0	0	20	code area	script var A2 (SMC: the inline phrase byte of CALL 4B7C at 3A58,
+3A73	D64_VID_PALETTE_BLACK	5	5	0	0	code area	5 hardware colours (pens 3, 2, 1, 0, border): all black
+3A78	D64_VID_PALETTE_DAY	5	5	0	0	code area	the day palette
+3A7D	D64_VID_PALETTE_NIGHT	46	0	0	36	code area	the night palette
+3AAB	D64_VID_SPIRAL_SIDES	514	4	4	162	code area	4 bytes: side lengths of vid_spiral_pass (PC VID_SPIRAL_SIDES BFC0)
+3CAD	D64_AI_UNUSED_3CAD	131	0	0	101	code area	script var BC: write-only (a byte after the code of 3C9D); PC AI_UNUSED_C123
+3D30	D64_CHR_RECORD_PTRS	305	19	0	140	code area	6 words: character records by camera index (PC CHR_RECORD_PTRS BFCA)
+3E61	D64_GAME_PERCENT_DIGITS	140	62	3	39	code area	3 bytes written by game_compute_percentage into the inline text
+3EED	D64_CHR_MALACHI_RISING	1	1	1	0	code area	(PC CHR_MALACHI_RISING BFD6)
+3EEE	D64_CHR_MALACHI_RISE_DELAY	133	0	0	29	code area	(PC CHR_MALACHI_RISE_DELAY BFD7)
+3F73	D64_CHR_PATH_ROOM_LINKS_PTR	2	2	2	0	code area	room links of the searching character's floor; CHR_PATH_ROOM_LINKS_PTR
+3F75	D64_CHR_CMD_TURN_LEN	4	3	0	0	code area	4 bytes: bit counts of the turn commands (PC CHR_CMD_TURN_LEN BED9)
+3F79	D64_CHR_CMD_TURN_BITS	8	6	0	0	code area	4 words (high byte first): the turn commands (PC CHR_CMD_TURN_BITS BEDD)
+3F81	D64_CHR_PATH_ORIENTATION	1	1	1	0	code area	orientation (exit direction) found by the last search; CHR_PATH_ORIENTATION
+3F82	D64_CHR_PATH_LENGTH	1	1	1	0	code area	length of the last search; CHR_PATH_LENGTH
+3F83	D64_CHR_CMD_STEP_TABLE	258	12	0	241	code area	5 entries of 3 bytes (bits high, low, count) of the step commands
+4085	D64_CHR_PATH_HEIGHT	61	0	1	61	code area	operand of LD A,n at 4084: height of the cell expanded (PC CHR_PATH_HEIGHT BEF6)
+40C2	D64_CHR_PATH_SMC_RET	190	0	1	184	code area	opcode at 40C2: C9 (RET) the square check only checks, 00 (NOP) search mode
+4180	D64_CHR_DIR_BUFFER_STEP	8	8	0	0	code area	4 words: height-buffer step of each orientation (+1, -24, -1, +24) (PC BEAB)
+4188	D64_CHR_ADSO_DIR_CHOICES	76	22	0	44	code area	8 entries of 4 orientations (PC CHR_ADSO_DIR_CHOICES BEB3)
+41D4	D64_CHR_PATH_SOLUTION	61	0	2	61	code area	operand of LD SP,nn at 41D3: the search-queue entry that reached the target; CHR_PATH_SOLUTION
+4211	D64_CHR_PATH_DY_TMP	27	0	1	27	code area	operand of ADD A,n at 4210: dy+1 during the reconstruction (PC CHR_PATH_DY_TMP BEF9)
+422C	D64_CHR_PATH_CANDIDATE	318	0	2	315	code area	operand of LD DE,nn at 422B: the queued cell next to the current one
+436A	D64_CHR_CMD_GENERATOR	163	0	2	160	code area	operand of CALL nn at 4369: the command generator, 41C9 the path found or
+440D	D64_CHR_PATH_FLOOR_TARGET_TEST	36	0	1	33	code area	second byte of BIT n,(HL) at 440C: 76h (bit 6, a marked cell), 66h (bit 4, stairs up), 6Eh (bit 5, s
+4431	D64_SPR_MONK_ROBES	32	32	0	0	code area	16 words: robe graphics of the monks; bit 14 = drawn mirrored (PC SPR_MONK_ROBES AC9E)
+4451	D64_SPR_LIGHT_PATTERN	32	0	0	0	code area	15 big-endian words: the lamp's circle of light (PC SPR_LIGHT_PATTERN ACBE)
+4471	D64_SPR_BUF_FREE	2	2	2	0	code area	word: first free byte of the sprite buffer (PC SPR_BUF_FREE ACDE)
+4473	D64_SPR_SAVED_SP	2	2	2	0	code area	word: SP at the entry of spr_draw_all (PC SPR_SAVED_SP ACE0)
+4475	D64_SPR_OVERLAY_CURSOR	415	2	2	407	code area	word: the next sprite of the list to overlay (PC SPR_OVERLAY_CURSOR ACE2)
+4614	D64_SPR_OV_SRC_Y	104	0	1	104	code area	word operand of LD HL,nn at 4613: lines of the sprite skipped (PC SPR_OV_SRC_Y ACF2)
+467C	D64_SPR_OV_SRC_X	8	1	1	8	code area	operand of LD A,n at 467B: bytes of the sprite skipped (PC SPR_OV_SRC_X ACEA)
+4684	D64_SPR_OV_DST_Y	12	0	1	12	code area	word operand of LD HL,nn at 4683: first line in the rectangle (PC SPR_OV_DST_Y ACF4)
+4690	D64_SPR_CUR_BUFFER	4	2	2	4	code area	word operand of LD HL,nn at 468F: the buffer of the rectangle (PC SPR_CUR_BUFFER ACE4)
+4694	D64_SPR_OV_DST_X	13	0	1	13	code area	operand of LD A,n at 4693: first byte in the rectangle (PC SPR_OV_DST_X ACEE)
+46A1	D64_SPR_OV_LINE	3	0	1	3	code area	operand of LD C,n at 46A0: the sprite line counter's start (PC SPR_OV_LINE ACF6)
+46A4	D64_SPR_OV_LINES	3	0	1	3	code area	operand of LD B,n at 46A3: lines to merge (PC SPR_OV_LINES ACF0)
+46A7	D64_SPR_OV_WIDTH	7	0	1	7	code area	operand of LD B,n at 46A6: bytes per line to merge (PC SPR_OV_WIDTH ACE8)
+46AE	D64_SPR_OV_MIRROR_CALL	21	0	1	21	code area	opcode at 46AE: CC (CALL Z: plain) or C4 (CALL NZ: mirrored, spr_mirror_byte)
+46C3	D64_SPR_OV_SRC_STEP	6	0	1	6	code area	opcode at 46C3: 23 (INC HL) or 2B (DEC HL, mirrored)
+46C9	D64_SPR_OV_SRC_STRIDE	58	0	1	58	code area	word operand of LD DE,nn at 46C8: the sprite's width (PC SPR_OV_SRC_STRIDE ACF8)
+4703	D64_SPR_OV_SRC_X_ROBE	8	1	1	8	code area	operand of ADD A,n at 4702: bytes skipped in the robe (PC SPR_OV_SRC_X_ROBE ACEC)
+470B	D64_SPR_OV_DST_STRIDE	45	0	1	32	code area	operand of LD A,n at 470A: the rectangle's width (PC SPR_OV_DST_STRIDE ACFA)
+4738	D64_SPR_LIGHT_FILL_A	30	0	0	0	code area	word operand of LD BC,nn at 4737: the light's top band (PC SPR_LIGHT_FILL_A AD1A)
+4756	D64_SPR_LIGHT_DX	23	0	0	0	code area	operand of LD B,n at 4755: dark bytes left of the circle (PC SPR_LIGHT_DX AD16)
+476D	D64_SPR_LIGHT_FLIP D64_SPR_LIGHT_FLIP_PATCH	21	0	0	0	code area	opcode at 476D: 29 (ADD HL,HL, one more shift) or 00, written by 22D0
+4782	D64_SPR_LIGHT_DX_REST	28	0	0	0	code area	operand of LD B,n at 4781: dark bytes right of the circle (PC SPR_LIGHT_DX_REST AD18)
+479E	D64_SPR_LIGHT_FILL_B	197	0	0	181	code area	word operand of LD BC,nn at 479D: the light's bottom band (PC AD1C)
+4863	D64_SPR_BLIT_LINES	5	0	1	5	code area	operand of LD B,n at 4862 (PC SPR_BLIT_LINES AD08)
+4868	D64_SPR_BLIT_WIDTH	5	0	1	5	code area	word operand of LD BC,nn at 4867 (PC SPR_BLIT_WIDTH AD06)
+486D	D64_SPR_BLIT_SKIP	174	0	1	173	code area	operand of LD A,n at 486C (PC SPR_BLIT_SKIP AD00)
+491B	D64_SPR_TILE_UNMARK_HOOK	87	0	1	87	code area	opcode at 491B: C9 (RET) or 00 (NOP: spr_tile_unmark_body) (PC CS:1A2A)
+4972	D64_SPR_DEPTH_UPPER	3	2	2	3	code area	word operand of LD BC,nn at 4971 (PC SPR_DEPTH_UPPER ACE6)
+4975	D64_SPR_DEPTH_LOWER	8	0	2	8	code area	word operand of LD HL,nn at 4974 (PC SPR_DEPTH_LOWER AD0A)
+497D	D64_SPR_TILE_TEST_JUMP	171	0	2	171	code area	word operand of JP NZ,nn at 497C: 497F the depth test, 49AA draw (PC AD0C)
+4A28	D64_SPR_TILE_DST_SKIP	4	0	1	4	code area	operand of LD A,n at 4A27 (low) ...
+4A2C	D64_SPR_TILE_DST_SKIP_HI	24	0	1	24	code area	... and of LD A,n at 4A2B (high): the merge's next-line step (PC SPR_TILE_DST_SKIP AD0E)
+4A44	D64_SPR_TILE_COPY_SKIP	4	0	1	4	code area	operand of LD A,n at 4A43 (low) ...
+4A48	D64_SPR_TILE_COPY_SKIP_HI	7	0	1	7	code area	... and of LD A,n at 4A47 (high): the opaque copy's next-line step
+4A4F	D64_ISO_SPIRAL_RUNS	129	16	4	112	code area	4 entries of 4 bytes (run length, buffer step low, screen step low, high
+4AD0	D64_AI_HOUR_DURATIONS	45	2	1	0	code area	7 per day, units of 256 frames; PC AI_HOUR_DURATIONS
+4AFD	D64_HUD_ROMAN_DAYS	21	3	0	0	code area	7 x 3 glyph codes (0 blank, 1 V, 2 I); PC HUD_ROMAN_DAYS
+4B12	D64_HUD_HOUR_NAMES	408	7	0	319	code area	7 x 7 font codes; PC HUD_HOUR_NAMES
+4CAA	D64_OBJ_HOLDER_LOCKED	19	0	1	1	code area	SMC: operand of LD A,n at 4CA9: holder +0 bit 0; PC OBJ_HOLDER_LOCKED
+4CBD	D64_OBJ_FRONT_Z	7	0	1	7	code area	SMC: operand of SUB n at 4CBC; PC OBJ_FRONT_Z
+4CC4	D64_OBJ_FRONT_X	5	0	1	5	code area	SMC: operand of CP n at 4CC3; PC OBJ_FRONT_X
+4CC9	D64_OBJ_FRONT_Y	334	0	1	317	code area	SMC: operand of CP n at 4CC8; PC OBJ_FRONT_Y
+4E17	D64_OBJ_DROP_LEVEL	51	0	1	37	code area	SMC: operand of SUB n at 4E16: height above the floor; PC OBJ_DROP_LEVEL
+4E4A	D64_OBJ_DROP_INDEX	336	0	1	191	code area	SMC: operand of LD C,n at 4E49: 1-based object index; PC OBJ_DROP_INDEX
+4F9A	D64_ISO_MIRROR_OLD_POS_OP	4	0	0	0	code area	SMC: operand of LD HL,(nn) at 4F99 (state+1)
+4F9E	D64_ISO_MIRROR_OLD_SIZE_OP	4	0	0	0	code area	SMC: operand of LD DE,(nn) at 4F9C (state+3)
+4FA2	D64_ISO_MIRROR_NEW_POS_OP	4	0	0	0	code area	SMC: operand of LD (nn),HL at 4FA1 (state+1)
+4FA6	D64_ISO_MIRROR_NEW_SIZE_OP	3	0	0	0	code area	SMC: operand of LD (nn),DE at 4FA4 (state+3)
+4FA9	D64_ISO_MIRROR_SHOWN	32	0	0	0	code area	SMC: operand of LD A,n at 4FA8 (state +0); PC ISO_MIRROR_SHOWN
+4FC9	D64_ISO_MIRROR_DRAW_CALLBACK	16	0	0	0	code area	iso_mirror_draw_callback, the value stored in chr_cur_flip
+4FD9	D64_ISO_MIRROR_BUFFER	254	0	2	203	code area	SMC: operand of LD DE,nn at 4FD8; PC ISO_MIRROR_BUFFER
+50D7	D64_HUD_GFX_ROMAN_BLANK	39	2	0	37	code area	FF FF: the blank glyph's row (read again each row)
+50FE	D64_HUD_DAY_GLYPH_STEP	121	1	1	119	code area	SMC: the opcode at 50FE, 03 INC BC or 0Bh DEC BC (blank glyph)
+5177	D64_OBJ_MIRROR_NUMERALS	9	0	0	0	code area	'IXX', 'XIX', 'XXI' (font codes 49h 58h D8h...); PC OBJ_MIRROR_NUMERALS
+5180	D64_HUD_OBSEQUIUM_TAIL	47	3	0	0	code area	FF 7F 3F 1F: the partial byte of the bar; PC HUD_OBSEQUIUM_TAIL
+51AF	D64_TXT_PHRASE_SOUND	3921	535	0	210	code area	one byte per phrase (PC TXT_PHRASE_SOUND BF4B)
+6100	D64_ISO_ROOM_TABLE	6808	1127	2	0	data area	the rooms, each led by its length byte; PC iso_room_table
+7B98	D64_CHR_FLOOR0_HEIGHTS	1000	791	0	0	data area	height data of the ground floor; PC CHR_FLOOR0_HEIGHTS
+7F80	D64_SPR_BUFFER	500	500	500	0	data area	sprite buffer; the path records of chr_cmd_write_path (PC SPR_BUFFER E68E)
+8174	D64_CHR_PATH_GRID	396	396	396	0	data area	the 24x24 grid of the path search; CHR_PATH_GRID
+8300	D64_HUD_HIDDEN_ROWS_SRC D64_ISO_TILE_GFX_HIGH	604	604	604	0	data area	1000h bytes loaded into the hidden screen rows 24-31 at start-up
+855C	D64_ISO_MIRROR_BUF_GUILLERMO	250	250	250	0	data area	graphics buffer of Guillermo's image; PC 1800:EC6A
+8656	D64_ISO_MIRROR_BUF_ADSO	296	296	296	0	data area	PC 1800:ED64
+877E	D64_PATH_QUEUE	2	2	0	0	data area	the searches' queue: SP is set here and the queue grows down (PC 1800:EE8C)
+8780	D64_ISO_TILE_BUFFER	1920	1920	1920	0	data area	the tile buffer of the sprite drawing (8780-8EFF); PC iso_tile_buffer
+8F00	D64_VID_COLOUR_TABLES D64_VID_TILE_OR_A D64_ISO_TILE_MARKS	512	512	512	0	data area	4 x 256 bytes of pixel masks built by vid_init_stub (over the end of 8300-92FF)
+9100	D64_VID_TILE_OR_B	3392	2512	512	0	data area	OR table (AND at 9200) of the tiles 80h-FFh
+9E40	D64_CHR_FLOOR1_HEIGHTS	288	226	0	0	data area	height data of the first floor (base 0Bh); PC CHR_FLOOR1_HEIGHTS
+9F60	D64_CHR_FLOOR2_HEIGHTS	928	299	5	0	data area	the height list of the second floor; PC chr_floor2_heights
+A300	D64_SPR_GUILLERMO_GFX_W5	302	302	302	0	data area	Guillermo's 5-byte-wide frames (AEh lines); PC SPR_GUILLERMO_GFX_W5
+A42E	D64_TXT_STRIP_CURSOR	568	568	568	0	data area	txt_cursor of the letter printed at the right end of the strip (y A4h, x 2Eh)
+A666	D64_SPR_GUILLERMO_GFX_W4	132	132	132	0	data area	Guillermo's 4-byte-wide frames (21h lines); PC SPR_GUILLERMO_GFX_W4
+A6EA	D64_SPR_ADSO_GFX_W5	475	475	475	0	data area	Adso's 5-byte-wide frames (5Fh lines); PC SPR_ADSO_GFX_W5
+A8C5	D64_SPR_ADSO_GFX_W4	388	360	360	0	data area	Adso's 4-byte-wide frames (5Ah lines); PC SPR_ADSO_GFX_W4
+AA49	D64_OBJ_DOOR_GFX	240	240	240	0	data area	the graphic of the door leaf, 6 bytes x 28h lines; PC obj_door_gfx 1A6B
+AB39	D64_HUD_GFX_ROMAN_V	16	0	0	0	data area	2 bytes x 8 rows; PC hud_gfx_roman V
+AB49	D64_HUD_GFX_ROMAN_I	741	741	0	0	data area	PC hud_gfx_roman I
+AE2E	D64_CHR_HEIGHT_BUFFER	1490	925	925	0	data area	the 24x24 height buffer of the screen; CHR_HEIGHT_BUFFER
+B400	D64_TXT_FONT	13	0	0	0	data area	8 bytes per glyph, codes 2Dh-5Ah; PC txt_font
+B40D	D64_TXT_CURSOR_HOUR_NAME	371	192	0	0	data area	txt_cursor value of the new letter of the hour name
+B580	D64_TXT_WORDS	30	30	30	0	data area	the word dictionary (bit 7 ends a word); PC txt_words
+B59E	D64_TXT_WORD_AAA	1378	383	383	0	data area	the dictionary word the numeral is written over; PC 1800:7DDF
+BB00	D64_TXT_PHRASES	1097	272	0	0	data area	the phrases, FF-terminated (PC TXT_PHRASES C565)
+BF49	D64_SYS_FRAME_TICKS_NORMAL	5	1	0	0	data area	the normal frame budget (PC SYS_FRAME_TICKS_NORMAL AE83)
+BF4E	D64_GAME_START_HOUR	1	1	0	0	data area	hour of a new game
+BF4F	D64_GAME_START_DAY	177	64	60	0	data area	day of a new game (BF4F, read by ai_clock_init)
+C000	D64_VID_SCREEN	1280	1279	1280	0	screen	the CPC screen (mode 1, 64 bytes a line): the play area is its first 160 lines
+C500	D64_SCR_ROW20	145	32	145	0	screen	screen: character row 20 (the score bar)
+C591	D64_SCR_OBJECT_SLOTS	111	12	111	0	screen	the six object slots of the score bar
+C600	D64_SCR_ROW24	1972	1823	1972	0	screen hidden	screen: character row 24, the first hidden row (CRTC R6 = 24)
+CDB4	D64_SCR_OBSEQUIUM_BAR	5982	5091	5982	0	screen	the obsequium bar
+E512	D64_TXT_STRIP	113	30	113	0	screen	screen: 1st byte moved by the phrase scroll (8 lines of 30 bytes from E510)
+E583	D64_SCR_HOUR_NAME	1926	1803	1926	0	screen	the 12-byte box of the hour name
+ED09	D64_SCR_DAY_NUMERAL	4855	4002	4855	0	screen	the day numeral

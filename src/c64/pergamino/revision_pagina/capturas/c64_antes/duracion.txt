@@ -1,0 +1,3 @@
+corners 91
+cycles 20022703
+seconds 20.323

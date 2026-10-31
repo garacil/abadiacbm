@@ -1,0 +1,58 @@
+# abadiacbm: what the repository leaves out (only the current Commodore releases and their sources)
+
+# the build products: every build regenerates them (src/c64/*/construye.sh)
+*.o
+__pycache__/
+/src/c64/juego_final/c64*/
+/src/c64/juego_final/c128*/
+/src/c64/juego_final/p500*/
+/src/c64/juego_final/perfil/
+/src/c64/juego_final/juego.bin
+/src/c64/juego_final/juego.cfg
+/src/c64/juego_final/juego.lbl
+/src/c64/juego_final/juego.map
+/src/c64/juego_final/juego_todo.lbl
+/src/c64/juego_final/mapa64.inc
+/src/c64/juego_final/mapa64.tsv
+/src/c64/juego_final/datos64.s
+/src/c64/juego_final/stubs64.s
+/src/c64/juego_final/stubs64.tsv
+/src/c64/juego_final/conversion64.tsv
+/src/c64/juego_final/punteros64.tsv
+/src/c64/cinta/generado/
+/src/c64/disco64/generado/
+/src/c64/disco128/generado/
+/src/c64/discop500/generado/
+/src/c64/presentacion/generado*/
+/src/c64/ingles/generado/
+/src/c64/certifica/anfitrion/
+/src/juego/hibrido
+/data/c64graf/
+/data/c64graf128/
+# (the three current releases ARE in the repository: src/c64/cinta/abadia64ks.tap, src/c64/disco64/abadia64ks.d64,
+#  src/c64/disco128/abadia128ks.d64; the download zips are made from them by src/c64/video/empaqueta.py)
+/src/c64/video/entrega/*.zip
+/src/c64/cinta/generado/*.tap
+# recordings, test outputs, local environments
+/src/c64/video/grabaciones/
+/src/c64/video/activa.json
+*.wav
+/data/.venv/
+/data/pruebas/salida_*/
+# third-party tools (README: how to get them)
+/tools/terceros/
+# not part of the project's sources
+/old/
+/respaldos/
+/reorganiza.log
+# program images and test objects: build and test outputs (the images kept are the three releases above and the
+# original presentation's disk, a source)
+*.prg
+*.d64
+!/src/c64/disco64/abadia64ks.d64
+!/src/c64/disco128/abadia128ks.d64
+!/src/c64/presentacion/original/abadiac64.d64
+/src/c64/plataforma/pruebas/obj/
+/src/c64/poc/
+*.log
+/src/c64/presentacion/pruebas/disco_prueba/flujo.txt

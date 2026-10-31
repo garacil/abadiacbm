@@ -1,0 +1,405 @@
+name	cpc64	pc	bytes	result	64K	PC	real (offset:64K/PC)
+AI_BERENGAR_DOOR_MASK	04B0	AC6B	1	0 of 1 bytes differ, 0 not relocations	3f	3f	
+CHR_GUILLERMO_ANIM_COPY	0600	AC67	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_STAIRS_HEIGHT	0692	AC57	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_GRID_OWNER	08A0	AC55	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+OBJ_FOR_EACH_PATCH	09D4			no PC name
+OBJ_ROOM_REDRAW	0A6D	AC65	1	1 of 1 bytes differ, 1 not relocations	80	00	+0:80/00
+OBJ_DOOR_MOVED	0A6F	AC63	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SND_TEMPO_RELOAD	0CF6			no PC name
+ISO_CUR_BLOCK	1697	B7DD	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+VID_FILL_BYTE	16C0			no PC name
+ISO_OP_X_INC_INSN	1C60			no PC name
+ISO_OP_X_DEC_INSN	1C66			no PC name
+ISO_STEP_RIGHT_INSN	1D06	2B39	1	1 of 1 bytes differ, 1 not relocations	2c	ff	+0:2C/FF
+ISO_TILE_STEP_INSN	1D29			no PC name
+ISO_MIRROR	1E3E	B7DF	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_FLOOR_MAP_PTR	2013	AE23	2	2 of 2 bytes differ, 2 not relocations	79 1e	23 ad	+0:79/23 +1:1E/AD
+ISO_SETUP_SPRITE	2070	AE27	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+ISO_SETUP_RECORD	2074	AE29	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+ISO_CAMERA_ORIENT	20A5	AE82	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SYS_FRAME_TICKS	21DA	AE2B	1	0 of 1 bytes differ, 0 not relocations	2a	2a	
+CHR_HBUF_ORIGIN_Y	22F2	AC5F	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_HBUF_ORIGIN_X	22FE	AC61	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PROBE_HEIGHT	2374	AE7E	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PROBE_INNER	2378	AE2F	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+CHR_PROBE_OUTER	237F	AE31	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+CHR_GUILLERMO_STATE	23E4	AE2D	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_GUILLERMO_FALL_DY	2406	AE2E	1	1 of 1 bytes differ, 1 not relocations	02	00	+0:02/00
+CHR_CUR_SPRITE	2477	AE73	2	2 of 2 bytes differ, 0 not relocations	68 29	d5 b8	
+CHR_CUR_DATA	247E	AE75	2	2 of 2 bytes differ, 0 not relocations	87 2b	f4 ba	
+CHR_CUR_ANIM	25D9	AE7B	2	2 of 2 bytes differ, 0 not relocations	f0 2c	5d bc	
+CHR_ROOM_ORIGIN_X	2636	AE7F	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_ROOM_ORIGIN_Y	2640	AE80	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_ROOM_FLOOR	264E	AE81	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PROJECT_TEST	2684			no PC name
+SYS_TICKS	289C	AE2C	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SYS_KEY_BITMAP	2E6A	BCC1	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_FLIP_WIDTH	2FA3	BCC3	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+CHR_HBUF_FLAT_WIDTH_OP	34EA			no PC name
+CHR_HBUF_SLOPE_WIDTH_OP	3510			no PC name
+CHR_HBUF_COL_STEP_OP	3515			no PC name
+CHR_HBUF_ROW_STEP_OP	351C			no PC name
+CHR_HBUF_WIN_X_OP	354A			no PC name
+CHR_HBUF_WIN_Y_OP	354E			no PC name
+AI_SCRIPT_DEST_PTR	390D	C120	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+OBJ_DOOR_ALLOW_OP	3A24			no PC name
+AI_PHRASE_PARAM	3A5B	C122	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_HEIGHT	4085	BEF6	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_SMC_RET	40C2			no PC name
+CHR_PATH_SOLUTION	41D4	AC5B	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+CHR_PATH_DY_TMP	4211	BEF9	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_CANDIDATE	422C	BEFA	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+CHR_PATH_FLOOR_TARGET_TEST	440D			no PC name
+SPR_OV_SRC_Y	4614	ACF2	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_OV_SRC_X	467C	ACEA	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_OV_DST_Y	4684	ACF4	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_CUR_BUFFER	4690	ACE4	2	2 of 2 bytes differ, 0 not relocations	80 7f	8e e6	
+SPR_OV_DST_X	4694	ACEE	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_OV_LINE	46A1	ACF6	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_OV_LINES	46A4	ACF0	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_OV_WIDTH	46A7	ACE8	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_OV_MIRROR_CALL	46AE			no PC name
+SPR_OV_SRC_STEP	46C3			no PC name
+SPR_OV_SRC_STRIDE	46C9	ACF8	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_OV_SRC_X_ROBE	4703	ACEC	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_OV_DST_STRIDE	470B	ACFA	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_LIGHT_FILL_A	4738	AD1A	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_LIGHT_DX	4756	AD16	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_LIGHT_FLIP	476D			no PC name
+SPR_LIGHT_DX_REST	4782	AD18	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_LIGHT_FILL_B	479E	AD1C	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_BLIT_LINES	4863	AD08	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_BLIT_WIDTH	4868	AD06	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_BLIT_SKIP	486D	AD00	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_TILE_UNMARK_HOOK	491B			no PC name
+SPR_DEPTH_UPPER	4972	ACE6	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_DEPTH_LOWER	4975	AD0A	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_TILE_DST_SKIP	4A28	AD0E	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_TILE_DST_SKIP_HI	4A2C			no PC name
+SPR_TILE_COPY_SKIP	4A44			no PC name
+SPR_TILE_COPY_SKIP_HI	4A48			no PC name
+OBJ_HOLDER_LOCKED	4CAA	BFA6	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_FRONT_Z	4CBD	BFA4	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_FRONT_X	4CC4	BFA3	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_FRONT_Y	4CC9	BFA5	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_DROP_LEVEL	4E17	BFA8	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_DROP_INDEX	4E4A	BFA7	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_MIRROR_OLD_POS_OP	4F9A			no PC name
+ISO_MIRROR_OLD_SIZE_OP	4F9E			no PC name
+ISO_MIRROR_NEW_POS_OP	4FA2			no PC name
+ISO_MIRROR_NEW_SIZE_OP	4FA6			no PC name
+ISO_MIRROR_SHOWN	4FA9	BFAB	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_MIRROR_BUFFER	4FD9	BFA9	2	2 of 2 bytes differ, 2 not relocations	c0 85	ce ec	+0:C0/CE +1:85/EC
+HUD_DAY_GLYPH_STEP	50FE			no PC name
+CHR_EXIT_MARK_ROUTINE	076B	AC59	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+OBJ_ENTITY_CALLBACK	09BA	AC69	2	2 of 2 bytes differ, 2 not relocations	42 0a	00 00	+0:42/00 +1:0A/00
+ISO_PUT_TILE_JUMP	12C0			no PC name
+ISO_ENTER_VECTOR	1DFC	B7E0	2	2 of 2 bytes differ, 0 not relocations	f1 17	1e 2a	
+CHR_CUR_BEHAVIOUR	24A6	AE77	2	2 of 2 bytes differ, 0 not relocations	e2 23	a7 22	
+CHR_CUR_FLIP	25AE	AE79	2	2 of 2 bytes differ, 0 not relocations	40 2f	11 30	
+CHR_CAMERA_TRANSFORM	2656	AE25	2	2 of 2 bytes differ, 0 not relocations	ae 20	b7 1e	
+GAME_STATE_BLOCK_FN	312A	BCC6	2	2 of 2 bytes differ, 0 not relocations	66 31	8b 33	
+CHR_CMD_GENERATOR	436A	BEF7	2	2 of 2 bytes differ, 0 not relocations	c9 41	fd 3b	
+SPR_TILE_TEST_JUMP	497D	AD0C	2	2 of 2 bytes differ, 2 not relocations	7f 49	98 1a	+0:7F/98 +1:49/1A
+SYS_STARTUP_DONE	00FE			no PC name
+CHR_PATH_SLOT	0201			no PC name
+SND_MIXER	0C06			no PC name
+ISO_ROOM_PTR	11DA	B71A	3	1 of 3 bytes differ, 1 not relocations	00 61 00	00 74 00	+1:61/74
+ISO_KEEP_FLAG	1BDC	B7E2	18	0 of 18 bytes differ, 0 not relocations	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	
+CHR_BACKUP	28B9	AD21	10	5 of 10 bytes differ, 5 not relocations; sizes 64K 175 PC 10	55 00 00 06 c0 61 31 00 00 00	00 00 00 00 00 00 00 00 00 00	+0:55/00 +3:06/00 +4:C0/00 +5:61/00 +6:31/00
+SPR_TABLE	2968	B8D5	461	16 of 461 bytes differ, 16 not relocations	fe 1e 42 1e 42 05 22 b4 38 05 22 80 00 00 00 00 00 00 00 00 fe 28 32 28	fe 1e 42 1e 42 05 22 b4 38 05 22 80 00 00 00 00 00 00 00 00 fe 28 32 28	+267:D0/12 +268:D7/31 +287:50/D2 +288:97/47 +307:20/A2 +308:97/47 +327:B0/32 +328:97/48 +347:80/02 +348:97/48 +367:80/02 +368:97/48 +387:80/02 +388:97/48 +427:A0/E2 +428:D7/30
+OBJ_DOORS	2B35	BAA2	36	0 of 36 bytes differ, 0 not relocations	01 21 61 37 02 02 22 b7 1e 02 00 04 66 5f 02 03 28 9e 28 02 03 10 7e 26	01 21 61 37 02 02 22 b7 1e 02 00 04 66 5f 02 03 28 9e 28 02 03 10 7e 26	
+OBJ_OBJECTS	2B59	BAC6	46	2 of 46 bytes differ, 0 not relocations	00 01 34 5e 13 00 00 6b 55 06 80 00 3d 29 00 00 01 36 5e 13 00 00 00 00	00 01 34 5e 13 00 00 6b 55 06 80 00 aa b8 00 00 01 36 5e 13 00 00 00 00	
+CHR_GUILLERMO	2B87	BAF4	15	0 of 15 bytes differ, 0 not relocations; sizes 64K 90 PC 15	00 01 22 22 00 00 00 fe de 00 00 00 00 00 10	00 01 22 22 00 00 00 fe de 00 00 00 00 00 10	
+SPR_SORTED_TOP	2BE1	BB4E	7	0 of 7 bytes differ, 0 not relocations	00 00 00 00 00 00 00	00 00 00 00 00 00 00	
+SYS_KEYS_DOWN	2DE8	BCC8	10	0 of 10 bytes differ, 0 not relocations; sizes 64K 20 PC 10	ff ff ff ff ff ff ff ff ff ff	ff ff ff ff ff ff ff ff ff ff	
+SYS_KEY_SINGLE	2E2C	BCE6	2	0 of 2 bytes differ, 0 not relocations	00 ff	00 ff	
+OBJ_MIRROR_HEIGHT_PTR	2EDE	BD04	9	0 of 9 bytes differ, 0 not relocations	00 00 f5 20 62 0b ff 00 00	00 00 f5 20 62 0b ff 00 00	
+CHR_FLOOR_HEIGHTS_PTR	3454	BEA1	2	2 of 2 bytes differ, 0 not relocations	98 7b	a3 4e	
+GAME_BOOK_POISON_COUNT	37D2	BFF6	152	1 of 152 bytes differ, 1 not relocations	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	+114:9C/A8
+VID_SPIRAL_SIDES	3AAB	BFC0	4	4 of 4 bytes differ, 4 not relocations	3e 3a 18 1a	00 00 00 00	+0:3E/00 +1:3A/00 +2:18/00 +3:1A/00
+AI_UNUSED_3CAD	3CAD			no PC name
+GAME_PERCENT_DIGITS	3E61			no PC name
+CHR_MALACHI_RISING	3EED	BFD6	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+CHR_PATH_ROOM_LINKS_PTR	3F73	BED7	2	2 of 2 bytes differ, 0 not relocations	3d 02	fd aa	
+CHR_PATH_ORIENTATION	3F81	BEE5	2	0 of 2 bytes differ, 0 not relocations	00 00	00 00	
+SPR_BUF_FREE	4471	ACDE	6	0 of 6 bytes differ, 0 not relocations	00 00 00 00 00 00	00 00 00 00 00 00	
+ISO_SPIRAL_RUNS	4A4F			no PC name
+CHR_SPRITE_OFFSET_TABLES	2BF0	BB5D	256	0 of 256 bytes differ, 0 not relocations	00 00 ff fe ff 02 fe 00 01 02 00 00 00 fe 00 00 00 00 ff 02 01 02 00 04	00 00 ff fe ff 02 fe 00 01 02 00 00 00 fe 00 00 00 00 ff 02 01 02 00 04	
+GAME_INITIAL_STATE	0103	BD46	167	137 of 167 bytes differ, 137 not relocations	14 1b 1f 1c 00 1d 0e 05 0d 15 04 0c 06 03 0b 14 07 f3 3e c9 32 38 00 21	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	+0:14/00 +1:1B/00 +2:1F/00 +3:1C/00 +5:1D/00 +6:0E/00 +7:05/00 +8:0D/00 +9:15/00 +10:04/00 +11:0C/00 +12:06/00 +13:03/00 +14:0B/00 +15:14/00 +16:07/00
+CHR_ROOM_LINKS	023D	AAFD	304	11 of 304 bytes differ, 11 not relocations	00 00 00 00 00 00 00 00 08 00 08 08 00 00 00 00 00 08 08 00 08 08 08 09	00 00 00 00 00 00 00 00 08 00 08 08 00 00 00 00 00 08 08 00 08 08 08 09	+75:0A/02 +76:09/01 +90:05/04 +91:06/00 +92:03/01 +106:05/04 +107:04/08 +152:0D/05 +228:09/01 +244:0F/05 +260:03/01
+ISO_BLOCK_TABLE	11DD	B71D	176	171 of 176 bytes differ, 171 not relocations; sizes 64K 176 PC 192	00 00 ac 15 a7 15 7f 15 84 15 89 15 8e 15 93 15 98 15 9d 15 a2 15 24 17	00 00 ac b1 a7 b1 75 b1 7a b1 7f b1 84 b1 89 b1 8e b1 93 b1 a2 b1 67 b2	+3:15/B1 +5:15/B1 +6:7F/75 +7:15/B1 +8:84/7A +9:15/B1 +10:89/7F +11:15/B1 +12:8E/84 +13:15/B1 +14:93/89 +15:15/B1 +16:98/8E +17:15/B1 +18:9D/93 +19:15/B1
+ISO_BLOCK_DATA_1	12F5			no PC name
+ISO_BLOCK_DATA_2	16CE			no PC name
+ISO_BLOCK_DATA_3	1804			no PC name
+ISO_FLOOR_MAPS	1E89			no PC name
+CHR_COMMAND_BUFFERS	3568	F60E	225	211 of 225 bytes differ, 211 not relocations; sizes 64K 225 PC 240	3e 0d 32 fe 00 cd 83 3a 01 8d 7f ed 49 cd 98 35 06 08 11 00 c6 21 00 83	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	+0:3E/00 +1:0D/00 +2:32/00 +3:FE/00 +5:CD/00 +6:83/00 +7:3A/00 +8:01/00 +9:8D/00 +10:7F/00 +11:ED/00 +12:49/00 +13:CD/00 +14:98/00 +15:35/00 +16:06/00
+AI_SCRIPT_VARS	386A	C08E	130	130 of 130 bytes differ, 2 not relocations	89 2b 8a 2b 8b 2b 98 2b c6 2b 9a 2b f7 37 f5 37 d2 28 f2 28 13 38 15 38	f6 ba f7 ba f8 ba 05 bb 33 bb 07 bb 1b c0 19 c0 3e b8 5e b8 37 c0 39 c0	+120:AD/23 +121:3C/C1
+AI_HOUR_DURATIONS	4AD0	BEFC	45	0 of 45 bytes differ, 0 not relocations; sizes 64K 115 PC 45	00 00 00 00 00 00 00 00 00 05 00 05 00 00 00 00 05 00 05 00 00 0f 00 00	00 00 00 00 00 00 00 00 00 05 00 05 00 00 00 00 05 00 05 00 00 0f 00 00	
+ISO_ROOM_TABLE	6100	82C2	6808	6715 of 6808 bytes differ, 6715 not relocations; sizes 64K 6808 PC 9392	63 1c 6f f1 1e 72 b6 09 4e df 28 0d 52 fe 28 48 30 2a 63 b6 51 02 63 92	7e 1e 27 0e 1c 6f f1 1e 52 b5 53 15 2d 00 09 4c 9f 14 0d 51 df 14 48 30	+0:63/7E +1:1C/1E +2:6F/27 +3:F1/0E +4:1E/1C +5:72/6F +6:B6/F1 +7:09/1E +8:4E/52 +9:DF/B5 +10:28/53 +11:0D/15 +12:52/2D +13:FE/00 +14:28/09 +15:48/4C
+CHR_FLOOR0_HEIGHTS	7B98	4EA3	921	914 of 921 bytes differ, 914 not relocations; sizes 64K 921 PC 1097	fd 7f 0f 32 10 05 a5 10 ad ed 4a 7c 1b 0b ed ac 70 25 25 45 54 20 92 f5	2d c4 32 0b 0f 2d a0 42 2f 35 f5 a0 42 31 fd a1 0c 13 13 05 a5 10 ad ed	+0:FD/2D +1:7F/C4 +2:0F/32 +3:32/0B +4:10/0F +5:05/2D +6:A5/A0 +7:10/42 +8:AD/2F +9:ED/35 +10:4A/F5 +11:7C/A0 +12:1B/42 +13:0B/31 +14:ED/FD +15:AC/A1
+SPR_BUFFER	7F80	E68E	500	0 of 500 bytes differ, 0 not relocations; sizes 64K 1500 PC 500	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	
+ISO_MIRROR_BUF_GUILLERMO	855C			no PC name
+PATH_QUEUE_TOP	8750			no PC name
+ISO_TILE_BUFFER	8780	EE8E	1920	1796 of 1920 bytes differ, 1796 not relocations	fc f0 fc f8 f3 fe fb f8 f3 df f8 fc f3 cf 7e f3 ff cf 1f b0 fb cf 0f f8	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	+0:FC/00 +1:F0/00 +2:FC/00 +3:F8/00 +4:F3/00 +5:FE/00 +6:FB/00 +7:F8/00 +8:F3/00 +9:DF/00 +10:F8/00 +11:FC/00 +12:F3/00 +13:CF/00 +14:7E/00 +15:F3/00
+CHR_FLOOR1_HEIGHTS	9E40	56A4	250	175 of 250 bytes differ, 175 not relocations; sizes 64K 250 PC 269	4d 46 60 13 0f 4d 10 60 19 0f 2d 40 20 1a 0f f5 4c 20 13 0d 26 60 23 01	4d 46 60 13 0f 4d 10 60 19 0f 2d 40 20 1a 0f f5 4c 20 13 0d 26 60 23 01	+59:F5/05 +67:F5/85 +68:28/50 +69:4E/62 +70:19/15 +71:43/F5 +73:50/4E +74:15/19 +75:21/43 +76:45/28 +77:3A/50 +78:25/15 +79:ED/F5 +80:2F/46 +81:3F/40 +83:11/21
+CHR_FLOOR2_HEIGHTS	9F60	5AA5	917	721 of 917 bytes differ, 721 not relocations; sizes 64K 917 PC 922	2d 10 60 1f 0f 65 24 2a 35 85 20 26 37 05 20 29 10 65 5c 68 37 4d 10 20	2d 10 60 1f 0f 65 24 2a 35 85 20 26 37 05 20 29 10 65 5c 68 37 4d 10 20	+97:65/F5 +98:10/14 +100:D1/91 +105:E5/65 +106:28/10 +108:57/31 +109:51/E5 +110:32/28 +111:52/66 +112:41/57 +113:85/51 +114:26/32 +115:64/52 +116:31/41 +117:83/85 +118:2A/26
+TXT_PHRASES	BB00	C565	924	0 of 924 bytes differ, 0 not relocations	00 f9 01 02 03 fe 04 05 06 07 08 09 f9 01 0a 0b f9 01 0c 0d ff 0e f9 0f	00 f9 01 02 03 fe 04 05 06 07 08 09 f9 01 0a 0b f9 01 0c 0d ff 0e f9 0f	
+TXT_WORDS	B580	7DC1	1257	0 of 1257 bytes differ, 0 not relocations	53 45 43 52 45 d4 55 cd 46 49 4e 49 d3 41 46 52 49 43 41 c5 4d 41 4e 55	53 45 43 52 45 d4 55 cd 46 49 4e 49 d3 41 46 52 49 43 41 c5 4d 41 4e 55	
+CHR_HEIGHT_BUFFER	AE2E	F6FE	576	427 of 576 bytes differ, 427 not relocations	ff c8 00 31 ff ff a2 00 31 ff ff d3 00 71 f7 ff 97 00 73 f9 fe 97 00 70	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	+0:FF/00 +1:C8/00 +3:31/00 +4:FF/00 +5:FF/00 +6:A2/00 +8:31/00 +9:FF/00 +10:FF/00 +11:D3/00 +13:71/00 +14:F7/00 +15:FF/00 +16:97/00 +18:73/00 +19:F9/00
+CHR_ANIM_GUILLERMO	2CF0	BC5D	32	16 of 32 bytes differ, 16 not relocations; sizes 64K 96 PC 32	b4 a3 05 22 00 a3 05 24 b4 a3 05 22 5e a4 05 22 66 a6 04 21 08 a5 05 23	d6 13 05 22 22 13 05 24 d6 13 05 22 80 14 05 22 88 16 04 21 2a 15 05 23	+0:B4/D6 +1:A3/13 +4:00/22 +5:A3/13 +8:B4/D6 +9:A3/13 +12:5E/80 +13:A4/14 +16:66/88 +17:A6/16 +20:08/2A +21:A5/15 +24:66/88 +25:A6/16 +28:B7/D9 +29:A5/15
+OBJ_DOOR_ORIENT_TABLE	021D	AADD	32	0 of 32 bytes differ, 0 not relocations	ff de 01 00 00 00 01 00 ff d6 00 01 00 00 e8 ff fb d6 00 00 00 00 ff ff	ff de 01 00 00 00 01 00 ff d6 00 01 00 00 e8 ff fb d6 00 00 00 00 ff ff	
+CHR_STEP_TABLE_2X2	23A2	AE33	32	0 of 32 bytes differ, 0 not relocations; sizes 64K 64 PC 32	18 00 ff ff d1 ff 01 00 01 00 18 00 ce ff 00 ff e8 ff 01 00 16 00 ff 00	18 00 ff ff d1 ff 01 00 01 00 18 00 ce ff 00 ff e8 ff 01 00 16 00 ff 00	
+CHR_TABLE	2703	AE84	62	49 of 62 bytes differ, 0 not relocations	68 29 87 2b e2 23 40 2f f0 2c 7c 29 96 2b 8f 27 e7 2e 10 2d 90 29 a5 2b	d5 b8 f4 ba a7 22 11 30 5d bc e9 b8 03 bb d6 26 b4 2f 7d bc fd b8 12 bb	
+ISO_BLOCK_OPCODE_TABLE	1BEE	B7F4	56	56 of 56 bytes differ, 38 not relocations	40 1c 9f 1c ac 1c dd 1c e1 1c e5 1c f5 1c 03 1d 4f 1d 5d 1c 60 1c 63 1c	58 2a d2 2a de 2a 0f 2b 13 2b 17 2b 26 2b 36 2b 8f 2b 7e 2a 82 2a 86 2a	+4:AC/DE +5:1C/2A +6:DD/0F +7:1C/2B +8:E1/13 +9:1C/2B +12:F5/26 +13:1C/2B +14:03/36 +15:1D/2B +18:5D/7E +19:1C/2A +20:60/82 +21:1C/2A +22:63/86 +23:1C/2A
+CHR_BESIDE_OFFSETS	0215	AAD5	8	0 of 8 bytes differ, 0 not relocations	02 00 00 fe fe 00 00 02	02 00 00 fe fe 00 00 02	
+TXT_PHRASE_SOUND	51AF	BF4B	56	0 of 56 bytes differ, 0 not relocations	38 41 41 41 35 45 41 41 41 49 49 54 54 41 41 51 41 41 54 54 41 41 41 41	38 41 41 41 35 45 41 41 41 49 49 54 54 41 41 51 41 41 54 54 41 41 41 41	
+OBJ_DOOR_CELL_STEPS	0AB4	AC3D	8	0 of 8 bytes differ, 0 not relocations	01 00 e8 ff ff ff 18 00	01 00 e8 ff ff ff 18 00	
+GAME_STATE_BLOCKS	3134	BE0E	50	32 of 50 bytes differ, 0 not relocations	f3 37 05 13 38 03 34 38 03 4c 38 03 5e 38 03 d0 28 0e 2a 29 10 3d 29 23	17 c0 05 37 c0 03 58 c0 03 70 c0 03 82 c0 03 3c b8 0e 97 b8 10 aa b8 23	
+CHR_POS_PTRS	30F0	BD25	12	12 of 12 bytes differ, 0 not relocations	89 2b 98 2b a7 2b b6 2b c5 2b d4 2b	f6 ba 05 bb 14 bb 23 bb 32 bb 41 bb	
+CHR_DIR_BUFFER_STEP	4180	BEAB	8	0 of 8 bytes differ, 0 not relocations; sizes 64K 40 PC 8	01 00 e8 ff ff ff 18 00	01 00 e8 ff ff ff 18 00	
+SND_NOTE_PERIODS	0C55			no PC name
+SPR_MONK_ROBES	4431	AC9E	32	32 of 32 bytes differ, 32 not relocations	db ab 59 ab db ab 53 ac bb ad cb ac bb ad 48 ad bb ed cb ec bb ed 48 ed	fd 1b 7b 1b fd 1b 75 1c dd 1d ed 1c dd 1d 6a 1d b2 20 c2 1f b2 20 3f 20	+0:DB/FD +1:AB/1B +2:59/7B +3:AB/1B +4:DB/FD +5:AB/1B +6:53/75 +7:AC/1C +8:BB/DD +9:AD/1D +10:CB/ED +11:AC/1C +12:BB/DD +13:AD/1D +14:48/6A +15:AD/1D
+OBJ_DOOR_LINK_TABLE	37B4	BFD8	30	0 of 30 bytes differ, 0 not relocations	35 01 36 04 ff 1b 08 2b 02 ff 56 08 66 02 ff 29 01 2a 04 ff 27 01 28 04	35 01 36 04 ff 1b 08 2b 02 ff 56 08 66 02 ff 29 01 2a 04 ff 27 01 28 04	
+SYS_KEY_ALIAS_LEFT	2E2E	BCE8	4	0 of 4 bytes differ, 0 not relocations; sizes 64K 20 PC 4	08 25 4a ff	08 25 4a ff	
+SND_COMMANDS	0F76			no PC name
+CHR_PARAM_TARGETS	2741	AEC2	10	10 of 10 bytes differ, 0 not relocations	77 24 7e 24 a6 24 ae 25 d9 25	73 ae 75 ae 77 ae 79 ae 7b ae	
+CHR_EXIT_TABLE	08FA	AC2D	16	8 of 16 bytes differ, 0 not relocations	1c 09 16 0c 0a 09 0c 02 24 09 02 0c 29 09 0c 16	40 11 16 0c 28 11 0c 02 48 11 02 0c 4d 11 0c 16	
+OBJ_DOOR_CAMERA_OFFSETS	0B0D	AC45	16	0 of 16 bytes differ, 0 not relocations	02 00 00 ff 00 fc ff ff fe 00 ff 00 00 04 00 00	02 00 00 ff 00 fc ff ff fe 00 ff 00 00 04 00 00	
+AI_CLOSE_BOX_TABLE	38EC	C110	16	0 of 16 bytes differ, 0 not relocations	06 18 06 0c 06 0c 0c 18 0c 18 06 0c 06 0c 06 18	06 18 06 0c 06 0c 0c 18 0c 18 06 0c 06 0c 06 18	
+VID_PALETTE_BLACK	3A73			no PC name
+CHR_CMD_STEP_TABLE	3F83	BEE7	15	0 of 15 bytes differ, 0 not relocations	80 00 02 20 00 04 c0 00 02 30 00 04 80 00 01	80 00 02 20 00 04 c0 00 02 30 00 04 80 00 01	
+CHR_RECORD_PTRS	3D30	BFCA	12	12 of 12 bytes differ, 0 not relocations	87 2b 96 2b a5 2b b4 2b c3 2b d2 2b	f4 ba 03 bb 12 bb 21 bb 30 bb 3f bb	
+CHR_CMD_TURN_LEN	3F75	BED9	4	0 of 4 bytes differ, 0 not relocations; sizes 64K 12 PC 4	01 03 06 03	01 03 06 03	
+SYS_FRAME_TICKS_NORMAL	BF49	AE83	10	10 of 10 bytes differ, 10 not relocations	24 7e 3d 7e 3d 04 01 88 9c 00	12 d5 b8 f4 ba a7 22 11 30 5d	+0:24/12 +1:7E/D5 +2:3D/B8 +3:7E/F4 +4:3D/BA +5:04/A7 +6:01/22 +7:88/11 +8:9C/30 +9:00/5D
+OBJ_MIRROR_NUMERALS	5177	BF3E	9	0 of 9 bytes differ, 0 not relocations	49 58 d8 58 49 d8 58 58 c9	49 58 d8 58 49 d8 58 58 c9	
+TXT_PUNCTUATION	3447	BE88	5	0 of 5 bytes differ, 0 not relocations	c0 bf bb bd bc	c0 bf bb bd bc	
+ISO_CAMERA_ROTATIONS	1E81	AD2B	8	8 of 8 bytes differ, 0 not relocations	ae 20 a9 20 af 20 b8 20	b7 1e af 1e b8 1e c5 1e	
+SPR_MONK_FACES	2BE8	BB55	8	8 of 8 bytes differ, 8 not relocations	cb b1 67 b1 2f b2 03 b1	ed 21 89 21 51 22 25 21	+0:CB/ED +1:B1/21 +2:67/89 +3:B1/21 +4:2F/51 +5:B2/22 +6:03/25 +7:B1/21
+SYS_BIT_MASKS	2EB3	BCFC	8	0 of 8 bytes differ, 0 not relocations	01 02 04 08 10 20 40 80	01 02 04 08 10 20 40 80	
+SND_DATA	0FF8			no PC name
+CHR_PATH_ALTERNATIVES	0203	AAC3	16	0 of 16 bytes differ, 0 not relocations	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ff	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ff	
+CHR_PATH_ALT_PTR	0213	AAD3	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_ROOM_LINKS_FLOOR1	02ED			no PC name
+CHR_ROOM_LINKS_FLOOR2	02F5			no PC name
+SND_CHANNEL_MASK_COPY	0C07	C125	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SND_MIXER_SENT	0C07			no PC name
+SND_TEMPO	0C08			no PC name
+SND_ENV_PERIOD_LO	0C09			no PC name
+SND_ENV_PERIOD_HI	0C0A			no PC name
+SND_ENV_SHAPE	0C0B			no PC name
+SND_NOISE_PERIOD	0C0C			no PC name
+SND_CHANNEL_A	0C10			no PC name
+SND_CHANNEL_B	0C28			no PC name
+SND_CHANNEL_C	0C40			no PC name
+SND_VOICE_TONE_A	0FF9	C12C	1	1 of 1 bytes differ, 1 not relocations	01	00	+0:01/00
+SND_VOICE_TONE_NEG	0FFC	C12F	1	1 of 1 bytes differ, 1 not relocations	ff	00	+0:FF/00
+SND_VOICE_TONE_B	0FFF	C132	1	1 of 1 bytes differ, 1 not relocations	01	00	+0:01/00
+SND_VOICE_LEVEL	1032	C14C	1	1 of 1 bytes differ, 1 not relocations	05	00	+0:05/00
+SND_SEQ_MUSIC	106E			no PC name
+SND_SEQ_MIRROR_OPEN	10F0			no PC name
+SND_SEQ_FOOTSTEP	1106			no PC name
+SND_SEQ_OBJECT_TAKEN	110F			no PC name
+SND_SEQ_OBJECT_DROPPED	1118			no PC name
+SND_SEQ_BEEP	1121			no PC name
+SND_PHRASE_VOICE	1127	C16D	1	1 of 1 bytes differ, 1 not relocations	54	00	+0:54/00
+SND_SEQ_TERCIA_BELLS	112A			no PC name
+SND_SEQ_DOOR_OPEN	1157			no PC name
+SND_SEQ_HOUR_BELLS	1163			no PC name
+SND_SEQ_SEVERINO	11C0			no PC name
+SND_SEQ_DOOR_CLOSE	11D0			no PC name
+ISO_ROOM_DARK	11DC	B71C	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_BLOCK_TILES	1BDD	B7E3	12	0 of 12 bytes differ, 0 not relocations	00 00 00 00 00 00 00 00 00 00 00 00	00 00 00 00 00 00 00 00 00 00 00 00	
+ISO_BLOCK_P1	1BE9	B7EF	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_BLOCK_P2	1BEA	B7F0	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_BLOCK_HEIGHT	1BEB	B7F1	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_DEPTH_X	1BEC	B7F2	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_DEPTH_Y	1BED	B7F3	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_OP_X_INC	1C60			no PC name
+ISO_OP_X_DEC	1C66			no PC name
+ISO_FLOOR1_MAP	1F09			no PC name
+ISO_FLOOR2_MAP	1F11			no PC name
+CHR_STEP_TABLE	23A8			no PC name
+CHR_STEP_TABLE_1X1	23C2	AE53	32	0 of 32 bytes differ, 0 not relocations	18 00 ff ff ea ff 01 00 01 00 18 00 cf ff 00 ff e8 ff 01 00 16 00 ff 00	18 00 ff ff ea ff 01 00 01 00 18 00 cf ff 00 ff e8 ff 01 00 16 00 ff 00	
+CHR_TABLE_ADSO	270D			no PC name
+CHR_TABLE_MALACHI	2717			no PC name
+CHR_TABLE_ABBOT	2721			no PC name
+CHR_TABLE_BERENGAR	272B			no PC name
+CHR_TABLE_SEVERIN	2735			no PC name
+ISO_CAMERA_RECORD	28C4	B82E	5	0 of 5 bytes differ, 0 not relocations	00 00 00 00 00	00 00 00 00 00	
+CHR_ROOM_X	28C6	B830	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_ROOM_Y	28C7	B831	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_ROOM_Z	28C8	B832	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_DOOR_GFX_FLIPPED	28C9	B833	1	0 of 1 bytes differ, 0 not relocations	01	01	
+HUD_OBSEQUIUM	28D0	B83C	1	0 of 1 bytes differ, 0 not relocations	1f	1f	
+STATE_PART1	28D0			no PC name
+GAME_DAY	28D1	B83D	1	0 of 1 bytes differ, 0 not relocations	01	01	
+GAME_HOUR	28D2	B83E	1	0 of 1 bytes differ, 0 not relocations	04	04	
+HUD_HOUR_NAME_PTR	28D3	B83F	1	1 of 1 bytes differ, 1 not relocations	12	6d	+0:12/6D
+CHR_SPRITE_OFFSETS	28D5	B841	1	1 of 1 bytes differ, 1 not relocations	f0	5d	+0:F0/5D
+AI_HOUR_FRAMES_LEFT	28D7	B843	1	0 of 1 bytes differ, 0 not relocations	ac	ac	
+CHR_CAMERA_TARGET	28D9	B845	1	1 of 1 bytes differ, 1 not relocations	87	f4	+0:87/F4
+CHR_HBUF_PTR	28DB	B847	1	1 of 1 bytes differ, 1 not relocations	2e	fe	+0:2E/FE
+OBJ_MIRROR_CLOSED	28DD	B849	1	0 of 1 bytes differ, 0 not relocations	01	01	
+ISO_MIRROR_STATE_GUILLERMO	28DE	B84A	5	4 of 5 bytes differ, 4 not relocations	06 c0 61 30 00	00 00 00 00 00	+0:06/00 +1:C0/00 +2:61/00 +3:30/00
+ISO_MIRROR_STATE_ADSO	28E3	B84F	5	3 of 5 bytes differ, 3 not relocations	00 00 53 41 43	00 00 00 00 00	+2:53/00 +3:41/00 +4:43/00
+TXT_CURSOR	28E8	B854	1	0 of 1 bytes differ, 0 not relocations	28	28	
+OBJ_GUILLERMO_OBJECTS_BEFORE	28EA	B856	1	0 of 1 bytes differ, 0 not relocations	00	00	
+TXT_SCROLL_TIMER	28EB	B857	1	0 of 1 bytes differ, 0 not relocations	00	00	
+TXT_TRAILING_BLANKS	28EC	B858	1	0 of 1 bytes differ, 0 not relocations	00	00	
+TXT_WORD_PTR	28ED	B859	1	0 of 1 bytes differ, 0 not relocations	00	00	
+TXT_PHRASE_PTR	28EF	B85B	1	0 of 1 bytes differ, 0 not relocations	00	00	
+TXT_WORD_DONE	28F1	B85D	1	0 of 1 bytes differ, 0 not relocations	00	00	
+TXT_PHRASE_BUSY	28F2	B85E	1	0 of 1 bytes differ, 0 not relocations	00	00	
+TXT_PHRASE_ACTIVE	28F3	B85F	1	0 of 1 bytes differ, 0 not relocations	00	00	
+HUD_HOUR_SCROLL_STEPS	28F6	B862	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_FOUND_NOW	28FA	B866	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_ADSO_BLOCKED_COUNT	28FB	B867	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_DOOR_FLIP_WANTED	2900	B86C	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_SAVED_SP	2901	B86D	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_ORIGIN	2903	B86F	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_DEST	2905	B871	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_PATH_RESULT	2907	B873	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_ROOM_CHANGED	2909	B875	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_SHOWN_FLOOR	290B	AC5D	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_MIRROR_NUMERAL	290D	B879	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ISO_ROOM_NUMBER	290E	B87A	1	0 of 1 bytes differ, 0 not relocations	00	00	
+GAME_BONUS2	290F	B87B	1	0 of 1 bytes differ, 0 not relocations	00	00	
+GAME_BONUS	2910	B87C	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_MOVED	2912	B87E	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SYS_SAVED_SP	2913			no PC name
+CHR_PROBE	2916	B883	16	10 of 16 bytes differ, 10 not relocations	41 52 4d 45 53 00 00 00 00 06 c0 61 a9 02 00 00	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	+0:41/00 +1:52/00 +2:4D/00 +3:45/00 +4:53/00 +9:06/00 +10:C0/00 +11:61/00 +12:A9/00 +13:02/00
+SPR_RECT_POS	2926	B893	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_RECT_SIZE	2928			no PC name
+OBJ_DOOR_PERMISSIONS	292A	B897	19	12 of 19 bytes differ, 0 not relocations	08 89 2b 08 98 2b 1f a7 2b 19 b6 2b 1f c5 2b 0c d4 2b ff	08 f6 ba 08 05 bb 1f 14 bb 19 23 bb 1f 32 bb 0c 41 bb ff	
+OBJ_DOOR_PERMISSIONS_ADSO	292D			no PC name
+OBJ_CHAR_OBJECTS	293D	B8AA	43	12 of 43 bytes differ, 0 not relocations	01 89 2b 20 00 fd 00 01 98 2b 00 80 02 00 01 a7 2b 00 80 02 00 00 b6 2b	01 f6 ba 20 00 fd 00 01 05 bb 00 80 02 00 01 14 bb 00 80 02 00 00 23 bb	
+B2_GUILLERMO_OBJECTS	2940			no PC name
+GUILLERMO_OBJECTS	2940			no PC name
+GAME_ADSO_LAMP	2944	B8B1	1	0 of 1 bytes differ, 0 not relocations	01	01	
+OBJ_ADSO_OBJECTS	2947	B8B4	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_MALACHI_HOLDER	294B	B8B8	1	0 of 1 bytes differ, 0 not relocations	01	01	
+OBJ_MALACHI_OBJECTS	294E	B8BB	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_MALACHI_TAKEMASK	2950	B8BD	1	0 of 1 bytes differ, 0 not relocations	02	02	
+OBJ_ABBOT_HOLDER	2952			no PC name
+OBJ_ABBOT_OBJECTS	2955	B8C2	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_ABBOT_TAKEMASK	2957	B8C4	1	0 of 1 bytes differ, 0 not relocations	10	10	
+OBJ_BERENGAR_OBJECTS	295C	B8C9	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_BERENGAR_TAKEMASK	295E	B8CB	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_SEVERIN_HOLDER	2960			no PC name
+OBJ_SEVERIN_OBJECTS	2963	B8D0	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_GUILLERMO	29A4			no PC name
+SPR_ADSO	29B8			no PC name
+OBJ_SPRITES	2A6C			no PC name
+SPR_LIGHT	2B20	BA8D	20	0 of 20 bytes differ, 0 not relocations	fe 00 00 00 00 14 50 00 00 14 50 80 00 00 00 00 00 00 fe fe	fe 00 00 00 00 14 50 00 00 14 50 80 00 00 00 00 00 00 fe fe	
+OBJ_DOOR_WING1	2B4F			no PC name
+OBJ_DOOR_WING2	2B54			no PC name
+OBJ_PARCHMENT	2B68			no PC name
+GUILLERMO_X	2B89			no PC name
+CHR_GUILLERMO_XY	2B89			no PC name
+GUILLERMO_Y	2B8A			no PC name
+GUILLERMO_Z	2B8B			no PC name
+CHR_GUILLERMO_Z	2B8B			no PC name
+CHR_GUILLERMO_FLIP	2B8D			no PC name
+CHR_ADSO	2B96	BB03	15	2 of 15 bytes differ, 2 not relocations	00 01 24 24 00 00 00 fe e0 00 fd 00 1c 36 20	00 01 24 24 00 00 00 fe e0 00 fd 00 0e f6 20	+12:1C/0E +13:36/F6
+ADSO_X	2B98			no PC name
+CHR_ADSO_XY	2B98			no PC name
+ADSO_Z	2B9A			no PC name
+CHR_ADSO_Z	2B9A			no PC name
+CHR_ADSO_FLIP	2B9C			no PC name
+CHR_MALACHI	2BA5	BB12	15	2 of 15 bytes differ, 2 not relocations	00 00 26 26 0f 00 00 fe de 00 fd 00 68 35 10	00 00 26 26 0f 00 00 fe de 00 fd 00 3e f6 10	+12:68/3E +13:35/F6
+CHR_ABBOT	2BB4	BB21	15	2 of 15 bytes differ, 2 not relocations	00 00 88 84 02 00 00 fe de 00 fd 00 95 35 10	00 00 88 84 02 00 00 fe de 00 fd 00 6e f6 10	+12:95/6E +13:35/F6
+CHR_BERENGAR	2BC3	BB30	15	2 of 15 bytes differ, 2 not relocations	00 00 28 48 0f 00 00 fe de 00 fd 00 c2 35 10	00 00 28 48 0f 00 00 fe de 00 fd 00 9e f6 10	+12:C2/9E +13:35/F6
+BERENGAR_X	2BC5			no PC name
+BERENGAR_Y	2BC6			no PC name
+CHR_SEVERIN	2BD2	BB3F	15	2 of 15 bytes differ, 2 not relocations	00 00 c8 28 00 00 00 fe de 00 fd 00 ef 35 10	00 00 c8 28 00 00 00 fe de 00 fd 00 ce f6 10	+12:EF/CE +13:35/F6
+SPR_SORTED_CURSOR	2BE3	BB50	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_TILE_POS	2BE6	BB53	1	0 of 1 bytes differ, 0 not relocations	00	00	
+ENDING_BLOCK_LEN	2C00			no PC name
+CHR_ANIM_ADSO	2D10	BC7D	32	16 of 32 bytes differ, 16 not relocations	8a a7 05 20 ea a6 05 20 8a a7 05 20 2a a8 05 1f c5 a8 04 1e 3d a9 04 1e	ac 17 05 20 0c 17 05 20 ac 17 05 20 4c 18 05 1f e7 18 04 1e 5f 19 04 1e	+0:8A/AC +1:A7/17 +4:EA/0C +5:A6/17 +8:8A/AC +9:A7/17 +12:2A/4C +13:A8/18 +16:C5/E7 +17:A8/18 +20:3D/5F +21:A9/19 +24:C5/E7 +25:A8/18 +28:B5/D7 +29:A9/19
+CHR_ANIM_MONK	2D30	BC9D	32	16 of 32 bytes differ, 16 not relocations	03 b1 05 22 03 b1 05 24 03 b1 05 22 03 b1 05 22 35 b1 05 21 35 b1 05 23	25 21 05 22 25 21 05 24 25 21 05 22 25 21 05 22 57 21 05 21 57 21 05 23	+0:03/25 +1:B1/21 +4:03/25 +5:B1/21 +8:03/25 +9:B1/21 +12:03/25 +13:B1/21 +16:35/57 +17:B1/21 +20:35/57 +21:B1/21 +24:35/57 +25:B1/21 +28:35/57 +29:B1/21
+SYS_KEYS_PENDING	2DF2	BCD2	10	0 of 10 bytes differ, 0 not relocations	ff ff ff ff ff ff ff ff ff ff	ff ff ff ff ff ff ff ff ff ff	
+SYS_KEY_ALIAS_SPACE	2E32	BCEC	4	0 of 4 bytes differ, 0 not relocations	2f 2f 49 ff	2f 2f 49 ff	
+SYS_KEY_ALIAS_012	2E36	BCF0	12	0 of 12 bytes differ, 0 not relocations	00 45 48 ff 01 24 4b ff 02 47 4d ff	00 45 48 ff 01 24 4b ff 02 47 4d ff	
+OBJ_MIRROR_CLOSED_HEIGHTS	2EE0	BD06	5	0 of 5 bytes differ, 0 not relocations	f5 20 62 0b ff	f5 20 62 0b ff	
+OBJ_MIRROR_ENTRY_PTR	2EE5	BD0B	1	0 of 1 bytes differ, 0 not relocations	00	00	
+GAME_STATE_BLOCKS_END	3164			no PC name
+CHR_CMD_BUFFER_HEADS	3568			no PC name
+STATE_PART3	3568			no PC name
+STATE_PART2	37D2			no PC name
+AI_LAMP_TIME	37D4	BFF8	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_LAMP_IN_USE	37D8	BFFC	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_NIGHT_ENDING	37D9	BFFD	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_LAMP_EVENT	37DA	BFFE	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_DARK_COUNT	37DB	BFFF	1	0 of 1 bytes differ, 0 not relocations	00	00	
+GAME_CAMERA_OTHER	37DC	C000	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_PARCHMENT_AT_ABBOT	37DD	C001	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_LAMP_PLACED	37DE	C002	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_CAMERA_TARGET	37DF	C003	1	0 of 1 bytes differ, 0 not relocations	00	00	
+GAME_IDLE_FRAMES	37E0	C004	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_IDLE_FRAMES	37E0			no PC name
+AI_PARCHMENT_REPORTED	37E1	C005	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_LAST_HOUR_DONE	37E2	C006	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_READY_FOR_CEREMONY	37E3	C007	1	0 of 1 bytes differ, 0 not relocations	00	00	
+GAME_GUILLERMO_DEAD	37E4	C008	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_WAIT_COUNT	37E5	C009	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_SLEEP_ANSWER_COUNT	37E6	C00A	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_ADVANCE_HOUR	37E7	C00B	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_GUILLERMO_IN_PLACE	37E8	C00C	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_NO_ROUTE	37E9	C00D	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_RANDOM	37EA	C00E	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_MALACHI_WARN_COUNT	37EB	C00F	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_BERENGAR_SLOT_BUSY	37EE	C012	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_MALACHI_DYING	37EF	C013	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_SEVERIN_SLOT_BUSY	37F0	C014	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_SEVERIN_BOOK_TOLD	37F1	C015	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_MONK_FLAGS	37F2	C016	1	0 of 1 bytes differ, 0 not relocations	00	00	
+OBJ_DOOR_CHECK_MASK	37F3	C017	1	0 of 1 bytes differ, 0 not relocations	ef	ef	
+GAME_INVESTIGATION_OPEN	37F4	C018	1	0 of 1 bytes differ, 0 not relocations	02	02	
+AI_MALACHI_REACHED	37F5	C019	1	0 of 1 bytes differ, 0 not relocations	fa	fa	
+AI_MALACHI_STATE	37F6	C01A	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_MALACHI_DEST	37F7	C01B	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_MALACHI_PLACES	37F8	C01C	27	0 of 27 bytes differ, 0 not relocations	84 48 42 2f 37 02 37 38 4f 3a 34 8f 5d 77 00 58 2a 00 35 37 53 bc 18 02	84 48 42 2f 37 02 37 38 4f 3a 34 8f 5d 77 00 58 2a 00 35 37 53 bc 18 02	
+AI_ABBOT_REACHED	3813	C037	1	0 of 1 bytes differ, 0 not relocations	fa	fa	
+AI_ABBOT_STATE	3814	C038	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_ABBOT_DEST	3815	C039	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_ABBOT_PLACES	3816	C03A	30	0 of 30 bytes differ, 0 not relocations	88 3c c4 3d 37 82 54 3c 02 88 84 c2 a4 58 40 a5 21 02 9c 2a 02 c7 27 00	88 3c c4 3d 37 82 54 3c 02 88 84 c2 a4 58 40 a5 21 02 9c 2a 02 c7 27 00	
+AI_BERENGAR_REACHED	3834	C058	1	0 of 1 bytes differ, 0 not relocations	fa	fa	
+AI_BERENGAR_STATE	3835	C059	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_BERENGAR_DEST	3836	C05A	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_BERENGAR_PLACES	3837	C05B	21	1 of 21 bytes differ, 1 not relocations	8c 48 42 32 35 c2 3d 5c 8f bc 15 02 88 9c c0 52 67 04 68 57 02	8c 48 42 32 35 c2 3d 5c 8f bc 15 02 88 a8 c0 52 67 04 68 57 02	+13:9C/A8
+AI_SEVERIN_REACHED	384C	C070	1	0 of 1 bytes differ, 0 not relocations	fa	fa	
+AI_SEVERIN_STATE	384D	C071	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_SEVERIN_DEST	384E	C072	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_SEVERIN_PLACES	384F	C073	15	0 of 15 bytes differ, 0 not relocations	8c 4b 42 36 35 c2 68 55 02 c9 2a 00 19 2b 1a	8c 4b 42 36 35 c2 68 55 02 c9 2a 00 19 2b 1a	
+AI_ADSO_REACHED	385E	C082	1	0 of 1 bytes differ, 0 not relocations	ff	ff	
+AI_ADSO_STATE	385F	C083	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_ADSO_DEST	3860	C084	1	0 of 1 bytes differ, 0 not relocations	00	00	
+AI_ADSO_PLACES	3861	C085	9	0 of 9 bytes differ, 0 not relocations	84 4e 42 34 39 42 a8 18 00	84 4e 42 34 39 42 a8 18 00	
+VID_PALETTE_DAY	3A78			no PC name
+VID_PALETTE_NIGHT	3A7D			no PC name
+CHR_MALACHI_RISE_DELAY	3EEE	BFD7	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_CMD_TURN_BITS	3F79	BEDD	8	0 of 8 bytes differ, 0 not relocations	88 00 51 00 6e 20 71 00	88 00 51 00 6e 20 71 00	
+CHR_PATH_LENGTH	3F82	BEE6	1	0 of 1 bytes differ, 0 not relocations	00	00	
+CHR_ADSO_DIR_CHOICES	4188	BEB3	32	0 of 32 bytes differ, 0 not relocations	03 00 02 01 00 03 01 02 01 00 02 03 00 01 03 02 03 02 00 01 02 03 01 00	03 00 02 01 00 03 01 02 01 00 02 03 00 01 03 02 03 02 00 01 02 03 01 00	
+SPR_SAVED_SP	4473	ACE0	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_OVERLAY_CURSOR	4475	ACE2	1	0 of 1 bytes differ, 0 not relocations	00	00	
+SPR_LIGHT_FLIP_PATCH	476D			no PC name
+VEC_4AFC	4AFC			no PC name
+HUD_ROMAN_DAYS	4AFD	BF29	21	0 of 21 bytes differ, 0 not relocations	00 02 00 00 02 02 02 02 02 00 02 01 00 01 00 00 01 02 01 02 02	00 02 00 00 02 02 02 02 02 00 02 01 00 01 00 00 01 02 01 02 02	
+HUD_HOUR_NAMES	4B12	AC6D	49	0 of 49 bytes differ, 0 not relocations	20 4e 4f 43 48 45 20 20 50 52 49 4d 41 20 54 45 52 43 49 41 20 20 53 45	20 4e 4f 43 48 45 20 20 50 52 49 4d 41 20 54 45 52 43 49 41 20 20 53 45	
+STATE_BUFFER	7F80			no PC name
+CHR_PATH_GRID	8174	E882	576	119 of 576 bytes differ, 119 not relocations	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00	+428:FC/00 +429:F0/00 +430:F0/00 +431:F3/00 +432:33/00 +433:F0/00 +434:F0/00 +435:CC/00 +437:FC/00 +438:F3/00 +441:33/00 +442:CC/00 +445:33/00 +446:CC/00 +449:FC/00 +450:F3/00
+HUD_HIDDEN_ROWS_SRC	8300			no PC name
+ISO_TILE_GFX_HIGH	8300			no PC name
+STATE_BLOCK_END	855B			no PC name
+ISO_MIRROR_BUF_ADSO	8656			no PC name
+PATH_QUEUE	877E			no PC name
+ENDING_BLOCK_END	8BFF			no PC name
+SPR_GFX_COPY	AE2E			no PC name
+TXT_WORD_AAA	B59E			no PC name
+GAME_START_HOUR	BF4E			no PC name
+GAME_START_DAY	BF4F			no PC name
+GAME_START_POS	BF50			no PC name
+GAME_START_Z	BF52			no PC name

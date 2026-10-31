@@ -1,0 +1,211 @@
+# abadia64ks, H3: the game's data blocks (hand-written source of the C64 memory map; c64/NOTAS_MAPA.md).
+# One row per block of the CPC 64 KiB memory the game needs on the C64 (the graphics come from
+# data/c64graf/graficos64.tsv, written by tools/c64_graficos.py).  mapa64.py places
+# them (-> mapa64.tsv, mapa64.inc); inventario64.py adds what the sessions measured
+# (-> data/datos64_inventario.tsv); punteros64.py finds the pointer fields inside them (-> punteros64.tsv).
+#
+# columns: name, CPC start (hex, '-' = a C64-only block), length (bytes, decimal), kind, zone, mode, align, desc
+#   kind: var (variables, the initial value matters), smc (an operand or opcode of the Z80 code that the code
+#         rewrites: a variable on the C64), tabla (constant table), regs (record array, variable), texto,
+#         buffer (scratch: no initial value), conv (converted to a C64 format)
+#   zone: zp ($24-$FF), var ($0200-$07FF), datos (packed below $C000), hueco (the bitmap's invisible cells),
+#         c4 ($C400-$CFFF), io ($D000-$DFFF, read and written with the I/O switched off), a fixed C64
+#         address $xxxx, or sigue (right after the previous row's block: one contiguous region)
+#   mode (hybrid check, juego/m6502/sombra6502.c): copia = copied CPC -> 6502 before a call and compared
+#         after (pointer fields relocated, punteros64.tsv); conv = C64-format constant taken from the data
+#         image, neither copied nor compared; nada = neither (C64-format buffers, init-only data)
+#   align: 1, or 256 for a page-aligned table
+#
+# ---- zero page: the operands the Z80 code rewrites (its fastest variables) ----
+D64_AI_BERENGAR_DOOR_MASK	04B0	1	smc	zp	copia	1	script var A9, operand of LD C,n at 04AF
+D64_CHR_GUILLERMO_ANIM_COPY	0600	1	smc	zp	copia	1	copy of [2B87] taken by the main loop (217D)
+D64_CHR_STAIRS_HEIGHT	0692	1	smc	zp	copia	1	height of the stairs cells (0Dh up, 01h down)
+D64_CHR_GRID_OWNER	08A0	2	smc	zp	copia	1	pointer: the character record the grid is built for
+D64_OBJ_FOR_EACH_PATCH	09D4	1	smc	zp	copia	1	opcode 00 (NOP) / C9 (RET): obj_for_each_visible stops after one entry
+D64_OBJ_ROOM_REDRAW	0A6D	1	smc	zp	copia	1	ORed into byte 0 of every door sprite
+D64_OBJ_DOOR_MOVED	0A6F	1	smc	zp	copia	1	80h while the door processed changes state
+D64_SND_TEMPO_RELOAD	0CF6	1	smc	zp	copia	1	operand of LD A,n at 0CF5: the tempo reload (6), set by the start-up (20E5)
+D64_ISO_CUR_BLOCK	1697	2	smc	zp	copia	1	pointer: the block of the room entry being built
+D64_VID_FILL_BYTE	16C0	1	smc	zp	copia	1	fill byte of vid_fill_play_area (a CPC pixel byte)
+D64_ISO_OP_X_INC_INSN	1C60	1	smc	zp	copia	1	opcode INC L / DEC L of X_INC
+D64_ISO_OP_X_DEC_INSN	1C66	1	smc	zp	copia	1	opcode DEC L / INC L of X_DEC
+D64_ISO_STEP_RIGHT_INSN	1D06	1	smc	zp	copia	1	opcode INC L / DEC L after TILES_RIGHT
+D64_ISO_TILE_STEP_INSN	1D29	1	smc	zp	copia	1	the step opcode of iso_put_tile_step
+D64_ISO_MIRROR	1E3E	1	smc	zp	copia	1	1 while the block is mirrored
+D64_ISO_FLOOR_MAP_PTR	2013	2	smc	zp	copia	1	pointer: the floor map shown (a virtual base 0Fh/1Fh before the data)
+D64_ISO_SETUP_SPRITE	2070	2	smc	zp	copia	1	pointer: sprite record being set up
+D64_ISO_SETUP_RECORD	2074	2	smc	zp	copia	1	pointer: its character record
+D64_ISO_CAMERA_ORIENT	20A5	1	smc	zp	copia	1	camera orientation of the room shown
+D64_SYS_FRAME_TICKS	21DA	1	smc	zp	copia	1	frame budget of the main loop
+D64_CHR_HBUF_ORIGIN_Y	22F2	1	smc	zp	copia	1	world y of row 0 of the height buffer
+D64_CHR_HBUF_ORIGIN_X	22FE	1	smc	zp	copia	1	world x of column 0
+D64_CHR_PROBE_HEIGHT	2374	1	smc	zp	copia	1	height subtracted from each probed cell
+D64_CHR_PROBE_INNER	2378	2	smc	zp	copia	1	inner stride of the 4x4 probe (a height-buffer step)
+D64_CHR_PROBE_OUTER	237F	2	smc	zp	copia	1	outer stride
+D64_CHR_GUILLERMO_STATE	23E4	1	smc	zp	copia	1	0 normal, >1 scripted fall counter
+D64_CHR_GUILLERMO_FALL_DY	2406	1	smc	zp	copia	1	sprite y step while falling
+D64_CHR_CUR_SPRITE	2477	2	smc	zp	copia	1	pointer: sprite record of the character updated
+D64_CHR_CUR_DATA	247E	2	smc	zp	copia	1	pointer: its character record
+D64_CHR_CUR_ANIM	25D9	2	smc	zp	copia	1	pointer: its animation table, or the tag C000h+2*monk
+D64_CHR_ROOM_ORIGIN_X	2636	1	smc	zp	copia	1	(room x & F0) - 0Ch
+D64_CHR_ROOM_ORIGIN_Y	2640	1	smc	zp	copia	1	(room y & F0) - 0Ch
+D64_CHR_ROOM_FLOOR	264E	1	smc	zp	copia	1	floor base of the room shown
+D64_CHR_PROJECT_TEST	2684	1	smc	zp	copia	1	opcode 00 / C9: chr_project returns after the position
+D64_SYS_TICKS	289C	1	smc	zp	copia	1	the 300 Hz tick counter (written by the interrupt)
+D64_SYS_KEY_BITMAP	2E6A	2	smc	zp	copia	1	pointer: the key bitmap tested (2DE8h or 2DF2h)
+D64_SPR_FLIP_WIDTH	2FA3	2	smc	zp	copia	1	row width of spr_flip_graphics_h (CPC bytes)
+D64_CHR_HBUF_FLAT_WIDTH_OP	34EA	1	smc	zp	copia	1	visible columns of a flat block
+D64_CHR_HBUF_SLOPE_WIDTH_OP	3510	1	smc	zp	copia	1	visible columns of a slope
+D64_CHR_HBUF_COL_STEP_OP	3515	1	smc	zp	copia	1	opcode NOP / INC C / DEC C
+D64_CHR_HBUF_ROW_STEP_OP	351C	1	smc	zp	copia	1	opcode NOP / INC C / DEC C
+D64_CHR_HBUF_WIN_X_OP	354A	1	smc	zp	copia	1	the window's world x
+D64_CHR_HBUF_WIN_Y_OP	354E	1	smc	zp	copia	1	the window's world y
+D64_AI_SCRIPT_DEST_PTR	390D	2	smc	zp	copia	1	pointer: the script variable assigned last
+D64_OBJ_DOOR_ALLOW_OP	3A24	1	smc	zp	copia	1	opcode CCF (door allowed) / NOP
+D64_AI_PHRASE_PARAM	3A5B	1	smc	zp	copia	1	script var A2: the inline phrase byte of CALL 4B7C at 3A58
+D64_CHR_PATH_HEIGHT	4085	1	smc	zp	copia	1	height of the cell expanded
+D64_CHR_PATH_SMC_RET	40C2	1	smc	zp	copia	1	opcode C9 / 00: check only or search
+D64_CHR_PATH_SOLUTION	41D4	2	smc	zp	copia	1	pointer: the queue entry that reached the target (the path scratch)
+D64_CHR_PATH_DY_TMP	4211	1	smc	zp	copia	1	dy+1 while the path is rebuilt
+D64_CHR_PATH_CANDIDATE	422C	2	smc	zp	copia	1	the queued cell next to the current one (grid x, y)
+D64_CHR_PATH_FLOOR_TARGET_TEST	440D	1	smc	zp	copia	1	76h / 66h / 6Eh: the BIT n,(HL) tested
+D64_SPR_OV_SRC_Y	4614	2	smc	zp	copia	1	sprite lines skipped (x the width)
+D64_SPR_OV_SRC_X	467C	1	smc	zp	copia	1	sprite bytes skipped
+D64_SPR_OV_DST_Y	4684	2	smc	zp	copia	1	first line in the rectangle (x its width)
+D64_SPR_CUR_BUFFER	4690	2	smc	zp	copia	1	pointer: the buffer of the rectangle (sprite buffer)
+D64_SPR_OV_DST_X	4694	1	smc	zp	copia	1	first byte in the rectangle
+D64_SPR_OV_LINE	46A1	1	smc	zp	copia	1	sprite line counter start
+D64_SPR_OV_LINES	46A4	1	smc	zp	copia	1	lines to merge
+D64_SPR_OV_WIDTH	46A7	1	smc	zp	copia	1	bytes per line to merge
+D64_SPR_OV_MIRROR_CALL	46AE	1	smc	zp	copia	1	opcode CALL Z / CALL NZ (mirrored)
+D64_SPR_OV_SRC_STEP	46C3	1	smc	zp	copia	1	opcode INC HL / DEC HL (mirrored)
+D64_SPR_OV_SRC_STRIDE	46C9	2	smc	zp	copia	1	the sprite's width
+D64_SPR_OV_SRC_X_ROBE	4703	1	smc	zp	copia	1	bytes skipped in the robe
+D64_SPR_OV_DST_STRIDE	470B	1	smc	zp	copia	1	the rectangle's width
+D64_SPR_LIGHT_FILL_A	4738	2	smc	zp	copia	1	the light's top band (bytes)
+D64_SPR_LIGHT_DX	4756	1	smc	zp	copia	1	dark bytes left of the circle
+D64_SPR_LIGHT_FLIP	476D	1	smc	zp	copia	1	opcode ADD HL,HL / NOP when Adso is flipped
+D64_SPR_LIGHT_DX_REST	4782	1	smc	zp	copia	1	dark bytes right of the circle
+D64_SPR_LIGHT_FILL_B	479E	2	smc	zp	copia	1	the light's bottom band
+D64_SPR_BLIT_LINES	4863	1	smc	zp	copia	1	lines of the blit
+D64_SPR_BLIT_WIDTH	4868	2	smc	zp	copia	1	width of the blit
+D64_SPR_BLIT_SKIP	486D	1	smc	zp	copia	1	bytes skipped per line of the blit
+D64_SPR_TILE_UNMARK_HOOK	491B	1	smc	zp	copia	1	opcode C9 / 00
+D64_SPR_DEPTH_UPPER	4972	2	smc	zp	copia	1	depth limit (x, y)
+D64_SPR_DEPTH_LOWER	4975	2	smc	zp	copia	1	previous depth limit
+D64_SPR_TILE_DST_SKIP	4A28	1	smc	zp	copia	1	next-line step of the tile merge, low
+D64_SPR_TILE_DST_SKIP_HI	4A2C	1	smc	zp	copia	1	high
+D64_SPR_TILE_COPY_SKIP	4A44	1	smc	zp	copia	1	next-line step of the opaque copy, low
+D64_SPR_TILE_COPY_SKIP_HI	4A48	1	smc	zp	copia	1	high
+D64_OBJ_HOLDER_LOCKED	4CAA	1	smc	zp	copia	1	holder +0 bit 0
+D64_OBJ_FRONT_Z	4CBD	1	smc	zp	copia	1	height in front of the holder
+D64_OBJ_FRONT_X	4CC4	1	smc	zp	copia	1	x in front
+D64_OBJ_FRONT_Y	4CC9	1	smc	zp	copia	1	y in front
+D64_OBJ_DROP_LEVEL	4E17	1	smc	zp	copia	1	height above the floor of a dropped object
+D64_OBJ_DROP_INDEX	4E4A	1	smc	zp	copia	1	1-based object index
+D64_ISO_MIRROR_OLD_POS_OP	4F9A	2	smc	zp	copia	1	pointer: mirror state + 1 (28DFh / 28E4h)
+D64_ISO_MIRROR_OLD_SIZE_OP	4F9E	2	smc	zp	copia	1	pointer: mirror state + 3
+D64_ISO_MIRROR_NEW_POS_OP	4FA2	2	smc	zp	copia	1	pointer: mirror state + 1
+D64_ISO_MIRROR_NEW_SIZE_OP	4FA6	2	smc	zp	copia	1	pointer: mirror state + 3
+D64_ISO_MIRROR_SHOWN	4FA9	1	smc	zp	copia	1	mirror state + 0 (00 drawn, FE not)
+D64_ISO_MIRROR_BUFFER	4FD9	2	smc	zp	copia	1	pointer: the mirror image buffer (855Ch / 8656h)
+D64_HUD_DAY_GLYPH_STEP	50FE	1	smc	zp	copia	1	opcode INC BC / DEC BC
+#
+# ---- code pointers kept in operands (jump vectors: JMP (abs) on the 6502, any address) ----
+D64_CHR_EXIT_MARK_ROUTINE	076B	2	smc	var	copia	1	code pointer: the exit band routine (091C/0924/0929)
+D64_OBJ_ENTITY_CALLBACK	09BA	2	smc	var	copia	1	code pointer: 0A2B objects / 0A42 doors
+D64_ISO_PUT_TILE_JUMP	12C0	2	smc	var	copia	1	code pointer: 12C9 / 12C2
+D64_ISO_ENTER_VECTOR	1DFC	2	smc	var	copia	1	code pointer: 17F1 / 17EE
+D64_CHR_CUR_BEHAVIOUR	24A6	2	smc	var	copia	1	code pointer: 23E2 / 278F
+D64_CHR_CUR_FLIP	25AE	2	smc	var	copia	1	code pointer: the flip routine (2EE7-2F40, 4FC9)
+D64_CHR_CAMERA_TRANSFORM	2656	2	smc	var	copia	1	code pointer: 20AE / 20A9 / 20AF / 20B8
+D64_GAME_STATE_BLOCK_FN	312A	2	smc	var	copia	1	code pointer: 3166 save / 316B restore
+D64_CHR_CMD_GENERATOR	436A	2	smc	var	copia	1	code pointer: 41C9 / 41B8
+D64_SPR_TILE_TEST_JUMP	497D	2	smc	var	copia	1	code pointer: 497F / 49AA
+#
+# ---- variables ($0200-$07FF) ----
+D64_SYS_STARTUP_DONE	00FE	1	var	var	copia	1	0Dh once the start-up has run (20BE skips it then)
+D64_CHR_PATH_SLOT	0201	20	var	var	copia	1	0201 slot - 2, 0203 alternatives (5 x 3 + FF), 0213 pointer to the one tried
+D64_SND_MIXER	0C06	79	var	var	copia	1	sound state: 0C06-0C0C mixer, tempo, envelope, noise; 3 channel records of 18h from 0C0D (3 fixed bytes + 21)
+D64_ISO_ROOM_PTR	11DA	3	var	var	copia	1	pointer to the room record shown; 11DC dark flag
+D64_ISO_KEEP_FLAG	1BDC	18	var	var	copia	1	block interpreter registers: keep flag, tiles t1-t12, p1, p2, height, depth x, y
+D64_CHR_BACKUP	28B9	175	var	var	copia	1	28B9-2967: backup, camera record, clock, camera target, height buffer pointer, text, mirror states, path, probe, door permissions, object holders
+D64_SPR_TABLE	2968	461	regs	var	copia	1	23 sprite records of 20 bytes and FF (graphics pointer at +7)
+D64_OBJ_DOORS	2B35	36	regs	var	copia	1	7 doors x 5 and FF
+D64_OBJ_OBJECTS	2B59	46	regs	var	copia	1	9 objects x 5 and FF
+D64_CHR_GUILLERMO	2B87	90	regs	var	copia	1	6 character records of 15 bytes (command buffer pointer at +0Ch)
+D64_SPR_SORTED_TOP	2BE1	7	var	var	copia	1	sprite list pointers (2BE1, 2BE3: Z80 stack addresses), 2BE6 tile-buffer entry
+D64_SYS_KEYS_DOWN	2DE8	20	var	var	copia	1	keys down, presses pending (CPC matrix bitmaps, active low)
+D64_SYS_KEY_SINGLE	2E2C	2	var	var	copia	1	the key being tested + FF
+D64_OBJ_MIRROR_HEIGHT_PTR	2EDE	9	var	var	copia	1	pointer into the library heights, the 5 closed heights, pointer into the room table
+D64_CHR_FLOOR_HEIGHTS_PTR	3454	2	var	var	copia	1	pointer: the height list of the current floor
+D64_GAME_BOOK_POISON_COUNT	37D2	152	var	var	copia	1	37D2-37F7 logic variables, 37F8-3869 the places tables with their reached/state/destination bytes
+D64_VID_SPIRAL_SIDES	3AAB	4	var	var	copia	1	side lengths of vid_spiral_pass (rewritten)
+D64_AI_UNUSED_3CAD	3CAD	1	var	var	copia	1	script var BC (written only)
+D64_GAME_PERCENT_DIGITS	3E61	3	var	var	copia	1	the digits of " xx  POR CIENTO" (inline text of game_check_end)
+D64_CHR_MALACHI_RISING	3EED	2	var	var	copia	1	Malachi rising, its delay
+D64_CHR_PATH_ROOM_LINKS_PTR	3F73	2	var	var	copia	1	pointer: room links of the floor searched
+D64_CHR_PATH_ORIENTATION	3F81	2	var	var	copia	1	orientation and length of the last search
+D64_SPR_BUF_FREE	4471	6	var	var	copia	1	pointer: first free byte of the sprite buffer; 4473 saved SP; 4475 overlay cursor (Z80 stack)
+D64_ISO_SPIRAL_RUNS	4A4F	16	var	var	copia	1	4 runs of iso_draw_room_spiral (rewritten)
+#
+# ---- data ----
+D64_GAME_INITIAL_STATE	0103	167	buffer	datos	copia	1	copy of the 16 state blocks taken at start-up (a new game restores it)
+D64_CHR_BESIDE_OFFSETS	0215	8	tabla	hueco	copia	1	dx, dy per orientation beside a target
+D64_OBJ_DOOR_ORIENT_TABLE	021D	32	tabla	hueco	copia	1	door sprites, 4 entries of 8 bytes
+D64_CHR_ROOM_LINKS	023D	304	var	datos	copia	1	room links of the 3 floors (023D, 02ED, 02F5); the room search marks them
+D64_CHR_EXIT_TABLE	08FA	16	tabla	hueco	copia	1	4 x (code pointer, grid x y)
+D64_OBJ_DOOR_CELL_STEPS	0AB4	8	tabla	hueco	copia	1	height-buffer steps along a door leaf
+D64_OBJ_DOOR_CAMERA_OFFSETS	0B0D	16	tabla	hueco	copia	1	door sprite offsets per camera
+D64_SND_NOTE_PERIODS	0C55	24	tabla	hueco	copia	1	12 AY tone periods of the lowest octave
+D64_SND_COMMANDS	0F76	18	tabla	hueco	copia	1	6 x (command byte, code pointer)
+D64_SND_DATA	0FF8	482	var	hueco	copia	1	envelopes (0FF8-1069) and sequences (106E-11D9); the phrase voice rewrites 0FF9, 0FFC, 0FFF, 1032, 1127
+D64_ISO_BLOCK_TABLE	11DD	176	tabla	datos	copia	1	88 pointers: block type -> block (78 types used)
+D64_ISO_BLOCK_DATA_1	12F5	796	tabla	datos	copia	1	block scripts and tile lists
+D64_ISO_BLOCK_DATA_2	16CE	288	tabla	datos	copia	1	block scripts and tile lists
+D64_ISO_BLOCK_DATA_3	1804	962	tabla	datos	copia	1	block scripts and tile lists
+D64_ISO_BLOCK_OPCODE_TABLE	1BEE	56	tabla	hueco	copia	1	28 code pointers: the block opcodes' handlers
+D64_ISO_CAMERA_ROTATIONS	1E81	8	tabla	hueco	copia	1	4 code pointers: the camera transforms
+D64_ISO_FLOOR_MAPS	1E89	240	tabla	datos	copia	1	room numbers of the 3 floors by (y << 4 | x); bases 1E79h, 1F09h, 1F11h
+D64_CHR_STEP_TABLE_2X2	23A2	64	tabla	hueco	copia	1	steps per orientation, 2x2 and 1x1 characters
+D64_CHR_TABLE	2703	62	tabla	hueco	copia	1	6 x (sprite, record, behaviour, flip, animation) and FFFF
+D64_CHR_PARAM_TARGETS	2741	10	tabla	hueco	copia	1	5 pointers: the operands chr_load_params fills
+D64_SPR_MONK_FACES	2BE8	8	tabla	hueco	copia	1	4 pointers: the monks' faces
+D64_CHR_SPRITE_OFFSET_TABLES	2BF0	256	tabla	datos	copia	1	4 orientations x 40h
+D64_CHR_ANIM_GUILLERMO	2CF0	96	var	datos	copia	1	animation tables (graphics pointer, width, height) of Guillermo, Adso, the monks (the monks' face word is rewritten)
+D64_SYS_KEY_ALIAS_LEFT	2E2E	20	tabla	hueco	copia	1	keys and their aliases
+D64_SYS_BIT_MASKS	2EB3	8	tabla	hueco	copia	1	01 02 04 ... 80
+D64_CHR_POS_PTRS	30F0	12	tabla	hueco	copia	1	6 pointers to the characters' x
+D64_GAME_STATE_BLOCKS	3134	50	tabla	hueco	copia	1	16 x (pointer, length) and 0000
+D64_TXT_PUNCTUATION	3447	5	tabla	hueco	copia	1	glyph codes of the phrase bytes FA-FE
+D64_CHR_COMMAND_BUFFERS	3568	225	buffer	datos	copia	1	5 command buffers of 2Dh (Malachi, abbot, Berengar, Severin, Adso), over the start-up code
+D64_OBJ_DOOR_LINK_TABLE	37B4	30	tabla	hueco	copia	1	per door: (room link index, bits), FF
+D64_AI_SCRIPT_VARS	386A	130	tabla	datos	copia	1	65 pointers: the address of script variable 80h+i
+D64_AI_CLOSE_BOX_TABLE	38EC	16	tabla	hueco	copia	1	4 x 4 per orientation
+D64_VID_PALETTE_BLACK	3A73	15	conv	hueco	conv	1	3 palettes x 5 (pens 3, 2, 1, 0, border) as C64 colours (c64/datos/paleta.tsv)
+D64_CHR_RECORD_PTRS	3D30	12	tabla	hueco	copia	1	6 pointers: character records by camera index
+D64_CHR_CMD_TURN_LEN	3F75	12	tabla	hueco	copia	1	bit counts and bits of the turn commands
+D64_CHR_CMD_STEP_TABLE	3F83	15	tabla	hueco	copia	1	5 x (bits high, low, count) of the step commands
+D64_CHR_DIR_BUFFER_STEP	4180	40	tabla	hueco	copia	1	height-buffer step per orientation; Adso's 8 x 4 orientation choices
+D64_SPR_MONK_ROBES	4431	32	tabla	hueco	copia	1	16 pointers to the robes, bit 14 = drawn mirrored
+D64_AI_HOUR_DURATIONS	4AD0	115	var	datos	copia	1	hour durations (7 x 7, overlapping the next), roman days (7 x 3), hour names (7 x 7); 4AFC set to C3h by a new game
+D64_OBJ_MIRROR_NUMERALS	5177	9	tabla	hueco	copia	1	the 3 numerals of the mirror riddle
+D64_TXT_PHRASE_SOUND	51AF	56	tabla	hueco	copia	1	the voice byte of each of the 56 phrases
+D64_ISO_ROOM_TABLE	6100	6808	var	datos	copia	1	129 room records (length byte first); the mirror's entry in room 72h rewritten (7ABCh)
+D64_CHR_FLOOR0_HEIGHTS	7B98	921	tabla	datos	copia	1	height list of the ground floor, FF
+D64_CHR_FLOOR1_HEIGHTS	9E40	250	tabla	datos	copia	1	height list of the first floor, FF
+D64_CHR_FLOOR2_HEIGHTS	9F60	917	var	datos	copia	1	height list of the library, FF; the mirror's 5 bytes at A2F0-A2F4
+D64_TXT_WORDS	B580	1257	var	datos	copia	1	239 words (bit 7 ends a word); the mirror numeral written into B59E
+D64_TXT_PHRASES	BB00	924	texto	datos	copia	1	56 phrases, FF-terminated
+D64_SYS_FRAME_TICKS_NORMAL	BF49	10	tabla	hueco	copia	1	speed, start hour (BF4E), day (BF4F), Guillermo's start x, y, (BF50-BF52)
+#
+# ---- buffers ----
+# (the graphics, the score bar and the C64 merge tables come from data/c64graf/graficos64.tsv: mapa64.py puts
+#  the tiles at $D000, the score bar into the bitmap rows 20-23, the tile merge tables at $C400)
+D64_SPR_BUFFER	7F80	1500	buffer	datos	copia	1	scratch 7F80-855B: the sprite buffer (C64 format when a sprite routine uses it: see resultados.tsv), the path records of chr_cmd_write_path, the path grid 8174-83B3, the bottom of the path queue
+D64_ISO_MIRROR_BUF_GUILLERMO	855C	500	buffer	sigue	nada	1	the two mirror image buffers (graphics, C64 format: not compared byte by byte); the deep end of the path queue
+D64_PATH_QUEUE_TOP	8750	48	buffer	sigue	copia	1	the top of the path queue (grows down from 877Eh)
+D64_ISO_TILE_BUFFER	8780	1920	buffer	sigue	copia	1	the tile buffer: 20 x 16 cells x 6 bytes; right after the path scratch as on the CPC: the path searches compute cells past the 24 x 24 grid (8174h) that land in it (chr_path_room_to_marked 3F92h marks bit 6 there)
+D64_CHR_HEIGHT_BUFFER	AE2E	576	buffer	datos	copia	1	the 24 x 24 height buffer of the room shown
+ISO_VM_STACK	-	64	buffer	c4	nada	1	the block interpreter's stack (the Z80 used its own stack)
+SPR_SORTED_LIST	-	48	buffer	c4	nada	1	the sorted sprite list (the Z80 pushed it on its stack)

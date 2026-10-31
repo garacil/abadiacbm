@@ -1,0 +1,72 @@
+--- a/juego/m6502/sombra6502.c
++++ b/juego/m6502/sombra6502.c
+@@ -75,7 +75,7 @@
+     regpunt_t entra[8], sale[8]; int nentra, nsale;
+     int stub, pantalla;                       /* a stub (stubs64.tsv: a trap); PANTALLA: the screen compared */
+     int linea;                                /* INLINE: a helper that reads the bytes after its call (RST 08h/10h) */
+-    char regla;                               /* PANTALLA:rule: s sim (default), d der, i izq, p par (any pair rule) */
++    char regla;                               /* PANTALLA:rule: s sim (default), d der, i izq, p par (any pair rule), f fuente */
+     int hl_linea_entra, hl_linea_sale;        /* >HL:INLINE / HL:INLINE: HL points to bytes of the Z80 code */
+     unsigned long long ciclos, llamadas;      /* the 6502 cycles spent (traps included), the calls */
+ } rutina_t;
+@@ -163,6 +163,31 @@
+     return 1;
+ }
+ 
++/* rule fuente (the text of txt_draw_char): par, plus the CPC byte -> C64 nibble pairs of the C64 font's own
++ * glyphs (the hand-made N and ';' of c64_graficos.py fuente_der follow no pair rule): each row of the CPC font
++ * (B400h + 8 (c - 2Dh), drawn as (g AND F0h) XOR m and (g << 4) XOR m, m = 0Fh or FFh) against the same row of
++ * trabajo/c64graf/fuente.bin (4 bytes a glyph, a nibble a row, bit 3 the left pixel; drawn with a set pixel 00 and
++ * a clear one 11, XOR FFh when inverted): fuente_extra[b] has bit n set when nibble n may stand for CPC byte b */
++static uint16_t fuente_extra[256];
++static void tabla_fuente(const uint8_t *cpc, const char *dir)
++{
++    uint8_t fu[184];
++    FILE *f = abre(dir, "../../trabajo/c64graf/fuente.bin");
++    unsigned c, r, k, m;
++    if (fread(fu, 1, sizeof fu, f) != sizeof fu) { fprintf(stderr, "sombra6502: fuente.bin is short\n"); exit(2); }
++    fclose(f);
++    for (c = 0; c < 46; ++c)
++        for (r = 0; r < 8; ++r) {
++            uint8_t g = cpc[0xB400 + 8 * c + r], n = (uint8_t)(r & 1 ? fu[4 * c + r / 2] & 15 : fu[4 * c + r / 2] >> 4), v = 0;
++            for (k = 0; k < 4; ++k) v = (uint8_t)(v << 2 | (((n >> (3 - k)) & 1) ? 0 : 3));
++            for (m = 0; m < 2; ++m) {
++                uint8_t x = m ? 0xFF : 0x0F, w = (uint8_t)(m ? v ^ 0xFF : v);
++                fuente_extra[(uint8_t)((g & 0xF0) ^ x)] |= (uint16_t)(1u << (w >> 4));
++                fuente_extra[(uint8_t)((uint8_t)(g << 4) ^ x)] |= (uint16_t)(1u << (w & 15));
++            }
++        }
++}
++
+ /* the graphic block k of the CPC memory `ram` in its C64 form, into dst (a 64 KiB image) */
+ static void convierte(int k, const uint8_t *ram, uint8_t *dst)
+ {
+@@ -337,6 +362,7 @@
+         f = abre(dir, "../../trabajo/cpc64/juego/ram.bin");
+         n = fread(cinta, 1, sizeof cinta, f);
+         fclose(f);
++        tabla_fuente(cinta, dir);
+         for (k = 0; k < nbloques; ++k)
+             if (bloques[k].modo == 'g') {
+                 convierte(k, cinta, conv);
+@@ -383,7 +409,7 @@
+                     ru->pantalla = 1;
+                     ru->regla = !strcmp(t, "PANTALLA:der") ? 'd' : !strcmp(t, "PANTALLA:izq") ? 'i'
+                               : !strcmp(t, "PANTALLA:par") || !strcmp(t, "PANTALLA:detalle") ? 'p'
+-                              : !strcmp(t, "PANTALLA:doble") ? 'x' : 's';
++                              : !strcmp(t, "PANTALLA:doble") ? 'x' : !strcmp(t, "PANTALLA:fuente") ? 'f' : 's';
+                 }
+                 else if (!strcmp(t, "INLINE")) ru->linea = 1;
+                 else if (!strcmp(t, ">HL:INLINE")) ru->hl_linea_entra = 1;
+@@ -876,7 +902,10 @@
+                 b = bitmap_de((uint16_t)k, &alto);
+                 n6 = alto ? (uint8_t)(Mem[b] >> 4) : (uint8_t)(Mem[b] & 0x0F);
+                 if (cb == ram_e[k] && n6 == (alto ? (uint8_t)(antes[b] >> 4) : (uint8_t)(antes[b] & 0x0F))) continue;   /* untouched */
+-                if (r->regla == 'p') { if (nibble_valido(n6, cb)) continue; ne = nib[cb]; }
++                if (r->regla == 'p' || r->regla == 'f') {
++                    if (nibble_valido(n6, cb) || (r->regla == 'f' && ((fuente_extra[cb] >> n6) & 1))) continue;
++                    ne = nib[cb];
++                }
+                 else {
+                     ne = r->regla == 'd' ? nib_der[cb] : r->regla == 'i' ? nib_izq[cb] : nib[cb];
+                     if (n6 == ne) continue;

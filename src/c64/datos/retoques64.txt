@@ -1,0 +1,63 @@
+# Hand retouches of the C64 frames of Guillermo and Adso (tools/c64_graficos.py applies them over
+# the rule aislado; the host takes the result from the image).  FRAME (the CPC address of the frame's first line),
+# LINE of the frame, then its C64 pixels: '.' pen 0 (transparent), 'o' pen 1 (orange), 'Y' pen 2 (yellow), '#' pen 3
+# (black), one character a C64 pixel (two CPC pixels).  Drawn after the CPC's frames (the C64's
+# characters as close to the CPC's as possible).
+# Adso: the face's one-pixel features (eyes, mouth) are lost by any pair rule: drawn at the C64's resolution.
+A6EA 3 ..####YY#.
+A6EA 4 ...##YYY#.
+A6EA 5 ..###Y#Y..
+A6EA 6 ...##YYY..
+A6EA 7 ...##Yo#..
+A78A 3 ..###YY#..
+A78A 4 ..##YYY#..
+A78A 5 ..##Y#Y#..
+A78A 6 ..##YYY#..
+A78A 7 ...#Yo#...
+A82A 3 ...###YY#.
+A82A 4 ..###YYY..
+A82A 5 ..###Y#Y..
+A82A 6 ..#.#YYY..
+A82A 7 ...##Yo#..
+# Upward diagonals: one coherent cap/eye/cheek in all three walking poses.
+# The CPC's subpixel head shifts cannot survive the horizontal halving without
+# a large change of shape. Keep the small profile stable, while shoulders,
+# arms, robe and legs retain their separate original walking poses.
+A8C5 0 ...###..
+A8C5 1 ..#Yo##.
+A8C5 2 ..###o#.
+A8C5 3 ..###YY.
+A8C5 4 ..###Y#.
+A8C5 5 ..###YY.
+A8C5 6 ..###Yo.
+A8C5 7 ##o#YY#.
+A8C5 8 oo###Y..
+# Keep a thin, connected fold instead of isolated black patches.
+A8C5 22 #o#oo#..
+A8C5 23 #o#oo#..
+A8C5 24 #o#oo#..
+A8C5 25 #o#oo#..
+A93D 0 ...###..
+A93D 1 ..#Yo##.
+A93D 2 ..###o#.
+A93D 3 ..###YY.
+A93D 4 ..###Y#.
+A93D 5 ..###YY.
+A93D 6 ..###Yo.
+A93D 7 .oo#YY#.
+A93D 8 .ooo#Y..
+A93D 11 oo#ooo##
+A93D 12 oo#ooooo
+A93D 13 oo#ooooo
+A93D 14 oo#ooooo
+A9B5 0 ...###..
+A9B5 1 ..#Yo##.
+A9B5 2 ..###o#.
+A9B5 3 ..###YY.
+A9B5 4 ..###Y#.
+A9B5 5 ..###YY.
+A9B5 6 ..###Yo.
+A9B5 7 #oooYY#.
+A9B5 8 oo#o#Y..
+A9B5 23 #o#oo#..
+A9B5 24 ooo#oo..

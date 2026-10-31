@@ -1,0 +1,63 @@
+# What each 6502 routine must leave like the Z80 function (what its callers use): registers A B C D E
+# H L IXH IXL IYH IYL BC DE HL IX IY, flags CF ZF; REG:target a register pair (BC DE HL IX IY) that returns a
+# pointer (compared relocated to the C64), >REG:target one that brings a pointer (relocated at the entry),
+# !BLOCK a block of mapa64.tsv left out of the comparison (targets as in punteros64.tsv).  Memory is always
+# compared (the blocks of mapa64.tsv, in C64 form; c64/CODIGO6502.md).
+util_add_bx_al	HL A
+iso_floor_base	B A CF
+iso_orient_relative	A
+iso_grid_cell_ptr	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	DE	HL	A	CF
+iso_fetch_operand	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+iso_operand_value	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG
+# group logica_b (logica_b.s, logica_b_guiones.s): the routines
+obj_pick_up_objects	>IX:D64_CHR_BACKUP	IX:D64_CHR_BACKUP
+hud_draw_guillermo_objects	PANTALLA
+hud_draw_objects	PANTALLA
+obj_update_key_permissions	A
+obj_drop_on_space
+obj_drop_object	>IX:D64_CHR_BACKUP
+obj_front_position	>IX:D64_CHR_BACKUP	A	B	C	DE:D64_CHR_GUILLERMO	HL:D64_CHR_STEP_TABLE_2X2
+iso_mirror_update	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO	IX:D64_SPR_TABLE	IY:D64_CHR_GUILLERMO
+iso_mirror_character	>HL:gfx	>BC:D64_CHR_BACKUP	>DE:D64_CHR_ANIM_GUILLERMO	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO	IX:D64_SPR_TABLE	IY:D64_CHR_GUILLERMO
+iso_mirror_reflect	>HL:gfx	>BC:D64_CHR_BACKUP	>DE:D64_CHR_ANIM_GUILLERMO	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO	IX:D64_SPR_TABLE	IY:D64_CHR_GUILLERMO	L
+iso_mirror_draw_callback	>IX:D64_SPR_TABLE
+hud_scroll_hour_name	PANTALLA:par
+ai_clock_init	A
+ai_clock_redraw	PANTALLA:par
+ai_clock_load_duration	HL
+ai_clock_tick	PANTALLA:par
+ai_clock_advance_hour	PANTALLA:par
+hud_set_and_draw_day	PANTALLA:par
+hud_draw_day_numeral	>DE:D64_AI_HOUR_DURATIONS	DE:D64_AI_HOUR_DURATIONS	HL	PANTALLA:par
+ai_timers_tick	A	BC	DE	HL	PANTALLA:par
+hud_obsequium_minus_2	PANTALLA:der
+hud_obsequium_sub	INLINE	PANTALLA:der
+hud_fill_bar	HL	PANTALLA:der
+obj_read_manuscript	PANTALLA:par
+obj_set_mirror_numeral
+game_update_camera_and_bonus	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_malachi_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_berengar_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_severin_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_adso_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_hour_change_events	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_abbot_think	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+ai_abbot_count_vespers	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_ber_adso_sev_mal	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_adso_sev_mal	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_vespers_day5	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_ready_adso	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_abbot_count_prima	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_abbot_count_sexta	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO
+ai_abbot_wait_ceremony	>IX:D64_GAME_BOOK_POISON_COUNT	>IY:D64_CHR_GUILLERMO	PANTALLA:par
+# group logica_b: the stubs it calls (traps until their groups translate them)
+spr_mark_leaving	>IX:D64_SPR_TABLE
+obj_redraw_one_object	>IX:D64_SPR_TABLE	>IY:D64_OBJ_OBJECTS
+chr_animate	>IX:D64_SPR_TABLE	>IY:D64_CHR_GUILLERMO	IX:D64_SPR_TABLE	IY:D64_CHR_GUILLERMO
+spr_flip_graphics_h	>HL:gfx
+hud_say	INLINE
+hud_say_now	INLINE
+game_set_c004_inline	INLINE
+ai_guillermo_is_close	>IY:D64_CHR_GUILLERMO
+ai_next_state_on_arrival	>IX:D64_GAME_BOOK_POISON_COUNT
+chr_cmd_discard	>IY:D64_CHR_GUILLERMO

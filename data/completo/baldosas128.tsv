@@ -1,0 +1,261 @@
+# made by tools/baldosas128.py (do not edit): abadia128ks's 256 tiles (the PC's numbers).
+# kind: 64K = the C64 graphic of that 64 KiB tile as it is (same image); new = converted (its CPC image,
+# 32 bytes); free = shown in no room of the full game; objects = the C64's object graphics moved there.
+# objects: lamp and book from 2D-2F to 2E-30; glasses, object 1, keys, parchment from A1-A6 to E4-E9
+tile	kind	source
+00	empty	
+01	64K	01
+02	64K	02
+03	64K	03
+04	64K	04
+05	64K	05
+06	64K	06
+07	64K	07
+08	64K	08
+09	64K	09
+0A	64K	0A
+0B	64K	0B
+0C	64K	0C
+0D	64K	0D
+0E	new	0f7fcf0f2ff8e38f5ff7fd4f8ff8e32f8f7fcf2f8ffbeb2f5ff4f54f3ef3f88f
+0F	free	
+10	64K	10
+11	64K	11
+12	64K	12
+13	64K	13
+14	64K	14
+15	64K	15
+16	64K	16
+17	64K	17
+18	64K	18
+19	64K	19
+1A	64K	1A
+1B	free	
+1C	64K	1C
+1D	64K	1D
+1E	64K	1E
+1F	64K	1F
+20	64K	20
+21	64K	21
+22	64K	22
+23	64K	23
+24	64K	24
+25	64K	25
+26	64K	26
+27	64K	27
+28	64K	28
+29	64K	29
+2A	64K	2A
+2B	64K	2B
+2C	64K	2C
+2D	64K	30
+2E	objects	
+2F	objects	
+30	objects	
+31	new	7cf1f9cf7cf1f6c77cf0f9cf7cf1f6c77cf0f9cf3ff8f78f0fffef0f0f3f8f0f
+32	64K	32
+33	64K	33
+34	64K	34
+35	64K	35
+36	64K	36
+37	64K	37
+38	64K	38
+39	free	
+3A	free	
+3B	64K	3B
+3C	64K	3C
+3D	64K	3D
+3E	64K	3E
+3F	64K	3F
+40	64K	40
+41	64K	41
+42	64K	42
+43	64K	43
+44	64K	44
+45	64K	45
+46	free	
+47	64K	47
+48	64K	48
+49	64K	49
+4A	64K	4A
+4B	64K	4B
+4C	64K	4C
+4D	64K	4D
+4E	64K	4E
+4F	64K	4F
+50	64K	50
+51	64K	51
+52	64K	52
+53	64K	53
+54	64K	54
+55	64K	55
+56	64K	56
+57	64K	57
+58	64K	58
+59	64K	59
+5A	64K	5A
+5B	64K	5B
+5C	64K	5C
+5D	64K	5D
+5E	64K	5E
+5F	64K	5F
+60	64K	60
+61	64K	61
+62	64K	62
+63	64K	63
+64	64K	64
+65	64K	65
+66	64K	66
+67	64K	67
+68	64K	68
+69	free	
+6A	64K	6A
+6B	64K	6B
+6C	64K	6C
+6D	64K	6D
+6E	64K	6E
+6F	64K	6F
+70	64K	70
+71	64K	71
+72	64K	72
+73	free	
+74	64K	74
+75	64K	75
+76	64K	76
+77	64K	77
+78	64K	78
+79	64K	79
+7A	64K	7A
+7B	64K	7B
+7C	64K	7C
+7D	64K	7D
+7E	64K	7E
+7F	64K	7F
+80	64K	80
+81	64K	81
+82	64K	82
+83	64K	83
+84	64K	84
+85	free	
+86	free	
+87	64K	87
+88	64K	88
+89	new	f8f0f0f0fcf0f0f0fef0f0f076f0f0f077f0f0f077f8f0f057f8f0f047fcf0f0
+8A	new	f0f0f0f1f0f0f0f7f0f0f0eef0f0f1aef0f0f32ef0f0f72ef0f0dd2ef0f1992e
+8B	new	47fcf0f047fef0f047fef0f047fff0f047bbf0f047bbf8f04799f8f0cf99fcf0
+8C	new	f0f1112ef0f3112ef0f7112ef0efdd2ef0cf3f2ef0ff0feef0cccffff0ff33ff
+8D	new	ff11fcf0ffccfef07f3ffef07f0ffff0ffcf7ff0ff337ff0ffccfff0ff3f33f0
+8E	new	f0cfccfff0cf3ffff0ff0feff0cccfeff0cc33fff0cc117ff0cc113ff0cc112e
+8F	new	770ffff047cf3ff047bb3ff04788fff0478833f0478833f0478833f0cf8833f0
+90	new	f0cc112ef0cc112ef0ff112ef0ccdd2ef0cc332ef0cc11eef0cc113ff0cc112e
+91	new	770033f047cc33f047bb33f04788fff0478833f0478833f0478833f0cf8833f0
+92	new	f0cc112ef0cc112ef0ff112ef0f3dd2ef0f0ff2ef0f0f3eef0f0f0fff0f0f0f3
+93	new	ff0033f0f3cc33f0f0ff33f0f0f3fff0f0f0fff0f0f0f3f0f0f0f0f0f0f0f0f0
+94	64K	94
+95	64K	95
+96	64K	96
+97	64K	97
+98	64K	98
+99	64K	99
+9A	64K	9A
+9B	64K	9B
+9C	new	f0c50ff8f08b0f7cf1090ffcf10defbef107ef3af7cf0fbef1ffcf1ff0f3efbe
+9D	new	f0f0f0f1f0f0f0f3f0f0f0f7f0f0f0e6f0f0f0eef0f0f1eef0f0f1aef0f0f32e
+9E	new	f8f0f0f0fef0f0f077f0f0f057f8f0f047fcf0f047fef0f047bbf0f04799f8f0
+9F	new	f0f0f32ef0f0f72ef0f0f72ef0f0ff2ef0f0dd2ef0f1dd2ef0f1992ef0f3993f
+A0	new	4788f8f04788fcf04788fef047bb7ff047cf3ff0770ffff0ff3f33f0ffccfff0
+A1	new	f0f388fff0f733fff0f7cfeff0ff0feff0ef3ffff0efccfff0ff33fff0cccfff
+A2	new	ff333ff0ffcf3ff07f0ffff07f3f33f0ffcc33f0ef8833f0cf8833f0478833f0
+A3	new	f0ff0feef0cf3f2ef0cfdd2ef0ff112ef0cc112ef0cc112ef0cc112ef0cc113f
+A4	new	478833f0478833f04788fff047bb33f047cc33f0778833f0cf8833f0478833f0
+A5	new	f0cc00eef0cc332ef0ccdd2ef0ff112ef0cc112ef0cc112ef0cc112ef0cc113f
+A6	new	478833f0478833f04788fff047bbfcf047fff0f077fcf0f0fff0f0f0fcf0f0f0
+A7	new	f0cc00fff0cc33fcf0ccfff0f0fffcf0f0fff0f0f0fcf0f0f0f0f0f0f0f0f0f0
+A8	64K	A8
+A9	64K	A9
+AA	64K	AA
+AB	64K	AB
+AC	64K	AC
+AD	64K	AD
+AE	64K	AE
+AF	64K	AF
+B0	64K	0E
+B1	64K	B1
+B2	64K	B2
+B3	64K	B3
+B4	64K	B4
+B5	64K	B5
+B6	64K	B6
+B7	64K	B7
+B8	64K	B8
+B9	64K	B9
+BA	64K	0F
+BB	64K	BB
+BC	64K	BC
+BD	64K	BD
+BE	64K	BE
+BF	64K	BF
+C0	64K	C0
+C1	64K	C1
+C2	64K	C2
+C3	64K	C3
+C4	64K	C4
+C5	64K	C5
+C6	64K	C6
+C7	64K	C7
+C8	64K	C8
+C9	64K	39
+CA	64K	CA
+CB	64K	CB
+CC	64K	CC
+CD	64K	CD
+CE	64K	CE
+CF	64K	CF
+D0	64K	D0
+D1	64K	D1
+D2	64K	D2
+D3	free	
+D4	64K	D4
+D5	64K	D5
+D6	64K	D6
+D7	64K	D7
+D8	64K	D8
+D9	64K	D9
+DA	64K	9C
+DB	64K	D3
+DC	64K	C9
+DD	64K	BA
+DE	free	
+DF	free	
+E0	free	
+E1	64K	3A
+E2	64K	B0
+E3	64K	89
+E4	objects	
+E5	objects	
+E6	objects	
+E7	objects	
+E8	objects	
+E9	objects	
+EA	64K	A7
+EB	free	
+EC	64K	1B
+ED	64K	69
+EE	64K	8A
+EF	64K	8B
+F0	64K	8C
+F1	64K	8D
+F2	64K	8E
+F3	64K	8F
+F4	64K	90
+F5	64K	91
+F6	64K	92
+F7	64K	93
+F8	64K	9D
+F9	64K	9E
+FA	64K	9F
+FB	64K	A0
+FC	free	
+FD	free	
+FE	free	
+FF	64K	31

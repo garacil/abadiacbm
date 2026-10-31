@@ -1,0 +1,550 @@
+# PC data of the full game -> CPC 64 KiB address (tools/mapa64.py)
+name	pc	size	kind	area	cpc64	method
+VID_TILE_OR_A	0000	256	bytes:0x100	motor_a		?
+SYS_DISK_MENU_TEXT	0046	15	ascii:15	sistema		?
+VID_TILE_AND_A	0100	256	bytes:0x100	motor_a		?
+SYS_PROTECTION_STUB_DONE	016D	1	byte	sistema		?
+SYS_MSGLINE_SAVE_ODD	016E	320	bytes:0x140	sistema		?
+VID_TILE_OR_B	0200	256	bytes:0x100	motor_a		?
+SYS_MSGLINE_SAVE_EVEN	02AE	320	bytes:0x140	sistema		?
+VID_TILE_AND_B	0300	256	bytes:0x100	motor_a		?
+VID_SPRITE_AND	0400	256	bytes:0x100	motor_a		?
+VID_SPRITE_OR	0500	256	bytes:0x100	motor_a		?
+SPR_FLIP_TABLE	0600	256	bytes:256	logica_a		?
+SYS_DEMO_BUFFER	0700	2048	bytes:0x800	motor_b		?
+SYS_UNUSED_JMP_START	0AE3	3	bytes:3	pergamino		?
+SYS_DEMO_BUFFER_TAIL	0F00	4	bytes:4	sistema		?
+SYS_OLD_INT9	0F04	4	dword	sistema		?
+SYS_OLD_INT8	0F08	4	dword	sistema		?
+SND_COMMAND_TABLE	0F0C	14	ptrs:7	sistema		?
+SND_NO_ENVELOPE	0F1A	1	byte	sistema		?
+SND_STATE	0F1B	1	byte	sistema		?
+SND_PC	0F1C	1	word	sistema		?
+SND_NOTE_LEFT	0F1E	1	word	sistema		?
+SND_STACK_PTR	0F20	1	word	sistema		?
+SND_ENV_START	0F22	1	word	sistema		?
+SND_ENV_RATE	0F24	1	byte	sistema		?
+SND_ENV_PTR	0F25	1	word	sistema		?
+SND_ENV_COUNT	0F27	1	byte	sistema		?
+SND_DIVISOR	0F28	1	word	sistema		?
+SYS_INT8_COUNT8	0F2A	1	byte	sistema		?
+SYS_INT8_COUNT	0F2B	1	word	sistema		?
+SND_LOCK	0F2D	1	byte	sistema		?
+SYS_TIMER_FLAGS	0F2E	1	byte	sistema		?
+UNUSED_0F2F	0F2F	1	bytes:2	huecos		?
+SYS_INT8_DIV200	0F31	1	byte	sistema		?
+UNUSED_0F32	0F32	1	byte	huecos		?
+SYS_KEY_TABLE	0F33	81	bytes:0x51	sistema		?
+SYS_KEY_TABLE_END	0F84	1	byte	sistema		?
+SYS_PALETTE_DAY_BX	0F85	1	word	sistema		?
+SYS_PALETTE_NIGHT_BX	0F87	1	word	sistema		?
+SND_CALL_STACK	0F89	23	bytes:0x17	sistema		?
+UNUSED_0FA0	0FA0	1	byte	huecos		?
+UNUSED_STALE_CPC_TUNE	0FA1	765	bytes:0x2fd	datos		?
+UNUSED_STALE_TEXT	129E	132	bytes:0x84	datos		?
+SPR_GUILLERMO_GFX_W5	1322	870	bytes:0x366	logica_a		?
+SPR_GUILLERMO_GFX_W4	1688	132	bytes:0x84	logica_a		?
+SPR_ADSO_GFX_W5	170C	475	bytes:0x1db	logica_a		?
+SPR_ADSO_GFX_W4	18E7	360	bytes:0x168	logica_a		?
+UNUSED_1A4F	1A4F	28	bytes:0x1c	datos		?
+OBJ_DOOR_GFX	1A6B	240	bytes:0xf0	motor_a		?
+HUD_GFX_ROMAN	1B5B	32	bytes:0x20	datos		?
+SPR_MONK_GFX	1B7B	725	bytes:0x2d5	sistema		?
+SYS_UNUSED_RET_1D3E	1D3E	1	byte	motor_a		?
+SPR_MONK_GFX_FLIPPED	1E50	725	bytes:0x2d5	sistema		?
+SPR_GFX_FACES	2125	700	bytes:0x2bc	datos		?
+UNUSED_SPRITE_GFX	23E1	815	bytes:0x32f	datos		?
+UNUSED_FF_2710	2710	1042	bytes:0x412	datos		?
+ISO_TILE_GFX	2B22	8192	bytes:0x2000	motor_b		?
+ISO_STEP_UP_INSN	2B29	1	word	motor_b		?
+ISO_STEP_LEFT_INSN	2B31	1	word	motor_b		?
+ISO_STEP_RIGHT_INSN	2B39	1	word	motor_b		?
+GAME_MIRROR_TRAP_PHRASE	2E20	1	byte	motor_b		?
+TXT_FONT	4B22	368	bytes:0x170	logica_a		?
+UNUSED_4C92	4C92	529	bytes:0x211	datos		?
+CHR_FLOOR0_HEIGHTS	4EA3	1097	bytes:0x449	motor_b		?
+UNUSED_52EC	52EC	404	bytes:0x194	datos		?
+UNUSED_5480	5480	548	bytes:0x224	datos		?
+CHR_FLOOR1_HEIGHTS	56A4	269	bytes:0x10d	motor_b		?
+UNUSED_57B1	57B1	231	bytes:0xe7	datos		?
+UNUSED_5898	5898	525	bytes:0x20d	datos		?
+CHR_FLOOR2_HEIGHTS	5AA5	922	bytes:0x39a	motor_b		?
+UNUSED_5E3F	5E3F	78	bytes:0x4e	datos		?
+UNUSED_5E8D	5E8D	97	bytes:0x61	datos		?
+UNUSED_5EEE	5EEE	403	bytes:0x193	datos		?
+UNUSED_6081	6081	549	bytes:0x225	datos		?
+GAME_END_TEXT_1	623A	15	ascii:15	sistema		?
+GAME_END_TEXT_PERCENT	6254	15	ascii:15	sistema		?
+GAME_END_TEXT_3	626E	19	ascii:19	sistema		?
+GAME_END_TEXT_4	628C	26	ascii:26	sistema		?
+PARCH_CURL_PATTERN	62A6	4	bytes:4	pergamino		?
+PARCH_GLYPH_COMMA	62AA	7	bytes:7	pergamino		?
+PARCH_GLYPH_HYPHEN	62B1	17	bytes:17	pergamino		?
+PARCH_GLYPH_PERIOD	62C2	5	bytes:5	pergamino		?
+PARCH_GLYPH_DIGIT_1	62C7	22	bytes:22	pergamino		?
+PARCH_GLYPH_DIGIT_2	62DD	36	bytes:36	pergamino		?
+PARCH_GLYPH_DIGIT_3	6301	32	bytes:32	pergamino		?
+PARCH_GLYPH_DIGIT_7	6321	27	bytes:27	pergamino		?
+PARCH_GLYPH_COLON	633C	9	bytes:9	pergamino		?
+PARCH_GLYPH_SEMICOLON	6345	11	bytes:11	pergamino		?
+PARCH_GLYPH_ALT_M	6350	59	bytes:59	pergamino		?
+SND_UNUSED_RETS	6389	6	bytes:6	sistema		?
+PARCH_GLYPH_CAP_A	638B	80	bytes:80	pergamino		?
+SND_UNUSED_TABLE	638F	18	bytes:0x12	sistema		?
+PARCH_GLYPH_CAP_C	63DB	94	bytes:94	pergamino		?
+PARCH_GLYPH_CAP_D	6439	103	bytes:103	pergamino		?
+PARCH_GLYPH_CAP_E	64A0	75	bytes:75	pergamino		?
+PARCH_GLYPH_CAP_G	64EB	111	bytes:111	pergamino		?
+PARCH_GLYPH_CAP_H	655A	86	bytes:86	pergamino		?
+SYS_PROTECTION_OK	657B	1	byte	sistema		?
+SYS_PROTECTION_SUM	657C	1	word	sistema		?
+SYS_PROTECTION_BUFFER	657E	4018	bytes:0xfb2	sistema		?
+PARCH_GLYPH_CAP_J	65B0	62	bytes:62	pergamino		?
+PARCH_GLYPH_CAP_L	65EE	66	bytes:66	pergamino		?
+PARCH_GLYPH_CAP_M	6630	112	bytes:112	pergamino		?
+PARCH_GLYPH_CAP_O	66A0	107	bytes:107	pergamino		?
+PARCH_GLYPH_CAP_P	670B	100	bytes:100	pergamino		?
+PARCH_GLYPH_CAP_S	676F	96	bytes:96	pergamino		?
+PARCH_GLYPH_CAP_T	67CF	67	bytes:67	pergamino		?
+PARCH_GLYPH_CAP_Y	6812	96	bytes:96	pergamino		?
+PARCH_GLYPH_A	6872	40	bytes:40	pergamino		?
+PARCH_GLYPH_B	689A	47	bytes:47	pergamino		?
+PARCH_GLYPH_C	68C9	30	bytes:30	pergamino		?
+PARCH_GLYPH_D	68E7	47	bytes:47	pergamino		?
+PARCH_GLYPH_E	6916	32	bytes:32	pergamino		?
+PARCH_GLYPH_F	6936	36	bytes:36	pergamino		?
+PARCH_GLYPH_G	695A	47	bytes:47	pergamino		?
+PARCH_GLYPH_H	6989	47	bytes:47	pergamino		?
+PARCH_GLYPH_I	69B8	23	bytes:23	pergamino		?
+PARCH_GLYPH_J	69CF	30	bytes:30	pergamino		?
+PARCH_GLYPH_K	69ED	36	bytes:36	pergamino		?
+PARCH_GLYPH_L	6A11	27	bytes:27	pergamino		?
+PARCH_GLYPH_M	6A2C	58	bytes:58	pergamino		?
+PARCH_GLYPH_N	6A66	38	bytes:38	pergamino		?
+PARCH_GLYPH_O	6A8C	37	bytes:37	pergamino		?
+PARCH_GLYPH_P	6AB1	43	bytes:43	pergamino		?
+PARCH_GLYPH_Q	6ADC	46	bytes:46	pergamino		?
+PARCH_GLYPH_R	6B0A	28	bytes:28	pergamino		?
+PARCH_GLYPH_S	6B26	28	bytes:28	pergamino		?
+PARCH_GLYPH_T	6B42	36	bytes:36	pergamino		?
+PARCH_GLYPH_U	6B66	38	bytes:38	pergamino		?
+PARCH_GLYPH_V	6B8C	36	bytes:36	pergamino		?
+PARCH_GLYPH_W	6BB0	58	bytes:58	pergamino		?
+PARCH_GLYPH_X	6BEA	29	bytes:29	pergamino		?
+PARCH_GLYPH_Y	6C07	42	bytes:42	pergamino		?
+PARCH_GLYPH_Z	6C31	31	bytes:31	pergamino		?
+PARCH_GLYPH_APOSTROPHE	6C50	7	bytes:7	pergamino		?
+PARCH_GLYPH_DIGIT_8	6C57	43	bytes:43	pergamino		?
+PARCH_GLYPH_DIGIT_9	6C82	35	bytes:35	pergamino		?
+PARCH_GLYPH_CAP_B	6CA5	88	bytes:88	pergamino		?
+PARCH_GLYPH_CAP_I	6CFD	62	bytes:62	pergamino		?
+PARCH_GLYPH_CAP_N	6D3B	87	bytes:87	pergamino		?
+PARCH_GLYPH_CAP_W	6D92	112	bytes:112	pergamino		?
+PARCH_CURSOR	6E02	1	word	pergamino		?
+PARCH_GLYPH_TABLE	6E04	186	ptrs:93	pergamino		?
+PARCH_GLYPH_TABLE_PAD	6EBE	1	byte	pergamino		?
+PARCH_INK	6EBF	1	byte	pergamino		?
+PARCH_CURL_BYTE	6EC0	1	byte	pergamino		?
+PARCH_BORDER_TOP	6EC1	384	bytes:0x180	pergamino		?
+PARCH_BORDER_RIGHT	7041	384	bytes:0x180	pergamino		?
+PARCH_BORDER_LEFT	71C1	384	bytes:0x180	pergamino		?
+PARCH_BORDER_BOTTOM	7341	384	bytes:0x180	pergamino		?
+UNUSED_74C1	74C1	128	bytes:0x80	datos		?
+UNUSED_PIXEL_TABLES_7530	7530	1536	bytes:0x600	datos		?
+HUD_SCORE_BAR_GFX	7541	2048	bytes:0x800	motor_b		?
+UNUSED_CODE_TAIL_7B30	7B30	1232	bytes:0x4d0	datos		?
+UNUSED_7D41	7D41	128	bytes:0x80	datos		?
+TXT_WORDS	7DC1	1257	bytes:0x4e9	logica_a	B580	exacto
+UNUSED_82AA	82AA	24	bytes:0x18	datos	BA69	vecino
+ISO_ROOM_TABLE	82C2	9392	bytes:0x24b0	motor_b	BA81	vecino
+UNUSED_A772	A772	849	bytes:0x351	datos		?
+CHR_PATH_ALTERNATIVES	AAC3	16	bytes:16	motor_a	0203	exacto
+CHR_PATH_ALT_PTR	AAD3	1	word	motor_a	0213	bloque
+CHR_BESIDE_OFFSETS	AAD5	8	bytes:8	motor_a	0215	exacto
+OBJ_DOOR_ORIENT_TABLE	AADD	32	bytes:32	motor_a	021D	exacto
+CHR_ROOM_LINKS	AAFD	304	bytes:0x130	motor_a	023D	vecino
+CHR_EXIT_TABLE	AC2D	16	bytes:16	motor_a		?
+OBJ_DOOR_CELL_STEPS	AC3D	8	words:4	motor_a		?
+OBJ_DOOR_CAMERA_OFFSETS	AC45	16	bytes:16	motor_a	0B0D	exacto
+CHR_GRID_OWNER	AC55	1	word	motor_a	0B1D	vecino
+CHR_STAIRS_HEIGHT	AC57	1	byte	motor_a	0B1F	vecino
+UNUSED_AC58	AC58	1	byte	huecos	0B20	vecino
+CHR_EXIT_MARK_ROUTINE	AC59	1	word	motor_a	0B21	vecino
+CHR_PATH_SOLUTION	AC5B	1	word	motor_a	0B23	vecino
+CHR_SHOWN_FLOOR	AC5D	1	byte	motor_b	0B25	vecino
+UNUSED_AC5E	AC5E	1	byte	huecos	0B26	vecino
+CHR_HBUF_ORIGIN_Y	AC5F	1	byte	motor_b	0B27	vecino
+UNUSED_AC60	AC60	1	byte	huecos	0B28	vecino
+CHR_HBUF_ORIGIN_X	AC61	1	byte	motor_b	0B29	vecino
+UNUSED_AC62	AC62	1	byte	huecos	0B2A	vecino
+OBJ_DOOR_MOVED	AC63	1	byte	motor_a	0B2B	vecino
+UNUSED_AC64	AC64	1	byte	huecos	0B2C	vecino
+OBJ_ROOM_REDRAW	AC65	1	byte	motor_a	0B2D	vecino
+UNUSED_AC66	AC66	1	byte	huecos	0B2E	vecino
+CHR_GUILLERMO_ANIM_COPY	AC67	1	byte	motor_a	0B2F	vecino
+UNUSED_AC68	AC68	1	byte	huecos	0B30	vecino
+OBJ_ENTITY_CALLBACK	AC69	1	word	motor_a	0B31	vecino
+AI_BERENGAR_DOOR_MASK	AC6B	1	byte	motor_a	0B33	vecino
+UNUSED_AC6C	AC6C	1	byte	huecos	0B34	vecino
+HUD_HOUR_NAMES	AC6D	49	ascii:49	datos	4B12	exacto
+SPR_MONK_ROBES	AC9E	32	ptrs:16	motor_a	4B43	vecino
+SPR_LIGHT_PATTERN	ACBE	30	words:15	motor_a	4451	exacto
+UNUSED_ACDC	ACDC	1	word	huecos	446F	vecino
+SPR_BUF_FREE	ACDE	1	word	motor_a	4471	vecino
+SPR_SAVED_SP	ACE0	1	word	motor_a	4473	vecino
+SPR_OVERLAY_CURSOR	ACE2	1	word	motor_a	4475	vecino
+SPR_CUR_BUFFER	ACE4	1	word	motor_a	4477	vecino
+SPR_DEPTH_UPPER	ACE6	1	word	motor_a	4479	vecino
+SPR_OV_WIDTH	ACE8	1	byte	motor_a	447B	vecino
+UNUSED_ACE9	ACE9	1	byte	huecos	447C	vecino
+SPR_OV_SRC_X	ACEA	1	word	motor_a	447D	vecino
+SPR_OV_SRC_X_ROBE	ACEC	1	word	motor_a	447F	vecino
+SPR_OV_DST_X	ACEE	1	word	motor_a	4481	vecino
+SPR_OV_LINES	ACF0	1	byte	motor_a	4483	vecino
+UNUSED_ACF1	ACF1	1	byte	huecos	4484	vecino
+SPR_OV_SRC_Y	ACF2	1	word	motor_a	4485	vecino
+SPR_OV_DST_Y	ACF4	1	word	motor_a	4487	vecino
+SPR_OV_LINE	ACF6	1	byte	motor_a	4489	vecino
+UNUSED_ACF7	ACF7	1	byte	huecos	448A	vecino
+SPR_OV_SRC_STRIDE	ACF8	1	word	motor_a	448B	vecino
+SPR_OV_DST_STRIDE	ACFA	1	word	motor_a	448D	vecino
+ISO_SPIRAL_RIGHT	ACFC	1	byte	motor_a	448F	vecino
+UNUSED_ACFD	ACFD	1	byte	huecos	4490	vecino
+ISO_SPIRAL_DOWN	ACFE	1	byte	motor_a	4491	vecino
+UNUSED_ACFF	ACFF	1	byte	huecos	4492	vecino
+SPR_BLIT_SKIP	AD00	1	word	motor_a	4493	vecino
+ISO_SPIRAL_UP	AD02	1	byte	motor_a	4495	vecino
+UNUSED_AD03	AD03	1	byte	huecos	4496	vecino
+ISO_SPIRAL_LEFT	AD04	1	byte	motor_a	4497	vecino
+UNUSED_AD05	AD05	1	byte	huecos	4498	vecino
+SPR_BLIT_WIDTH	AD06	1	word	motor_a	4499	vecino
+SPR_BLIT_LINES	AD08	1	byte	motor_a	449B	vecino
+UNUSED_AD09	AD09	1	byte	huecos	449C	vecino
+SPR_DEPTH_LOWER	AD0A	1	word	motor_a	449D	vecino
+SPR_TILE_TEST_JUMP	AD0C	1	word	motor_a	449F	vecino
+SPR_TILE_DST_SKIP	AD0E	1	word	motor_a	44A1	vecino
+UNUSED_AD10	AD10	1	bytes:2	huecos	44A3	vecino
+ISO_SPIRAL_BUF_STEP	AD12	1	word	motor_a	44A5	vecino
+ISO_SPIRAL_VID_STEP	AD14	1	word	motor_a	44A7	vecino
+SPR_LIGHT_DX	AD16	1	byte	motor_b	44A9	vecino
+UNUSED_AD17	AD17	1	byte	huecos	44AA	vecino
+SPR_LIGHT_DX_REST	AD18	1	byte	motor_b	44AB	vecino
+UNUSED_AD19	AD19	1	byte	huecos	44AC	vecino
+SPR_LIGHT_FILL_A	AD1A	1	word	motor_b	44AD	vecino
+SPR_LIGHT_FILL_B	AD1C	1	word	motor_b		?
+UNUSED_AD1E	AD1E	1	bytes:2	huecos		?
+VID_PLAY_FILL	AD20	1	byte	motor_b		?
+CHR_BACKUP	AD21	10	bytes:10	motor_b		?
+ISO_CAMERA_ROTATIONS	AD2B	8	ptrs:4	motor_a		?
+ISO_FLOOR0_MAP_ROWS	AD33	160	bytes:0xa0	motor_a	1E89	exacto
+ISO_FLOOR12_MAP_ROWS	ADD3	80	bytes:0x50	motor_a	1F29	exacto
+ISO_FLOOR_MAP_PTR	AE23	1	word	motor_a	1F79	vecino
+CHR_CAMERA_TRANSFORM	AE25	1	word	motor_b	1F7B	vecino
+ISO_SETUP_SPRITE	AE27	1	word	motor_a	1F7D	vecino
+ISO_SETUP_RECORD	AE29	1	word	motor_a	1F7F	vecino
+SYS_FRAME_TICKS	AE2B	1	byte	sistema	1F81	vecino
+SYS_TICKS	AE2C	1	byte	motor_b	1F82	vecino
+CHR_GUILLERMO_STATE	AE2D	1	byte	motor_b	1F83	vecino
+CHR_GUILLERMO_FALL_DY	AE2E	1	byte	motor_b	1F84	vecino
+CHR_PROBE_INNER	AE2F	1	word	motor_b	1F85	vecino
+CHR_PROBE_OUTER	AE31	1	word	motor_b	1F87	vecino
+CHR_STEP_TABLE_2X2	AE33	32	bytes:32	motor_b	23A2	exacto
+CHR_STEP_TABLE_1X1	AE53	32	bytes:32	motor_b	23C2	exacto
+CHR_CUR_SPRITE	AE73	1	word	motor_b	23E2	vecino
+CHR_CUR_DATA	AE75	1	word	motor_b	23E4	vecino
+CHR_CUR_BEHAVIOUR	AE77	1	word	motor_b	23E6	vecino
+CHR_CUR_FLIP	AE79	1	word	motor_b	23E8	vecino
+CHR_CUR_ANIM	AE7B	1	word	motor_b	23EA	vecino
+ISO_DARK_FLOOR	AE7D	1	byte	motor_a	23EC	vecino
+CHR_PROBE_HEIGHT	AE7E	1	byte	motor_b	23ED	vecino
+CHR_ROOM_ORIGIN_X	AE7F	1	byte	motor_b	23EE	vecino
+CHR_ROOM_ORIGIN_Y	AE80	1	byte	motor_b	23EF	vecino
+CHR_ROOM_FLOOR	AE81	1	byte	motor_b	23F0	vecino
+ISO_CAMERA_ORIENT	AE82	1	byte	motor_a	23F1	vecino
+SYS_FRAME_TICKS_NORMAL	AE83	1	byte	sistema	23F2	vecino
+CHR_TABLE	AE84	62	bytes:0x3e	motor_b	23F3	vecino
+CHR_PARAM_TARGETS	AEC2	10	ptrs:5	motor_b		?
+ISO_BLOCK_DATA	AECC	2126	bytes:0x84e	motor_b		?
+ISO_ROOM_PTR	B71A	1	word	motor_b		?
+ISO_ROOM_DARK	B71C	1	byte	motor_b		?
+ISO_BLOCK_TABLE	B71D	192	ptrs:96	motor_b		?
+ISO_CUR_BLOCK	B7DD	1	word	motor_b		?
+ISO_MIRROR	B7DF	1	byte	motor_b		?
+ISO_ENTER_VECTOR	B7E0	1	word	motor_b		?
+ISO_KEEP_FLAG	B7E2	1	byte	motor_b		?
+ISO_BLOCK_TILES	B7E3	12	bytes:12	motor_b		?
+ISO_BLOCK_P1	B7EF	1	byte	motor_b		?
+ISO_BLOCK_P2	B7F0	1	byte	motor_b		?
+ISO_BLOCK_HEIGHT	B7F1	1	byte	motor_b		?
+ISO_DEPTH_X	B7F2	1	byte	motor_b		?
+ISO_DEPTH_Y	B7F3	1	byte	motor_b		?
+ISO_BLOCK_OPCODE_TABLE	B7F4	56	ptrs:28	motor_b		?
+SYS_DEMO_MODE	B82C	1	byte	motor_b		?
+SYS_DEMO_REPEAT	B82D	1	byte	motor_b		?
+ISO_CAMERA_RECORD	B82E	5	bytes:5	motor_a		?
+CHR_ROOM_X	B830	1	byte	motor_b		?
+CHR_ROOM_Y	B831	1	byte	motor_a		?
+CHR_ROOM_Z	B832	1	byte	motor_a		?
+OBJ_DOOR_GFX_FLIPPED	B833	1	byte	motor_a		?
+UNUSED_B834	B834	6	bytes:6	huecos		?
+SYS_DEMO_PTR	B83A	1	word	motor_b		?
+HUD_OBSEQUIUM	B83C	1	byte	logica_b		?
+GAME_DAY	B83D	1	byte	logica_a		?
+GAME_HOUR	B83E	1	byte	logica_a		?
+HUD_HOUR_NAME_PTR	B83F	1	word	logica_b		?
+CHR_SPRITE_OFFSETS	B841	1	word	motor_b		?
+AI_HOUR_FRAMES_LEFT	B843	1	word	motor_b		?
+CHR_CAMERA_TARGET	B845	1	word	motor_a		?
+CHR_HBUF_PTR	B847	1	word	motor_b		?
+OBJ_MIRROR_CLOSED	B849	1	byte	motor_b		?
+ISO_MIRROR_STATE_GUILLERMO	B84A	5	bytes:5	logica_b		?
+ISO_MIRROR_STATE_ADSO	B84F	5	bytes:5	logica_b		?
+TXT_CURSOR	B854	1	word	sistema		?
+OBJ_GUILLERMO_OBJECTS_BEFORE	B856	1	byte	logica_b		?
+TXT_SCROLL_TIMER	B857	1	byte	logica_a		?
+TXT_TRAILING_BLANKS	B858	1	byte	logica_a		?
+TXT_WORD_PTR	B859	1	word	logica_a		?
+TXT_PHRASE_PTR	B85B	1	word	logica_a		?
+TXT_WORD_DONE	B85D	1	byte	logica_a		?
+TXT_PHRASE_BUSY	B85E	1	byte	sistema		?
+TXT_PHRASE_ACTIVE	B85F	1	byte	logica_a		?
+UNUSED_B860	B860	1	bytes:2	huecos		?
+HUD_HOUR_SCROLL_STEPS	B862	1	byte	logica_b		?
+UNUSED_B863	B863	3	bytes:3	huecos		?
+CHR_PATH_FOUND_NOW	B866	1	byte	motor_a		?
+AI_ADSO_BLOCKED_COUNT	B867	1	byte	motor_a		?
+UNUSED_B868	B868	4	bytes:4	huecos		?
+OBJ_DOOR_FLIP_WANTED	B86C	1	byte	motor_a		?
+CHR_PATH_SAVED_SP	B86D	1	word	logica_a		?
+CHR_PATH_ORIGIN	B86F	1	word	motor_a		?
+CHR_PATH_DEST	B871	1	word	motor_a		?
+CHR_PATH_RESULT	B873	1	byte	motor_a		?
+UNUSED_B874	B874	1	byte	huecos		?
+ISO_ROOM_CHANGED	B875	1	byte	motor_a		?
+UNUSED_B876	B876	3	bytes:3	huecos		?
+OBJ_MIRROR_NUMERAL	B879	1	byte	motor_b		?
+ISO_ROOM_NUMBER	B87A	1	byte	motor_b		?
+GAME_BONUS2	B87B	1	byte	logica_a		?
+GAME_BONUS	B87C	1	byte	motor_b		?
+UNUSED_B87D	B87D	1	byte	huecos		?
+CHR_MOVED	B87E	1	byte	motor_b		?
+SYS_GAME_SP	B87F	1	word	sistema		?
+UNUSED_B881	B881	1	bytes:2	huecos		?
+CHR_PROBE	B883	16	bytes:16	motor_b		?
+SPR_RECT_POS	B893	1	bytes:2	motor_a		?
+OBJ_DOOR_PERMISSIONS	B897	19	bytes:19	motor_a		?
+OBJ_CHAR_OBJECTS	B8AA	43	bytes:0x2b	logica_a		?
+GAME_ADSO_LAMP	B8B1	1	byte	motor_b		?
+OBJ_ADSO_OBJECTS	B8B4	1	byte	logica_b		?
+OBJ_MALACHI_HOLDER	B8B8	1	byte	logica_b		?
+OBJ_MALACHI_OBJECTS	B8BB	1	byte	logica_b		?
+OBJ_MALACHI_TAKEMASK	B8BD	1	byte	logica_b		?
+OBJ_ABBOT_OBJECTS	B8C2	1	byte	logica_b		?
+OBJ_ABBOT_TAKEMASK	B8C4	1	byte	logica_b		?
+OBJ_BERENGAR_OBJECTS	B8C9	1	byte	logica_b		?
+OBJ_BERENGAR_TAKEMASK	B8CB	1	byte	logica_b		?
+OBJ_SEVERIN_OBJECTS	B8D0	1	byte	logica_b		?
+SPR_TABLE	B8D5	461	bytes:0x1cd	motor_b		?
+SPR_LIGHT	BA8D	20	bytes:20	motor_b	2B20	exacto
+OBJ_DOORS	BAA2	36	bytes:0x24	motor_a	2B35	exacto
+OBJ_OBJECTS	BAC6	46	bytes:0x2e	motor_a	2B59	bloque
+CHR_GUILLERMO	BAF4	15	bytes:15	motor_b	2B87	exacto
+CHR_ADSO	BB03	15	bytes:15	motor_b	2B96	bloque
+CHR_MALACHI	BB12	15	bytes:15	motor_b	2BA5	bloque
+CHR_ABBOT	BB21	15	bytes:15	motor_b	2BB4	bloque
+CHR_BERENGAR	BB30	15	bytes:15	motor_b	2BC3	bloque
+CHR_SEVERIN	BB3F	15	bytes:15	motor_b	2BD2	bloque
+SPR_SORTED_TOP	BB4E	1	word	motor_a	2BE1	bloque
+SPR_SORTED_CURSOR	BB50	1	word	motor_a	2BE3	bloque
+UNUSED_BB52	BB52	1	byte	huecos	2BE5	bloque
+SPR_TILE_POS	BB53	1	word	motor_a	2BE6	bloque
+SPR_MONK_FACES	BB55	8	ptrs:4	motor_b	2BE8	bloque
+CHR_SPRITE_OFFSET_TABLES	BB5D	256	bytes:0x100	motor_b	2BF0	exacto
+CHR_ANIM_GUILLERMO	BC5D	32	bytes:32	motor_b	2CF0	vecino
+CHR_ANIM_ADSO	BC7D	32	bytes:32	motor_b	2D10	vecino
+CHR_ANIM_MONK	BC9D	32	bytes:32	motor_b		?
+SYS_KEY_ROUTINE	BCBD	1	word	motor_b		?
+SYS_REPLAY_GROUPS	BCBF	1	byte	motor_b		?
+SYS_BCC0	BCC0	1	byte	motor_b		?
+SYS_KEY_BITMAP	BCC1	1	word	motor_b		?
+SPR_FLIP_WIDTH	BCC3	1	word	logica_a		?
+UNUSED_BCC5	BCC5	1	byte	huecos		?
+GAME_STATE_BLOCK_FN	BCC6	1	word	logica_a		?
+SYS_KEYS_DOWN	BCC8	10	bytes:10	motor_b		?
+SYS_KEYS_PENDING	BCD2	10	bytes:10	motor_b		?
+SYS_KEYS_REPLAY	BCDC	10	bytes:10	motor_b		?
+SYS_KEY_SINGLE	BCE6	1	bytes:2	motor_b		?
+SYS_KEY_ALIAS_LEFT	BCE8	4	bytes:4	motor_b	2E2E	exacto
+SYS_KEY_ALIAS_SPACE	BCEC	4	bytes:4	motor_b	2E32	exacto
+SYS_KEY_ALIAS_012	BCF0	12	bytes:12	motor_b	2E36	exacto
+SYS_BIT_MASKS	BCFC	8	bytes:8	motor_b	2EB3	exacto
+OBJ_MIRROR_HEIGHT_PTR	BD04	1	word	motor_b	2EBB	vecino
+OBJ_MIRROR_CLOSED_HEIGHTS	BD06	5	bytes:5	motor_b	2EE0	exacto
+OBJ_MIRROR_ENTRY_PTR	BD0B	1	word	motor_b	2EE5	vecino
+SYS_DEMO_KEYS	BD0D	24	bytes:24	motor_b	2EE7	vecino
+CHR_POS_PTRS	BD25	12	ptrs:6	logica_a	2EFF	vecino
+UNUSED_BD31	BD31	21	bytes:0x15	huecos	2F0B	vecino
+GAME_INITIAL_STATE	BD46	167	bytes:0xa7	logica_a	2F20	vecino
+UNUSED_BDED	BDED	33	bytes:0x21	datos		?
+GAME_STATE_BLOCKS	BE0E	50	bytes:0x32	logica_a		?
+CHR_HBUF_DEBUG_GLYPHS	BE40	72	bytes:0x48	logica_a		?
+TXT_PUNCTUATION	BE88	5	bytes:5	logica_a	3447	exacto
+TXT_GLYPH_BLANK	BE8D	8	bytes:8	logica_a	344C	vecino
+CHR_HBUF_SLOPE_DELTAS	BE95	12	bytes:12	logica_a	3454	vecino
+CHR_FLOOR_HEIGHTS_PTR	BEA1	1	word	motor_b	3460	vecino
+CHR_HBUF_STEP_X	BEA3	1	byte	logica_a	3462	vecino
+CHR_HBUF_STEP_Y	BEA4	1	byte	logica_a	3463	vecino
+CHR_HBUF_CLIP_Y	BEA5	1	byte	logica_a	3464	vecino
+CHR_HBUF_CLIP_X	BEA6	1	byte	logica_a	3465	vecino
+CHR_HBUF_VIS_X	BEA7	1	byte	logica_a	3466	vecino
+CHR_HBUF_VIS_Y	BEA8	1	byte	logica_a	3467	vecino
+CHR_HBUF_FLAT_Y	BEA9	1	byte	logica_a	3468	vecino
+CHR_HBUF_FLAT_X	BEAA	1	byte	logica_a	3469	vecino
+CHR_DIR_BUFFER_STEP	BEAB	8	words:4	logica_a	346A	vecino
+CHR_ADSO_DIR_CHOICES	BEB3	32	bytes:32	logica_a	4188	exacto
+UNUSED_BED3	BED3	4	bytes:4	huecos	40E7	exacto
+CHR_PATH_ROOM_LINKS_PTR	BED7	1	word	motor_a	40EB	vecino
+CHR_CMD_TURN_LEN	BED9	4	bytes:4	logica_a	3F75	exacto
+CHR_CMD_TURN_BITS	BEDD	8	bytes:8	logica_a	3F79	exacto
+CHR_PATH_ORIENTATION	BEE5	1	byte	motor_a	3F81	bloque
+CHR_PATH_LENGTH	BEE6	1	byte	motor_a	3F82	bloque
+CHR_CMD_STEP_TABLE	BEE7	15	bytes:15	logica_a	3F83	exacto
+CHR_PATH_HEIGHT	BEF6	1	byte	logica_a	3F92	vecino
+CHR_CMD_GENERATOR	BEF7	1	word	logica_a	3F93	vecino
+CHR_PATH_DY_TMP	BEF9	1	byte	logica_a	3F95	vecino
+CHR_PATH_CANDIDATE	BEFA	1	word	logica_a	3F96	vecino
+AI_HOUR_DURATIONS	BEFC	45	bytes:45	logica_b	4AD0	exacto
+HUD_ROMAN_DAYS	BF29	21	bytes:0x15	datos	4AFD	exacto
+OBJ_MIRROR_NUMERALS	BF3E	9	bytes:9	logica_b	5177	exacto
+HUD_OBSEQUIUM_TAIL	BF47	4	bytes:4	logica_b	5180	vecino
+TXT_PHRASE_SOUND	BF4B	56	bytes:0x38	datos	51AF	exacto
+HUD_GFX_ROMAN_BLANK	BF83	16	bytes:0x10	datos	51E7	vecino
+UNUSED_BF93	BF93	16	bytes:0x10	huecos	51F7	vecino
+OBJ_FRONT_X	BFA3	1	byte	logica_b	5207	vecino
+OBJ_FRONT_Z	BFA4	1	byte	logica_b	5208	vecino
+OBJ_FRONT_Y	BFA5	1	byte	logica_b	5209	vecino
+OBJ_HOLDER_LOCKED	BFA6	1	byte	logica_b	520A	vecino
+OBJ_DROP_INDEX	BFA7	1	byte	logica_b	520B	vecino
+OBJ_DROP_LEVEL	BFA8	1	byte	logica_b	520C	vecino
+ISO_MIRROR_BUFFER	BFA9	1	word	logica_b	520D	vecino
+ISO_MIRROR_SHOWN	BFAB	1	byte	logica_b	520F	vecino
+UNUSED_BFAC	BFAC	20	bytes:0x14	huecos	5210	vecino
+VID_SPIRAL_SIDES	BFC0	4	bytes:4	logica_b	5224	vecino
+UNUSED_BFC4	BFC4	6	bytes:6	huecos	3D2A	exacto
+CHR_RECORD_PTRS	BFCA	12	ptrs:6	logica_b	3D30	vecino
+CHR_MALACHI_RISING	BFD6	1	byte	motor_b	3D3C	vecino
+CHR_MALACHI_RISE_DELAY	BFD7	1	byte	sistema	3D3D	vecino
+OBJ_DOOR_LINK_TABLE	BFD8	30	bytes:30	logica_b	37B4	exacto
+GAME_BOOK_POISON_COUNT	BFF6	1	byte	logica_b	37D2	bloque
+UNUSED_BFF7	BFF7	1	byte	huecos	37D3	bloque
+AI_LAMP_TIME	BFF8	1	word	logica_b	37D4	bloque
+UNUSED_BFFA	BFFA	1	bytes:2	huecos	37D6	bloque
+AI_LAMP_IN_USE	BFFC	1	byte	logica_b	37D8	bloque
+AI_NIGHT_ENDING	BFFD	1	byte	logica_b	37D9	bloque
+AI_LAMP_EVENT	BFFE	1	byte	logica_b	37DA	bloque
+AI_DARK_COUNT	BFFF	1	byte	logica_b	37DB	bloque
+GAME_CAMERA_OTHER	C000	1	byte	motor_b	37DC	bloque
+AI_PARCHMENT_AT_ABBOT	C001	1	byte	logica_b	37DD	bloque
+OBJ_LAMP_PLACED	C002	1	byte	logica_b	37DE	bloque
+AI_CAMERA_TARGET	C003	1	byte	logica_a	37DF	bloque
+GAME_IDLE_FRAMES	C004	1	byte	logica_b	37E0	bloque
+AI_PARCHMENT_REPORTED	C005	1	byte	logica_a	37E1	bloque
+AI_LAST_HOUR_DONE	C006	1	byte	logica_b	37E2	bloque
+AI_READY_FOR_CEREMONY	C007	1	byte	logica_b	37E3	bloque
+GAME_GUILLERMO_DEAD	C008	1	byte	motor_b	37E4	bloque
+AI_WAIT_COUNT	C009	1	byte	logica_b	37E5	bloque
+AI_SLEEP_ANSWER_COUNT	C00A	1	byte	logica_b	37E6	bloque
+AI_ADVANCE_HOUR	C00B	1	byte	logica_b	37E7	bloque
+AI_GUILLERMO_IN_PLACE	C00C	1	byte	logica_b	37E8	bloque
+AI_NO_ROUTE	C00D	1	byte	motor_a	37E9	bloque
+AI_RANDOM	C00E	1	byte	logica_b	37EA	bloque
+AI_MALACHI_WARN_COUNT	C00F	1	byte	logica_b	37EB	bloque
+UNUSED_C010	C010	1	bytes:2	huecos	37EC	bloque
+AI_BERENGAR_SLOT_BUSY	C012	1	byte	logica_a	37EE	bloque
+AI_MALACHI_DYING	C013	1	byte	logica_b	37EF	bloque
+AI_SEVERIN_SLOT_BUSY	C014	1	byte	logica_b	37F0	bloque
+AI_SEVERIN_BOOK_TOLD	C015	1	byte	logica_b	37F1	bloque
+AI_MONK_FLAGS	C016	1	byte	logica_b	37F2	bloque
+OBJ_DOOR_CHECK_MASK	C017	1	byte	motor_a	37F3	bloque
+GAME_INVESTIGATION_OPEN	C018	1	byte	logica_b	37F4	bloque
+AI_MALACHI_REACHED	C019	1	byte	motor_a	37F5	bloque
+AI_MALACHI_STATE	C01A	1	byte	logica_a	37F6	bloque
+AI_MALACHI_DEST	C01B	1	byte	motor_a	37F7	bloque
+AI_MALACHI_PLACES	C01C	27	bytes:27	logica_b	37F8	exacto
+AI_ABBOT_REACHED	C037	1	byte	motor_a	3813	bloque
+AI_ABBOT_STATE	C038	1	byte	logica_a	3814	bloque
+AI_ABBOT_DEST	C039	1	byte	motor_a	3815	bloque
+AI_ABBOT_PLACES	C03A	30	bytes:30	logica_b	3816	exacto
+AI_BERENGAR_REACHED	C058	1	byte	motor_a	3834	bloque
+AI_BERENGAR_STATE	C059	1	byte	logica_b	3835	bloque
+AI_BERENGAR_DEST	C05A	1	byte	motor_a	3836	bloque
+AI_BERENGAR_PLACES	C05B	21	bytes:21	logica_b	3837	bloque
+AI_SEVERIN_REACHED	C070	1	byte	motor_a	384C	bloque
+AI_SEVERIN_STATE	C071	1	byte	logica_b	384D	bloque
+AI_SEVERIN_DEST	C072	1	byte	motor_a	384E	bloque
+AI_SEVERIN_PLACES	C073	15	bytes:15	logica_b	384F	exacto
+AI_ADSO_REACHED	C082	1	byte	motor_a	385E	bloque
+AI_ADSO_STATE	C083	1	byte	logica_b	385F	bloque
+AI_ADSO_DEST	C084	1	byte	motor_a	3860	bloque
+AI_ADSO_PLACES	C085	9	bytes:9	logica_b	3861	exacto
+AI_SCRIPT_VARS	C08E	130	ptrs:65	logica_b	386A	bloque
+AI_CLOSE_BOX_TABLE	C110	16	bytes:16	logica_b	38EC	exacto
+AI_SCRIPT_DEST_PTR	C120	1	word	logica_b	38FC	vecino
+AI_PHRASE_PARAM	C122	1	byte	logica_b	38FE	vecino
+AI_UNUSED_C123	C123	1	byte	logica_a	38FF	vecino
+UNUSED_C124	C124	1	byte	huecos	3900	vecino
+SND_CHANNEL_MASK_COPY	C125	1	byte	logica_a	3901	vecino
+UNUSED_C126	C126	6	bytes:6	huecos	3902	vecino
+SND_VOICE_TONE_A	C12C	1	byte	logica_a	3908	vecino
+UNUSED_C12D	C12D	1	bytes:2	huecos	3909	vecino
+SND_VOICE_TONE_NEG	C12F	1	byte	logica_a	390B	vecino
+UNUSED_C130	C130	1	bytes:2	huecos	390C	vecino
+SND_VOICE_TONE_B	C132	1	byte	logica_a	390E	vecino
+UNUSED_C133	C133	25	bytes:0x19	huecos	390F	vecino
+SND_VOICE_LEVEL	C14C	1	byte	logica_a	3928	vecino
+UNUSED_C14D	C14D	30	bytes:0x1e	huecos	3929	vecino
+SND_CPC_TEMPO	C16B	1	byte	sistema		?
+UNUSED_C16C	C16C	1	byte	huecos		?
+SND_PHRASE_VOICE	C16D	1	byte	logica_b		?
+UNUSED_C16E	C16E	7	bytes:7	huecos		?
+SND_PROG_SILENCE	C175	1	byte	sistema		?
+SND_PROG_DOOR_OPEN	C176	10	bytes:10	sistema		?
+SND_PROG_FOOTSTEP	C180	10	bytes:10	sistema		?
+SND_PROG_OBJECT_TAKEN	C18A	10	bytes:10	sistema		?
+SND_PROG_OBJECT_DROPPED	C194	10	bytes:10	sistema		?
+SND_PROG_BEEP	C19E	10	bytes:10	sistema		?
+SND_PROG_PARCHMENT_MUSIC	C1A8	682	bytes:0x2aa	sistema		?
+SND_ENV_VIBRATO	C452	5	bytes:5	sistema		?
+SND_ENV_FALL	C457	1	bytes:2	sistema		?
+SND_ENV_RISE	C459	1	bytes:2	sistema		?
+SND_ENV_HOLD	C45B	1	bytes:2	sistema		?
+SND_ENV_DOOR	C45D	1	bytes:2	sistema		?
+SND_PROG_GAME_MUSIC	C45F	262	bytes:0x106	sistema		?
+TXT_PHRASES	C565	924	bytes:0x39c	logica_a	BB00	exacto
+UNUSED_C901	C901	101	bytes:0x65	datos	BE9C	vecino
+PARCH_TEXT_INTRO	C966	1403	ascii:0x57b	pergamino		?
+PARCH_TEXT_INTRO_PAD	CEE1	134	bytes:0x86	pergamino		?
+PARCH_TEXT_ENDING	CF67	2409	ascii:0x969	pergamino		?
+PARCH_TEXT_ENDING_PAD	D8D0	152	bytes:0x98	pergamino		?
+VID_PIXEL_TABLES_DAY	D968	1536	bytes:0x600	sistema		?
+VID_PIXEL_TABLES_NIGHT	DF68	1536	bytes:0x600	sistema		?
+SND_VOICE_RATE	E568	1	word	sistema		?
+SND_VOICE_AVE_MARIA_PTR	E56A	4	dword	sistema		?
+SND_VOICE_PIRATA_PTR	E56E	4	dword	sistema	9F5D	exacto
+SND_VOICE_DONE	E572	1	byte	sistema	9F61	vecino
+SND_SAVED_INT8	E573	4	dword	sistema	9F62	vecino
+SND_VOICE_PWM_TABLE	E577	256	bytes:0x100	sistema	9F66	vecino
+UNUSED_E677	E677	15	bytes:0xf	datos		?
+UTIL_SHADOW_AF	E686	1	word	motor_a		?
+UTIL_SHADOW_HL	E688	1	word	motor_a		?
+UTIL_SHADOW_DE	E68A	1	word	motor_a		?
+UTIL_SHADOW_BC	E68C	1	word	motor_a		?
+SPR_BUFFER	E68E	500	bytes:0x1f4	motor_a		?
+CHR_PATH_GRID	E882	576	bytes:0x240	motor_a		?
+SPR_BUFFER_TAIL	EAC2	970	bytes:0x3ca	motor_a		?
+UNUSED_EE8C	EE8C	1	bytes:0x2	datos		?
+ISO_TILE_BUFFER	EE8E	1920	bytes:0x780	motor_b		?
+CHR_COMMAND_BUFFERS	F60E	240	bytes:0xf0	motor_a		?
+CHR_HEIGHT_BUFFER	F6FE	576	bytes:0x240	motor_b		?
+UNUSED_F93E	F93E	1640	bytes:0x668	datos		?
+SYS_STACK	FFA6	90	bytes:0x5a	sistema		?

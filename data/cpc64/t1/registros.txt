@@ -1,0 +1,2 @@
+instructions 264400
+A=00 F=A8 B=03 C=65 D=BD E=5F H=60 L=90 SP=0100 PC=00D6

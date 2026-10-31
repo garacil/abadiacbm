@@ -1,0 +1,2 @@
+instructions 80000000
+A=FF F=AC B=00 C=70 D=2D E=F2 H=2D L=E8 SP=BFFA PC=2D86

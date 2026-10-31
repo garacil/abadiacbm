@@ -1,0 +1,9 @@
+# Wait points of the CPC 64 KiB game for the synchronous mode of cpc_carga.py (--sincrono).
+# Interrupts (the 300 Hz tick: 2899h sys_tick, through RST 38h) are delivered only here:
+#   espera HEAD BACK          each taken backward jump at BACK (to HEAD) delivers one interrupt
+#   bucle  HEAD BACK US       each taken backward jump is US microseconds; interrupts due meanwhile are delivered
+# Found in the 64K code (data/cpc64/juego/ram.bin) from the PC's wait points (abadia/trabajo/re/sincrono/puntos.txt).
+espera 21D6 21DB     # main loop: wait until the tick counter (289Ch) reaches the speed value (42)
+#   pausa  HEAD BACK          like espera, and each pass also counts as a frame (key scripts go on)
+pausa  3EB8 3EC0     # end of a game: "PULSA ESPACIO PARA EMPEZAR", wait for space (then 20C7, a new game)
+pausa  20C7 20DD     # new game: wait while space is held (as the PC's 1F1F)

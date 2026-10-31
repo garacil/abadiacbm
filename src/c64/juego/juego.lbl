@@ -1,0 +1,13 @@
+al 00087F .iso_fetch_operand
+al 00085F .iso_floor_base
+al 000800 .iso_grid_cell_ptr
+al 0008BB .iso_operand_value
+al 000879 .iso_orient_relative
+al 00089F .plat_crtc
+al 0008AB .plat_di
+al 0008B3 .plat_ei
+al 0008A5 .plat_modo
+al 000894 .plat_psg
+al 00089A .plat_teclado_fila
+al 00088C .plat_tinta
+al 000853 .util_add_bx_al

@@ -1,0 +1,2 @@
+instructions 3898974
+A=00 F=40 B=00 C=00 D=EF E=BF H=04 L=95 SP=BFF8 PC=FE00

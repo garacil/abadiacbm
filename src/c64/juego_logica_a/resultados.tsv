@@ -1,0 +1,82 @@
+# What each 6502 routine must leave like the Z80 function (what its callers use): registers A B C D E
+# H L IXH IXL IYH IYL BC DE HL IX IY, flags CF ZF; REG:target a register pair (BC DE HL IX IY) that returns a
+# pointer (compared relocated to the C64), >REG:target one that brings a pointer (relocated at the entry),
+# !BLOCK a block of mapa64.tsv left out of the comparison (targets as in punteros64.tsv).  Memory is always
+# compared (the blocks of mapa64.tsv, in C64 form; c64/CODIGO6502.md).
+util_add_bx_al	HL A
+iso_floor_base	B A CF
+iso_orient_relative	A
+iso_grid_cell_ptr	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	DE	HL	A	CF
+iso_fetch_operand	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+iso_operand_value	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG
+# group logica_a (c64/juego_logica_a/NOTAS.md): its routines
+vid_spiral_wipe	A	B	C	D	E	H	L	IX	IY	CF	ZF	PANTALLA
+vid_spiral_pass	A	B	C	DE	HL	IX:D64_VID_SPIRAL_SIDES	IY	ZF	PANTALLA
+vid_spiral_put	A	BC	DE	HL	IX	IY	PANTALLA
+obj_remove_glasses	PANTALLA:par
+chr_berengar_hooded	HL:D64_SPR_MONK_FACES	DE:gfx
+util_store_dx_at_bx	>HL:var	>DE:gfx	HL:var
+obj_jorge_drops_book	A	CF	ZF	IX	IY
+obj_abbot_drops_parchment	A	CF	ZF	IX	IY
+obj_place_lamp	A
+obj_jorge_takes_book	PANTALLA:par
+game_idle_camera_check	A	ZF
+ai_jorge_book_talk_with_gloves	CF
+game_speed_default	A	CF	ZF
+util_return_zero	A	CF	ZF
+game_set_c004_inline	A	INLINE
+game_camera_from_ch_unused	A	CF	ZF
+game_camera_update	DE:D64_CHR_GUILLERMO	HL:D64_CHR_RECORD_PTRS
+ai_lamp_tick	C
+ai_night_end_tick	C
+game_compute_percentage	A	BC	HL
+game_update_bonus_and_poison	PANTALLA
+ai_stop_hour_countdown	HL
+ai_check_guillermo_at_mass	A	C
+ai_check_guillermo_at_refectory	A	C
+ai_check_guillermo_at	A	C
+ai_parchment_check	ZF
+chr_path_room_to_marked	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	A
+chr_path_room_search	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	A
+chr_path_floor_to_screen	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	A
+chr_path_floor_search	HL:D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP	DE	A
+chr_path_floor_cell_ptr	IX:D64_CHR_ROOM_LINKS	DE	A
+chr_adso_step_guillermo_dir	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER
+chr_adso_step_aside	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER
+chr_adso_step_prepare	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	A	C
+chr_adso_step_restore	>IY:D64_CHR_GUILLERMO	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER
+chr_cmd_write_one_step	>IY:D64_CHR_GUILLERMO	HL
+chr_cmd_turn_and_step	>IY:D64_CHR_GUILLERMO	A
+chr_cmd_write_path	>IY:D64_CHR_GUILLERMO	A	IX:D64_SPR_BUFFER
+chr_cmd_write_step	>IY:D64_CHR_GUILLERMO	>HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2	A	BC	DE	HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2
+chr_cmd_write_turn	>IY:D64_CHR_GUILLERMO	A	BC	DE:D64_CHR_CMD_TURN_LEN|D64_CHR_COMMAND_BUFFERS|D64_CHR_CMD_STEP_TABLE	HL
+chr_cmd_generate	>IY:D64_CHR_GUILLERMO	HL
+util_delay_cx	A	BC	CF	ZF
+spr_draw_all	>IX:D64_SPR_TABLE	>IY:D64_SPR_TABLE	IX:D64_SPR_TABLE	IY:D64_SPR_TABLE	HL:D64_SPR_TABLE	DE	A	C	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	!D64_SPR_TILE_TEST_JUMP	PANTALLA:doble	PANTALLA:doble
+spr_blit_to_screen	>IX:D64_SPR_TABLE	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	PANTALLA:par
+spr_rect_union_old	A	C	DE
+util_mul_al_bx	A	B	DE	HL
+spr_rect_tile_align	A	BC	DE	HL
+spr_tile_unmark_hook	>IX:D64_ISO_TILE_BUFFER
+spr_draw_tiles_in_depth_range	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	!D64_SPR_TILE_TEST_JUMP
+spr_tile_to_buffer	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	PANTALLA:par
+iso_draw_room_spiral	PANTALLA:doble
+iso_draw_tile	PANTALLA:par
+txt_print_inline	A	ZF	INLINE	PANTALLA:par
+hud_clear_phrase_area	PANTALLA
+hud_say_now	A	CF	B	DE:D64_TXT_PHRASE_SOUND	HL:D64_TXT_PHRASES	INLINE	PANTALLA
+hud_say	A	CF	INLINE
+txt_skip_strings	>HL:D64_TXT_PHRASES	HL:D64_TXT_PHRASES	B	A
+hud_blink_yes_no	A	ZF	IX	PANTALLA:par
+obj_play_inventory_sound	A	CF	ZF	BC
+obj_update_inventory	A	ZF	BC	HL:D64_OBJ_OBJECTS	PANTALLA:par
+# group logica_a: the pointers in the registers of other groups' functions it calls (their stubs, until translated)
+obj_drop_object	>IX:D64_CHR_BACKUP
+obj_pick_up_objects	>IX:D64_CHR_BACKUP	IX:D64_CHR_BACKUP
+obj_drop_on_space	IX:D64_CHR_BACKUP
+chr_mark_hbuf	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO
+chr_probe_ahead	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO	>HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2	HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2
+chr_apply_step	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO	>HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2	HL:D64_SPR_BUFFER|D64_CHR_STEP_TABLE_2X2
+chr_orientation_parity	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO
+chr_cmd_write_bits	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO	>DE:D64_CHR_CMD_TURN_LEN|D64_CHR_COMMAND_BUFFERS|D64_CHR_CMD_STEP_TABLE	DE:D64_CHR_CMD_TURN_LEN|D64_CHR_COMMAND_BUFFERS|D64_CHR_CMD_STEP_TABLE
+ai_update_adso	>IY:D64_CHR_GUILLERMO	IY:D64_CHR_GUILLERMO

@@ -1,0 +1,28 @@
+Modules list:
+-------------
+cargador.o:
+    CODE              Offs=000000  Size=0002EA  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=000017  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+CODE                  00C3E8  00C6D1  0002EA  00001
+RODATA                00C6D2  00C6E8  000017  00001
+
+
+Exports list by name:
+---------------------
+
+
+
+Exports list by value:
+----------------------
+
+
+
+Imports list:
+-------------
+

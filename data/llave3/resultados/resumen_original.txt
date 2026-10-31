@@ -1,0 +1,23 @@
+ 1094  Malachi o x y z 01 37 38 0F  reached/state/dest 02 00 03   Guillermo 00 31 3E 0D  Adso 00 2D 3E 0D
+ 1095  Malachi o x y z 01 37 37 0F  reached/state/dest 02 00 03   Guillermo 00 31 3E 0D  Adso 00 2D 3E 0D
+ 1097  Malachi o x y z 00 37 37 0F  reached/state/dest 02 00 03   Guillermo 00 31 3E 0D  Adso 00 2E 3E 0D
+ 1098  Malachi o x y z 00 38 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1100  Malachi o x y z 00 39 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1102  Malachi o x y z 01 39 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1103  Malachi o x y z 01 39 36 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1105  Malachi o x y z 01 39 35 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1107  Malachi o x y z 00 39 35 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1108  Malachi o x y z 00 3A 35 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1110  Malachi o x y z 01 3A 35 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1111  Malachi o x y z 01 3A 34 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1114  Malachi o x y z 02 3A 34 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1115  Malachi o x y z 03 3A 34 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1116  Malachi o x y z 03 3A 35 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1118  Malachi o x y z 03 3A 36 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1120  Malachi o x y z 03 3A 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1122  Malachi o x y z 02 3A 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1123  Malachi o x y z 02 39 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1125  Malachi o x y z 02 38 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1127  Malachi o x y z 02 37 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1129  Malachi o x y z 03 37 37 0F  reached/state/dest 02 00 02   Guillermo 00 31 3E 0D  Adso 00 2F 3E 0D
+ 1212  ADSO TAKES KEY 3: his objects 02, record 2B77 = 80 00 44 29 13; Adso 01 35 37 0F (o x y z), Malachi 03 37 37 0F, Guillermo 01 31 3E 0D

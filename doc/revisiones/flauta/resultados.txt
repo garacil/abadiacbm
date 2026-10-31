@@ -1,0 +1,36 @@
+      "abadia" (11079 bytes) loaded by the KERNAL and started: 28877144 cycles = 29.3 s from LOAD typed to its main
+      picture: doc/revisiones/flauta/1_cargando.png
+      abadia.koa read at 55.6 s, the parchment (text1.bin, pp.bin read) on the screen at 70.9 s
+ok    the introduction, page 1: the page as the model (0 bitmap bytes, 0 cell colours differ): " Ya al final de mi / vida de pecador, mien- / tras espero el..."
+      picture: doc/revisiones/flauta/2_pergamino_pagina_1.png
+ok    the introduction, page 2: the page as the model (0 bitmap bytes, 0 cell colours differ): "mi cuerpo pesado y / enfermo, me dispongo / a dejar constanc..."
+ok    the introduction, page 3: the page as the model (0 bitmap bytes, 0 cell colours differ): "de la gracia de dar / fiel testimonio de los / acontecimient..."
+ok    the introduction, page 4: the page as the model (0 bitmap bytes, 0 cell colours differ): "dio que acompawara a / fray Guillermo de  / Occam, sabio fra..."
+ok    the introduction, page 5: the page as the model (0 bitmap bytes, 0 cell colours differ): "fue como me conver- / ti al mismo tiempo en / su amanuense y..."
+ok    the introduction, page 6: the page as the model (0 bitmap bytes, 0 cell colours differ): " Asi, mientras con / los dias iba conocien- / do mejor a mi ..."
+ok    the introduction, page 7: the page as the model (0 bitmap bytes, 0 cell colours differ): "acerque mi relato, y / ojala mi mano no / tiemble cuando me ..."
+ok    the introduction, page 8: the page as the model (0 bitmap bytes, 0 cell colours differ): "autor:  /     Paco Menendez /  / graficos y caratula:  /    ..."
+ok    the introduction, page 9 (the last, at the text's end): the page as the model (0 bitmap bytes, 0 cell colours differ): "version commodore: /    German Luis /    Aracil Boned /    g..."
+ok    the introduction: 9 pages written, the model's 9
+      the introduction written in 534.2 s (9 pages; the CPC: 386 s for its 8)
+      picture: doc/revisiones/flauta/3_pergamino_creditos.png
+ok    the introduction's music: the AY writes of ticks 0-19129 (63.8 s) as the CPC's: 2828 writes
+ok    the introduction's music: the AY writes of the ticks 0-19129 and of the stops at [160174] as musica.c's given the same stops and re-entries: 2829 writes
+ok    the loader's start: the picture's 1000 cells as abadia.koa (0 differ); multicolour bitmap, bank 3, $D018 = $08
+      picture: doc/revisiones/flauta/4_imagen.png
+      picture: doc/revisiones/flauta/5_imagen_antes_de_la_marca.png
+ok    the mark: the picture's 1000 cells as abadia.koa (0 differ); multicolour bitmap, bank 3, $D018 = $08
+      picture: doc/revisiones/flauta/6_lados_negros.png
+ok    after the mark: the picture's 768 cells as abadia.koa (0 differ), the 232 side cells black (0 not); multicolour bitmap, bank 3, $D018 = $08
+      picture: doc/revisiones/flauta/7_fin_de_los_datos.png
+ok    the end of the data: the picture's 768 cells as abadia.koa (0 differ), the 232 side cells black (0 not); multicolour bitmap, bank 3, $D018 = $08
+      picture: doc/revisiones/flauta/8_salto.png
+      the load: the mark at 142.4 s, the data at 145.3 s, principal_inicio at 143216266 cycles = 145.4 s (the CPC tape's block: 501.8 s)
+ok    principal_inicio: the RAM equals juego.bin over 60951 bytes (the game's segments but BSS and the merge tables, the zero page, the play area)
+      bytes different from the image anywhere: 3755 (the stack page, the screen RAM, BSS, the merge tables where the loader was...: all outside what the game needs)
+ok    the game's first frame: the 2320 bytes of the merge tables rebuilt as in the image (0 differ)
+      picture: doc/revisiones/flauta/9_juego_frame_1.png
+      picture: doc/revisiones/flauta/10_juego_frame_150.png
+ok    frame 50: the screen as with the image written straight into the RAM (0 pixels differ)
+ok    frame 150: the screen as with the image written straight into the RAM (0 pixels differ)
+all checks passed

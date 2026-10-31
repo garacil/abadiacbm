@@ -1,0 +1,2 @@
+instructions 20000000
+A=01 F=05 B=55 C=C5 D=56 E=C5 H=49 L=A2 SP=3344 PC=CBB8

@@ -1,0 +1,61 @@
+# What each 6502 routine must leave like the Z80 function (what its callers use): registers A B C D E
+# H L IXH IXL IYH IYL BC DE HL IX IY, flags CF ZF; REG:target a register pair (BC DE HL IX IY) that returns a
+# pointer (compared relocated to the C64), >REG:target one that brings a pointer (relocated at the entry),
+# !BLOCK a block of mapa64.tsv left out of the comparison (targets as in punteros64.tsv).  Memory is always
+# compared (the blocks of mapa64.tsv, in C64 form; c64/CODIGO6502.md).
+util_add_bx_al	HL A
+iso_floor_base	B A CF
+iso_orient_relative	A
+iso_grid_cell_ptr	IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	DE	HL	A	CF
+iso_fetch_operand	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG	A	C	ZF
+iso_operand_value	>IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	IX:D64_ISO_BLOCK_DATA_1|D64_ISO_BLOCK_DATA_2|D64_ISO_BLOCK_DATA_3|D64_ISO_ROOM_TABLE	DE:D64_ISO_KEEP_FLAG
+# group estado_texto (estado_texto.s)
+obj_open_left_wing_doors	HL
+sys_check_pause_save_load	A	ZF
+spr_unflip_monk_faces
+obj_fix_owner_pointers
+spr_tile_ptr_check	>IX:D64_CHR_HEIGHT_BUFFER|D64_SPR_BUFFER|D64_ISO_MIRROR_BUF_GUILLERMO|D64_PATH_QUEUE_TOP|D64_ISO_TILE_BUFFER	CF
+game_snapshot_initial_state	A	ZF
+game_for_each_state_block	>HL:code	A	ZF
+game_state_block_save	>HL:D64_GAME_INITIAL_STATE	>DE:var	BC
+game_state_block_restore	>HL:D64_GAME_INITIAL_STATE	>DE:var	BC
+util_clear_bytes	>HL:var	BC
+game_init_new_game	A	HL:D64_SPR_TABLE
+chr_hbuf_fill_room	IX	C	ZF
+chr_hbuf_fill_list	>IX:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	IX:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	C	ZF
+chr_hbuf_slope_x_inc	A	A2
+chr_hbuf_slope_y_dec	A	A2
+chr_hbuf_slope_x_dec	A	A2
+chr_hbuf_slope_y_inc	A	A2
+chr_hbuf_clip_x	A	DE	HL	CF
+chr_hbuf_clip_y	A	DE	HL	CF
+util_clip_span	A	HL	CF
+chr_hbuf_skip_list	>HL:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	HL:D64_CHR_FLOOR0_HEIGHTS|D64_CHR_FLOOR1_HEIGHTS|D64_CHR_FLOOR2_HEIGHTS	A	ZF
+vid_next_line	A	HL	CF
+vid_xy_to_offset	A	HL	ZF
+sys_startup_init	HL:D64_ISO_ROOM_TABLE
+game_init_mirror	HL:D64_ISO_ROOM_TABLE
+vid_init_stub
+txt_draw_char_inverted	PANTALLA:fuente
+txt_draw_char	PANTALLA:fuente
+txt_phrase_tick	B	C	DE	HL	IX	IY	PANTALLA:fuente
+txt_skip_words	>HL:D64_TXT_WORDS	HL:D64_TXT_WORDS	B
+ai_script_eval	>HL:INLINE	HL:INLINE	A	C
+ai_script_operand	>HL:INLINE	HL:INLINE	C
+ai_script_var_ptr	HL:var
+ai_script_test	INLINE	A	C	ZF
+ai_script_assign	INLINE	A	C
+util_jump_table_inline	INLINE
+ai_stay	A
+ai_guillermo_is_close	>IY:D64_CHR_GUILLERMO	ZF
+ai_next_state_on_arrival	>IX:D64_GAME_BOOK_POISON_COUNT	A	ZF
+obj_set_door_permissions	A	B	C	HL:D64_CHR_ROOM_LINKS
+util_bits_set_or_clear	A	ZF
+ai_hour_update
+ai_say_phrase_param
+vid_palette_black
+vid_palette_day
+vid_palette_night
+# stubs of other groups that this group calls (traps)
+hud_say	INLINE
+spr_flip_graphics_h	>HL:gfx

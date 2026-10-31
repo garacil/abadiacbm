@@ -1,0 +1,57 @@
+# every address a pointer of the game can hold into a converted graphics block: CPC value -> C64 offset
+block	cpc_ptr	w_cpc_bytes	h_lines	c64_offset	c64_bytes	note
+baldosas	4451	2	15	2128	30	light pattern (H7: in tile slot 85h)
+baldosas	9720	4	12	2576	24	object graphic: glasses (object 2, sprite 2A94h)
+baldosas	9750	4	12	2600	24	object graphic: object 1 (sprite 2A80h)
+baldosas	9780	4	12	2624	24	object graphic: keys (objects 4-6, sprites 2ABCh, 2AD0h, 2AE4h)
+baldosas	97B0	4	12	2648	24	object graphic: parchment (object 3, sprite 2AA8h)
+baldosas	A006	4	12	720	24	GARBAGE: object 7 (record 2B7Ch, sprite 2AF8h, never in play) points into the library heights; mapped to the lamp's graphic
+baldosas	AB39	2	8	1120	8	V (code 50E7h) (H7: in tile slot 46h)
+baldosas	AB49	2	8	1128	8	I (code 50E0h) (H7: in tile slot 46h)
+baldosas	D7A0	4	12	720	24	object graphic: lamp (object 8, sprite 2B0Ch)
+baldosas	D7D0	4	12	744	24	object graphic: book (object 0, sprite 2A6Ch)
+caras	B103	5	10	0	30	face of Severino
+caras	B135	5	10	30	30	second face of Severino (+32h on the CPC, +1Eh here)
+caras	B167	5	10	60	30	face of abbot
+caras	B199	5	10	90	30	second face of abbot (+32h on the CPC, +1Eh here)
+caras	B1CB	5	10	120	30	face of Malaquias
+caras	B1FD	5	10	150	30	second face of Malaquias (+32h on the CPC, +1Eh here)
+caras	B22F	5	10	180	30	face of Berengario
+caras	B261	5	10	210	30	second face of Berengario (+32h on the CPC, +1Eh here)
+caras	B293	5	10	240	30	face of Bernardo Gui
+caras	B2C5	5	10	270	30	second face of Bernardo Gui (+32h on the CPC, +1Eh here)
+caras	B2F7	5	10	300	30	face of Jorge
+caras	B329	5	10	330	30	second face of Jorge (+32h on the CPC, +1Eh here)
+caras	B35B	5	10	360	30	face of hooded monk
+caras	B38D	5	10	390	30	second face of hooded monk (+32h on the CPC, +1Eh here)
+cola_obsequium	5180	1	1	0	4	obsequium bar tail
+fila_blanca	50D7	2	1	0	1	blank row of the day numeral
+fuente	B400	2	8	0	184	font base: glyph c at B400h + 8 (c - 2Dh) -> +4 (c - 2Dh)
+glifo_blanco	344C	2	8	0	4	blank glyph
+habitos	AB59	5	26	0	78	robe (table 4431h; the table's words also carry bit 14 = drawn mirrored)
+habitos	ABDB	5	24	78	72	robe (table 4431h; the table's words also carry bit 14 = drawn mirrored)
+habitos	AC53	5	24	150	72	robe (table 4431h; the table's words also carry bit 14 = drawn mirrored)
+habitos	ACCB	5	25	222	75	robe (table 4431h; the table's words also carry bit 14 = drawn mirrored)
+habitos	AD48	5	23	297	69	robe (table 4431h; the table's words also carry bit 14 = drawn mirrored)
+habitos	ADBB	5	23	366	69	robe (table 4431h; the table's words also carry bit 14 = drawn mirrored)
+marcador	C600	64	8	0	256	source of score bar row 20 (3598h)
+marcador	D600	64	8	256	256	source of score bar row 21 (3598h)
+marcador	E600	64	8	512	256	source of score bar row 22 (3598h)
+marcador	F600	64	8	768	256	source of score bar row 23 (3598h)
+personajes	A300	5	174	0	522	Guillermo, 5 bytes wide (flipped by 2F40): sub-block start
+personajes	A300	5	36	0	108	animation frame (2CF0h/2D10h)
+personajes	A3B4	5	34	108	102	animation frame (2CF0h/2D10h)
+personajes	A45E	5	34	210	102	animation frame (2CF0h/2D10h)
+personajes	A508	5	35	312	105	animation frame (2CF0h/2D10h)
+personajes	A5B7	5	33	417	99	animation frame (2CF0h/2D10h)
+personajes	A666	4	33	522	66	Guillermo, 4 bytes wide (flipped by 2F40): sub-block start
+personajes	A666	4	33	522	66	animation frame (2CF0h/2D10h)
+personajes	A6EA	5	95	588	285	Adso, 5 bytes wide (flipped by 2EE7): sub-block start
+personajes	A6EA	5	32	588	96	animation frame (2CF0h/2D10h)
+personajes	A78A	5	32	684	96	animation frame (2CF0h/2D10h)
+personajes	A82A	5	31	780	93	animation frame (2CF0h/2D10h)
+personajes	A8C5	4	90	873	180	Adso, 4 bytes wide (flipped by 2EE7): sub-block start
+personajes	A8C5	4	30	873	60	animation frame (2CF0h/2D10h)
+personajes	A93D	4	30	933	60	animation frame (2CF0h/2D10h)
+personajes	A9B5	4	30	993	60	animation frame (2CF0h/2D10h)
+puerta	AA49	6	40	0	120	door leaf (door sprites +7, code 0A7Eh, 0AE6h)

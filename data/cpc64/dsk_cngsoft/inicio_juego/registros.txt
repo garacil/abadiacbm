@@ -1,0 +1,2 @@
+instructions 4419161
+A=05 F=40 B=00 C=00 D=3E E=EA H=02 L=F6 SP=C000 PC=20BE

@@ -1,0 +1,2 @@
+instructions 95419
+A=00 F=54 B=03 C=FF D=5F E=FF H=5F L=FE SP=BFFE PC=6000

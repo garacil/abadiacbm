@@ -1,0 +1,1 @@
+frames to 1250, 49468256 instructions, 25956 interrupts; C functions: 0 calls, 0 differences; 6502 game: 779 frames, 0 with differences, 25956 ticks

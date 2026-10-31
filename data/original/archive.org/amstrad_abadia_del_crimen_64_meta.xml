@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <identifier>amstrad_abadia_del_crimen_64</identifier>
+  <mediatype>software</mediatype>
+  <collection>softwarelibrary_cpc_games</collection>
+  <creator>Opera Soft</creator>
+  <description>&lt;div&gt;La abadía del crimen (The Abbey of Crime) is a computer video game programmed in 1987 by &lt;a href="https://en.wikipedia.org/wiki/Paco_Men%C3%A9ndez" title="Paco Menéndez" rel="nofollow"&gt;Paco Menéndez&lt;/a&gt; with graphics made by Juan Delcán. The game was originally conceived as a version of &lt;a href="https://en.wikipedia.org/wiki/Umberto_Eco" title="Umberto Eco" rel="nofollow"&gt;Umberto Eco&lt;/a&gt;'s book "The Name of the Rose".&lt;/div&gt;&lt;div&gt;&lt;p&gt;However, Paco Menéndez and &lt;a href="https://en.wikipedia.org/wiki/Opera_Soft" title="Opera Soft" rel="nofollow"&gt;Opera Soft&lt;/a&gt; received no reply from Eco in order to secure the rights for the name, so the game was released as &lt;i&gt;La abadía del crimen&lt;/i&gt;. "The Abbey of Crime" was in fact the original working title of the novel &lt;i&gt;The Name of the Rose&lt;/i&gt;.
+&lt;/p&gt;&lt;p&gt;This game is a adventure title with 3D isometric graphics,
+ where a Franciscan friar, William of Occam (William of Baskerville in 
+the book) and his young novice Adso have to discover the perpetrator of a
+ series of murders in a medieval italian abbey.&lt;/p&gt;&lt;/div&gt;&lt;div&gt;This version is a transtape from the original cassette, 64k.&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;&lt;div&gt;The main difference with the 128k version is they was placed in a different start point (out of the abbey).&lt;br /&gt;&lt;/div&gt;&lt;div&gt;&lt;br /&gt;&lt;/div&gt;</description>
+  <language>spa</language>
+  <scanner>Internet Archive HTML5 Uploader 1.6.4</scanner>
+  <subject>Amstrad CPC</subject>
+  <subject>Amstrad</subject>
+  <title>La Abadía del Crimen (The Abbey of Crime) (64)</title>
+  <publicdate>2019-11-13 19:26:11</publicdate>
+  <uploader>nonomartinez@gmail.com</uploader>
+  <addeddate>2019-11-13 19:26:11</addeddate>
+  <curation>[curator]validator@archive.org[/curator][date]20191113193232[/date][comment]checked for malware[/comment]</curation>
+  <emulator_ext>dsk</emulator_ext>
+  <emulator_start>RUN"ABADIA64</emulator_start>
+  <collection>softwarelibrary</collection>
+  <emulator>cpc6128</emulator>
+  <subject>Paco Menéndez</subject>
+  <subject>Juan Delcán</subject>
+  <collection>softwarelibrary_cpc</collection>
+  <wiki_url>https://en.wikipedia.org/wiki/Paco_Menendez</wiki_url>
+  <wiki_url>https://en.wikipedia.org/wiki/La_Abadia_del_Crimen</wiki_url>
+  <amstrad_es>http://www.amstrad.es/v5.4/juegosamstrad/decargajuegos/laabadiadelcrimen.php</amstrad_es>
+  <backup_location>ia907006_11</backup_location>
+</metadata>

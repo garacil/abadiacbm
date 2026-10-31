@@ -1,0 +1,627 @@
+== A 01A0-01A5: not found in B (5 instructions)
+   A 01A0 rrca
+   A 01A1 adc a,b
+   A 01A2 add a,h
+   A 01A3 ld (bc),a
+   A 01A4 jr z,$+74
+== A 01B2-01C3: not found in B (13 instructions)
+   A 01B2 rlca
+   A 01B3 ld (08cech),hl
+   A 01B6 dec b
+   A 01B7 ld b,003h
+   A 01B9 rlca
+   A 01BA rlca
+   A 01BB ld (0c35dh),hl
+   A 01BE add a,(hl)
+   A 01BF add a,(hl)
+   A 01C0 add hl,bc
+   A 01C1 inc b
+   A 01C2 ld e,c
+== A 01CB-0282 ~ B 055F
+   replace: A [01CB ld b,a; 01CC ld bc,0090eh]  B [055F add a,008h; 0561 ld h,a; 0562 djnz $-10; 0564 ret; 0565 nop; 0566 nop]
+   insert: A []  B [0568 rrca; 0569 ret p; 056A ret p; 056B rst 38h; 056C rst 38h; 056D call 032bch; 0570 ld a,03ch; 0572 call 03472h; 0575 scf; 0576 ret nz; 0577 ld a,02eh; 0579 call 03472h; 057C ret z; 057D or 0ffh; 057F ret]
+   replace: A [01D1 dec bc; 01D2 ld b,b; 01D3 dec b; 01D4 dec b; 01D5 ex af,af']  B [0581 ld a,(hl); 0582 out (c),a; 0584 dec c; 0585 dec hl; 0586 in a,(c); 0588 jp p,00586h; 058B and 020h; 058D jr nz,$-13; 058F ret; 0590 jp 0249ah]
+   replace: A [01D7 ld (bc),a; 01D8 inc bc; 01D9 inc c; 01DA ld a,(bc); 01DB jr nz,$+12; 01DD ld bc,0600dh; 01E0 and l; 01E1 dec hl; 01E2 dec d; 01E3 ld (02320h),hl; 01E6 inc de; 01E7 or h; 01E8 ld d,d; 01E9 jr nz,$+38; 01EB rla; 01EC jr nz,$+38; 01EE ret m; 01EF scf; 01F0 ld (02991h),a; 01F3 ld a,c; 01F4 ld hl,02115h; 01F7 ld de,021b1h; 01FA ld e,e; 01FB ld de,021b1h; 01FE ld de,0c3b1h; 0201 cp (hl); 0202 jr nz,$-53; 0204 ld hl,(0ff00h); 0207 ld hl,(0c900h); 020A inc l; 020B ld b,b; 020C sra d; 020E add a,b; 020F ret; 0210 jr z,$-62]  B [0594 nop; 0595 nop; 0596 nop; 0597 nop; 0598 nop; 0599 nop; 059A nop; 059B nop; 059C nop; 059D nop; 059E nop; 059F nop; 05A0 nop; 05A1 nop]
+   replace: A [0213 ld b,002h]  B [05A3 nop; 05A4 nop]
+== A 036D-047C ~ B 06F8
+   replace: A [036D ld iy,02ba5h]  B [06F8 inc c; 06F9 ld a,(bc); 06FA ld a,(bc); 06FB ld bc,0fd0dh; 06FE ld hl,03054h]
+== A 0632-0636: not found in B (3 instructions)
+   A 0632 ld (03f73h),hl
+   A 0635 cp b
+   A 0636 jr z,$+113
+== A 06A7-07A9 ~ B 0AFA
+   replace: A [076A call 0090ah]  B [0AFA call 00000h]
+== A 089E-08F9 ~ B 0C2F
+   replace: A [089F ld bc,02bd2h]  B [0C2F ld bc,00000h]
+== A 090A-0982 ~ B 0C97
+   replace: A [090A ld bc,0004ch]  B [0C97 inc c; 0C98 inc c; 0C99 ld d,001h; 0C9B ld c,h; 0C9C nop]
+== A 0A89-0A8C: not found in B (2 instructions)
+   A 0A89 call 00a9ch
+   A 0A8C ret c
+== A 0ABC-0AC1: not found in B (3 instructions)
+   A 0ABC ld a,0c9h
+   A 0ABE ld (02684h),a
+   A 0AC1 call 00acah
+== A 0C77-0C7A: not found in B (2 instructions)
+   A 0C77 ld hl,0106eh
+   A 0C7A jr $+42
+== A 0C81-0C84: not found in B (2 instructions)
+   A 0C81 ld hl,0112ah
+   A 0C84 jr $+43
+== A 0D99-0D9D: not found in B (3 instructions)
+   A 0D99 ld a,007h
+   A 0D9B bit 1,l
+   A 0D9D jr z,$+19
+== A 0F2C-0F2E: not found in B (2 instructions)
+   A 0F2C cp 080h
+   A 0F2E jr nz,$+8
+== A 0F36-0F38: not found in B (2 instructions)
+   A 0F36 bit 7,a
+   A 0F38 jr z,$+37
+== A 1611-169E ~ B 19F2
+   insert: A []  B [19F2 out (c),c]
+   insert: A []  B [19FA out (c),c]
+   replace: A [1696 ld hl,01598h]  B [1A61 ld hl,00000h]
+== A 1C26-1C89 ~ B 200F
+   replace: A [1C26 ex (sp),ix]  B [200F ld hl,0218dh; 2012 adc a,l; 2013 ld hl,0218dh; 2016 xor d; 2017 ld hl,0e3ddh]
+== A 1E6E-1E7F: not found in B (15 instructions)
+   A 1E6E pop hl
+   A 1E6F ld b,0bch
+   A 1E71 ld c,(hl)
+   A 1E72 inc hl
+   A 1E73 push hl
+   A 1E74 inc c
+   A 1E75 ret z
+   A 1E76 dec c
+   A 1E77 pop hl
+   A 1E78 out (c),c
+   A 1E7A inc b
+   A 1E7B ld c,(hl)
+== A 1FEA-20AE ~ B 244A
+   replace: A [206E ld ix,029cch; 2072 ld iy,02bd2h]  B [244A ld ix,00000h; 244E ld iy,00000h]
+   replace: A [20A4 sub 001h]  B [2480 sub 000h]
+== A 20BE-20C8: not found in B (6 instructions)
+   A 20BE di
+   A 20BF ld a,(000feh)
+   A 20C2 cp 00dh
+   A 20C4 call nz,03568h
+   A 20C7 di
+   A 20C8 call 01e6eh
+== A 20D2-21F4 ~ B 2515
+   replace: A [20DD jr nz,$-22]  B [2515 jr nz,$-12; 2517 call 0381eh]
+   replace: A [2141 ld hl,03568h; 2144 ld de,0002dh; 2147 ld b,005h; 2149 ld (hl),a; 214A add hl,de; 214B djnz $-2]  B [257C ld (0a2c0h),a; 257F ld (0a200h),a; 2582 ld (0a230h),a; 2585 ld (0a260h),a; 2588 ld (0a290h),a]
+   replace: A [21D9 cp 000h]  B [2617 cp 02ah]
+== A 22D4-2308 ~ B 2779
+   replace: A [22D4 xor a; 22D5 jp 016b2h]  B [2779 ldir; 277B pop hl; 277C call 03a4dh; 277F pop bc; 2780 djnz $-31; 2782 ret]
+   replace: A [22F1 sub 08ch]  B [279C sub 000h]
+   replace: A [22FD sub 07ch]  B [27A8 sub 000h]
+== A 230D-239E ~ B 2822
+   replace: A [2377 ld bc,00018h]  B [2822 ld bc,00000h]
+   replace: A [237E ld bc,0ffffh]  B [2829 ld bc,00000h]
+== A 23E2-23E6: not found in B (4 instructions)
+   A 23E2 nop
+   A 23E3 ld a,000h
+   A 23E5 and a
+   A 23E6 jr z,$+57
+== A 2573-26E9 ~ B 2AE0
+   replace: A [2635 sub 074h]  B [2AE0 sub 000h]
+   replace: A [263F sub 084h]  B [2AEA sub 000h]
+== A 27DF-27E1: not found in B (2 instructions)
+   A 27DF cp 001h
+   A 27E1 jr nz,$+8
+== A 284E-288E ~ B 2D07
+   replace: A [285C jr z,$+19]  B [2D07 jr z,$+23]
+   insert: A []  B [2D0D out (c),c]
+   insert: A []  B [2D1B out (c),c]
+== A 2D50-2DA7 ~ B 32E6
+   replace: A [2D7A ld a,c; 2D7B and 00fh]  B [32E6 call 03305h]
+   insert: A []  B [3305 ld a,c; 3306 and 00fh; 3308 cp 000h; 330A ret nc; 330B ld b,(iy+000h); 330E inc iy; 3310 ret]
+   insert: A []  B [3314 ld bc,07fc0h; 3317 out (c),c]
+== A 2E42-2EB2 ~ B 345E
+   replace: A [2E69 ld de,02df2h]  B [345E ld de,00000h]
+== A 2EBB-2EDD ~ B 34BA
+   insert: A []  B [34BA ld bc,07fc6h; 34BD out (c),c]
+   replace: A [2ED3 ld hl,(02ee5h); 2ED6 ld (hl),a]  B [34CD call 0336fh]
+   replace: A [2EDB ld (hl),a]  B [34D4 call 03372h]
+== A 2F57-2FAC ~ B 355D
+   insert: A []  B [355D ld b,0a1h]
+   delete: A [2F6A ld b,h; 2F6B ld c,l]  B []
+   insert: A []  B [3569 ld c,(hl)]
+   delete: A [2F6F ld h,a; 2F70 ld l,000h; 2F72 rra; 2F73 adc hl,hl; 2F75 rra; 2F76 adc hl,hl; 2F78 rra; 2F79 adc hl,hl; 2F7B rra; 2F7C adc hl,hl; 2F7E rra; 2F7F and 0f0h; 2F81 or l]  B []
+   replace: A [2F84 ld h,a; 2F85 ld l,000h; 2F87 rra; 2F88 adc hl,hl; 2F8A rra; 2F8B adc hl,hl; 2F8D rra; 2F8E adc hl,hl; 2F90 rra; 2F91 adc hl,hl; 2F93 rra; 2F94 and 0f0h; 2F96 or l; 2F97 ld (bc),a]  B [356D ld c,a; 356E ld a,(bc); 356F ld (hl),a]
+   replace: A [2F9A dec bc]  B [3572 dec hl]
+   replace: A [2F9E jr nz,$-49]  B [3576 jr nz,$-14]
+   replace: A [2FA2 ld de,00006h]  B [357A ld de,00000h]
+   replace: A [2FAA djnz $-67]  B [3582 djnz $-30]
+== A 2FB9-2FBE: not found in B (3 instructions)
+   A 2FB9 ld a,04fh
+   A 2FBB call 02e7dh
+   A 2FBE ret z
+== A 3166-31C0 ~ B 3853
+   replace: A [31AB ld (ix+001h),001h]  B [3853 ld (ix+001h),a]
+   replace: A [31BE djnz $-22]  B [3865 djnz $-21]
+== A 31DF-31E4: not found in B (3 instructions)
+   A 31DF ld a,044h
+   A 31E1 call 02e7dh
+   A 31E4 ret z
+== A 3456-3648 ~ B 3951
+   insert: A []  B [3951 ld (03938h),a; 3954 ld (039f0h),a]
+   insert: A []  B [395D ld (039cah),a; 3960 ld (0391fh),a; 3963 ld bc,07fc6h; 3966 out (c),c]
+   insert: A []  B [396B ld bc,07fc0h; 396E out (c),c]
+   replace: A [346E ld c,(ix+000h); 3471 inc c]  B [3973 ld a,(ix+000h); 3976 cp 0ffh]
+   replace: A [3473 dec c; 3474 ld d,(ix+003h); 3477 bit 3,c; 3479 jr nz,$+10; 347B ld a,d; 347C rrca; 347D rrca; 347E rrca; 347F rrca]  B [3979 ld d,a; 397A and 007h; 397C ret z; 397D cp 006h; 397F ret nc; 3980 bit 3,d; 3982 ld a,(ix+003h); 3985 jr z,$+7; 3987 ld b,(ix+004h); 398A jr $+13; 398C ld c,a]
+   delete: A [3482 ld d,a; 3483 ld h,(ix+001h); 3486 call 03549h; 3489 jr nc,$+114; 348B bit 3,c; 348D exx; 348E ld d,(ix+004h); 3491 jr nz,$+8; 3493 ld a,(ix+003h); 3496 and 00fh; 3498 ld d,a; 3499 ld h,(ix+002h); 349C call 0354dh; 349F exx; 34A0 jr nc,$+91; 34A2 exx; 34A3 xor a; 34A4 ld (0351ch),a; 34A7 ld (03515h),a; 34AA ld a,(ix+000h); 34AD ld c,a; 34AE and 007h]  B []
+   replace: A [34B8 dec b; 34B9 call z,03521h; 34BC dec b; 34BD call z,0352ch; 34C0 dec b; 34C1 call z,03535h; 34C4 dec b; 34C5 call z,03540h; 34C8 ld c,e]  B [3997 ld c,a; 3998 ld a,d; 3999 rrca; 399A rrca; 399B rrca; 399C rrca; 399D and 00fh; 399F ld l,(ix+001h); 39A2 ld h,(ix+002h); 39A5 bit 3,(ix+000h); 39A9 jr z,$+4; 39AB inc ix; 39AD inc ix; 39AF inc ix; 39B1 inc ix; 39B3 inc ix; 39B5 ex af,af'; 39B6 inc b; 39B7 inc c; 39B8 ld a,l; 39B9 sub 000h; 39BB jr nc,$+9; 39BD neg; 39BF cp c; 39C0 jr nc,$-77; 39C2 jr $+6; 39C4 cp 018h; 39C6 jr nc,$-83; 39C8 ld a,h; 39C9 sub 000h; 39CB jr nc,$+9; 39CD neg; 39CF cp b; 39D0 jr nc,$-93; 39D2 jr $+6; 39D4 cp 018h; 39D6 jr nc,$-99; 39D8 ld a,d; 39D9 and 007h; 39DB cp 005h; 39DD jr z,$+17; 39DF add a,a; 39E0 ld de,038efh; 39E3 add a,e; 39E4 ld e,a; 39E5 adc a,d; 39E6 sub e; 39E7 ld d,a; 39E8 ex af,af'; 39E9 call 038fdh; 39EC jr $-121; 39EE ld a,l; 39EF sub 000h; 39F1 jr nc,$+14; 39F3 add a,c; 39F4 cp 018h; 39F6 jr c,$+4; 39F8 ld a,018h; 39FA ld c,a; 39FB ld l,000h; 39FD jr $+12; 39FF ld l,a; 3A00 add a,c; 3A01 sub 018h; 3A03 jr c,$+6; 3A05 neg; 3A07 add a,c; 3A08 ld c,a; 3A09 ld a,h; 3A0A sub 000h; 3A0C jr nc,$+14; 3A0E add a,b; 3A0F cp 018h; 3A11 jr c,$+4; 3A13 ld a,018h; 3A15 ld b,a; 3A16 ld h,000h; 3A18 jr $+12; 3A1A ld h,a; 3A1B add a,b; 3A1C sub 018h; 3A1E jr c,$+6; 3A20 neg; 3A22 add a,b; 3A23 ld b,a; 3A24 ld a,l; 3A25 ld l,h]
+   insert: A []  B [3A2B ld d,h]
+   delete: A [34CF ld d,h]  B []
+   delete: A [34D6 add hl,de; 34D7 ex af,af'; 34D8 exx; 34D9 ld a,e; 34DA ld (034eah),a; 34DD ld (03510h),a; 34E0 ld a,l; 34E1 exx; 34E2 call 0128fh; 34E5 ex af,af'; 34E6 dec b; 34E7 jr nz,$+35; 34E9 ld b,008h; 34EB ld d,h; 34EC ld e,l; 34ED ld (hl),a; 34EE inc hl; 34EF djnz $-2; 34F1 ld hl,00018h; 34F4 add hl,de; 34F5 dec c; 34F6 jr nz,$-13; 34F8 ld c,(ix+000h); 34FB ld de,00004h; 34FE add ix,de; 3500 bit 3,c; 3502 jp z,0346eh; 3505 inc ix; 3507 jp 0346eh; 350A ld de,00018h; 350D ld b,c; 350E ld c,a; 350F ld a,008h; 3511 push bc; 3512 push hl; 3513 ld (hl),c; 3514 inc hl; 3515 nop; 3516 dec a; 3517 jr nz,$-4; 3519 pop hl; 351A pop bc; 351B add hl,de; 351C nop; 351D djnz $-14; 351F jr $-39; 3521 exx; 3522 add a,h; 3523 exx; 3524 ex af,af'; 3525 ld a,00ch; 3527 ld (03515h),a; 352A ex af,af'; 352B ret; 352C sub h; 352D ex af,af'; 352E ld a,00dh; 3530 ld (0351ch),a; 3533 ex af,af'; 3534 ret; 3535 exx; 3536 sub h; 3537 exx; 3538 ex af,af'; 3539 ld a,00dh; 353B ld (03515h),a; 353E ex af,af'; 353F ret; 3540 add a,h; 3541 ex af,af'; 3542 ld a,00ch; 3544 ld (0351ch),a; 3547 ex af,af'; 3548 ret; 3549 ld l,07ch; 354B jr $+4; 354D ld l,07ch; 354F ld e,018h; 3551 inc d; 3552 call 03786h; 3555 ld e,a; 3556 ret; 3557 ret; 3558 ld a,h; 3559 add a,008h; 355B ld h,a; 355C ret nc; 355D ld a,040h]  B []
+   replace: A [3563 or 0c0h]  B [3A37 ld h,a; 3A38 add hl,de; 3A39 ld de,00018h; 3A3C ex af,af'; 3A3D push bc; 3A3E push hl; 3A3F ld b,c; 3A40 ld (hl),a; 3A41 inc hl; 3A42 djnz $-2; 3A44 pop hl; 3A45 add hl,de; 3A46 pop bc; 3A47 djnz $-10; 3A49 jp 03973h; 3A4C ret; 3A4D ld a,h; 3A4E add a,008h; 3A50 jr c,$+4]
+   insert: A []  B [3A54 ld a,h; 3A55 and 0c7h; 3A57 ld h,a; 3A58 ld a,050h; 3A5A add a,l; 3A5B ld l,a; 3A5C ret nc; 3A5D adc a,h; 3A5E sub l; 3A5F ld h,a]
+   replace: A [3568 ld l,h; 3569 ld b,b; 356A ld e,a; 356B ld e,e; 356C adc a,b]  B [3A61 ld hl,0a100h; 3A64 ld a,l; 3A65 and 0f0h; 3A67 ld c,a; 3A68 ld a,l; 3A69 and 00fh; 3A6B rl c; 3A6D rra; 3A6E rl c; 3A70 rra; 3A71 rl c; 3A73 rra; 3A74 rl c; 3A76 rra; 3A77 rl c; 3A79 or c; 3A7A ld (hl),a; 3A7B inc l; 3A7C jr nz,$-24; 3A7E ld hl,05086h; 3A81 ld bc,07fc6h; 3A84 out (c),c]
+   replace: A [3575 call 03598h; 3578 ld b,008h; 357A ld de,0c600h; 357D ld hl,08300h; 3580 push bc; 3581 ld bc,00200h; 3584 ldir; 3586 ex de,hl; 3587 ld bc,00600h; 358A add hl,bc; 358B ex de,hl; 358C pop bc; 358D djnz $-13; 358F call 0310eh; 3592 call 035c3h; 3595 ld l,h; 3596 ld b,b; 3597 ld (hl),011h; 3599 nop; 359A add a,021h; 359C nop; 359D push bc; 359E call 035b0h; 35A1 ld de,0d600h; 35A4 call 035b0h; 35A7 ld de,0e600h; 35AA call 035b0h; 35AD ld de,0f600h; 35B0 ld b,008h; 35B2 push bc; 35B3 push hl; 35B4 ld bc,00040h; 35B7 ex de,hl; 35B8 ldir; 35BA ex de,hl; 35BB pop hl; 35BC call 03558h; 35BF pop bc; 35C0 djnz $-14; 35C2 ld b,d; 35C3 rst 38h; 35C4 rst 38h; 35C5 pop de; 35C6 rla; 35C7 ld e,(hl); 35C8 jp po,0de22h; 35CB ld l,006h; 35CD ld (hl),d]  B [3A8E ld (034d9h),hl; 3A91 ld b,072h]
+   replace: A [35DF jr nz,$+22]  B [3AA4 jr nz,$+27]
+   replace: A [35E7 jr nz,$+14]  B [3AAC jr nz,$+19]
+   replace: A [35EC jr nz,$+9]  B [3AB1 jr nz,$+14]
+   replace: A [35EF rst 38h; 35F0 rst 38h; 35F1 djnz $+1; 35F3 djnz $+18; 35F5 djnz $-26]  B [3AB4 ld (hl),011h; 3AB6 ld (034e0h),hl; 3AB9 ld bc,07fc0h; 3ABC out (c),c; 3ABE ret; 3ABF djnz $-31]
+   replace: A [361C adc a,b]  B [3AE6 and c]
+== A 3778-37B3 ~ B 5C40
+   replace: A [3778 ld a,h; 3779 rlca; 377A rlca; 377B rlca; 377C ld h,a; 377D set 7,h; 377F set 6,h; 3781 and 0c0h; 3783 or l]  B [5C40 ld b,a; 5C41 ld a,l; 5C42 and 0fch]
+   insert: A []  B [5C45 ld a,d; 5C46 add a,c; 5C47 add a,007h; 5C49 and 0f8h; 5C4B ld d,a; 5C4C ld a,e; 5C4D add a,b; 5C4E add a,003h; 5C50 and 0fch; 5C52 ld e,a]
+   replace: A [378A jr c,$+26]  B [5C58 jr c,$+25]
+   replace: A [378D ret nc]  B [5C5B jr nc,$+38]
+   delete: A [3799 scf]  B []
+   delete: A [37A1 scf]  B []
+   replace: A [37AA ret nc]  B [5C77 jr nc,$+10]
+   delete: A [37B0 scf]  B []
+== A 38FC-396B ~ B 3DBF
+   replace: A [390C ld (0384eh),a]  B [3DBF ld (00000h),a]
+== A 39F1-3A47 ~ B 3ED7
+   replace: A [3A24 ccf]  B [3ED7 nop]
+== A 3AAF-3B3A ~ B 3F64
+   replace: A [3AAF xor a]  B [3F64 out (c),c; 3F66 ret; 3F67 ld c,b; 3F68 ld d,h; 3F69 call 0afc1h]
+== A 3B66-3B6B: not found in B (3 instructions)
+   A 3B66 ld a,(0294eh)
+   A 3B69 bit 1,a
+   A 3B6B ret z
+== A 3C8F-3C8F: not found in B (1 instructions)
+   A 3C8F jr nc,$+14
+== A 3D3C-3D45 ~ B 50F8
+   replace: A [3D3C ld a,(037dah)]  B [50F8 jr nc,$+116; 50FA jr nc,$-125; 50FC jr nc,$+60; 50FE adc a,l; 50FF inc a]
+== A 3DEE-3E06 ~ B 51A7
+   replace: A [3DEE ld a,(02940h)]  B [51A7 jr nz,$+34; 51A9 jr nc,$+50; 51AB jr nz,$+60; 51AD rst 28h; 51AE dec l]
+== A 3E29-3E2D: not found in B (3 instructions)
+   A 3E29 ld a,(037e4h)
+   A 3E2C and a
+   A 3E2D ret z
+== A 3F92-40E6 ~ B 5325
+   replace: A [3F92 ld hl,(02905h)]  B [5325 inc b; 5326 add a,b; 5327 nop; 5328 ld bc,0b42ah; 532B dec l]
+== A 41A8-4254 ~ B 556A
+   replace: A [41D3 ld sp,085b4h]  B [556A ld sp,00000h]
+   replace: A [4210 add a,001h]  B [55A7 add a,000h]
+   replace: A [422B ld de,00d04h]  B [55C2 ld de,00000h]
+== A 447D-462C ~ B 5970
+   delete: A [45D9 jp nc,04597h]  B []
+   delete: A [45FB jp nc,04597h]  B []
+   delete: A [4616 ld a,0cch; 4618 ld (046aeh),a; 461B ld a,023h; 461D ld (046c3h),a]  B []
+   replace: A [4626 jr c,$+69]  B [59AD jr c,$+40]
+   replace: A [462C jr nz,$+63]  B [59B3 jr nz,$+34; 59B5 ld a,l; 59B6 sub 00ah; 59B8 ld l,a; 59B9 ld a,(iy+005h); 59BC ld (04b30h),a; 59BF call 04d24h; 59C2 ld a,(iy+00bh); 59C5 ld hl,048c8h; 59C8 add a,a; 59C9 add a,l; 59CA ld l,a; 59CB adc a,h; 59CC sub l; 59CD ld h,a]
+== A 466B-46E8 ~ B 59ED
+   replace: A [4683 ld hl,00006h]  B [59ED ld hl,00000h]
+   replace: A [4693 ld a,004h]  B [59FD ld a,000h]
+   replace: A [46A3 ld b,021h]  B [5A0D ld b,000h]
+   replace: A [46A6 ld b,005h]  B [5A10 ld b,000h]
+   replace: A [46AC jr z,$+23; 46AE call z,04717h]  B [5A16 jr z,$+20]
+   insert: A []  B [5A2A inc de]
+   replace: A [46C4 inc de; 46C5 djnz $-27]  B [5A2C djnz $-24]
+   replace: A [46C8 ld de,00005h]  B [5A2F ld de,00000h]
+   replace: A [46D1 jr nz,$+57]  B [5A38 jr nz,$+27]
+   replace: A [46D8 jr nz,$+50]  B [5A3F jr nz,$+20]
+   replace: A [46E6 bit 6,h; 46E8 jr z,$+26]  B [5A4D add a,000h; 5A4F ld l,a; 5A50 adc a,h; 5A51 sub l; 5A52 ld h,a; 5A53 ld a,000h; 5A55 add a,e; 5A56 ld e,a; 5A57 adc a,d; 5A58 sub e]
+== A 4702-4714 ~ B 221C
+   replace: A [4702 add a,000h; 4704 ld l,a; 4705 adc a,h; 4706 sub l; 4707 ld h,a; 4708 res 6,h; 470A ld a,00ch]  B [221C cp 060h; 221E jr c,$+27; 2220 cp 082h; 2222 jr nz,$+9; 2224 ld a,(ix+000h); 2227 inc ix; 2229 jr $+16; 222B cp 070h; 222D jr c,$+4; 222F xor 000h; 2231 sub 061h]
+   replace: A [4711 exx; 4712 djnz $-109]  B [2238 ld a,(de); 2239 ld c,a; 223A and a; 223B ret; 223C nop]
+== A 483F-48B2 ~ B 5B95
+   replace: A [4862 ld b,030h]  B [5B95 ld b,000h]
+   replace: A [4867 ld bc,00004h]  B [5B9A ld bc,00000h]
+   replace: A [4878 jr nc,$+11; 487A ld a,040h]  B [5BAB and 038h; 5BAD jr nz,$+15; 5BAF ld a,h; 5BB0 sub 008h; 5BB2 and 0c7h; 5BB4 ld h,a; 5BB5 ld a,050h]
+   delete: A [4880 or 0c0h]  B []
+   replace: A [4883 djnz $-31]  B [5BBC djnz $-37]
+== A 48BC-4A4E ~ B 5C54
+   insert: A []  B [5C54 ld a,l; 5C55 sub h; 5C56 jr z,$+19; 5C58 jr c,$+25; 5C5A cp d; 5C5B jr nc,$+38; 5C5D ld h,a; 5C5E ld l,000h; 5C60 add a,e; 5C61 cp d; 5C62 jr nc,$+4; 5C64 ld a,e; 5C65 ret; 5C66 ld a,d; 5C67 sub h; 5C68 ret; 5C69 ld hl,00000h; 5C6C ld a,e; 5C6D cp d; 5C6E ret c; 5C6F ld a,d; 5C70 ret; 5C71 ld h,000h; 5C73 neg; 5C75 ld l,a; 5C76 cp e; 5C77 jr nc,$+10; 5C79 neg; 5C7B add a,e; 5C7C cp d; 5C7D ret c; 5C7E ret z; 5C7F ld a,d; 5C80 ret; 5C81 pop hl; 5C82 jp 04a2eh]
+   insert: A []  B [5C8E ret; 5C8F pop hl; 5C90 ld de,08d80h; 5C93 and a; 5C94 sbc hl,de; 5C96 ret c; 5C97 ld de,00780h; 5C9A sbc hl,de; 5C9C ccf]
+   delete: A [4949 xor a; 494A ld (04a2ch),a; 494D ld (04a48h),a; 4950 ld a,(02928h); 4953 sub 004h; 4955 ld (04a28h),a; 4958 ld (04a44h),a]  B []
+   replace: A [496E jr z,$+73]  B [5CD5 jr z,$+70]
+   replace: A [4971 ld bc,0fdfdh]  B [5CD8 ld bc,00000h]
+   replace: A [4988 jr $+46]  B [5CEF jr $+43]
+   replace: A [498B jr nc,$+43]  B [5CF2 jr nc,$+40]
+   replace: A [4991 jr nc,$+37]  B [5CF8 jr nc,$+34]
+   replace: A [4997 jr nz,$+31]  B [5CFE jr nz,$+28]
+   delete: A [49AD ld a,(ix+002h)]  B []
+   replace: A [49C1 jr nz,$-87]  B [5D25 jr nz,$-84]
+   replace: A [49C9 djnz $-103]  B [5D2D djnz $-100]
+   replace: A [49E7 ld l,a]  B [5D4B ld l,(ix+002h)]
+   replace: A [49EE ld a,083h]  B [5D54 ld a,06dh]
+   delete: A [49F1 ld h,a; 49F2 exx; 49F3 ld h,091h; 49F5 exx; 49F6 bit 7,c; 49F8 jr nz,$+26; 49FA ld a,c; 49FB and 070h; 49FD rrca; 49FE ld h,a; 49FF ld a,c; 4A00 rrca; 4A01 rrca; 4A02 rrca; 4A03 and 001h; 4A05 or h; 4A06 add a,0c6h]  B []
+   replace: A [4A0C jr c,$+40]  B [5D5B ld a,(02dd7h); 5D5E jr c,$+52; 5D60 sub 004h; 5D62 ld (04e87h),a; 5D65 bit 7,(ix+002h)]
+   replace: A [4A0F ld h,08fh]  B [5D6A ld h,09dh; 5D6C jr z,$+4; 5D6E ld h,09fh]
+   replace: A [4A27 ld a,004h]  B [5D86 ld a,000h]
+   delete: A [4A2B ld a,000h]  B []
+   insert: A []  B [5D8B sub e]
+   replace: A [4A31 jr nz,$-29]  B [5D8F jr nz,$-28]
+   delete: A [4A34 push hl; 4A35 exx; 4A36 pop hl; 4A37 ld b,008h; 4A39 ld c,008h; 4A3B ldi; 4A3D ldi; 4A3F ldi; 4A41 ldi; 4A43 ld a,004h; 4A45 add a,e; 4A46 ld e,a; 4A47 ld a,000h; 4A49 adc a,d; 4A4A ld d,a; 4A4B djnz $-18; 4A4D exx; 4A4E ret]  B []
+== A 4A5F-4ACE ~ B 5DEC
+   replace: A [4A5F ld de,0c21ch; 4A62 ld a,0fch]  B [5DEC ld hl,00004h; 5DEF call 04f18h; 5DF2 ld a,00fh; 5DF4 ld b,a; 5DF5 inc a; 5DF6 inc a]
+   insert: A []  B [5DFA ld a,b; 5DFB ld bc,0ffa0h; 5DFE ld hl,0ffb0h; 5E01 call 04f18h; 5E04 ld a,00fh; 5E06 ld b,a; 5E07 inc a; 5E08 inc a]
+   replace: A [4A6A ld a,007h; 4A6C ld (04a2ch),a; 4A6F ld (04a48h),a; 4A72 ld ix,08aaah; 4A76 ld iy,04a4fh; 4A7A ld (iy+000h),004h; 4A7E ld (iy+004h),001h; 4A82 ld (iy+008h),005h; 4A86 ld (iy+00ch),002h; 4A8A ld c,008h; 4A8C ld iy,04a4fh; 4A90 ld b,004h; 4A92 push bc; 4A93 ld b,(iy+000h); 4A96 inc (iy+000h); 4A99 inc (iy+000h)]  B [5E0C ld a,b; 5E0D ld bc,0fffah; 5E10 ld hl,0fffch; 5E13 call 04f18h; 5E16 jr $-75; 5E18 ld (04f35h),hl; 5E1B ld (04f30h),bc; 5E1F ld b,a]
+   replace: A [4AAB ld b,(iy+003h); 4AAE ld c,(iy+001h)]  B [5E2F ld bc,00000h]
+   replace: A [4AB3 ld h,b; 4AB4 ld l,(iy+002h)]  B [5E34 ld hl,00000h]
+   replace: A [4ABA djnz $-30; 4ABC ld bc,00004h; 4ABF add iy,bc; 4AC1 pop bc; 4AC2 djnz $-48; 4AC4 dec c; 4AC5 jr nz,$-57]  B [5E3A djnz $-26]
+   replace: A [4ACA call 049e5h; 4ACD pop de; 4ACE ret]  B [5E3F ld h,000h; 5E41 ld l,a; 5E42 add hl,hl; 5E43 add hl,hl; 5E44 add hl,hl; 5E45 add hl,hl; 5E46 add hl,hl; 5E47 ld c,a; 5E48 ld a,06dh; 5E4A add a,h; 5E4B ld h,a; 5E4C bit 7,c; 5E4E exx; 5E4F ld h,09dh; 5E51 jr z,$+4; 5E53 ld h,09fh; 5E55 exx; 5E56 ld c,008h; 5E58 ld b,004h]
+== A 4B43-4B43: not found in B (1 instructions)
+   A 4B43 ret
+== A 4CBC-4CCA ~ B 606D
+   replace: A [4CC3 cp 082h]  B [606D cp 000h]
+   replace: A [4CC8 cp 089h]  B [6072 cp 000h]
+== A 50AF-5123 ~ B 64A8
+   replace: A [50FE dec bc]  B [64A8 inc bc]
+== A 51E7-51E7: not found in B (1 instructions)
+   A 51E7 rst 8
+== A 51F7-51F7: not found in B (1 instructions)
+   A 51F7 jr nz,$+6
+== A 51FD-51FD: not found in B (1 instructions)
+   A 51FD rst 8
+== A 5211-5211: not found in B (1 instructions)
+   A 5211 jr nz,$+6
+== A 5217-5217: not found in B (1 instructions)
+   A 5217 rst 8
+== A 5224-5224: not found in B (1 instructions)
+   A 5224 jr nz,$+6
+== A 522A-522A: not found in B (1 instructions)
+   A 522A rst 8
+== A 522F-522F: not found in B (1 instructions)
+   A 522F jr nz,$+6
+== A 523E-523E: not found in B (1 instructions)
+   A 523E jr nz,$+48
+== A 526E-526E: not found in B (1 instructions)
+   A 526E rst 8
+== A 5276-5276: not found in B (1 instructions)
+   A 5276 jr nz,$+7
+== A 527D-5281: not found in B (4 instructions)
+   A 527D rst 8
+   A 527E add a,d
+   A 527F ld d,03eh
+   A 5281 jr nz,$+39
+== A 52B3-52B8 ~ B 6658
+   replace: A [52B3 ret]  B [6658 rst 10h; 6659 ret nz; 665A ret nz; 665B ld (bc),a; 665C ld h,0c9h]
+== A 52BD-52C1: not found in B (3 instructions)
+   A 52BD rst 8
+   A 52BE xor h
+   A 52BF ld bc,0203dh
+== A 52D2-52D2: not found in B (1 instructions)
+   A 52D2 rst 8
+== A 52DA-52DA: not found in B (1 instructions)
+   A 52DA jr nz,$+9
+== A 53DF-53E3: not found in B (3 instructions)
+   A 53DF rst 8
+   A 53E0 adc a,b
+   A 53E1 ld bc,0203dh
+== A 5495-5499: not found in B (3 instructions)
+   A 5495 rst 8
+   A 5496 xor e
+   A 5497 ld bc,0203dh
+== A 5509-550D ~ B 65AB
+   replace: A [550D jr nz,$+6]  B [65AB adc a,d; 65AC ld (bc),a; 65AD ld a,026h; 65AF adc a,h; 65B0 dec d; 65B1 dec a; 65B2 ld hl,(001a5h); 65B5 dec a; 65B6 ld hl,(00b8ch)]
+== A 5513-5517: not found in B (3 instructions)
+   A 5513 rst 8
+   A 5514 adc a,b
+   A 5515 ld bc,0203dh
+== A 5616-5616: not found in B (1 instructions)
+   A 5616 rst 8
+== A 5622-5622: not found in B (1 instructions)
+   A 5622 jr nz,$+89
+== A 567B-5681 ~ B 6A20
+   replace: A [567B rst 10h]  B [6A20 xor (hl); 6A21 xor (hl); 6A22 ld b,b; 6A23 add a,b; 6A24 ld h,0d7h]
+== A 571C-5720: not found in B (3 instructions)
+   A 571C rst 8
+   A 571D xor l
+   A 571E ld bc,0203dh
+== A 5806-5806: not found in B (1 instructions)
+   A 5806 rst 8
+== A 580E-580E: not found in B (1 instructions)
+   A 580E jr nz,$+9
+== A 5817-581B: not found in B (3 instructions)
+   A 5817 rst 8
+   A 5818 adc a,b
+   A 5819 ld bc,0203dh
+== A 5853-5857 ~ B 65AB
+   replace: A [5857 jr nz,$+6]  B [65AB adc a,d; 65AC ld (bc),a; 65AD ld a,026h; 65AF adc a,h; 65B0 dec d; 65B1 dec a; 65B2 ld hl,(001a5h); 65B5 dec a; 65B6 ld hl,(00b8ch)]
+== A 585D-5864 ~ B 6C00
+   replace: A [585D rst 8]  B [6C00 dec a; 6C01 jr nz,$+6; 6C03 rst 10h; 6C04 sub e; 6C05 ld bc,0cfc9h]
+== A 5875-5875: not found in B (1 instructions)
+   A 5875 jr nz,$+57
+== A 58AE-58AE: not found in B (1 instructions)
+   A 58AE rst 8
+== A 58B3-58B3: not found in B (1 instructions)
+   A 58B3 jr nz,$+16
+== A 58C3-58CD ~ B 6C63
+   replace: A [58C3 rst 8]  B [6C63 jr nz,$+9; 6C65 call 05026h; 6C68 ld h,0d7h; 6C6A sbc a,e; 6C6B ld bc,0cfc9h]
+== A 58D2-58D2: not found in B (1 instructions)
+   A 58D2 rst 8
+== A 58DA-58DA: not found in B (1 instructions)
+   A 58DA jr nz,$+16
+== A 58F7-58F7: not found in B (1 instructions)
+   A 58F7 rst 8
+== A 58FD-58FD: not found in B (1 instructions)
+   A 58FD jr nz,$+5
+== A 5902-5906: not found in B (3 instructions)
+   A 5902 rst 8
+   A 5903 or h
+   A 5904 ld bc,0203dh
+== A 590C-5910: not found in B (3 instructions)
+   A 590C rst 8
+   A 590D or l
+   A 590E ld bc,0203dh
+== A 5919-591D ~ B 6CBC
+   replace: A [5919 rst 8]  B [6CBC rst 10h; 6CBD or l; 6CBE nop; 6CBF call 0501bh; 6CC2 jr z,$-47]
+== A 5932-593C ~ B 6CCE
+   replace: A [5932 rst 8; 5933 sbc a,h]  B [6CCE ld (0b7d7h),a; 6CD1 nop; 6CD2 call 01a6ch; 6CD5 call 03ff7h; 6CD8 call 0501bh; 6CDB ld hl,(09ccfh)]
+== A 595E-595E: not found in B (1 instructions)
+   A 595E rst 8
+== A 5963-5963: not found in B (1 instructions)
+   A 5963 jr nz,$+25
+== A 597C-5986 ~ B 6D23
+   insert: A []  B [6D23 or a; 6D24 ld bc,0d7c9h]
+== A 5994-5994: not found in B (1 instructions)
+   A 5994 rst 8
+== A 599C-599C: not found in B (1 instructions)
+   A 599C jr nz,$+14
+== A 5B0B-5B0E: not found in B (2 instructions)
+   A 5B0B call 00c81h
+   A 5B0E ret
+== A 5B21-5B21: not found in B (1 instructions)
+   A 5B21 rst 8
+== A 5B2D-5B2D: not found in B (1 instructions)
+   A 5B2D jr nz,$+5
+== A 5B32-5B32: not found in B (1 instructions)
+   A 5B32 rst 8
+== A 5B3A-5B3A: not found in B (1 instructions)
+   A 5B3A jr nz,$+9
+== A 5B67-5B67: not found in B (1 instructions)
+   A 5B67 rst 8
+== A 5B6D-5B6D: not found in B (1 instructions)
+   A 5B6D jr nz,$+23
+== A 5B84-5B84: not found in B (1 instructions)
+   A 5B84 rst 8
+== A 5B92-5B92: not found in B (1 instructions)
+   A 5B92 jr nz,$+24
+== A 5BAA-5BAE ~ B 6F48
+   replace: A [5BAE jr nz,$+6]  B [6F48 and (hl); 6F49 djnz $+44; 6F4B ld h,020h; 6F4D ld b,0d7h; 6F4F sbc a,e; 6F50 ld bc,08cd7h; 6F53 djnz $-47; 6F55 adc a,h; 6F56 dec d]
+== A 5BB4-5BB4: not found in B (1 instructions)
+   A 5BB4 rst 8
+== A 5BB9-5BB9: not found in B (1 instructions)
+   A 5BB9 jr nz,$+20
+== A 5BEA-5BEE: not found in B (3 instructions)
+   A 5BEA rst 8
+   A 5BEB adc a,b
+   A 5BEC ld bc,0203dh
+== A 5C27-5C27: not found in B (1 instructions)
+   A 5C27 rst 8
+== A 5C2F-5C2F: not found in B (1 instructions)
+   A 5C2F jr nz,$+16
+== A 5C3F-5C43: not found in B (3 instructions)
+   A 5C3F rst 8
+   A 5C40 and l
+   A 5C41 ld bc,0203dh
+== A 5D9B-5DAD ~ B 714A
+   replace: A [5DA0 ld d,b; 5DA1 ld e,(hl); 5DA2 rst 8]  B [714A jp m,0cf62h]
+== A 5DBC-5DC5 ~ B 715F
+   replace: A [5DBC rst 8]  B [715F dec a; 7160 jr nz,$+5; 7162 rst 10h; 7163 sbc a,e; 7164 ld bc,0cfc9h]
+== A 6000-6004: not found in B (3 instructions)
+   A 6000 rst 8
+   A 6001 xor h
+   A 6002 ld bc,0203eh
+== A 600E-60AB ~ B 73C3
+   replace: A [6019 daa; 601A ld h,b; 601B dec l; 601C ld h,b; 601D inc (hl); 601E ld h,b; 601F xor 05fh; 6021 ld (de),a; 6022 ld h,b; 6023 ld a,(00060h)]  B [73C3 pop de; 73C4 ld h,h; 73C5 rst 10h; 73C6 ld h,h; 73C7 sbc a,064h; 73C9 sbc a,b; 73CA ld h,h; 73CB cp h; 73CC ld h,h; 73CD call po,00064h]
+   replace: A [6032 ret m; 6033 ld e,a]  B [73DC and d; 73DD ld h,h]
+   replace: A [6043 ld d,b; 6044 ld h,b; 6045 ld h,d; 6046 ld h,b; 6047 ld h,d; 6048 ld h,b; 6049 ld (hl),b; 604A ld h,b; 604B ld (hl),b; 604C ld h,b]  B [73ED jp m,00c64h; 73F0 ld h,l; 73F1 inc c; 73F2 ld h,l; 73F3 ld a,(de); 73F4 ld h,l; 73F5 ld a,(de); 73F6 ld h,l]
+   replace: A [6096 inc h; 6097 ld d,c]  B [7440 adc a,055h]
+== A 60DC-6101 ~ B 749D
+   insert: A []  B [749D push ix; 749F call 03f3ah; 74A2 call 065afh; 74A5 call 03f3fh; 74A8 pop ix; 74AA ei; 74AB call 06725h; 74AE ret; 74AF ld hl,0c000h; 74B2 push hl; 74B3 ld d,h; 74B4 ld e,l; 74B5 inc de; 74B6 ld (hl),000h]
+   replace: A [60F6 rst 8; 60F7 adc a,d; 60F8 adc a,e; 60F9 dec a; 60FA jr nz,$+117; 60FC rst 8; 60FD and e; 60FE nop; 60FF dec a; 6100 ld h,e; 6101 inc e]  B [74BB ldir; 74BD pop hl; 74BE ld c,0c8h; 74C0 ld b,010h; 74C2 ld a,0f0h]
+== A 6114-6138: not found in B (32 instructions)
+   A 6114 ld d,c
+   A 6115 ld (bc),a
+   A 6116 ld h,e
+   A 6117 sub d
+   A 6118 rrca
+   A 6119 ld (bc),a
+   A 611A add hl,hl
+   A 611B dec c
+   A 611C inc c
+   A 611D ld (bc),a
+   A 611E ld (hl),e
+   A 611F ld l,l
+== A 613F-6146: not found in B (6 instructions)
+   A 613F dec (hl)
+   A 6140 ld b,049h
+   A 6142 or e
+   A 6143 ld d,(hl)
+   A 6144 ld b,093h
+   A 6146 ld (hl),e
+== A 61BA-61BE: not found in B (3 instructions)
+   A 61BA dec b
+   A 61BB jp pe,0020fh
+   A 61BE add hl,hl
+== A 61CA-627F: not found in B (150 instructions)
+   A 61CA jr $+83
+   A 61CC dec d
+   A 61CD add hl,bc
+   A 61CE rst 30h
+   A 61CF dec d
+   A 61D0 nop
+   A 61D1 ld (hl),c
+   A 61D2 ld c,a
+   A 61D3 ld (hl),002h
+   A 61D5 ld (hl),e
+   A 61D6 inc sp
+   A 61D7 ld e,c
+== A 62A4-62A8: not found in B (4 instructions)
+   A 62A4 ld c,e
+   A 62A5 djnz $+129
+   A 62A7 jp (hl)
+   A 62A8 inc sp
+== A 62BB-630A: not found in B (59 instructions)
+   A 62BB rrca
+   A 62BC ld (bc),a
+   A 62BD add hl,de
+   A 62BE rrca
+   A 62BF ld (de),a
+   A 62C0 ld (bc),a
+   A 62C1 dec e
+   A 62C2 inc sp
+   A 62C3 jp c,01f04h
+   A 62C6 or h
+   A 62C7 ld a,l
+   A 62C8 inc b
+== A 6311-6330: not found in B (26 instructions)
+   A 6311 ld (hl),d
+   A 6312 ld (hl),e
+   A 6313 ld b,073h
+   A 6315 ld d,h
+   A 6316 ld d,a
+   A 6317 inc b
+   A 6318 ld (hl),c
+   A 6319 ld (hl),d
+   A 631A ld e,h
+   A 631B nop
+   A 631C ld h,c
+   A 631D xor l
+== A 633F-63CF: not found in B (114 instructions)
+   A 633F ld e,c
+   A 6340 ld d,d
+   A 6341 inc (hl)
+   A 6342 nop
+   A 6343 ld sp,03731h
+   A 6346 nop
+   A 6347 sub e
+   A 6348 cpl
+   A 6349 sbc a,b
+   A 634A ld b,06dh
+   A 634C ld c,e
+   A 634D ld (00c06h),a
+== A 63D7-6439: not found in B (78 instructions)
+   A 63D7 ld a,(01f00h)
+   A 63DA ld l,h
+   A 63DB ld a,a
+   A 63DC ld b,089h
+   A 63DE ex af,af'
+   A 63DF jr $+2
+   A 63E1 ld e,e
+   A 63E2 ld b,l
+   A 63E3 ld e,h
+   A 63E4 nop
+   A 63E5 ld c,l
+   A 63E6 call z,00617h
+== A 6441-6443: not found in B (3 instructions)
+   A 6441 ld c,a
+   A 6442 ex af,af'
+   A 6443 inc b
+== A 6468-6480: not found in B (24 instructions)
+   A 6468 ld h,c
+   A 6469 xor (hl)
+   A 646A ld d,(hl)
+   A 646B nop
+   A 646C xor b
+   A 646D ld l,d
+   A 646E inc de
+   A 646F ld h,d
+   A 6470 cpl
+   A 6471 sbc a,05ah
+   A 6473 dec hl
+   A 6474 rrca
+== A 6493-64A4: not found in B (15 instructions)
+   A 6493 or 011h
+   A 6495 ld b,016h
+   A 6497 or h
+   A 6498 dec d
+   A 6499 ld (hl),c
+   A 649A inc (hl)
+   A 649B dec (hl)
+   A 649C ld (bc),a
+   A 649D rra
+   A 649E ld l,b
+   A 649F ld d,a
+   A 64A0 inc b
+== A 64B4-65A3: not found in B (182 instructions)
+   A 64B4 ex af,af'
+   A 64B5 inc de
+   A 64B6 inc b
+   A 64B7 ld hl,0160ah
+   A 64BA ld b,091h
+   A 64BC ld b,a
+   A 64BD ld a,a
+   A 64BE inc d
+   A 64BF ld (hl),b
+   A 64C0 ld l,b
+   A 64C1 dec sp
+   A 64C2 rst 38h
+== A 668B-66C2: not found in B (39 instructions)
+   A 668B ld e,l
+   A 668C ld l,d
+   A 668D adc a,a
+   A 668E inc b
+   A 668F ld (hl),06dh
+   A 6691 dec c
+   A 6692 dec e
+   A 6693 dec l
+   A 6694 ld a,004h
+   A 6696 jr nc,$+21
+   A 6698 ld de,048ffh
+   A 669B ld e,02bh
+== A 66C9-6755: not found in B (121 instructions)
+   A 66C9 sbc a,c
+   A 66CA ld a,h
+   A 66CB ld (hl),c
+   A 66CC ld c,073h
+   A 66CE ld l,d
+   A 66CF ld d,a
+   A 66D0 nop
+   A 66D1 cpl
+   A 66D2 inc l
+   A 66D3 add hl,sp
+   A 66D4 nop
+   A 66D5 ld (hl),e
+== A 682D-686B ~ B 30A2
+   replace: A [682D inc sp; 682E ld e,h; 682F adc a,c; 6830 jp nc,07414h; 6833 sub b; 6834 dec d; 6835 ld l,h; 6836 sbc a,b]  B [30A2 cp 0ffh; 30A4 ld (bc),a; 30A5 cp 000h; 30A7 ld bc,00002h]
+   delete: A [6838 ld h,e; 6839 ld d,(hl); 683A rla]  B []
+   replace: A [683C ld l,l; 683D ld d,e; 683E ld d,d]  B [30AC cp 000h]
+   delete: A [6840 ld e,d; 6841 ld (de),a; 6842 ld a,d; 6843 inc e; 6844 ld (hl),l; 6845 ld e,l; 6846 ld h,e; 6847 ld d,c; 6848 inc e]  B []
+   replace: A [684A ld d,034h; 684C dec e; 684D ld e,b; 684E jr $+25; 6850 ld l,c; 6851 ld (de),a; 6852 add hl,de]  B [30B0 nop; 30B1 rst 38h; 30B2 ld (bc),a; 30B3 ld bc,00002h]
+   replace: A [6854 ld l,c; 6855 rla; 6856 inc d]  B [30B7 rst 38h; 30B8 ld (bc),a; 30B9 cp 006h; 30BB cp 000h; 30BD nop; 30BE nop; 30BF nop; 30C0 nop; 30C1 ld bc,0ff02h; 30C4 ld (bc),a; 30C5 nop]
+   replace: A [6858 ld l,a; 6859 ld (de),a; 685A rla; 685B ex af,af'; 685C ld l,a; 685D rla; 685E ld (de),a]  B [30C7 ld bc,00202h; 30CA ld b,002h]
+   delete: A [6860 ld c,c; 6861 ld l,h; 6862 ld e,c]  B []
+   replace: A [6864 ld de,03810h]  B [30CE nop; 30CF nop; 30D0 nop; 30D1 ld bc,001feh; 30D4 ld (bc),a; 30D5 ld (bc),a; 30D6 nop; 30D7 rst 38h; 30D8 ld (bc),a; 30D9 nop; 30DA nop; 30DB nop; 30DC cp 000h; 30DE nop; 30DF nop; 30E0 nop; 30E1 rst 38h; 30E2 cp 0ffh; 30E4 ld (bc),a; 30E5 cp 000h; 30E7 rst 38h; 30E8 cp 0feh; 30EA call m,0fafeh; 30ED nop; 30EE nop; 30EF nop]
+   replace: A [686B ld e,l]  B [30F4 cp 0feh; 30F6 nop; 30F7 rst 38h; 30F8 ld (bc),a; 30F9 cp 006h; 30FB cp 000h; 30FD nop; 30FE nop; 30FF nop]
+== A B900-B901: not found in B (2 instructions)
+   A B900 ld d,e
+   A B901 ld b,e
+== A BB09-BB09: not found in B (1 instructions)
+   A BB09 rlca
+== A BC0E-BC0E: not found in B (1 instructions)
+   A BC0E inc de
+== A BC32-BC32: not found in B (1 instructions)
+   A BC32 dec (hl)
+== A BC38-BC38: not found in B (1 instructions)
+   A BC38 dec a
+== A BC6B-BC6B: not found in B (1 instructions)
+   A BC6B ld l,a
+== A BC77-BC7A: not found in B (4 instructions)
+   A BC77 ld d,b
+   A BC78 ld sp,hl
+   A BC79 dec d
+   A BC7A rst 38h
+== A BC83-BC83: not found in B (1 instructions)
+   A BC83 ld (hl),d
+== A BD19-BD19: not found in B (1 instructions)
+   A BD19 cp 05ah
+# instructions equal 5190, differing 551, unanchored 1026

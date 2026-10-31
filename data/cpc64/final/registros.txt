@@ -1,0 +1,2 @@
+instructions 20000000
+A=67 F=20 B=01 C=67 D=71 E=29 H=FB L=F8 SP=BFF8 PC=672D

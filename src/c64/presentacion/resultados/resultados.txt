@@ -1,0 +1,64 @@
+      "abadia" (11079 bytes) loaded by the KERNAL and started: 28877144 cycles = 29.3 s from LOAD typed to its main
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/1_cargando.png
+      abadia.koa read at 55.6 s, the parchment (text1.bin, pp.bin read) on the screen at 70.9 s
+ok    the introduction, page 1: the page as the model (0 bitmap bytes, 0 cell colours differ): " Ya al final de mi / vida de pecador, mien- / tras espero el..."
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/2_pergamino_pagina_1.png
+ok    the introduction, page 2: the page as the model (0 bitmap bytes, 0 cell colours differ): "mi cuerpo pesado y / enfermo, me dispongo / a dejar constanc..."
+ok    the introduction, page 3: the page as the model (0 bitmap bytes, 0 cell colours differ): "de la gracia de dar / fiel testimonio de los / acontecimient..."
+ok    the introduction, page 4: the page as the model (0 bitmap bytes, 0 cell colours differ): "dio que acompawara a / fray Guillermo de  / Occam, sabio fra..."
+ok    the introduction, page 5: the page as the model (0 bitmap bytes, 0 cell colours differ): "fue como me conver- / ti al mismo tiempo en / su amanuense y..."
+ok    the introduction, page 6: the page as the model (0 bitmap bytes, 0 cell colours differ): " Asi, mientras con / los dias iba conocien- / do mejor a mi ..."
+ok    the introduction, page 7: the page as the model (0 bitmap bytes, 0 cell colours differ): "acerque mi relato, y / ojala mi mano no / tiemble cuando me ..."
+ok    the introduction, page 8: the page as the model (0 bitmap bytes, 0 cell colours differ): "autor:  /     Paco Menendez /  / graficos y caratula:  /    ..."
+ok    the introduction, page 9 (the last, at the text's end): the page as the model (0 bitmap bytes, 0 cell colours differ): "version commodore: /    German Luis /    Aracil Boned /    g..."
+ok    the introduction: 9 pages written, the model's 9
+      the introduction written in 341.7 s (9 pages; the CPC: 386 s for its 8)
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/3_pergamino_creditos.png
+ok    the introduction's music: the AY writes of ticks 0-19129 (63.8 s) as the CPC's: 2828 writes
+ok    the introduction's music: the AY writes of the ticks 0-19129 and of the stops at [102469] as musica.c's given the same stops and re-entries: 2829 writes
+ok    the loader's start: the picture's 1000 cells as abadia.koa (0 differ); multicolour bitmap, bank 3, $D018 = $08
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/4_imagen.png
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/5_imagen_antes_de_la_marca.png
+ok    the mark: the picture's 1000 cells as abadia.koa (0 differ); multicolour bitmap, bank 3, $D018 = $08
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/6_lados_negros.png
+ok    after the mark: the picture's 768 cells as abadia.koa (0 differ), the 232 side cells black (0 not); multicolour bitmap, bank 3, $D018 = $08
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/7_fin_de_los_datos.png
+ok    the end of the data: the picture's 768 cells as abadia.koa (0 differ), the 232 side cells black (0 not); multicolour bitmap, bank 3, $D018 = $08
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/8_salto.png
+      the load: the mark at 131.8 s, the data at 134.5 s, principal_inicio at 132653506 cycles = 134.6 s (the CPC tape's block: 501.8 s)
+ok    principal_inicio: the RAM equals juego.bin over 56857 bytes (the game's segments but BSS and the merge tables, the zero page, the play area)
+      bytes different from the image anywhere: 5772 (the stack page, the screen RAM, BSS, the merge tables where the loader was...: all outside what the game needs)
+ok    the game's first frame: the 2320 bytes of the merge tables (D_TABLA_*) rebuilt as in the image (0 differ)
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/9_juego_frame_1.png
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/10_juego_frame_200.png
+ok    frame 50: the screen as with the image written straight into the RAM (0 pixels differ)
+ok    frame 200: the screen as with the image written straight into the RAM (0 pixels differ)
+ok    the game from the state of day 7, tercia, investigation solved: game_check_end, the percentage "100", plat_final ("CARGANDO EL FINAL")
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/11_juego_100.png
+      "final" (10100 bytes) loaded by plat_final's KERNAL LOAD in 26.6 s (the CPC tape's ending block: 82.4 s)
+      the ending's parchment (text2.bin and pp.bin read by the code) on the screen 18.4 s after its main; 45.1 s after plat_final
+ok    the ending, page 1: the page as the model (0 bitmap bytes, 0 cell colours differ): " Desfigurado por la / angustia, por el aco- / so del veneno ..."
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/12_final_pagina_1.png
+ok    the ending, page 2: the page as the model (0 bitmap bytes, 0 cell colours differ): "atraparlo con calma, / pero nos precipitamos / con vehemenci..."
+ok    the ending, page 3: the page as the model (0 bitmap bytes, 0 cell colours differ): "mantener en alto la / lampara. Pero roce / su rostro con la ..."
+ok    the ending, page 4: the page as the model (0 bitmap bytes, 0 cell colours differ): "ra y, de un golpe, me / la arranco lanzandola / hacia adelan..."
+ok    the ending, page 5: the page as the model (0 bitmap bytes, 0 cell colours differ): "tes; una llamarada se / elevo desde los libros, / como si aq..."
+ok    the ending, page 6: the page as the model (0 bitmap bytes, 0 cell colours differ): "rante tres dias y tres / noches y de nada va- / lieron los u..."
+ok    the ending, page 7: the page as the model (0 bitmap bytes, 0 cell colours differ): "bladores de la abadia / recogieron sus perte- / nencias y ab..."
+ok    the ending, page 8: the page as the model (0 bitmap bytes, 0 cell colours differ): "por el bosque. Cuando / llegamos a  Munich / tuve que separa..."
+ok    the ending, page 9: the page as the model (0 bitmap bytes, 0 cell colours differ): "estrecho entre sus / brazos, con la ter- / nura de un padre,..."
+ok    the ending, page 10: the page as the model (0 bitmap bytes, 0 cell colours differ): "si esta contiene o no / una trama distinguible / de la mera ..."
+ok    the ending, page 11: the page as the model (0 bitmap bytes, 0 cell colours differ): "crito contiene o no / algun sentido oculto, / ni si contiene..."
+ok    the ending, page 12: the page as the model (0 bitmap bytes, 0 cell colours differ): "yecta  sobre  este / mundo ya viejo. /  Hace frio en el / sc..."
+ok    the ending, page 13: the page as the model (0 bitmap bytes, 0 cell colours differ): "version commodore: /    German Luis /    Aracil Boned /    g..."
+ok    the ending, page 14 (the last, at the text's end): the page as the model (0 bitmap bytes, 0 cell colours differ): "dedicado a todo / el equipo de / Opera Soft. /  / Con admira..."
+ok    the ending: 14 pages written, the model's 14
+      the ending written in 696.3 s (14 pages; the CPC: 680 s)
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/13_final_ultima_pagina.png
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/14_final_segunda_pasada.png
+ok    SPACE while the ending writes (its second pass, after 40 characters): its text ends at once (manusrun tested the keyboard 1 more times, i.e. 0 more characters: the key is seen at the KERNAL's next scan, every fifth tick) and final.c's cgetc takes the key
+      picture: /home/german/Proyectos/abadia64ks/c64/presentacion/resultados/15_final_tercera_pasada.png
+ok    the music stopped and restarted twice (after the ticks [208824, 212099])
+ok    the ending's music, until the CPC log's first stop: the AY writes of ticks 0-9038 (30.1 s) as the CPC's: 6748 writes
+ok    the ending's music: the AY writes of the ticks 0-9038, 208826-211825, 212100-215099 and of the stops at [208824, 212099] as musica.c's given the same stops and re-entries: 11266 writes
+all checks passed

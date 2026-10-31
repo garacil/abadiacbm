@@ -1,0 +1,34 @@
+A 5
+F 64
+B 0
+C 0
+D 62
+E 234
+H 2
+L 246
+IXh 132
+IXl 23
+IYh 110
+IYl 157
+SP 49152
+SP2 0
+I 1
+R 1
+A' 0
+F' 0
+B' 0
+C' 0
+D' 0
+E' 0
+H' 0
+L' 0
+PC 8382
+T 37684153
+IFF 0
+IM 1
+HALT 0
+MEMPTR 0
+mode 0
+palette 7 20 11 3 6 12 4 21 13 5 14 29 0 28 31 27 20
+crtc 0 32 43 0 0 0 24 30 0 7 0 0 48 0 0 0
+frame 471

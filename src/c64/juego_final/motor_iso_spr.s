@@ -1,0 +1,53 @@
+; abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+;
+; Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+;
+; This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+; Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+; option) any later version.
+;
+; This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+; implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+; for more details.
+;
+; You should have received a copy of the GNU General Public License along with this program.  If not, see
+; <https://www.gnu.org/licenses/>.
+
+; abadia64ks, 6502 code of the game: group motor_iso, spr_update_char_sprite (208C), with the group personajes's
+; chr_select_frame (25B6), chr_project (2632) and chr_show_frame (2589, the tail of chr_animate), which follow the
+; Z80's conventions (see motor_iso.s).
+        .include "zp.inc"
+        .include "mapa.inc"
+        .export spr_update_char_sprite
+        .import chr_select_frame, chr_project, chr_show_frame
+
+.segment "CODE"
+
+; 208C spr_update_char_sprite: chr_select_frame of the character (HL = the frame), then, when chr_project finds it
+; in view, the frame set up by chr_animate's tail (2589h, chr_show_frame); not in view: the sprite marked FEh.
+; chr_project returns to its caller's caller when the character is visible (it drops its own return address), as
+; the Z80's: from spr_project_or_hide (2082h) straight back here.  In: IX = sprite, IY = record.
+spr_update_char_sprite:
+        jsr     chr_select_frame
+        lda     zhl+1                   ; PUSH HL
+        pha
+        lda     zhl
+        pha
+        jsr     mi_project_or_hide
+        pla                             ; POP HL
+        sta     zhl
+        pla
+        sta     zhl+1
+        jmp     chr_show_frame
+; 2082 spr_project_or_hide: chr_project; not visible: [IX] = FEh, and the return address and the saved HL
+; dropped: the RTS leaves spr_update_char_sprite
+mi_project_or_hide:
+        jsr     chr_project
+        lda     #$FE
+        ldy     #0
+        sta     (zix),y
+        pla
+        pla
+        pla
+        pla
+        rts

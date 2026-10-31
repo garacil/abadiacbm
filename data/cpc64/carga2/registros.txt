@@ -1,0 +1,2 @@
+instructions 30000000
+A=01 F=05 B=C0 C=C5 D=C1 E=C5 H=49 L=A2 SP=3344 PC=CB86

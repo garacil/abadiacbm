@@ -1,0 +1,16 @@
+# The integration's own lines for resultados.tsv (resultados.sh: resultados64.py --cambia): routines that called
+# a trap in their group's checks and now call the translated routine, whose comparison rules they inherit.
+# spr_draw_or_darken (personajes) jumps into spr_draw_all (logica_a): the sprite composition is compared on the
+# doubled graphics, the sprite buffer and the mirror's buffers hold C64-format graphics.
+spr_draw_or_darken	!D64_SPR_BUFFER	!D64_ISO_MIRROR_BUF_GUILLERMO	!D64_PATH_QUEUE_TOP	!D64_SPR_TILE_TEST_JUMP	PANTALLA:doble
+# hud_scroll_hour_name (logica_b) draws with txt_draw_char (estado_texto): the C64 font's own glyphs (N, ';').
+hud_scroll_hour_name	PANTALLA:fuente
+# txt_print_inline (logica_a) draws with txt_draw_char_inverted (estado_texto): the C64 font's own glyphs.
+txt_print_inline	A	ZF	INLINE	PANTALLA:fuente
+# sys_tick (personajes) runs txt_phrase_tick (estado_texto), which draws the phrases: its screen compared too.
+sys_tick	A	B	C	D	E	H	L	IX	IY	CF	ZF	PANTALLA:fuente
+# iso_draw_room (motor_iso) ends in iso_draw_room_spiral (logica_a): the room's tiles compared on the doubled
+# graphics.
+iso_draw_room	PANTALLA:doble
+# hud_blink_yes_no (logica_a) prints with txt_print_inline: the C64 font's own glyphs.
+hud_blink_yes_no	PANTALLA:fuente

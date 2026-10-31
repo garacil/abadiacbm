@@ -1,0 +1,1323 @@
+insert A(0) []
+   B(477) [0100 di; 0101 ld sp,00100h; 0104 ld hl,00300h; 0107 push hl; 0108 ld bc,07f8dh; 010B out (c),c; 010D call 00182h; 0110 nop; 0111 nop; 0112 nop; 0113 nop; 0114 nop; 0115 nop; 0116 nop; 0117 nop; 0118 nop; 0119 nop; 011A nop; 011B nop; 011C nop; 011D nop; 011E nop; 011F nop; 0120 nop; 0121 ld a,001h; 0123 ld bc,0fa7eh; 0126 out (c),a; 0128 ld a,003h; 012A call 001b5h; 012D ld bc,001c7h ...]
+= 2 instructions A 0100-0101 B 03FF-0400
+replace A(1) [0104 ld c,026h]
+   B(23) [0403 push af; 0404 ld a,00fh; 0406 call 00465h; 0409 xor a; 040A call 00465h; 040D pop af; 040E call 00465h; 0411 ld a,001h; 0413 ld de,04e20h; 0416 call 00422h; 0419 ld a,008h; 041B call 00465h; 041E call 0043ah; 0421 ret; 0422 push af; 0423 dec de; 0424 ld a,e; 0425 or d; 0426 jr nz,$-3; 0428 pop af; 0429 dec a; 042A jr nz,$-8; 042C ret]
+= 1 instructions A 0106-0106 B 042D-042D
+insert A(0) []
+   B(64) [042E inc de; 042F push af; 0430 ld a,(de); 0431 call 00465h; 0434 inc de; 0435 pop af; 0436 dec a; 0437 jr nz,$-8; 0439 ret; 043A push hl; 043B push de; 043C ld d,000h; 043E ld hl,00064h; 0441 push hl; 0442 in a,(c); 0444 cp 0c0h; 0446 jr c,$-4; 0448 inc c; 0449 in a,(c); 044B dec c; 044C ld (hl),a; 044D inc hl; 044E inc d; 044F ld a,005h; 0451 dec a; 0452 jr nz,$-1; 0454 in a,(c); 0456 and 010h; 0458 jr nz,$-22; 045A pop hl ...]
+= 1 instructions A 0107-0107 B 0488-0488
+replace A(4) [0108 rst 18h; 0109 ld (087eeh),hl; 010C adc a,e; 010D sub c]
+   B(60) [0489 ld a,044h; 048B call 03472h; 048E ret z; 048F ld a,017h; 0491 call 03482h; 0494 ret z; 0495 di; 0496 ld a,007h; 0498 ld c,03fh; 049A call 0134eh; 049D ld a,001h; 049F ld bc,0fa7eh; 04A2 out (c),a; 04A4 ld a,006h; 04A6 call 00422h; 04A9 call 00536h; 04AC ld a,001h; 04AE push af; 04AF call 00403h; 04B2 pop af; 04B3 inc a; 04B4 cp 011h; 04B6 jr c,$-8; 04B8 call 00550h; 04BB ld a,001h; 04BD ld de,02710h; 04C0 call 00422h; 04C3 call 00550h; 04C6 ld a,001h; 04C8 ld de,02710h ...]
+= 1 instructions A 010E-010E B 050B-050B
+replace A(76) [0111 or 0a9h; 0113 rst 38h; 0114 sub 0dfh; 0116 sbc a,c; 0117 ret pe; 0118 or d; 0119 ld b,a; 011A sub 00ch; 011C ld (0ffffh),hl; 011F ei; 0120 sbc a,0c5h; 0122 sbc a,l; 0123 and c; 0124 jr $-114; 0126 daa; 0127 add hl,bc; 0128 ld (028afh),hl; 012B ex af,af'; 012C add hl,bc; 012D rlca; 012E dec c; 012F ld (hl),b; 0130 rlca; 0131 rlca; 0132 inc c; 0133 nop; 0134 ccf; 0135 ld (02174h),hl; 0138 ld d,b; 0139 dec bc ...]
+   B(6) [050E ld a,005h; 0510 add a,b; 0511 ld (00532h),a; 0514 ld a,b; 0515 ld b,07fh; 0517 out (c),c]
+= 1 instructions A 0187-0187 B 0519-0519
+replace A(5) [018A dec c; 018B ld b,d; 018C add hl,de; 018D ld (bc),a; 018E dec de]
+   B(11) [051C push af; 051D ld (00482h),a; 0520 call 00403h; 0523 ld de,0047fh; 0526 call 0042dh; 0529 call 00586h; 052C call 0043ah; 052F pop af; 0530 inc a; 0531 cp 000h; 0533 jr nz,$-23]
+= 1 instructions A 018F-018F B 0535-0535
+delete A(42) [0190 ex af,af'; 0191 nop; 0192 ld d,003h; 0194 ex af,af'; 0195 ld e,c; 0196 nop; 0197 ld a,a; 0198 rlca; 0199 ld hl,0441bh; 019C xor l; 019D ld d,e; 019E inc bc; 019F ld b,d; 01A0 dec hl; 01A1 dec c; 01A2 ld b,007h; 01A4 ld (0a209h),hl; 01A7 rlca; 01A8 ld (05703h),hl; 01AB ld l,e; 01AC ld a,(bc); 01AD ex af,af'; 01AE rlca; 01AF ld (0b20fh),hl; 01B2 rlca; 01B3 ld (08cech),hl; 01B6 dec b; 01B7 ld b,003h; 01B9 rlca; 01BA rlca ...]
+   B(0) []
+= 1 instructions A 01CC-01CC B 0536-0536
+replace A(28) [01CF rrca; 01D0 inc c; 01D1 dec bc; 01D2 ld b,b; 01D3 dec b; 01D4 dec b; 01D5 ex af,af'; 01D6 nop; 01D7 ld (bc),a; 01D8 inc bc; 01D9 inc c; 01DA ld a,(bc); 01DB jr nz,$+12; 01DD ld bc,0600dh; 01E0 and l; 01E1 dec hl; 01E2 dec d; 01E3 ld (02320h),hl; 01E6 inc de; 01E7 or h; 01E8 ld d,d; 01E9 jr nz,$+38; 01EB rla; 01EC jr nz,$+38; 01EE ret m; 01EF scf; 01F0 ld (02991h),a; 01F3 ld a,c]
+   B(10) [0539 ld a,007h; 053B call 00465h; 053E xor a; 053F call 00465h; 0542 ld a,003h; 0544 call 00422h; 0547 ld a,008h; 0549 call 00465h; 054C call 0043ah; 054F ret]
+= 2 instructions A 01F4-01F7 B 0550-0553
+replace A(5) [01FA ld e,e; 01FB ld de,021b1h; 01FE ld de,0c3b1h; 0201 cp (hl); 0202 jr nz,$+2]
+   B(42) [0556 ld b,008h; 0558 ld c,(hl); 0559 ld a,(de); 055A ld (hl),a; 055B ld a,c; 055C ld (de),a; 055D inc de; 055E ld a,h; 055F add a,008h; 0561 ld h,a; 0562 djnz $-10; 0564 ret; 0565 nop; 0566 nop; 0567 rrca; 0568 rrca; 0569 ret p; 056A ret p; 056B rst 38h; 056C rst 38h; 056D call 032bch; 0570 ld a,03ch; 0572 call 03472h; 0575 scf; 0576 ret nz; 0577 ld a,02eh; 0579 call 03472h; 057C ret z; 057D or 0ffh; 057F ret ...]
+= 109 instructions A 0204-0286 B 0594-0616
+replace A(4) [0287 ld b,00ah; 0289 add hl,bc; 028A inc b; 028B nop]
+   B(2) [0617 ld b,002h; 0619 ld bc,00004h]
+= 9 instructions A 028C-0296 B 061C-0626
+delete A(2) [0297 dec b; 0298 ld b,003h]
+   B(0) []
+= 2 instructions A 029A-029B B 0627-0628
+insert A(0) []
+   B(1) [0629 ld bc,00004h]
+= 9 instructions A 029C-02A6 B 062C-0636
+delete A(1) [02A7 dec b]
+   B(0) []
+= 1 instructions A 02A8-02A8 B 0637-0637
+insert A(0) []
+   B(1) [0638 ex af,af']
+= 40 instructions A 02A9-02D4 B 0639-0664
+replace A(1) [02D5 dec c]
+   B(1) [0665 dec b]
+= 65 instructions A 02D6-0320 B 0666-06B0
+replace A(2) [0321 add hl,bc; 0322 ld c,00ah]
+   B(1) [06B1 ld bc,00a0eh]
+= 9 instructions A 0324-032E B 06B4-06BE
+replace A(1) [0331 rrca]
+   B(1) [06C1 dec b]
+= 11 instructions A 0332-0340 B 06C2-06D0
+replace A(3) [0341 inc bc; 0342 inc c; 0343 ld bc,00005h]
+   B(3) [06D1 ld bc,0010ch; 06D4 dec b; 06D5 nop]
+= 680 instructions A 0346-08F9 B 06D6-0C89
+replace A(2) [08FA inc e; 08FB add hl,bc]
+   B(2) [0C8A xor h; 0C8B inc c]
+= 1 instructions A 08FC-08FC B 0C8C-0C8C
+replace A(2) [08FE ld a,(bc); 08FF add hl,bc]
+   B(2) [0C8E sbc a,d; 0C8F inc c]
+= 2 instructions A 0900-0901 B 0C90-0C91
+replace A(2) [0902 inc h; 0903 add hl,bc]
+   B(2) [0C92 or h; 0C93 inc c]
+= 2 instructions A 0904-0905 B 0C94-0C95
+replace A(2) [0906 add hl,hl; 0907 add hl,bc]
+   B(2) [0C96 cp c; 0C97 inc c]
+= 447 instructions A 0908-0C4E B 0C98-0FDE
+replace A(3) [0C4F cp 03ch; 0C51 jp z,03633h; 0C54 cp 0eeh]
+   B(3) [0FDF ld e,004h; 0FE1 jr nz,$-55; 0FE3 ld hl,0eef5h]
+= 369 instructions A 0C56-0F75 B 0FE6-1305
+replace A(6) [0F76 cp 08bh; 0F78 rrca; 0F79 defb 0fdh,09ah,00fh ;illegal sequence; 0F7C ei; 0F7D xor c; 0F7E rrca]
+   B(5) [1306 cp 01bh; 1308 inc de; 1309 ld iy,(0fb13h); 130D add hl,sp; 130E inc de]
+= 3 instructions A 0F7F-0F85 B 130F-1315
+replace A(2) [0F86 adc a,b; 0F87 rrca]
+   B(1) [1316 jr $+21]
+= 130 instructions A 0F88-106E B 1318-13FE
+replace A(4) [106F ld (bc),a; 1070 djnz $-4; 1072 ccf; 1073 djnz $+91]
+   B(4) [13FF sub d; 1400 inc de; 1401 jp m,013cfh; 1404 ld e,c]
+= 60 instructions A 1075-10D9 B 1405-1469
+replace A(2) [10DB ld h,e; 10DC djnz $+105]
+   B(3) [146B di; 146C inc de; 146D ld h,a]
+= 3 instructions A 10DE-10E0 B 146E-1470
+replace A(2) [10E2 ccf; 10E3 djnz $+100]
+   B(3) [1472 rst 8; 1473 inc de; 1474 ld h,d]
+= 5 instructions A 10E5-10EC B 1475-147C
+replace A(2) [10ED ld l,(hl); 10EE djnz $+1]
+   B(2) [147D cp 013h; 147F rst 38h]
+= 1 instructions A 10F0-10F0 B 1480-1480
+replace A(5) [10F1 dec l; 10F2 djnz $-4; 10F4 ld c,a; 10F5 djnz $+0; 10F7 defb 0fdh,010h,082h ;illegal sequence]
+   B(6) [1481 cp l; 1482 inc de; 1483 jp m,013dfh; 1486 cp 08dh; 1488 inc d; 1489 add a,d]
+= 4 instructions A 10FA-10FD B 148A-148D
+insert A(0) []
+   B(1) [148E and e]
+= 1 instructions A 10FE-10FE B 148F-148F
+replace A(4) [10FF djnz $-4; 1101 ld c,a; 1102 djnz $+34; 1104 ld d,b]
+   B(2) [1490 jp m,013dfh; 1493 jr nz,$+82]
+= 2 instructions A 1105-1106 B 1495-1496
+replace A(4) [1107 add hl,hl; 1108 djnz $-4; 110A inc c; 110B djnz $+25]
+   B(4) [1497 cp c; 1498 inc de; 1499 jp m,0139ch; 149C rla]
+= 3 instructions A 110D-110F B 149D-149F
+insert A(0) []
+   B(1) [14A0 and e]
+= 1 instructions A 1110-1110 B 14A1-14A1
+replace A(3) [1111 djnz $-4; 1113 ccf; 1114 djnz $+98]
+   B(2) [14A2 jp m,013cfh; 14A5 ld h,b]
+= 4 instructions A 1116-111B B 14A6-14AB
+replace A(2) [111C rla; 111D djnz $+125]
+   B(3) [14AC and a; 14AD inc de; 14AE ld a,e]
+= 3 instructions A 111F-1121 B 14AF-14B1
+replace A(2) [1122 ret m; 1123 rrca]
+   B(2) [14B2 adc a,b; 14B3 inc de]
+= 5 instructions A 1124-112A B 14B4-14BA
+replace A(6) [112B dec l; 112C djnz $-4; 112E dec de; 112F djnz $+0; 1131 ld b,d; 1132 ld de,0046bh]
+   B(7) [14BB cp l; 14BC inc de; 14BD jp m,013abh; 14C0 cp 0d2h; 14C2 inc d; 14C3 ld l,e; 14C4 inc b]
+= 14 instructions A 1135-1142 B 14C5-14D2
+replace A(4) [1143 dec l; 1144 djnz $-4; 1146 dec de; 1147 djnz $+120]
+   B(4) [14D3 cp l; 14D4 inc de; 14D5 jp m,013abh; 14D8 halt]
+= 15 instructions A 1149-1157 B 14D9-14E7
+replace A(3) [1158 add hl,hl; 1159 djnz $-4; 115B ld (08210h),hl]
+   B(4) [14E8 cp c; 14E9 inc de; 14EA jp m,013b2h; 14ED add a,d]
+= 6 instructions A 115E-1163 B 14EE-14F3
+replace A(7) [1164 ld (bc),a; 1165 djnz $-4; 1167 dec (hl); 1168 djnz $+0; 116A xor (hl); 116B ld de,01e4bh; 116E ld c,a]
+   B(7) [14F4 sub d; 14F5 inc de; 14F6 jp m,013c5h; 14F9 cp 03eh; 14FB dec d; 14FC ld c,e; 14FD ld e,04fh]
+= 1 instructions A 116F-116F B 14FF-14FF
+replace A(2) [1172 ld de,02849h; 1175 ld c,a]
+   B(3) [1502 dec d; 1503 ld c,c; 1504 jr z,$+81]
+= 1 instructions A 1176-1176 B 1506-1506
+replace A(3) [1177 cp 0aeh; 1179 ld de,01e4bh; 117C ld c,a]
+   B(4) [1507 cp 03eh; 1509 dec d; 150A ld c,e; 150B ld e,04fh]
+= 1 instructions A 117D-117D B 150D-150D
+replace A(2) [1180 ld de,02849h; 1183 ld c,a]
+   B(3) [1510 dec d; 1511 ld c,c; 1512 jr z,$+81]
+= 1 instructions A 1184-1184 B 1514-1514
+replace A(3) [1185 cp 0aeh; 1187 ld de,01e4bh; 118A ld c,a]
+   B(4) [1515 cp 03eh; 1517 dec d; 1518 ld c,e; 1519 ld e,04fh]
+= 1 instructions A 118B-118B B 151B-151B
+replace A(2) [118E ld de,02849h; 1191 ld c,a]
+   B(3) [151E dec d; 151F ld c,c; 1520 jr z,$+81]
+= 1 instructions A 1192-1192 B 1522-1522
+replace A(3) [1193 cp 0aeh; 1195 ld de,01e4bh; 1198 ld c,a]
+   B(4) [1523 cp 03eh; 1525 dec d; 1526 ld c,e; 1527 ld e,04fh]
+= 1 instructions A 1199-1199 B 1529-1529
+replace A(2) [119C ld de,02849h; 119F ld c,a]
+   B(3) [152C dec d; 152D ld c,c; 152E jr z,$+81]
+= 1 instructions A 11A0-11A0 B 1530-1530
+replace A(3) [11A1 cp 0aeh; 11A3 ld de,01e4bh; 11A6 ld c,a]
+   B(4) [1531 cp 03eh; 1533 dec d; 1534 ld c,e; 1535 ld e,04fh]
+= 1 instructions A 11A7-11A7 B 1537-1537
+replace A(1) [11AA ld de,03c49h]
+   B(3) [153A dec d; 153B ld c,c; 153C inc a]
+= 2 instructions A 11AD-11AE B 153D-153E
+replace A(4) [11AF ld (bc),a; 11B0 djnz $-4; 11B2 dec (hl); 11B3 djnz $+69]
+   B(4) [153F sub d; 1540 inc de; 1541 jp m,013c5h; 1544 ld b,e]
+= 2 instructions A 11B5-11B7 B 1545-1547
+replace A(4) [11B8 ld (bc),a; 11B9 djnz $-4; 11BB dec (hl); 11BC djnz $+69]
+   B(4) [1548 sub d; 1549 inc de; 154A jp m,013c5h; 154D ld b,e]
+= 2 instructions A 11BE-11C0 B 154E-1550
+replace A(4) [11C1 dec l; 11C2 djnz $-4; 11C4 ld e,c; 11C5 djnz $-92]
+   B(4) [1551 cp l; 1552 inc de; 1553 jp m,013e9h; 1556 and d]
+= 9 instructions A 11C7-11D0 B 1557-1560
+replace A(4) [11D1 dec l; 11D2 djnz $-4; 11D4 ld e,c; 11D5 djnz $-94]
+   B(4) [1561 cp l; 1562 inc de; 1563 jp m,013e9h; 1566 and b]
+= 3 instructions A 11D7-11DA B 1567-156A
+replace A(1) [11DB ld h,c]
+   B(1) [156B ld (hl),h]
+= 3 instructions A 11DC-11DE B 156C-156E
+replace A(21) [11DF xor h; 11E0 dec d; 11E1 and a; 11E2 dec d; 11E3 ld a,a; 11E4 dec d; 11E5 add a,h; 11E6 dec d; 11E7 adc a,c; 11E8 dec d; 11E9 adc a,(hl); 11EA dec d; 11EB sub e; 11EC dec d; 11ED sbc a,b; 11EE dec d; 11EF sbc a,l; 11F0 dec d; 11F1 and d; 11F2 dec d; 11F3 inc h]
+   B(44) [156F ld (hl),e; 1570 add hl,de; 1571 ld l,(hl); 1572 add hl,de; 1573 inc a; 1574 add hl,de; 1575 ld b,c; 1576 add hl,de; 1577 ld b,(hl); 1578 add hl,de; 1579 ld c,e; 157A add hl,de; 157B ld d,b; 157C add hl,de; 157D ld d,l; 157E add hl,de; 157F ld e,d; 1580 add hl,de; 1581 ld l,c; 1582 add hl,de; 1583 rst 28h; 1584 ld a,(de); 1585 jr z,$+29; 1587 and b; 1588 dec de; 1589 and l; 158A dec de; 158B xor d; 158C dec de; 158D xor a ...]
+= 1 instructions A 11F4-11F4 B 15A0-15A0
+replace A(8) [11F5 ld e,l; 11F6 rla; 11F7 push de; 11F8 rla; 11F9 jp c,0df17h; 11FC rla; 11FD call po,0d817h; 1200 jr $+31]
+   B(2) [15A1 and c; 15A2 jr $+52]
+= 1 instructions A 1202-1202 B 15A4-15A4
+replace A(1) [1203 ld b,e]
+   B(15) [15A5 sbc a,e; 15A6 dec de; 15A7 rrca; 15A8 ld e,033h; 15AA ld e,05fh; 15AC ld e,09dh; 15AE ld e,0cch; 15B0 ld e,0d6h; 15B2 ld e,0deh; 15B4 ld e,0dah; 15B6 jr $-27; 15B8 ld e,0efh; 15BA jr $+28; 15BC rra; 15BD dec l]
+= 1 instructions A 1204-1204 B 15BE-15BE
+replace A(1) [1205 ld l,b]
+   B(3) [15BF jr z,$+27; 15C1 ld e,019h; 15C3 dec h]
+= 1 instructions A 1206-1206 B 15C4-15C4
+delete A(71) [1207 ld (hl),d; 1208 dec de; 1209 ld (hl),a; 120A dec de; 120B ld c,e; 120C inc d; 120D di; 120E inc d; 120F ld b,(hl); 1210 inc d; 1211 xor 014h; 1213 ld (hl),l; 1214 dec d; 1215 ret nc; 1216 rla; 1217 dec h; 1218 ld a,(de); 1219 ld c,c; 121A ld a,(de); 121B ld (hl),l; 121C ld a,(de); 121D or l; 121E ld a,(de); 121F call po,0ee1ah; 1222 ld a,(de); 1223 pop af; 1224 ld a,(de); 1225 daa; 1226 dec d; 1227 or 01ah ...]
+   B(0) []
+= 2 instructions A 1257-1258 B 15C5-15C6
+replace A(6) [1259 ld a,d; 125A dec d; 125B cp 014h; 125D inc c; 125E dec d; 125F adc a,(hl)]
+   B(47) [15C7 sbc a,c; 15C8 ld a,(de); 15C9 ld h,017h; 15CB ld a,h; 15CC rla; 15CD and h; 15CE rla; 15CF xor (hl); 15D0 rla; 15D1 ret pe; 15D2 ld e,086h; 15D4 inc e; 15D5 sub (hl); 15D6 inc e; 15D7 cp b; 15D8 rla; 15D9 inc bc; 15DA add hl,de; 15DB halt; 15DC rra; 15DD xor e; 15DE jr $+5; 15E0 jr $-49; 15E2 jr $-56; 15E4 ld e,0a3h; 15E6 ld e,0d1h; 15E8 ld e,037h; 15EA add hl,de; 15EB or c; 15EC jr $-63 ...]
+= 1 instructions A 1260-1260 B 1600-1600
+replace A(1) [1261 sub h]
+   B(6) [1601 sbc a,a; 1602 dec e; 1603 ret c; 1604 dec e; 1605 call m,0061dh; 1608 ld e,0b4h]
+= 1 instructions A 1262-1262 B 160A-160A
+replace A(2) [1263 ld a,01bh; 1265 ld l,h]
+   B(13) [160B rst 28h; 160C rla; 160D call p,09717h; 1610 jr $-98; 1612 jr $-67; 1614 rla; 1615 rst 20h; 1616 rla; 1617 ld b,c; 1618 jr $+111; 161A jr $-33; 161C dec e; 161D sub c]
+= 1 instructions A 1266-1266 B 161E-161E
+replace A(1) [1267 cp c]
+   B(1) [161F inc d]
+= 1 instructions A 1268-1268 B 1620-1620
+delete A(1) [1269 adc a,e]
+   B(0) []
+= 1 instructions A 126A-126A B 1621-1621
+delete A(4) [126B call po,0d713h; 126E inc de; 126F rl a; 1271 cp a]
+   B(0) []
+= 1 instructions A 1272-1272 B 1622-1622
+replace A(1) [1273 ret m]
+   B(4) [1623 ld bc,0691eh; 1626 rra; 1627 exx; 1628 ld e,05fh]
+= 1 instructions A 1274-1274 B 162A-162A
+replace A(22) [1275 inc e; 1276 ld a,(de); 1277 inc e; 1278 ld a,(de); 1279 jp (hl); 127A rla; 127B inc a; 127C inc d; 127D ld b,c; 127E inc d; 127F call po,0e914h; 1282 inc d; 1283 ex af,af'; 1284 inc d; 1285 inc (hl); 1286 inc d; 1287 adc a,(hl); 1288 inc d; 1289 cp d; 128A inc d; 128B add iy,de; 128D add a,017h]
+   B(2) [162B ld h,h; 162C add hl,de]
+= 88 instructions A 128F-12F5 B 162D-1693
+replace A(1) [12F8 add hl,bc]
+   B(8) [1696 rst 18h; 1697 sbc a,0fdh; 1699 call m,0fe5fh; 169C dec de; 169D ld a,(0693ah); 16A0 add hl,sp; 16A1 add hl,sp; 16A2 jr z,$+11]
+= 4 instructions A 12F9-12FC B 16A4-16A7
+replace A(1) [12FD jr nc,$+2]
+   B(2) [16A8 dec l; 16A9 nop]
+= 4 instructions A 12FF-1305 B 16AA-16B0
+replace A(1) [1306 jr nc,$+100]
+   B(2) [16B1 dec l; 16B2 ld h,d]
+= 10 instructions A 1308-1315 B 16B3-16C0
+replace A(1) [1316 jr nc,$+57]
+   B(2) [16C1 dec l; 16C2 scf]
+= 8 instructions A 1318-1322 B 16C3-16CD
+insert A(0) []
+   B(5) [16CE inc hl; 16CF ld hl,03a1bh; 16D2 ld h,024h; 16D4 ld l,c; 16D5 add hl,sp]
+= 36 instructions A 1323-134C B 16D6-16FF
+replace A(1) [134D rrca]
+   B(1) [1700 cp d]
+= 7 instructions A 134E-1355 B 1701-1708
+replace A(1) [1356 ld c,0adh]
+   B(2) [1709 or b; 170A xor l]
+= 25 instructions A 1358-1371 B 170B-1724
+replace A(2) [1373 ld e,l; 1374 inc de]
+   B(1) [1726 djnz $+25]
+= 67 instructions A 1375-13C6 B 1728-1779
+replace A(2) [13C9 ld l,b; 13CA inc de]
+   B(2) [177C dec de; 177D rla]
+= 8 instructions A 13CB-13D4 B 177E-1787
+replace A(3) [13D7 rlca; 13D8 inc de; 13D9 call pe,0157fh]
+   B(4) [178A or d; 178B ld d,0ech; 178D inc a; 178E add hl,de]
+= 4 instructions A 13DC-13DF B 178F-1792
+replace A(1) [13E2 dec d]
+   B(1) [1795 add hl,de]
+= 1 instructions A 13E3-13E3 B 1796-1796
+replace A(3) [13E4 rst 30h; 13E5 ld (de),a; 13E6 call pe,015ach]
+   B(4) [1797 and d; 1798 ld d,0ech; 179A ld (hl),e; 179B add hl,de]
+= 4 instructions A 13E9-13EC B 179C-179F
+replace A(1) [13EF dec d]
+   B(1) [17A2 add hl,de]
+= 1 instructions A 13F0-13F0 B 17A3-17A3
+replace A(3) [13F1 ei; 13F2 ld (de),a; 13F3 call pe,015a7h]
+   B(4) [17A4 and (hl); 17A5 ld d,0ech; 17A7 ld l,(hl); 17A8 add hl,de]
+= 3 instructions A 13F6-13FA B 17A9-17AD
+replace A(3) [13FB dec bc; 13FC inc de; 13FD call pe,01584h]
+   B(4) [17AE or (hl); 17AF ld d,0ech; 17B1 ld b,c; 17B2 add hl,de]
+= 3 instructions A 1400-1404 B 17B3-17B7
+replace A(5) [1405 ld h,(hl); 1406 rla; 1407 rst 38h; 1408 ld a,(hl); 1409 rla]
+   B(3) [17B8 ld sp,0ff1bh; 17BB ld c,c; 17BC dec de]
+= 27 instructions A 140A-1433 B 17BD-17E6
+replace A(2) [1434 and d; 1435 rla]
+   B(2) [17E7 ld l,l; 17E8 dec de]
+= 2 instructions A 1436-1439 B 17E9-17EC
+replace A(2) [143C ld a,(hl); 143D rla]
+   B(2) [17EF ld c,c; 17F0 dec de]
+= 1 instructions A 143E-143E B 17F1-17F1
+replace A(2) [1441 and d; 1442 rla]
+   B(2) [17F4 ld l,l; 17F5 dec de]
+= 1 instructions A 1443-1443 B 17F6-17F6
+replace A(2) [1446 cp l; 1447 rla]
+   B(2) [17F9 adc a,b; 17FA dec de]
+= 1 instructions A 1448-1448 B 17FB-17FB
+replace A(5) [144B ld h,(hl); 144C rla; 144D jp pe,01452h; 1450 sub b; 1451 rla]
+   B(4) [17FE ld sp,0ea1bh; 1801 dec b; 1802 jr $+93; 1804 dec de]
+= 45 instructions A 1452-148D B 1805-1840
+replace A(2) [148E add a,a; 148F rla]
+   B(2) [1841 ld d,d; 1842 dec de]
+= 29 instructions A 1490-14B9 B 1843-186C
+replace A(2) [14BA xor e; 14BB rla]
+   B(2) [186D halt; 186E dec de]
+= 2 instructions A 14BC-14BF B 186F-1872
+replace A(3) [14C2 rst 30h; 14C3 ld (de),a; 14C4 rst 30h]
+   B(2) [1875 and d; 1876 ld d,0f7h]
+= 16 instructions A 14C5-14DB B 1878-188E
+replace A(2) [14DE ei; 14DF ld (de),a]
+   B(16) [1891 and (hl); 1892 ld d,0e9h; 1894 jp pe,01877h; 1897 ld d,d; 1898 dec de; 1899 jp pe,018adh; 189C halt; 189D dec de; 189E jp pe,018adh; 18A1 ld a,a; 18A2 dec de; 18A3 jp pe,018adh; 18A6 ld a,(0ea1bh); 18A9 xor l; 18AA jr $+102; 18AC dec de]
+= 2 instructions A 14E0-14E1 B 18AD-18AE
+replace A(19) [14E4 add a,a; 14E5 rla; 14E6 jp pe,014fah; 14E9 xor e; 14EA rla; 14EB jp pe,014fah; 14EE or h; 14EF rla; 14F0 jp pe,014fah; 14F3 ld l,a; 14F4 rla; 14F5 jp pe,014fah; 14F8 sbc a,c; 14F9 rla; 14FA jp (hl); 14FB jp pe,01452h; 14FE ei; 14FF ld (de),a; 1500 push af]
+   B(2) [18B1 and (hl); 18B2 ld d,0f5h]
+= 7 instructions A 1501-150B B 18B4-18BE
+replace A(3) [150C rst 30h; 150D ld (de),a; 150E di]
+   B(2) [18BF and d; 18C0 ld d,0f3h]
+= 7 instructions A 150F-1519 B 18C2-18CC
+replace A(2) [151A sub b; 151B rla]
+   B(2) [18CD ld e,e; 18CE dec de]
+= 9 instructions A 151C-1526 B 18CF-18D9
+replace A(4) [1527 rla; 1528 inc de; 1529 call pe,01534h; 152C rst 30h]
+   B(3) [18DA jp nz,0ec16h; 18DD rst 20h; 18DE jr $-7]
+= 5 instructions A 152D-1533 B 18E0-18E6
+replace A(3) [1534 rla; 1535 inc de; 1536 rst 30h]
+   B(1) [18E7 jp nz,0f716h]
+= 3 instructions A 1537-1539 B 18EA-18EC
+replace A(4) [153C rla; 153D inc de; 153E call pe,01534h; 1541 jp p,0846eh]
+   B(5) [18EF jp nz,0ec16h; 18F2 rst 20h; 18F3 jr $-12; 18F5 ld l,(hl); 18F6 add a,h]
+= 8 instructions A 1544-154F B 18F7-1902
+replace A(5) [1550 rla; 1551 inc de; 1552 call pe,01534h; 1555 jp p,0016dh; 1558 pop af]
+   B(3) [1903 jp nz,0ec16h; 1906 rst 20h; 1907 jr $-12]
+= 1 instructions A 1559-1559 B 1909-1909
+insert A(0) []
+   B(1) [190A ld bc,06df1h]
+= 5 instructions A 155A-1560 B 190D-1913
+replace A(3) [1561 push af; 1562 ld (de),a; 1563 ld sp,hl]
+   B(8) [1914 sbc a,b; 1915 ld d,0eah; 1917 jr nz,$+27; 1919 sbc a,d; 191A ld d,0eah; 191C jr nz,$+27; 191E sub e; 191F ld d,0f9h]
+= 4 instructions A 1564-1567 B 1921-1924
+replace A(5) [1568 inc bc; 1569 inc de; 156A rst 38h; 156B inc bc; 156C inc de]
+   B(11) [1925 xor (hl); 1926 ld d,0ffh; 1928 xor (hl); 1929 ld d,0eah; 192B xor c; 192C add hl,de; 192D xor d; 192E ld d,0eah; 1930 sub b; 1931 add hl,de; 1932 sub 016h]
+= 1 instructions A 156D-156D B 1934-1934
+replace A(2) [1570 rst 38h; 1571 ld (de),a]
+   B(26) [1937 jp c,0ea16h; 193A ld (hl),l; 193B add hl,de; 193C or d; 193D ld d,0eah; 193F xor l; 1940 add hl,de; 1941 or (hl); 1942 ld d,0eah; 1944 add a,019h; 1946 cp d; 1947 ld d,0eah; 1949 sub b; 194A add hl,de; 194B cp (hl); 194C ld d,0eah; 194E xor c; 194F add hl,de; 1950 jp nz,0ea16h; 1953 jp z,0c619h; 1956 ld d,0eah; 1958 call nc,0ca19h; 195B ld d,0eah; 195D sub b; 195E add hl,de; 195F adc a,016h]
+= 1 instructions A 1572-1572 B 1961-1961
+replace A(36) [1575 inc hl; 1576 inc de; 1577 jp pe,015c5h; 157A daa; 157B inc de; 157C jp pe,015aeh; 157F rlca; 1580 inc de; 1581 jp pe,015e6h; 1584 dec bc; 1585 inc de; 1586 jp pe,015ffh; 1589 rrca; 158A inc de; 158B jp pe,015c9h; 158E inc de; 158F inc de; 1590 jp pe,015e2h; 1593 rla; 1594 inc de; 1595 jp pe,01603h; 1598 dec de; 1599 inc de; 159A jp pe,0160dh; 159D rra; 159E inc de; 159F jp pe,015c9h; 15A2 rra; 15A3 inc de; 15A4 jp pe,015e2h ...]
+   B(12) [1964 jp nc,0ea16h; 1967 xor c; 1968 add hl,de; 1969 jp z,0ea16h; 196C xor c; 196D add hl,de; 196E and (hl); 196F ld d,0eah; 1971 adc a,h; 1972 add hl,de; 1973 and d; 1974 ld d,0f7h]
+= 58 instructions A 15AF-1609 B 1976-19D0
+replace A(1) [160C dec d]
+   B(1) [19D3 add hl,de]
+= 12 instructions A 160D-1628 B 19D4-19EF
+insert A(0) []
+   B(1) [19F2 out (c),c]
+= 2 instructions A 162B-162E B 19F4-19F7
+insert A(0) []
+   B(1) [19FA out (c),c]
+= 86 instructions A 1631-16CD B 19FC-1A98
+replace A(2) [16CE ld d,e; 16CF inc de]
+   B(1) [1A99 ld b,017h]
+= 48 instructions A 16D0-171C B 1A9B-1AE7
+replace A(2) [171F inc de; 1720 jp (hl)]
+   B(1) [1AEA ld d,0e9h]
+= 1 instructions A 1721-1721 B 1AEC-1AEC
+replace A(3) [1724 scf; 1725 inc de; 1726 rst 30h]
+   B(1) [1AEF jp pe,0f716h]
+= 41 instructions A 1727-175B B 1AF2-1B26
+replace A(2) [175E inc de; 175F jp (hl)]
+   B(1) [1B29 ld d,0e9h]
+= 1 instructions A 1760-1760 B 1B2B-1B2B
+replace A(1) [1763 ld sp,03131h]
+   B(3) [1B2E ex de,hl; 1B2F ex de,hl; 1B30 ex de,hl]
+= 5 instructions A 1766-176B B 1B31-1B36
+replace A(1) [176C jr nc,$+12]
+   B(2) [1B37 dec l; 1B38 ld a,(bc)]
+= 5 instructions A 176E-1772 B 1B39-1B3D
+replace A(2) [1773 jr nc,$+42; 1775 add hl,hl]
+   B(2) [1B3E dec l; 1B3F jr z,$+43]
+= 11 instructions A 1776-1783 B 1B41-1B4E
+replace A(1) [1784 jr nc,$+12]
+   B(2) [1B4F dec l; 1B50 ld a,(bc)]
+= 5 instructions A 1786-178A B 1B51-1B55
+replace A(2) [178B jr nc,$+42; 178D add hl,hl]
+   B(2) [1B56 dec l; 1B57 jr z,$+43]
+= 7 instructions A 178E-1795 B 1B59-1B60
+replace A(1) [1796 jr nc,$+12]
+   B(2) [1B61 dec l; 1B62 ld a,(bc)]
+= 5 instructions A 1798-179C B 1B63-1B67
+replace A(2) [179D jr nc,$+42; 179F add hl,hl]
+   B(2) [1B68 dec l; 1B69 jr z,$+43]
+= 2 instructions A 17A0-17A1 B 1B6B-1B6C
+replace A(1) [17A2 ld sp,04445h]
+   B(3) [1B6D rst 38h; 1B6E ld b,l; 1B6F ld b,h]
+= 2 instructions A 17A5-17A7 B 1B70-1B72
+replace A(1) [17A8 jr nc,$+12]
+   B(2) [1B73 dec l; 1B74 ld a,(bc)]
+= 1 instructions A 17AA-17AA B 1B75-1B75
+replace A(1) [17AB ld sp,04544h]
+   B(3) [1B76 rst 38h; 1B77 ld b,h; 1B78 ld b,l]
+= 1 instructions A 17AE-17AE B 1B79-1B79
+replace A(2) [17AF jr nc,$+42; 17B1 add hl,hl]
+   B(2) [1B7A dec l; 1B7B jr z,$+43]
+= 2 instructions A 17B2-17B3 B 1B7D-1B7E
+replace A(1) [17B4 out (09ch),a]
+   B(1) [1B7F in a,(0dah)]
+= 2 instructions A 17B6-17B9 B 1B81-1B84
+replace A(7) [17BA ret; 17BB exx; 17BC or b; 17BD out (0d4h),a; 17BF sbc a,h; 17C0 ret c; 17C1 ret]
+   B(3) [1B85 call c,0e2d9h; 1B88 in a,(0d4h); 1B8A jp c,0dcd8h]
+= 1 instructions A 17C2-17C2 B 1B8D-1B8D
+replace A(5) [17C3 cp d; 17C4 or b; 17C5 exx; 17C6 ld h,e; 17C7 rla]
+   B(2) [1B8E defb 0ddh,0e2h,0d9h ;illegal sequence; 1B91 ld l,01bh]
+= 1 instructions A 17C8-17C8 B 1B93-1B93
+replace A(2) [17CB and d; 17CC rla]
+   B(2) [1B96 ld l,l; 1B97 dec de]
+= 1 instructions A 17CD-17CD B 1B98-1B98
+replace A(2) [17D0 ld h,(hl); 17D1 rla]
+   B(5) [1B9B ld sp,0ea1bh; 1B9E rst 8; 1B9F dec de; 1BA0 ld b,e; 1BA1 dec de]
+= 1 instructions A 17D2-17D2 B 1BA2-1BA2
+replace A(2) [17D5 ld a,b; 17D6 rla]
+   B(2) [1BA5 ld b,(hl); 1BA6 dec de]
+= 1 instructions A 17D7-17D7 B 1BA7-1BA7
+replace A(2) [17DA ld a,e; 17DB rla]
+   B(2) [1BAA ld c,c; 1BAB dec de]
+= 1 instructions A 17DC-17DC B 1BAC-1BAC
+replace A(2) [17DF ld a,(hl); 17E0 rla]
+   B(2) [1BAF ld e,e; 1BB0 dec de]
+= 1 instructions A 17E1-17E1 B 1BB1-1BB1
+replace A(5) [17E4 sub b; 17E5 rla; 17E6 jp pe,01804h; 17E9 cp l; 17EA rla]
+   B(2) [1BB4 adc a,b; 1BB5 dec de]
+= 49 instructions A 17EB-1830 B 1BB6-1BFB
+replace A(4) [1831 and a; 1832 ret nc; 1833 ret; 1834 out (096h),a]
+   B(2) [1BFC jp pe,0dcd0h; 1BFF in a,(096h)]
+= 1 instructions A 1836-1836 B 1C01-1C01
+replace A(6) [1837 cp d; 1838 sbc a,h; 1839 inc hl; 183A ld (02621h),hl; 183D dec h; 183E inc h]
+   B(24) [1C02 defb 0ddh,0dah,0a7h ;illegal sequence; 1C05 and l; 1C06 and e; 1C07 and c; 1C08 sbc a,a; 1C09 sbc a,l; 1C0A and (hl); 1C0B and h; 1C0C and d; 1C0D and b; 1C0E sbc a,(hl); 1C0F nop; 1C10 sub e; 1C11 sub c; 1C12 adc a,a; 1C13 adc a,l; 1C14 adc a,e; 1C15 adc a,c; 1C16 sub d; 1C17 sub b; 1C18 adc a,(hl); 1C19 adc a,h; 1C1A adc a,d; 1C1B nop]
+= 36 instructions A 183F-1874 B 1C1C-1C51
+replace A(6) [1875 sub d; 1876 sub c; 1877 sub b; 1878 adc a,(hl); 1879 adc a,a; 187A adc a,l]
+   B(3) [1C52 or 0f5h; 1C54 call p,0f3f2h; 1C57 pop af]
+= 1 instructions A 187B-187B B 1C58-1C58
+replace A(4) [187C adc a,d; 187D adc a,e; 187E adc a,h; 187F adc a,c]
+   B(3) [1C59 xor 0efh; 1C5B ret p; 1C5C ex (sp),hl]
+= 4 instructions A 1880-1883 B 1C5D-1C60
+insert A(0) []
+   B(1) [1C61 ld sp,00e0fh]
+= 31 instructions A 1884-18A4 B 1C64-1C84
+replace A(2) [18A7 jr $-18; 18A9 add a,018h]
+   B(2) [1C87 inc e; 1C88 call pe,01ca6h]
+= 6 instructions A 18AB-18B0 B 1C8B-1C90
+replace A(6) [18B3 or 01ah; 18B5 rst 38h; 18B6 sbc a,b; 18B7 jr $-18; 18B9 rst 8; 18BA jr $-7]
+   B(6) [1C93 ex (sp),hl; 1C94 ld e,0ffh; 1C96 ld a,b; 1C97 inc e; 1C98 call pe,01cafh; 1C9B rst 30h]
+= 8 instructions A 18BC-18C5 B 1C9C-1CA5
+replace A(2) [18C6 ld d,e; 18C7 jr $-7]
+   B(2) [1CA6 jr nc,$+30; 1CA8 rst 30h]
+= 2 instructions A 18C9-18CA B 1CA9-1CAA
+replace A(4) [18CD ld a,(de); 18CE rst 38h; 18CF sbc a,b; 18D0 jr $-7]
+   B(4) [1CAD ld e,0ffh; 1CAF ld a,b; 1CB0 inc e; 1CB1 rst 30h]
+= 4 instructions A 18D2-18D7 B 1CB2-1CB7
+replace A(2) [18D8 ld l,e; 18D9 jr $-7]
+   B(3) [1CB8 ld c,b; 1CB9 inc e; 1CBA rst 30h]
+= 13 instructions A 18DB-18EC B 1CBB-1CCC
+replace A(1) [18ED and b]
+   B(1) [1CCD ei]
+= 39 instructions A 18EE-191C B 1CCE-1CFC
+replace A(2) [191D ld (hl),l; 191E jr $-21]
+   B(3) [1CFD ld d,d; 1CFE inc e; 1CFF jp (hl)]
+= 14 instructions A 1920-1932 B 1D00-1D12
+replace A(1) [1933 and b]
+   B(1) [1D13 ei]
+= 2 instructions A 1934-1935 B 1D14-1D15
+replace A(1) [1936 sub e]
+   B(1) [1D16 rst 30h]
+= 2 instructions A 1937-1938 B 1D17-1D18
+replace A(1) [1939 sbc a,l]
+   B(1) [1D19 ret m]
+= 2 instructions A 193A-193B B 1D1A-1D1B
+replace A(1) [193C sbc a,(hl)]
+   B(1) [1D1C ld sp,hl]
+= 2 instructions A 193D-193E B 1D1D-1D1E
+replace A(5) [193F sbc a,a; 1940 jp pe,018fah; 1943 ld l,e; 1944 jr $-2; 1946 jp p,08405h]
+   B(6) [1D1F jp m,0daeah; 1D22 inc e; 1D23 ld c,b; 1D24 inc e; 1D25 call m,005f2h; 1D28 add a,h]
+= 13 instructions A 1949-1957 B 1D29-1D37
+replace A(2) [1959 ld a,c; 195A add hl,de]
+   B(2) [1D39 ld e,c; 1D3A dec e]
+= 7 instructions A 195B-1967 B 1D3B-1D47
+replace A(3) [1968 ld (hl),l; 1969 jr $-2; 196B jp p,08405h]
+   B(4) [1D48 ld d,d; 1D49 inc e; 1D4A call m,005f2h; 1D4D add a,h]
+= 7 instructions A 196E-1976 B 1D4E-1D56
+replace A(3) [1979 rra; 197A inc de; 197B rst 30h]
+   B(1) [1D59 jp z,0f716h]
+= 13 instructions A 197C-198A B 1D5C-1D6A
+replace A(3) [198B add a,h; 198C jr $-8; 198E push af]
+   B(3) [1D6B ld h,h; 1D6C inc e; 1D6D or 0f5h]
+= 34 instructions A 198F-19B8 B 1D6F-1D98
+replace A(2) [19B9 adc a,(hl); 19BA jr $-21]
+   B(3) [1D99 ld l,(hl); 1D9A inc e; 1D9B jp (hl)]
+= 1 instructions A 19BC-19BC B 1D9C-1D9C
+replace A(2) [19BF dec hl; 19C0 inc de]
+   B(1) [1D9F sbc a,016h]
+= 45 instructions A 19C1-19F7 B 1DA1-1DD7
+replace A(9) [19F8 ld a,a; 19F9 jr $-20; 19FB rst 38h; 19FC add hl,de; 19FD add a,b; 19FE jr $-2; 1A00 push af; 1A01 call p,00fe4h; 1A04 ld a,(de)]
+   B(7) [1DD8 ld e,h; 1DD9 inc e; 1DDA jp pe,01ddfh; 1DDD ld e,l; 1DDE inc e; 1DDF call m,0f4f5h; 1DE2 call po,01defh]
+= 6 instructions A 1A05-1A0A B 1DE5-1DEA
+replace A(1) [1A0D ld a,(de)]
+   B(1) [1DED dec e]
+= 1 instructions A 1A0E-1A0E B 1DEE-1DEE
+replace A(3) [1A0F ld a,a; 1A10 jr $+0; 1A12 ld sp,hl]
+   B(3) [1DEF ld e,h; 1DF0 inc e; 1DF1 cp 0f9h]
+= 8 instructions A 1A13-1A1A B 1DF3-1DFA
+replace A(1) [1A1D jr $-5]
+   B(8) [1DFD inc e; 1DFE jp pe,01975h; 1E01 sub l; 1E02 ld d,0eah; 1E04 ex af,af'; 1E05 ld e,05eh; 1E07 inc e; 1E08 ld sp,hl]
+= 6 instructions A 1A1F-1A24 B 1E09-1E0E
+replace A(2) [1A25 and b; 1A26 jr $-21]
+   B(3) [1E0F add a,b; 1E10 inc e; 1E11 jp (hl)]
+= 22 instructions A 1A28-1A47 B 1E12-1E31
+replace A(1) [1A4A jr $-7]
+   B(2) [1E34 dec de; 1E35 rst 30h]
+= 33 instructions A 1A4C-1A74 B 1E36-1E5E
+replace A(2) [1A75 add hl,sp; 1A76 jr $-7]
+   B(3) [1E5F inc b; 1E60 inc e; 1E61 rst 30h]
+= 20 instructions A 1A78-1A91 B 1E62-1E7B
+replace A(1) [1A92 ld h,d]
+   B(1) [1E7C ld h,e]
+= 1 instructions A 1A93-1A93 B 1E7D-1E7D
+replace A(1) [1A94 ld h,d]
+   B(1) [1E7E ld h,h]
+= 1 instructions A 1A95-1A95 B 1E7F-1E7F
+replace A(1) [1A96 ld h,d]
+   B(1) [1E80 ld h,l]
+= 1 instructions A 1A97-1A97 B 1E81-1E81
+replace A(1) [1A98 ld h,e]
+   B(1) [1E82 ld h,(hl)]
+= 3 instructions A 1A99-1A9B B 1E83-1E85
+replace A(1) [1A9E ld h,c]
+   B(1) [1E88 ld h,a]
+= 1 instructions A 1A9F-1A9F B 1E89-1E89
+replace A(1) [1AA0 ld h,d]
+   B(1) [1E8A ld l,b]
+= 1 instructions A 1AA1-1AA1 B 1E8B-1E8B
+replace A(1) [1AA2 ld h,d]
+   B(1) [1E8C ld l,b]
+= 1 instructions A 1AA3-1AA3 B 1E8D-1E8D
+replace A(1) [1AA4 ld h,d]
+   B(1) [1E8E ld l,c]
+= 1 instructions A 1AA5-1AA5 B 1E8F-1E8F
+replace A(1) [1AA6 ld h,d]
+   B(1) [1E90 ld l,d]
+= 1 instructions A 1AA7-1AA7 B 1E91-1E91
+replace A(3) [1AA8 ld h,d; 1AA9 add a,b; 1AAA ld h,e]
+   B(1) [1E92 ld l,e]
+= 5 instructions A 1AAB-1AB3 B 1E93-1E9B
+replace A(1) [1AB6 jr $-21]
+   B(2) [1E9E inc e; 1E9F jp (hl)]
+= 1 instructions A 1AB8-1AB8 B 1EA0-1EA0
+replace A(2) [1ABB ld c,c; 1ABC jr $-7]
+   B(2) [1EA3 ld h,01ch; 1EA5 rst 30h]
+= 21 instructions A 1ABE-1ADC B 1EA6-1EC4
+replace A(1) [1ADF jr $-21]
+   B(20) [1EC7 inc e; 1EC8 jp (hl); 1EC9 jp pe,01ea5h; 1ECC inc e; 1ECD inc e; 1ECE jp pe,01ec8h; 1ED1 dec hl; 1ED2 inc e; 1ED3 jp pe,01ea5h; 1ED6 dec hl; 1ED7 inc e; 1ED8 rst 38h; 1ED9 sbc a,h; 1EDA ld d,0eah; 1EDC ld (hl),l; 1EDD add hl,de; 1EDE jr nc,$+30; 1EE0 jp pe,01975h; 1EE3 inc sp; 1EE4 inc e]
+= 2 instructions A 1AE1-1AE4 B 1EE5-1EE8
+replace A(19) [1AE5 jr $-20; 1AE7 ret po; 1AE8 ld a,(de); 1AE9 ld c,(hl); 1AEA jr $-20; 1AEC cp l; 1AED ld a,(de); 1AEE ld c,(hl); 1AEF jr $+1; 1AF1 ld d,e; 1AF2 jr $-20; 1AF4 xor (hl); 1AF5 dec d; 1AF6 ld d,(hl); 1AF7 jr $-20; 1AF9 push bc; 1AFA dec d; 1AFB ld h,d; 1AFC jr $-7]
+   B(2) [1EE9 inc e; 1EEA rst 30h]
+= 7 instructions A 1AFE-1B0A B 1EEB-1EF7
+replace A(1) [1B0D dec de]
+   B(1) [1EFA rra]
+= 28 instructions A 1B0E-1B2C B 1EFB-1F19
+replace A(2) [1B2D ld e,c; 1B2E jr $-21]
+   B(2) [1F1A ld (hl),01ch; 1F1C jp (hl)]
+= 1 instructions A 1B30-1B30 B 1F1D-1F1D
+replace A(2) [1B33 ld h,d; 1B34 jr $-7]
+   B(3) [1F20 ccf; 1F21 inc e; 1F22 rst 30h]
+= 6 instructions A 1B36-1B3B B 1F23-1F28
+replace A(2) [1B3E ld h,d; 1B3F jr $-7]
+   B(3) [1F2B ccf; 1F2C inc e; 1F2D rst 30h]
+= 26 instructions A 1B41-1B69 B 1F2E-1F56
+replace A(2) [1B6C ld e,c; 1B6D jr $-21]
+   B(2) [1F59 ld (hl),01ch; 1F5B jp (hl)]
+= 1 instructions A 1B6F-1B6F B 1F5C-1F5C
+replace A(7) [1B72 sbc a,b; 1B73 jr $-20; 1B75 and 015h; 1B77 sbc a,h; 1B78 jr $-20; 1B7A rst 38h; 1B7B dec d]
+   B(9) [1F5F ld a,b; 1F60 inc e; 1F61 jp pe,019adh; 1F64 ld a,h; 1F65 inc e; 1F66 jp pe,019c6h; 1F69 sbc a,a; 1F6A ld d,0eah; 1F6C add a,019h]
+= 7 instructions A 1B7C-1B83 B 1F6E-1F75
+replace A(2) [1B84 add a,b; 1B85 dec de]
+   B(2) [1F76 ld (hl),d; 1F77 rra]
+= 4 instructions A 1B86-1B8D B 1F78-1F7F
+replace A(2) [1B8E ld a,h; 1B8F dec de]
+   B(2) [1F80 ld l,(hl); 1F81 rra]
+= 2 instructions A 1B90-1B91 B 1F82-1F83
+replace A(2) [1B94 add a,b; 1B95 dec de]
+   B(2) [1F86 ld (hl),d; 1F87 rra]
+= 68 instructions A 1B96-1BED B 1F88-1FDF
+replace A(53) [1BEE ld b,b; 1BEF inc e; 1BF0 sbc a,a; 1BF1 inc e; 1BF2 xor h; 1BF3 inc e; 1BF4 defb 0ddh,01ch,0e1h ;illegal sequence; 1BF7 inc e; 1BF8 push hl; 1BF9 inc e; 1BFA push af; 1BFB inc e; 1BFC inc bc; 1BFD dec e; 1BFE ld c,a; 1BFF dec e; 1C00 ld e,l; 1C01 inc e; 1C02 ld h,b; 1C03 inc e; 1C04 ld h,e; 1C05 inc e; 1C06 ld h,(hl); 1C07 inc e; 1C08 ld l,c; 1C09 inc e; 1C0A ld (hl),h; 1C0B inc e; 1C0C add a,l; 1C0D inc e ...]
+   B(28) [1FE0 ld (09120h),a; 1FE3 jr nz,$-96; 1FE5 jr nz,$-47; 1FE7 jr nz,$-43; 1FE9 jr nz,$-39; 1FEB jr nz,$-23; 1FED jr nz,$-9; 1FEF jr nz,$+67; 1FF1 ld hl,0204fh; 1FF4 ld d,d; 1FF5 jr nz,$+87; 1FF7 jr nz,$+90; 1FF9 jr nz,$+93; 1FFB jr nz,$+104; 1FFD jr nz,$+121; 1FFF jr nz,$+115; 2001 jr nz,$-123; 2003 jr nz,$+127; 2005 jr nz,$-74; 2007 ld hl,020eeh; 200A and c; 200B ld hl,0218dh; 200E adc a,l; 200F ld hl,0218dh; 2012 adc a,l; 2013 ld hl,0218dh; 2016 xor d; 2017 ld hl,0e3ddh]
+= 285 instructions A 1C28-1E4A B 201A-223C
+insert A(0) []
+   B(1) [223D jp 0249ah]
+= 2 instructions A 1E4B-1E4C B 2240-2241
+insert A(0) []
+   B(1) [2244 out (c),c]
+= 3 instructions A 1E4F-1E54 B 2246-224B
+insert A(0) []
+   B(1) [224E out (c),c]
+= 4 instructions A 1E57-1E60 B 2250-2259
+delete A(5) [1E63 call 01e6eh; 1E66 ld bc,00228h; 1E69 ld l,006h; 1E6B add hl,de; 1E6C rst 38h]
+   B(0) []
+= 1 instructions A 1E6D-1E6D B 225C-225C
+replace A(20) [1E6E pop hl; 1E6F ld b,0bch; 1E71 ld c,(hl); 1E72 inc hl; 1E73 push hl; 1E74 inc c; 1E75 ret z; 1E76 dec c; 1E77 pop hl; 1E78 out (c),c; 1E7A inc b; 1E7B ld c,(hl); 1E7C out (c),c; 1E7E inc hl; 1E7F jr $-16; 1E81 xor (hl); 1E82 jr nz,$-85; 1E84 jr nz,$-79; 1E86 jr nz,$-70; 1E88 jr nz,$+2]
+   B(9) [225D adc a,d; 225E inc h; 225F add a,l; 2260 inc h; 2261 adc a,e; 2262 inc h; 2263 sub h; 2264 inc h; 2265 nop]
+= 396 instructions A 1E8A-20C2 B 2266-249E
+replace A(1) [20C4 call nz,03568h]
+   B(31) [24A0 jr z,$+105; 24A2 ld a,00dh; 24A4 ld (000feh),a; 24A7 ld bc,07f8dh; 24AA out (c),c; 24AC call 03f3ah; 24AF ld hl,0659dh; 24B2 ld de,0c000h; 24B5 push de; 24B6 ld bc,01000h; 24B9 push bc; 24BA ldir; 24BC ld bc,07fc5h; 24BF out (c),c; 24C1 pop bc; 24C2 pop hl; 24C3 ld de,07000h; 24C6 ldir; 24C8 ld bc,07fc0h; 24CB out (c),c; 24CD ld a,0c3h; 24CF ld (00038h),a; 24D2 ld hl,02d48h; 24D5 ld (00039h),hl; 24D8 ld hl,08000h; 24DB ld a,00bh; 24DD ld (01086h),a; 24E0 call 0103fh; 24E3 di; 24E4 ld ix,07300h ...]
+= 2 instructions A 20C7-20C8 B 24EB-24EC
+insert A(0) []
+   B(3) [24EF call 03f3ah; 24F2 ld hl,08300h; 24F5 ld de,06d00h]
+= 1 instructions A 20CB-20CB B 24F8-24F8
+replace A(3) [20CE dec hl; 20CF ld b,018h; 20D1 rst 38h]
+   B(6) [24FB ldir; 24FD call 02712h; 2500 call 037b6h; 2503 call 03a61h; 2506 call 03ad1h; 2509 di]
+= 4 instructions A 20D2-20DA B 250A-2512
+replace A(1) [20DD jr nz,$-22]
+   B(2) [2515 jr nz,$-12; 2517 call 0381eh]
+= 38 instructions A 20DF-213F B 251A-257A
+replace A(6) [2141 ld hl,03568h; 2144 ld de,0002dh; 2147 ld b,005h; 2149 ld (hl),a; 214A add hl,de; 214B djnz $-2]
+   B(5) [257C ld (0a2c0h),a; 257F ld (0a200h),a; 2582 ld (0a230h),a; 2585 ld (0a260h),a; 2588 ld (0a290h),a]
+= 160 instructions A 214D-22D3 B 258B-2711
+replace A(2) [22D4 xor a; 22D5 jp 016b2h]
+   B(64) [2712 ld hl,0c640h; 2715 ld b,008h; 2717 push bc; 2718 push hl; 2719 ld e,l; 271A ld d,h; 271B inc de; 271C ld (hl),0ffh; 271E ld bc,0018fh; 2721 ldir; 2723 pop hl; 2724 ld bc,00800h; 2727 add hl,bc; 2728 pop bc; 2729 djnz $-18; 272B ret; 272C ld bc,07fc7h; 272F out (c),c; 2731 ld de,06328h; 2734 ld hl,0c648h; 2737 ld b,004h; 2739 push bc; 273A push hl; 273B ld b,008h; 273D push bc; 273E push hl; 273F ld bc,00040h; 2742 ex de,hl; 2743 ldir; 2745 ex de,hl ...]
+= 578 instructions A 22D8-2701 B 2783-2BAC
+replace A(4) [2703 ld l,b; 2704 add hl,hl; 2705 add a,a; 2706 dec hl]
+   B(10) [2BAE rla; 2BAF ld l,036h; 2BB1 jr nc,$-113; 2BB3 jr z,$+61; 2BB5 dec (hl); 2BB6 sbc a,a; 2BB7 ld sp,02e2bh; 2BBA ld b,l; 2BBB jr nc,$+60; 2BBD inc l]
+= 1 instructions A 2707-2707 B 2BBE-2BBE
+replace A(2) [270A cpl; 270B ret p]
+   B(3) [2BC1 ld sp,02e3fh; 2BC4 ld d,h; 2BC5 jr nc,$+60]
+= 1 instructions A 270C-270C B 2BC7-2BC7
+replace A(17) [270D ld a,h; 270E add hl,hl; 270F sub (hl); 2710 dec hl; 2711 adc a,a; 2712 daa; 2713 rst 20h; 2714 ld l,010h; 2716 dec l; 2717 sub b; 2718 add hl,hl; 2719 and l; 271A dec hl; 271B adc a,a; 271C daa; 271D nop; 271E cpl]
+   B(2) [2BC8 ei; 2BC9 inc (hl)]
+= 2 instructions A 271F-2720 B 2BCA-2BCB
+replace A(7) [2721 and h; 2722 add hl,hl; 2723 or h; 2724 dec hl; 2725 adc a,a; 2726 daa; 2727 djnz $+49]
+   B(6) [2BCC ld d,e; 2BCD ld l,063h; 2BCF jr nc,$+60; 2BD1 inc l; 2BD2 dec bc; 2BD3 dec (hl)]
+= 2 instructions A 2729-272A B 2BD4-2BD5
+replace A(5) [272B cp b; 272C add hl,hl; 272D jp 08f2bh; 2730 daa; 2731 jr nz,$+49]
+   B(6) [2BD6 ld h,a; 2BD7 ld l,072h; 2BD9 jr nc,$+60; 2BDB inc l; 2BDC dec de; 2BDD dec (hl)]
+= 2 instructions A 2733-2734 B 2BDE-2BDF
+replace A(1) [2735 call z,0d229h]
+   B(4) [2BE0 ld a,e; 2BE1 ld l,081h; 2BE3 jr nc,$+60; 2BE5 inc l]
+= 1 instructions A 2738-2738 B 2BE6-2BE6
+replace A(3) [2739 adc a,a; 273A daa; 273B jr nc,$+49]
+   B(1) [2BE7 dec (hl)]
+= 3 instructions A 273D-2740 B 2BE8-2BEB
+replace A(10) [2741 ld (hl),a; 2742 inc h; 2743 ld a,(hl); 2744 inc h; 2745 and (hl); 2746 inc h; 2747 xor (hl); 2748 dec h; 2749 exx; 274A dec h]
+   B(6) [2BEC ld (02929h),hl; 2BEF add hl,hl; 2BF0 ld d,c; 2BF1 add hl,hl; 2BF2 ld e,c; 2BF3 ld hl,(02a84h)]
+= 132 instructions A 274B-285B B 2BF6-2D06
+replace A(1) [285C jr z,$+19]
+   B(1) [2D07 jr z,$+23]
+= 2 instructions A 285E-285F B 2D09-2D0A
+insert A(0) []
+   B(1) [2D0D out (c),c]
+= 9 instructions A 2862-286B B 2D0F-2D18
+insert A(0) []
+   B(1) [2D1B out (c),c]
+= 38 instructions A 286E-28B8 B 2D1D-2D67
+replace A(6) [28B9 ld d,l; 28BA nop; 28BB nop; 28BC ld b,0c0h; 28BE ld h,c; 28BF ld sp,00000h]
+   B(7) [2D68 ld bc,03e23h; 2D6B jr nz,$+20; 2D6D inc de; 2D6E ld a,b; 2D6F inc b; 2D70 cp c; 2D71 jr c,$+2]
+= 5 instructions A 28C2-28C6 B 2D73-2D77
+replace A(6) [28C7 nop; 28C8 nop; 28C9 ld bc,00054h; 28CC nop; 28CD ld b,0c0h; 28CF ld h,c]
+   B(3) [2D78 ld bc,0700dh; 2D7B dec a; 2D7C call 03bb4h]
+= 2 instructions A 28D0-28D1 B 2D7F-2D80
+replace A(4) [28D4 ld c,e; 28D5 ret p; 28D6 dec hl; 28D7 xor h]
+   B(3) [2D83 ld c,a; 2D84 sbc a,a; 2D85 jr nc,$-82]
+= 1 instructions A 28D8-28D8 B 2D87-2D87
+replace A(3) [28D9 add a,a; 28DA dec hl; 28DB ld l,0aeh]
+   B(2) [2D88 ld (hl),030h; 2D8A ret nz]
+= 1 instructions A 28DD-28DD B 2D8B-2D8B
+replace A(7) [28E0 ld h,c; 28E1 jr nc,$+2; 28E3 nop; 28E4 nop; 28E5 ld d,e; 28E6 ld b,c; 28E7 ld b,e]
+   B(7) [2D8E inc hl; 2D8F inc de; 2D90 dec c; 2D91 jr nz,$-7; 2D93 jr $+58; 2D95 push hl; 2D96 push de]
+= 42 instructions A 28E8-2912 B 2D97-2DC1
+delete A(8) [2913 ld sp,hl; 2914 cp a; 2915 ret; 2916 ld b,c; 2917 ld d,d; 2918 ld c,l; 2919 ld b,l; 291A ld d,e]
+   B(0) []
+= 2 instructions A 291B-291C B 2DC2-2DC3
+replace A(9) [291D nop; 291E nop; 291F ld b,0c0h; 2921 ld h,c; 2922 xor c; 2923 ld (bc),a; 2924 nop; 2925 nop; 2926 nop]
+   B(12) [2DC4 ret; 2DC5 jr c,$-29; 2DC7 pop de; 2DC8 pop bc; 2DC9 inc hl; 2DCA inc de; 2DCB djnz $-22; 2DCD call 000a0h; 2DD0 ld a,h; 2DD1 or l; 2DD2 ret z; 2DD3 ld a,(00023h)]
+= 4 instructions A 2927-292A B 2DD6-2DD9
+replace A(2) [292B adc a,c; 292C dec hl]
+   B(1) [2DDA jr c,$+50]
+= 1 instructions A 292D-292D B 2DDC-2DDC
+replace A(13) [292E sbc a,b; 292F dec hl; 2930 rra; 2931 and a; 2932 dec hl; 2933 add hl,de; 2934 or (hl); 2935 dec hl; 2936 rra; 2937 push bc; 2938 dec hl; 2939 inc c; 293A call nc,0ff2bh]
+   B(10) [2DDD ld b,a; 2DDE jr nc,$+33; 2DE0 ld d,(hl); 2DE1 jr nc,$+27; 2DE3 ld h,l; 2DE4 jr nc,$+33; 2DE6 ld (hl),h; 2DE7 jr nc,$+14; 2DE9 add a,e; 2DEA jr nc,$+1]
+= 3 instructions A 293D-2942 B 2DEC-2DF1
+replace A(3) [2945 sbc a,b; 2946 dec hl; 2947 nop]
+   B(2) [2DF4 ld b,a; 2DF5 jr nc,$+2]
+= 9 instructions A 2948-2952 B 2DF7-2E01
+replace A(3) [2953 or (hl); 2954 dec hl; 2955 nop]
+   B(2) [2E02 ld h,l; 2E03 jr nc,$+2]
+= 3 instructions A 2956-2959 B 2E05-2E08
+replace A(2) [295A push bc; 295B dec hl]
+   B(2) [2E09 ld (hl),h; 2E0A jr nc,$+2]
+= 4 instructions A 295C-295F B 2E0C-2E0F
+replace A(2) [2960 nop; 2961 call nc,0002bh]
+   B(2) [2E10 add a,e; 2E11 jr nc,$+2]
+= 203 instructions A 2964-2A72 B 2E13-2F21
+replace A(39) [2A73 ret nc; 2A74 rst 10h; 2A75 inc b; 2A76 inc c; 2A77 add a,b; 2A78 nop; 2A79 nop; 2A7A nop; 2A7B nop; 2A7C nop; 2A7D nop; 2A7E nop; 2A7F nop; 2A80 cp 000h; 2A82 nop; 2A83 nop; 2A84 nop; 2A85 inc b; 2A86 inc c; 2A87 ld d,b; 2A88 sub a; 2A89 inc b; 2A8A inc c; 2A8B add a,b; 2A8C nop; 2A8D nop; 2A8E nop; 2A8F nop; 2A90 nop; 2A91 nop ...]
+   B(2) [2F22 ret p; 2F23 ld (hl),d]
+= 18 instructions A 2A9D-2AAF B 2F24-2F36
+replace A(1) [2AB0 sub a]
+   B(1) [2F37 adc a,c]
+= 18 instructions A 2AB1-2AC3 B 2F38-2F4A
+replace A(1) [2AC4 sub a]
+   B(1) [2F4B adc a,c]
+= 17 instructions A 2AC5-2AD6 B 2F4C-2F5D
+replace A(2) [2AD7 add a,b; 2AD8 sub a]
+   B(1) [2F5E djnz $-116]
+= 17 instructions A 2AD9-2AEA B 2F60-2F71
+insert A(0) []
+   B(4) [2F72 ret po; 2F73 adc a,c; 2F74 inc b; 2F75 inc c]
+= 1 instructions A 2AEB-2AEB B 2F76-2F76
+replace A(1) [2AEC sub a]
+   B(35) [2F77 nop; 2F78 nop; 2F79 nop; 2F7A nop; 2F7B nop; 2F7C nop; 2F7D nop; 2F7E nop; 2F7F cp 000h; 2F81 nop; 2F82 nop; 2F83 nop; 2F84 inc b; 2F85 inc c; 2F86 ret po; 2F87 adc a,c; 2F88 inc b; 2F89 inc c; 2F8A add a,b; 2F8B nop; 2F8C nop; 2F8D nop; 2F8E nop; 2F8F nop; 2F90 nop; 2F91 nop; 2F92 nop; 2F93 cp 000h; 2F95 nop; 2F96 nop ...]
+= 35 instructions A 2AED-2B12 B 2F9C-2FC1
+replace A(2) [2B13 and b; 2B14 rst 10h]
+   B(2) [2FC2 ret nz; 2FC3 ld (hl),d]
+= 67 instructions A 2B15-2B64 B 2FC4-3013
+replace A(3) [2B65 dec a; 2B66 add hl,hl; 2B67 nop]
+   B(1) [3014 call pe,0002dh]
+= 47 instructions A 2B68-2B9F B 3017-304E
+replace A(3) [2BA0 defb 0fdh,000h,01ch ;illegal sequence; 2BA3 ld (hl),020h; 2BA5 nop]
+   B(3) [304F defb 0fdh,000h,0c0h ;illegal sequence; 3052 and d; 3053 jr nz,$+2]
+= 7 instructions A 2BA6-2BAE B 3055-305D
+replace A(2) [2BAF defb 0fdh,000h,068h ;illegal sequence; 2BB2 dec (hl)]
+   B(2) [305E defb 0fdh,000h,000h ;illegal sequence; 3061 and d]
+= 9 instructions A 2BB3-2BBD B 3062-306C
+replace A(2) [2BBE defb 0fdh,000h,095h ;illegal sequence; 2BC1 dec (hl)]
+   B(2) [306D defb 0fdh,000h,030h ;illegal sequence; 3070 and d]
+= 8 instructions A 2BC2-2BCC B 3071-307B
+replace A(2) [2BCD defb 0fdh,000h,0c2h ;illegal sequence; 2BD0 dec (hl)]
+   B(2) [307C defb 0fdh,000h,060h ;illegal sequence; 307F and d]
+= 8 instructions A 2BD1-2BDB B 3080-308A
+replace A(2) [2BDC defb 0fdh,000h,0efh ;illegal sequence; 2BDF dec (hl)]
+   B(2) [308B defb 0fdh,000h,090h ;illegal sequence; 308E and d]
+= 254 instructions A 2BE0-2D4F B 308F-31FE
+replace A(1) [2D52 ld c,0f4h]
+   B(76) [3201 ld (07ecdh),a; 3204 inc sp; 3205 jr c,$+34; 3207 ei; 3208 ld b,014h; 320A push bc; 320B call 01020h; 320E ld bc,007d0h; 3211 call 0490eh; 3214 pop bc; 3215 djnz $-11; 3217 ld hl,032bch; 321A ld (03312h),hl; 321D xor a; 321E ld (03309h),a; 3221 dec a; 3222 ld (03469h),a; 3225 di; 3226 ret; 3227 ld ix,036ach; 322B ld bc,00800h; 322E call 033b6h; 3231 ld bc,00800h; 3234 call 033b6h; 3237 ld bc,00800h; 323A call 033b6h; 323D dec iy; 323F dec iy; 3241 dec iy; 3243 ld a,(iy+000h) ...]
+= 20 instructions A 2D54-2D79 B 32C0-32E5
+replace A(2) [2D7A ld a,c; 2D7B and 00fh]
+   B(1) [32E6 call 03305h]
+= 22 instructions A 2D7D-2D98 B 32E9-3304
+insert A(0) []
+   B(7) [3305 ld a,c; 3306 and 00fh; 3308 cp 000h; 330A ret nc; 330B ld b,(iy+000h); 330E inc iy; 3310 ret]
+= 1 instructions A 2D99-2D99 B 3311-3311
+insert A(0) []
+   B(2) [3314 ld bc,07fc0h; 3317 out (c),c]
+= 14 instructions A 2D9C-2DB4 B 3319-3331
+replace A(1) [2DB5 jr z,$+26]
+   B(1) [3332 jr z,$+28]
+= 8 instructions A 2DB7-2DC7 B 3334-3344
+replace A(1) [2DC8 ld (hl),a]
+   B(1) [3345 call 03372h]
+= 4 instructions A 2DC9-2DD0 B 3348-334F
+replace A(2) [2DD2 ld hl,(02edeh); 2DD5 ld (hl),a]
+   B(1) [3351 call 03365h]
+= 1 instructions A 2DD6-2DD6 B 3354-3354
+replace A(2) [2DD8 ld hl,(02ee5h); 2DDB ld (hl),a]
+   B(1) [3356 call 0336fh]
+= 6 instructions A 2DDC-2DE7 B 3359-3364
+insert A(0) []
+   B(71) [3365 ld bc,07fc6h; 3368 out (c),c; 336A ld hl,(034d9h); 336D ld (hl),a; 336E ret; 336F ld hl,(034e0h); 3372 ld bc,07fc7h; 3375 out (c),c; 3377 ld (hl),a; 3378 ld bc,07fc0h; 337B out (c),c; 337D ret; 337E ld hl,(033d1h); 3381 push hl; 3382 ld de,06ff0h; 3385 and a; 3386 sbc hl,de; 3388 pop hl; 3389 ret nc; 338A ld bc,07fc5h; 338D out (c),c; 338F push hl; 3390 pop iy; 3392 scf; 3393 ret; 3394 ld c,(iy+000h); 3397 inc iy; 3399 ld b,008h; 339B push bc; 339C ld a,(ix+000h) ...]
+= 148 instructions A 2DE8-2EC4 B 33DD-34B9
+insert A(0) []
+   B(2) [34BA ld bc,07fc6h; 34BD out (c),c]
+= 5 instructions A 2EC5-2ED1 B 34BF-34CB
+replace A(2) [2ED3 ld hl,(02ee5h); 2ED6 ld (hl),a]
+   B(1) [34CD call 0336fh]
+= 3 instructions A 2ED7-2ED9 B 34D0-34D2
+replace A(1) [2EDB ld (hl),a]
+   B(1) [34D4 call 03372h]
+= 58 instructions A 2EDC-2F61 B 34D7-355C
+insert A(0) []
+   B(1) [355D ld b,0a1h]
+= 7 instructions A 2F62-2F69 B 355F-3566
+delete A(2) [2F6A ld b,h; 2F6B ld c,l]
+   B(0) []
+= 2 instructions A 2F6C-2F6D B 3567-3568
+insert A(0) []
+   B(1) [3569 ld c,(hl)]
+= 1 instructions A 2F6E-2F6E B 356A-356A
+delete A(13) [2F6F ld h,a; 2F70 ld l,000h; 2F72 rra; 2F73 adc hl,hl; 2F75 rra; 2F76 adc hl,hl; 2F78 rra; 2F79 adc hl,hl; 2F7B rra; 2F7C adc hl,hl; 2F7E rra; 2F7F and 0f0h; 2F81 or l]
+   B(0) []
+= 2 instructions A 2F82-2F83 B 356B-356C
+replace A(14) [2F84 ld h,a; 2F85 ld l,000h; 2F87 rra; 2F88 adc hl,hl; 2F8A rra; 2F8B adc hl,hl; 2F8D rra; 2F8E adc hl,hl; 2F90 rra; 2F91 adc hl,hl; 2F93 rra; 2F94 and 0f0h; 2F96 or l; 2F97 ld (bc),a]
+   B(3) [356D ld c,a; 356E ld a,(bc); 356F ld (hl),a]
+= 2 instructions A 2F98-2F99 B 3570-3571
+replace A(1) [2F9A dec bc]
+   B(1) [3572 dec hl]
+= 3 instructions A 2F9B-2F9D B 3573-3575
+replace A(1) [2F9E jr nz,$-49]
+   B(1) [3576 jr nz,$-14]
+= 8 instructions A 2FA0-2FA9 B 3578-3581
+replace A(1) [2FAA djnz $-67]
+   B(1) [3582 djnz $-30]
+= 6 instructions A 2FAC-2FB8 B 3584-3590
+insert A(0) []
+   B(6) [3591 dec h; 3592 set 6,h; 3594 ld l,000h; 3596 ld de,0a200h; 3599 ld bc,000ffh; 359C ret]
+= 2 instructions A 2FB9-2FBB B 359D-359F
+replace A(1) [2FBE ret z]
+   B(1) [35A2 jr z,$+40]
+= 6 instructions A 2FBF-2FC8 B 35A4-35AD
+insert A(0) []
+   B(6) [35B0 ld hl,032bch; 35B3 ld (03312h),hl; 35B6 xor a; 35B7 ld (03309h),a; 35BA dec a; 35BB ld (03469h),a]
+= 6 instructions A 2FCB-2FD6 B 35BE-35C9
+insert A(0) []
+   B(4) [35CA ld a,017h; 35CC call 03482h; 35CF call nz,036f2h; 35D2 jr z,$+76]
+= 1 instructions A 2FD7-2FD7 B 35D4-35D4
+insert A(0) []
+   B(19) [35D5 push bc; 35D6 ld a,b; 35D7 cp 001h; 35D9 jr nz,$+28; 35DB ld hl,031ffh; 35DE ld (03312h),hl; 35E1 call 0337eh; 35E4 ld hl,04000h; 35E7 xor a; 35E8 ld (hl),a; 35E9 inc hl; 35EA ld (hl),a; 35EB inc hl; 35EC ld (hl),a; 35ED inc hl; 35EE ld (hl),a; 35EF inc hl; 35F0 ld (033d1h),hl; 35F3 ld b,001h]
+= 3 instructions A 2FD8-2FDC B 35F5-35F9
+insert A(0) []
+   B(7) [35FB pop hl; 35FC push hl; 35FD push de; 35FE call 03591h; 3601 ex de,hl; 3602 ldir; 3604 pop de]
+= 2 instructions A 2FDE-2FE1 B 3605-3608
+insert A(0) []
+   B(7) [360B call 03616h; 360E pop bc; 360F ld a,b; 3610 cp 001h; 3612 jr z,$+59; 3614 ei; 3615 ret]
+= 1 instructions A 2FE4-2FE4 B 3616-3616
+insert A(0) []
+   B(15) [3618 ld bc,07fc0h; 361B out (c),c; 361D ret; 361E nop; 361F nop; 3620 ld a,015h; 3622 call 03482h; 3625 call nz,036f2h; 3628 ret z; 3629 ld a,b; 362A di; 362B cp 001h; 362D jr nz,$+32; 362F ld hl,00000h; 3632 ld (0361eh),hl]
+= 1 instructions A 2FE6-2FE6 B 3635-3635
+replace A(4) [2FE9 ld bc,000ffh; 2FEC ldir; 2FEE ret; 2FEF di]
+   B(8) [3638 ld (03312h),hl; 363B ld hl,04000h; 363E ld (033d1h),hl; 3641 ld a,001h; 3643 ld (02d72h),a; 3646 ld a,048h; 3648 ld (03469h),a; 364B ld b,001h]
+= 5 instructions A 2FF0-2FF8 B 364D-3655
+insert A(0) []
+   B(1) [3656 push bc]
+= 1 instructions A 2FF9-2FF9 B 3657-3657
+insert A(0) []
+   B(2) [365A pop bc; 365B push bc]
+= 3 instructions A 2FFC-3002 B 365C-3662
+insert A(0) []
+   B(4) [3663 ldir; 3665 pop hl; 3666 ex (sp),hl; 3667 call 03591h]
+= 8 instructions A 3003-3012 B 366A-3679
+replace A(8) [3015 push hl; 3016 ldir; 3018 pop hl; 3019 ld bc,000c8h; 301C add hl,bc; 301D ld de,03568h; 3020 ld bc,000e0h; 3023 ldir]
+   B(1) [367C call 03616h]
+= 16 instructions A 3025-304B B 367F-36A5
+insert A(0) []
+   B(3) [36A6 ei; 36A7 halt; 36A8 di]
+= 1 instructions A 304C-304C B 36A9-36A9
+insert A(0) []
+   B(19) [36AC rrca; 36AD dec c; 36AE ld c,005h; 36B0 inc d; 36B1 inc c; 36B2 inc b; 36B3 ld a,(bc); 36B4 dec bc; 36B5 inc bc; 36B6 nop; 36B7 ld bc,00802h; 36BA cpl; 36BB dec d; 36BC ld b,e; 36BD ld (03c2eh),a; 36C0 dec hl; 36C1 rlca; 36C2 rlca; 36C3 rlca]
+= 24 instructions A 304F-307C B 36C4-36F1
+insert A(0) []
+   B(1) [36F2 ld b,00ah]
+= 1 instructions A 307D-307D B 36F4-36F4
+insert A(0) []
+   B(17) [36F7 ld a,(hl); 36F8 inc hl; 36F9 push hl; 36FA push bc; 36FB call 03472h; 36FE pop bc; 36FF pop hl; 3700 ret nz; 3701 djnz $-10; 3703 ret; 3704 ld de,00400h; 3707 ld hl,05400h; 370A add hl,de; 370B djnz $-1; 370D di; 370E ld bc,07fc6h; 3711 out (c),c]
+= 51 instructions A 3080-30EF B 3713-3782
+replace A(11) [30F0 adc a,c; 30F1 dec hl; 30F2 sbc a,b; 30F3 dec hl; 30F4 and a; 30F5 dec hl; 30F6 or (hl); 30F7 dec hl; 30F8 push bc; 30F9 dec hl; 30FA call nc,0c92bh]
+   B(23) [3783 jr c,$+50; 3785 ld b,a; 3786 jr nc,$+88; 3788 jr nc,$+103; 378A jr nc,$+118; 378C jr nc,$-123; 378E jr nc,$+2; 3790 djnz $-14; 3792 nop; 3793 ret p; 3794 ret p; 3795 ret p; 3796 djnz $+2; 3798 nop; 3799 nop; 379A ret p; 379B nop; 379C djnz $+18; 379E nop; 379F djnz $-14; 37A1 djnz $+2; 37A3 nop; 37A4 ret]
+= 26 instructions A 30FD-3132 B 37A5-37DA
+replace A(2) [3134 di; 3135 scf]
+   B(2) [37DC and (hl); 37DD inc a]
+= 1 instructions A 3136-3136 B 37DE-37DE
+replace A(13) [3137 inc de; 3138 jr c,$+5; 313A inc (hl); 313B jr c,$+5; 313D ld c,h; 313E jr c,$+5; 3140 ld e,(hl); 3141 jr c,$+5; 3143 ret nc; 3144 jr z,$+16; 3146 ld hl,(01029h); 3149 dec a; 314A add hl,hl]
+   B(15) [37DF add a,03ch; 37E1 inc bc; 37E2 rst 20h; 37E3 inc a; 37E4 inc bc; 37E5 rst 38h; 37E6 inc a; 37E7 inc bc; 37E8 ld de,0033dh; 37EB ld a,a; 37EC dec l; 37ED ld c,0d9h; 37EF dec l; 37F0 djnz $-18; 37F2 dec l]
+= 1 instructions A 314B-314B B 37F3-37F3
+replace A(7) [314C dec (hl); 314D dec hl; 314E jr nz,$+91; 3150 dec hl; 3151 inc hl; 3152 adc a,c; 3153 dec hl]
+   B(4) [37F4 call po,0202fh; 37F7 ex af,af'; 37F8 jr nc,$+37; 37FA jr c,$+50]
+= 1 instructions A 3154-3154 B 37FC-37FC
+replace A(13) [3155 sbc a,b; 3156 dec hl; 3157 inc bc; 3158 and a; 3159 dec hl; 315A inc bc; 315B or (hl); 315C dec hl; 315D inc bc; 315E push bc; 315F dec hl; 3160 inc bc; 3161 call nc,0032bh]
+   B(10) [37FD ld b,a; 37FE jr nc,$+5; 3800 ld d,(hl); 3801 jr nc,$+5; 3803 ld h,l; 3804 jr nc,$+5; 3806 ld (hl),h; 3807 jr nc,$+5; 3809 add a,e; 380A jr nc,$+5]
+= 35 instructions A 3164-31A8 B 380C-3850
+replace A(1) [31AB ld (ix+001h),001h]
+   B(1) [3853 ld (ix+001h),a]
+= 5 instructions A 31AF-31BC B 3856-3863
+replace A(1) [31BE djnz $-22]
+   B(1) [3865 djnz $-21]
+= 1 instructions A 31C0-31C0 B 3867-3867
+replace A(1) [31C1 push af]
+   B(27) [3868 ld hl,(03312h); 386B push hl; 386C ld hl,032bch; 386F ld (03312h),hl; 3872 xor a; 3873 ld (03309h),a; 3876 ld hl,(033d1h); 3879 dec hl; 387A ld bc,07fc5h; 387D out (c),c; 387F ld a,(hl); 3880 add a,008h; 3882 ld (hl),a; 3883 ld bc,07fc0h; 3886 out (c),c; 3888 pop hl; 3889 ld de,031ffh; 388C and a; 388D sbc hl,de; 388F call z,00495h; 3892 call 03f3ah; 3895 ld bc,07fc5h; 3898 out (c),c; 389A ld hl,07000h; 389D ld de,0c000h; 38A0 push de; 38A1 ld bc,01000h]
+= 1 instructions A 31C2-31C2 B 38A4-38A4
+insert A(0) []
+   B(1) [38A5 ldir]
+= 1 instructions A 31C3-31C3 B 38A7-38A7
+replace A(6) [31C6 call 04477h; 31C9 pop bc; 31CA pop af; 31CB dec a; 31CC jr nz,$-11; 31CE ret]
+   B(1) [38AA out (c),c]
+= 2 instructions A 31CF-31D2 B 38AC-38AF
+delete A(55) [31D5 ld a,02ah; 31D7 call 032abh; 31DA call 06000h; 31DD jr $-3; 31DF ld a,044h; 31E1 call 02e7dh; 31E4 ret z; 31E5 ld a,017h; 31E7 call 02e8dh; 31EA ret z; 31EB di; 31EC ld a,03fh; 31EE ld (00c07h),a; 31F1 ld c,a; 31F2 ld a,007h; 31F4 call 00fbeh; 31F7 call 0329ah; 31FA call 03276h; 31FD ld a,001h; 31FF call 031c1h; 3202 call 03276h; 3205 ld a,001h; 3207 call 031c1h; 320A call 02d50h; 320D ld a,042h; 320F call 02e8dh; 3212 jr z,$+7; 3214 call 03293h; 3217 jr $+36; 3219 ld a,03ch ...]
+   B(0) []
+= 1 instructions A 3257-3257 B 38B2-38B2
+replace A(7) [325A xor a; 325B add a,(hl); 325C inc hl; 325D dec bc; 325E inc b; 325F djnz $-4; 3261 ret]
+   B(1) [38B5 ldir]
+= 2 instructions A 3262-3265 B 38B7-38BA
+delete A(70) [3267 ld c,054h; 3269 out (c),c; 326B call 02d50h; 326E ld a,042h; 3270 call 02e8dh; 3273 jr nz,$-8; 3275 ret; 3276 ld hl,0c000h; 3279 ld de,0328bh; 327C ld b,008h; 327E ld c,(hl); 327F ld a,(de); 3280 ld (hl),a; 3281 ld a,c; 3282 ld (de),a; 3283 inc de; 3284 ld a,h; 3285 add a,008h; 3287 ld h,a; 3288 djnz $-10; 328A ret; 328B nop; 328C nop; 328D rrca; 328E rrca; 328F ret p; 3290 ret p; 3291 rst 38h; 3292 rst 38h; 3293 ld bc,0f600h ...]
+   B(0) []
+= 3 instructions A 32F5-32FB B 38BC-38C2
+replace A(54) [32FE lddr; 3300 dec h; 3301 dec h; 3302 dec h; 3303 dec a; 3304 jr nz,$-9; 3306 ccf; 3307 ld de,0003fh; 330A jr $+25; 330C di; 330D ld a,006h; 330F ld hl,0bfffh; 3312 ld de,0fcffh; 3315 ld bc,00500h; 3318 lddr; 331A dec d; 331B dec d; 331C dec d; 331D dec a; 331E jr nz,$-9; 3320 ld hl,0003fh; 3323 ld c,040h; 3325 lddr; 3327 ret; 3328 call 0bb06h; 332B cp 0fch; 332D jr nc,$-62; 332F cp 031h; 3331 jr c,$-9; 3333 cp 03ah ...]
+   B(3) [38C5 ldir; 38C7 ld a,008h; 38C9 ld (01086h),a]
+= 2 instructions A 336C-336D B 38CC-38CD
+delete A(2) [336E add hl,bc; 336F dec hl]
+   B(0) []
+= 1 instructions A 3370-3370 B 38CE-38CE
+delete A(8) [3373 call 033b9h; 3376 call 06000h; 3379 jr $-3; 337B pop hl; 337C ld (033b7h),hl; 337F ld hl,03ec9h; 3382 ld de,0be80h; 3385 ld bc,00021h]
+   B(0) []
+= 1 instructions A 3388-3388 B 38D1-38D1
+delete A(6) [338A call 0be80h; 338D ld a,0c9h; 338F ld (0bdd9h),a; 3392 call 0bb00h; 3395 ld c,007h; 3397 ld de,00040h]
+   B(0) []
+= 2 instructions A 339A-339D B 38D3-38D6
+replace A(4) [33A0 ld hl,00000h; 33A3 ld (0a700h),hl; 33A6 ld a,0ffh; 33A8 ld (0be78h),a]
+   B(1) [38D9 ld ix,08330h]
+= 1 instructions A 33AB-33AB B 38DD-38DD
+replace A(108) [33AE ld a,032h; 33B0 ld hl,000a7h; 33B3 call 0bc68h; 33B6 jp 00000h; 33B9 ld a,(hl); 33BA dec hl; 33BB ld b,a; 33BC scf; 33BD rra; 33BE ld i,a; 33C0 ld a,b; 33C1 rra; 33C2 jr c,$+15; 33C4 ldd; 33C6 ld a,i; 33C8 ld b,a; 33C9 rra; 33CA ld i,a; 33CC and a; 33CD jr nz,$-13; 33CF jr $-22; 33D1 ld a,(hl); 33D2 dec hl; 33D3 and a; 33D4 ret z; 33D5 bit 7,a; 33D7 jr z,$+25; 33D9 ld b,a; 33DA rrca; 33DB rrca ...]
+   B(2) [38E0 jr $-13; 38E2 ret nz]
+= 12 instructions A 3448-3453 B 38E3-38EE
+replace A(2) [3454 sbc a,b; 3455 ld a,e]
+   B(70) [38EF nop; 38F0 nop; 38F1 inc a; 38F2 nop; 38F3 nop; 38F4 dec a; 38F5 dec a; 38F6 nop; 38F7 nop; 38F8 inc a; 38F9 nop; 38FA nop; 38FB nop; 38FC ld c,d; 38FD push af; 38FE ld a,(de); 38FF ld (03911h),a; 3902 inc de; 3903 ld a,(de); 3904 ld (03916h),a; 3907 pop af; 3908 push bc; 3909 push hl; 390A push af; 390B ld b,c; 390C ld c,a; 390D call 0391dh; 3910 ld a,c; 3911 inc a; 3912 inc l ...]
+= 4 instructions A 3456-345F B 3945-394E
+insert A(0) []
+   B(2) [3951 ld (03938h),a; 3954 ld (039f0h),a]
+= 2 instructions A 3462-3465 B 3957-395A
+insert A(0) []
+   B(4) [395D ld (039cah),a; 3960 ld (0391fh),a; 3963 ld bc,07fc6h; 3966 out (c),c]
+= 1 instructions A 3468-3468 B 3968-3968
+insert A(0) []
+   B(2) [396B ld bc,07fc0h; 396E out (c),c]
+= 2 instructions A 346B-346D B 3970-3972
+replace A(2) [346E ld c,(ix+000h); 3471 inc c]
+   B(2) [3973 ld a,(ix+000h); 3976 cp 0ffh]
+= 1 instructions A 3472-3472 B 3978-3978
+replace A(9) [3473 dec c; 3474 ld d,(ix+003h); 3477 bit 3,c; 3479 jr nz,$+10; 347B ld a,d; 347C rrca; 347D rrca; 347E rrca; 347F rrca]
+   B(11) [3979 ld d,a; 397A and 007h; 397C ret z; 397D cp 006h; 397F ret nc; 3980 bit 3,d; 3982 ld a,(ix+003h); 3985 jr z,$+7; 3987 ld b,(ix+004h); 398A jr $+13; 398C ld c,a]
+= 1 instructions A 3480-3480 B 398D-398D
+delete A(22) [3482 ld d,a; 3483 ld h,(ix+001h); 3486 call 03549h; 3489 jr nc,$+114; 348B bit 3,c; 348D exx; 348E ld d,(ix+004h); 3491 jr nz,$+8; 3493 ld a,(ix+003h); 3496 and 00fh; 3498 ld d,a; 3499 ld h,(ix+002h); 349C call 0354dh; 349F exx; 34A0 jr nc,$+91; 34A2 exx; 34A3 xor a; 34A4 ld (0351ch),a; 34A7 ld (03515h),a; 34AA ld a,(ix+000h); 34AD ld c,a; 34AE and 007h]
+   B(0) []
+= 7 instructions A 34B0-34B6 B 398F-3995
+replace A(9) [34B8 dec b; 34B9 call z,03521h; 34BC dec b; 34BD call z,0352ch; 34C0 dec b; 34C1 call z,03535h; 34C4 dec b; 34C5 call z,03540h; 34C8 ld c,e]
+   B(87) [3997 ld c,a; 3998 ld a,d; 3999 rrca; 399A rrca; 399B rrca; 399C rrca; 399D and 00fh; 399F ld l,(ix+001h); 39A2 ld h,(ix+002h); 39A5 bit 3,(ix+000h); 39A9 jr z,$+4; 39AB inc ix; 39AD inc ix; 39AF inc ix; 39B1 inc ix; 39B3 inc ix; 39B5 ex af,af'; 39B6 inc b; 39B7 inc c; 39B8 ld a,l; 39B9 sub 000h; 39BB jr nc,$+9; 39BD neg; 39BF cp c; 39C0 jr nc,$-77; 39C2 jr $+6; 39C4 cp 018h; 39C6 jr nc,$-83; 39C8 ld a,h; 39C9 sub 000h ...]
+= 4 instructions A 34C9-34CD B 3A26-3A2A
+insert A(0) []
+   B(1) [3A2B ld d,h]
+= 1 instructions A 34CE-34CE B 3A2C-3A2C
+delete A(1) [34CF ld d,h]
+   B(0) []
+= 3 instructions A 34D0-34D2 B 3A2D-3A2F
+delete A(88) [34D6 add hl,de; 34D7 ex af,af'; 34D8 exx; 34D9 ld a,e; 34DA ld (034eah),a; 34DD ld (03510h),a; 34E0 ld a,l; 34E1 exx; 34E2 call 0128fh; 34E5 ex af,af'; 34E6 dec b; 34E7 jr nz,$+35; 34E9 ld b,000h; 34EB ld d,h; 34EC ld e,l; 34ED ld (hl),a; 34EE inc hl; 34EF djnz $-2; 34F1 ld hl,00018h; 34F4 add hl,de; 34F5 dec c; 34F6 jr nz,$-13; 34F8 ld c,(ix+000h); 34FB ld de,00004h; 34FE add ix,de; 3500 bit 3,c; 3502 jp z,0346eh; 3505 inc ix; 3507 jp 0346eh; 350A ld de,00018h ...]
+   B(0) []
+= 4 instructions A 355F-3562 B 3A33-3A36
+replace A(1) [3563 or 0c0h]
+   B(19) [3A37 ld h,a; 3A38 add hl,de; 3A39 ld de,00018h; 3A3C ex af,af'; 3A3D push bc; 3A3E push hl; 3A3F ld b,c; 3A40 ld (hl),a; 3A41 inc hl; 3A42 djnz $-2; 3A44 pop hl; 3A45 add hl,de; 3A46 pop bc; 3A47 djnz $-10; 3A49 jp 03973h; 3A4C ret; 3A4D ld a,h; 3A4E add a,008h; 3A50 jr c,$+4]
+= 2 instructions A 3565-3566 B 3A52-3A53
+insert A(0) []
+   B(10) [3A54 ld a,h; 3A55 and 0c7h; 3A57 ld h,a; 3A58 ld a,050h; 3A5A add a,l; 3A5B ld l,a; 3A5C ret nc; 3A5D adc a,h; 3A5E sub l; 3A5F ld h,a]
+= 1 instructions A 3567-3567 B 3A60-3A60
+replace A(2) [3568 ld a,00dh; 356A ld (000feh),a]
+   B(22) [3A61 ld hl,0a100h; 3A64 ld a,l; 3A65 and 0f0h; 3A67 ld c,a; 3A68 ld a,l; 3A69 and 00fh; 3A6B rl c; 3A6D rra; 3A6E rl c; 3A70 rra; 3A71 rl c; 3A73 rra; 3A74 rl c; 3A76 rra; 3A77 rl c; 3A79 or c; 3A7A ld (hl),a; 3A7B inc l; 3A7C jr nz,$-24; 3A7E ld hl,05086h; 3A81 ld bc,07fc6h; 3A84 out (c),c]
+= 3 instructions A 356D-3573 B 3A86-3A8C
+delete A(38) [3575 call 03598h; 3578 ld b,008h; 357A ld de,0c600h; 357D ld hl,08300h; 3580 push bc; 3581 ld bc,00200h; 3584 ldir; 3586 ex de,hl; 3587 ld bc,00600h; 358A add hl,bc; 358B ex de,hl; 358C pop bc; 358D djnz $-13; 358F call 0310eh; 3592 call 035c3h; 3595 jp 03607h; 3598 ld de,0c600h; 359B ld hl,0c500h; 359E call 035b0h; 35A1 ld de,0d600h; 35A4 call 035b0h; 35A7 ld de,0e600h; 35AA call 035b0h; 35AD ld de,0f600h; 35B0 ld b,008h; 35B2 push bc; 35B3 push hl; 35B4 ld bc,00040h; 35B7 ex de,hl; 35B8 ldir ...]
+   B(0) []
+= 14 instructions A 35C9-35DD B 3A8E-3AA2
+replace A(1) [35DF jr nz,$+22]
+   B(1) [3AA4 jr nz,$+27]
+= 5 instructions A 35E1-35E5 B 3AA6-3AAA
+replace A(1) [35E7 jr nz,$+14]
+   B(1) [3AAC jr nz,$+19]
+= 2 instructions A 35E9-35EA B 3AAE-3AAF
+replace A(1) [35EC jr nz,$+9]
+   B(1) [3AB1 jr nz,$+14]
+= 3 instructions A 35EE-35F1 B 3AB3-3AB6
+insert A(0) []
+   B(2) [3AB9 ld bc,07fc0h; 3ABC out (c),c]
+= 1 instructions A 35F4-35F4 B 3ABE-3ABE
+replace A(1) [35F5 djnz $-26]
+   B(1) [3ABF djnz $-31]
+= 231 instructions A 35F7-3777 B 3AC1-3C41
+insert A(0) []
+   B(3) [3C42 push de; 3C43 ld a,l; 3C44 ex af,af']
+= 1 instructions A 3778-3778 B 3C45-3C45
+replace A(3) [3779 rlca; 377A rlca; 377B rlca]
+   B(16) [3C46 and 0f8h; 3C48 ld l,a; 3C49 ld a,h; 3C4A ld h,000h; 3C4C add hl,hl; 3C4D ld d,h; 3C4E ld e,l; 3C4F add hl,hl; 3C50 add hl,hl; 3C51 add hl,de; 3C52 and 007h; 3C54 add a,a; 3C55 add a,a; 3C56 add a,a; 3C57 or h; 3C58 or 0c0h]
+= 1 instructions A 377C-377C B 3C5A-3C5A
+replace A(4) [377D set 7,h; 377F set 6,h; 3781 and 0c0h; 3783 or l]
+   B(2) [3C5B ex af,af'; 3C5C add a,l]
+= 1 instructions A 3784-3784 B 3C5D-3C5D
+replace A(7) [3785 ret; 3786 ld a,l; 3787 sub h; 3788 jr z,$+19; 378A jr c,$+26; 378C cp d; 378D ret nc]
+   B(2) [3C5E adc a,h; 3C5F sub l]
+= 1 instructions A 378E-378E B 3C60-3C60
+replace A(29) [378F ld l,000h; 3791 add a,e; 3792 cp d; 3793 jr nc,$+4; 3795 ld a,e; 3796 ret; 3797 ld a,d; 3798 sub h; 3799 scf; 379A ret; 379B ld hl,00000h; 379E ld a,e; 379F cp d; 37A0 ret c; 37A1 scf; 37A2 ld a,d; 37A3 ret; 37A4 ld h,000h; 37A6 neg; 37A8 ld l,a; 37A9 cp e; 37AA ret nc; 37AB neg; 37AD add a,e; 37AE cp d; 37AF ret c; 37B0 scf; 37B1 ret z; 37B2 ld a,d]
+   B(3) [3C61 ld de,00008h; 3C64 add hl,de; 3C65 pop de]
+= 113 instructions A 37B3-3843 B 3C66-3CF6
+replace A(1) [3844 sbc a,h]
+   B(1) [3CF7 xor b]
+= 29 instructions A 3845-3868 B 3CF8-3D1B
+replace A(4) [386A adc a,c; 386B dec hl; 386C adc a,d; 386D dec hl]
+   B(92) [3D1D jr c,$+50; 3D1F add hl,sp; 3D20 jr nc,$+60; 3D22 jr nc,$+73; 3D24 jr nc,$+119; 3D26 jr nc,$+75; 3D28 jr nc,$-84; 3D2A inc a; 3D2B xor b; 3D2C inc a; 3D2D add a,c; 3D2E dec l; 3D2F and c; 3D30 dec l; 3D31 add a,03ch; 3D33 ret z; 3D34 inc a; 3D35 rst 0; 3D36 inc a; 3D37 add a,b; 3D38 dec l; 3D39 xor c; 3D3A inc a; 3D3B sbc a,(hl); 3D3C inc a; 3D3D jp (hl); 3D3E inc a; 3D3F rst 20h; 3D40 inc a; 3D41 ret pe ...]
+= 1 instructions A 386E-386E B 3D8B-3D8B
+replace A(35) [386F dec hl; 3870 sbc a,b; 3871 dec hl; 3872 add a,02bh; 3874 sbc a,d; 3875 dec hl; 3876 rst 30h; 3877 scf; 3878 push af; 3879 scf; 387A jp nc,0f228h; 387D jr z,$+21; 387F jr c,$+23; 3881 jr c,$+22; 3883 jr c,$-45; 3885 jr z,$-8; 3887 scf; 3888 ex de,hl; 3889 scf; 388A ld (hl),038h; 388C inc (hl); 388D jr c,$+55; 388F jr c,$+80; 3891 jr c,$+78; 3893 jr c,$+79; 3895 jr c,$+98; 3897 jr c,$+96; 3899 jr c,$+97; 389B jr c,$-25; 389D scf ...]
+   B(1) [3D8C inc a]
+= 1 instructions A 38A6-38A6 B 3D8D-3D8D
+replace A(47) [38A7 scf; 38A8 ld c,a; 38A9 dec hl; 38AA ld d,h; 38AB dec hl; 38AC and 037h; 38AE ld e,e; 38AF ld a,(037e3h); 38B2 ld b,b; 38B3 add hl,hl; 38B4 pop hl; 38B5 scf; 38B6 ld d,l; 38B7 add hl,hl; 38B8 rst 18h; 38B9 scf; 38BA ld e,h; 38BB add hl,hl; 38BC or b; 38BD inc b; 38BE jp po,0ee37h; 38C1 scf; 38C2 rst 28h; 38C3 scf; 38C4 ret p; 38C5 scf; 38C6 jp p,0e837h; 38C9 scf; 38CA ld e,(hl); 38CB add hl,hl ...]
+   B(2) [3D8E dec l; 3D8F and a]
+= 1 instructions A 38E3-38E3 B 3D90-3D90
+replace A(5) [38E4 jp nc,04737h; 38E7 add hl,hl; 38E8 rrca; 38E9 add hl,hl; 38EA djnz $+43]
+   B(12) [3D91 rst 38h; 3D92 dec l; 3D93 defb 0fdh,02dh ;dec iyl; 3D95 ld l,(hl); 3D96 ld b,c; 3D97 add a,l; 3D98 inc a; 3D99 or 02dh; 3D9B cp (hl); 3D9C dec l; 3D9D cp a; 3D9E dec l]
+= 239 instructions A 38EC-3A77 B 3D9F-3F2A
+insert A(0) []
+   B(5) [3F2B inc c; 3F2C inc d; 3F2D inc e; 3F2E rlca; 3F2F inc e]
+= 9 instructions A 3A78-3A81 B 3F30-3F39
+replace A(1) [3A82 ret]
+   B(2) [3F3A ld hl,03f26h; 3F3D jr $+15]
+= 22 instructions A 3A83-3AAA B 3F3F-3F66
+replace A(2) [3AAB ld a,03ah; 3AAD jr $+28]
+   B(9) [3F67 ld c,b; 3F68 ld d,h; 3F69 call 0afc1h; 3F6C push ix; 3F6E ld e,0ffh; 3F70 call 03f7fh; 3F73 ld e,000h; 3F75 call 03f7fh; 3F78 pop ix]
+= 1 instructions A 3AAF-3AAF B 3F7A-3F7A
+insert A(0) []
+   B(2697) [3F7B ld (02d75h),a; 3F7E ret; 3F7F ld hl,00000h; 3F82 ld ix,03f67h; 3F86 ld (ix+000h),03fh; 3F8A ld (ix+001h),04fh; 3F8E ld (ix+002h),03fh; 3F92 ld (ix+003h),04eh; 3F96 ld b,020h; 3F98 xor a; 3F99 push bc; 3F9A ld b,(ix+000h); 3F9D jr $+9; 3F9F push bc; 3FA0 ld b,(ix+000h); 3FA3 dec (ix+000h); 3FA6 dec (ix+000h); 3FA9 call 03fe6h; 3FAC inc l; 3FAD djnz $-4; 3FAF ld b,(ix+001h); 3FB2 dec (ix+001h); 3FB5 dec (ix+001h); 3FB8 call 03fe6h; 3FBB inc h; 3FBC inc h; 3FBD djnz $-5; 3FBF ld b,(ix+002h); 3FC2 dec (ix+002h); 3FC5 dec (ix+002h) ...]
+= 82 instructions A 3AB0-3B5C B 4E6C-4F18
+replace A(2) [3B5F add a,c; 3B60 dec hl]
+   B(1) [4F1B jr nc,$+50]
+= 11 instructions A 3B61-3B71 B 4F1D-4F2D
+replace A(2) [3B74 ld (hl),a; 3B75 dec hl]
+   B(1) [4F30 ld h,030h]
+= 15 instructions A 3B76-3B92 B 4F32-4F4E
+replace A(3) [3B95 ld h,e; 3B96 dec hl; 3B97 nop]
+   B(2) [4F51 ld (de),a; 4F52 jr nc,$+2]
+= 7 instructions A 3B98-3BA2 B 4F54-4F5E
+replace A(1) [3BA5 call nz,0002bh]
+   B(2) [4F61 ld (hl),e; 4F62 jr nc,$+2]
+= 7 instructions A 3BA8-3BB2 B 4F64-4F6E
+replace A(2) [3BB5 out (02bh),a; 3BB7 inc bc]
+   B(2) [4F71 add a,d; 4F72 jr nc,$+5]
+= 11 instructions A 3BB8-3BCE B 4F74-4F8A
+replace A(1) [3BD1 call nz,0002bh]
+   B(2) [4F8D ld (hl),e; 4F8E jr nc,$+2]
+= 37 instructions A 3BD4-3C1A B 4F90-4FD6
+insert A(0) []
+   B(1) [4FD7 ld a,010h]
+= 1 instructions A 3C1B-3C1B B 4FD9-4FD9
+insert A(0) []
+   B(1) [4FDA ld (02e06h),a]
+= 1 instructions A 3C1C-3C1C B 4FDD-4FDD
+replace A(3) [3C1F ld l,b; 3C20 dec hl; 3C21 nop]
+   B(2) [4FE0 rla; 4FE1 jr nc,$+2]
+= 3 instructions A 3C22-3C25 B 4FE3-4FE6
+replace A(5) [3C27 add a,h; 3C28 inc a; 3C29 ld l,b; 3C2A dec hl; 3C2B nop]
+   B(4) [4FE8 ld b,l; 4FE9 ld b,c; 4FEA rla; 4FEB jr nc,$+2]
+= 7 instructions A 3C2C-3C35 B 4FED-4FF6
+replace A(3) [3C38 ld e,c; 3C39 dec hl; 3C3A add a,b]
+   B(2) [4FF9 ex af,af'; 4FFA jr nc,$-126]
+= 1 instructions A 3C3B-3C3B B 4FFC-4FFC
+replace A(3) [3C3C ld h,b; 3C3D add hl,hl; 3C3E nop]
+   B(2) [4FFD rrca; 4FFE ld l,000h]
+= 6 instructions A 3C3F-3C48 B 5000-5009
+replace A(2) [3C4B add a,c; 3C4C dec hl]
+   B(1) [500C jr nc,$+50]
+= 4 instructions A 3C4D-3C50 B 500E-5011
+replace A(5) [3C53 add a,h; 3C54 inc a; 3C55 ld l,l; 3C56 dec hl; 3C57 nop]
+   B(4) [5014 ld b,l; 5015 ld b,c; 5016 inc e; 5017 jr nc,$+2]
+= 4 instructions A 3C58-3C5C B 5019-501D
+replace A(3) [3C5F ld l,l; 3C60 dec hl; 3C61 nop]
+   B(2) [5020 inc e; 5021 jr nc,$+2]
+= 5 instructions A 3C62-3C66 B 5023-5027
+replace A(3) [3C69 ld (hl),d; 3C6A dec hl; 3C6B nop]
+   B(1) [502A ld hl,00030h]
+= 5 instructions A 3C6C-3C70 B 502D-5031
+replace A(3) [3C73 ld h,e; 3C74 dec hl; 3C75 nop]
+   B(2) [5034 ld (de),a; 5035 jr nc,$+2]
+= 4 instructions A 3C76-3C79 B 5037-503A
+replace A(5) [3C7B add a,h; 3C7C inc a; 3C7D ld l,l; 3C7E dec hl; 3C7F nop]
+   B(4) [503C ld b,l; 503D ld b,c; 503E inc e; 503F jr nc,$+2]
+= 98 instructions A 3C80-3D2F B 5041-50F0
+replace A(11) [3D30 add a,a; 3D31 dec hl; 3D32 sub (hl); 3D33 dec hl; 3D34 and l; 3D35 dec hl; 3D36 or h; 3D37 dec hl; 3D38 jp 0d22bh; 3D3B dec hl; 3D3C ld a,(037dah)]
+   B(9) [50F1 ld (hl),030h; 50F3 ld b,l; 50F4 jr nc,$+86; 50F6 jr nc,$+101; 50F8 jr nc,$+116; 50FA jr nc,$-125; 50FC jr nc,$+60; 50FE adc a,l; 50FF inc a]
+= 59 instructions A 3D3F-3D9D B 5100-515E
+replace A(3) [3DA0 ld e,c; 3DA1 dec hl; 3DA2 nop]
+   B(2) [5161 ex af,af'; 5162 jr nc,$+2]
+= 34 instructions A 3DA3-3DD8 B 5164-5199
+delete A(1) [3DDA ld a,020h]
+   B(0) []
+= 2 instructions A 3DDC-3DDF B 519B-519E
+delete A(1) [3DE0 ld (03e61h),a]
+   B(0) []
+= 1 instructions A 3DE3-3DE3 B 519F-519F
+replace A(5) [3DE6 ret; 3DE7 ld bc,00000h; 3DEA ld a,031h; 3DEC jr $-16; 3DEE ld a,(02940h)]
+   B(7) [51A2 call 04145h; 51A5 ld e,043h; 51A7 jr nz,$+34; 51A9 jr nc,$+50; 51AB jr nz,$+60; 51AD rst 28h; 51AE dec l]
+= 28 instructions A 3DF1-3E27 B 51AF-51E5
+replace A(1) [3E2A call po,0a737h]
+   B(3) [51E8 sub a; 51E9 inc a; 51EA and a]
+= 28 instructions A 3E2D-3E5D B 51EB-521B
+replace A(1) [3E60 jr nz,$+50]
+   B(1) [521E jr nz,$+34]
+= 34 instructions A 3E62-3E90 B 5220-524E
+delete A(3) [3E93 ld a,(03e61h); 3E96 cp 031h; 3E98 jr z,$+46]
+   B(0) []
+= 31 instructions A 3E9A-3EC3 B 5251-527A
+replace A(19) [3EC6 jp 03346h; 3EC9 exx; 3ECA ld bc,0f8ffh; 3ECD out (c),c; 3ECF ld bc,07f89h; 3ED2 out (c),c; 3ED4 exx; 3ED5 ex af,af'; 3ED6 xor a; 3ED7 ld (0b11ah),a; 3EDA ld (0b15fh),a; 3EDD ex af,af'; 3EDE call 00044h; 3EE1 call 00800h; 3EE4 ld c,0ffh; 3EE6 pop hl; 3EE7 jp 00077h; 3EEA rst 10h; 3EEB jr z,$-53]
+   B(3) [527D ld hl,00000h; 5280 ld (02d86h),hl; 5283 ret]
+= 68 instructions A 3EED-3F72 B 5284-5309
+replace A(3) [3F73 dec a; 3F74 ld (bc),a; 3F75 ld bc,00603h]
+   B(1) [530A call 00105h]
+= 1 instructions A 3F78-3F78 B 530D-530D
+insert A(0) []
+   B(1) [530E ld b,003h]
+= 22 instructions A 3F79-3F91 B 5310-5328
+replace A(1) [3F94 add hl,hl]
+   B(1) [532B dec l]
+= 603 instructions A 3F95-4440 B 532C-57D7
+replace A(12) [4441 cp e; 4442 defb 0edh;next byte illegal after ed; 4443 set 5,h; 4445 cp e; 4446 in c,(c); 4448 defb 0edh;next byte illegal after ed; 4449 in a,(0ebh); 444B ld e,c; 444C ex de,hl; 444D in a,(0ebh); 444F ld d,e; 4450 call pe,0e000h]
+   B(16) [57D8 sub b; 57D9 or b; 57DA and b; 57DB xor a; 57DC sub b; 57DD or b; 57DE dec e; 57DF or b; 57E0 or b; 57E1 xor (hl); 57E2 ld l,0aeh; 57E4 or b; 57E5 xor (hl); 57E6 jr z,$-79; 57E8 nop; 57E9 ret po]
+= 201 instructions A 4453-45D6 B 57EA-596D
+delete A(1) [45D9 jp nc,04597h]
+   B(0) []
+= 13 instructions A 45DC-45F8 B 5970-598C
+delete A(1) [45FB jp nc,04597h]
+   B(0) []
+= 10 instructions A 45FE-4613 B 598F-59A4
+delete A(4) [4616 ld a,0cch; 4618 ld (046aeh),a; 461B ld a,023h; 461D ld (046c3h),a]
+   B(0) []
+= 3 instructions A 4620-4624 B 59A7-59AB
+replace A(1) [4626 jr c,$+69]
+   B(1) [59AD jr c,$+40]
+= 1 instructions A 4628-4628 B 59AF-59AF
+replace A(1) [462C jr nz,$+63]
+   B(1) [59B3 jr nz,$+34]
+= 18 instructions A 462E-464A B 59B5-59D1
+delete A(2) [464B ld a,h; 464C res 6,h]
+   B(0) []
+= 1 instructions A 464E-464E B 59D2-59D2
+delete A(11) [464F bit 6,a; 4651 jr z,$+42; 4653 ld a,0c4h; 4655 ld (046aeh),a; 4658 ld a,02bh; 465A ld (046c3h),a; 465D ld a,(0467ch); 4660 neg; 4662 add a,(iy+005h); 4665 dec a; 4666 ld (0467ch),a]
+   B(0) []
+= 39 instructions A 4669-46AB B 59D3-5A15
+replace A(2) [46AC jr z,$+23; 46AE call z,04717h]
+   B(1) [5A16 jr z,$+20]
+= 17 instructions A 46B1-46C2 B 5A18-5A29
+insert A(0) []
+   B(1) [5A2A inc de]
+= 1 instructions A 46C3-46C3 B 5A2B-5A2B
+replace A(2) [46C4 inc de; 46C5 djnz $-27]
+   B(1) [5A2C djnz $-24]
+= 7 instructions A 46C7-46CF B 5A2E-5A36
+replace A(1) [46D1 jr nz,$+57]
+   B(1) [5A38 jr nz,$+27]
+= 2 instructions A 46D3-46D6 B 5A3A-5A3D
+replace A(1) [46D8 jr nz,$+50]
+   B(1) [5A3F jr nz,$+20]
+= 10 instructions A 46DA-46E5 B 5A41-5A4C
+delete A(13) [46E6 bit 6,h; 46E8 jr z,$+26; 46EA ld l,a; 46EB ld a,0c4h; 46ED ld (046aeh),a; 46F0 ld a,02bh; 46F2 ld (046c3h),a; 46F5 ld a,(04703h); 46F8 neg; 46FA add a,(iy+005h); 46FD dec a; 46FE ld (04703h),a; 4701 ld a,l]
+   B(0) []
+= 5 instructions A 4702-4707 B 5A4D-5A52
+delete A(1) [4708 res 6,h]
+   B(0) []
+= 7 instructions A 470A-4711 B 5A53-5A5A
+replace A(1) [4712 djnz $-109]
+   B(1) [5A5B djnz $-76]
+= 1 instructions A 4714-4714 B 5A5D-5A5D
+delete A(16) [4717 exx; 4718 ld h,a; 4719 ld l,000h; 471B rra; 471C adc hl,hl; 471E rra; 471F adc hl,hl; 4721 rra; 4722 adc hl,hl; 4724 rra; 4725 adc hl,hl; 4727 rra; 4728 and 0f0h; 472A or l; 472B exx; 472C ret]
+   B(0) []
+= 178 instructions A 472D-4877 B 5A60-5BAA
+replace A(2) [4878 jr nc,$+11; 487A ld a,040h]
+   B(7) [5BAB and 038h; 5BAD jr nz,$+15; 5BAF ld a,h; 5BB0 sub 008h; 5BB2 and 0c7h; 5BB4 ld h,a; 5BB5 ld a,050h]
+= 4 instructions A 487C-487F B 5BB7-5BBA
+delete A(1) [4880 or 0c0h]
+   B(0) []
+= 1 instructions A 4882-4882 B 5BBB-5BBB
+replace A(1) [4883 djnz $-31]
+   B(1) [5BBC djnz $-37]
+= 95 instructions A 4885-491A B 5BBE-5C53
+insert A(0) []
+   B(36) [5C54 ld a,l; 5C55 sub h; 5C56 jr z,$+19; 5C58 jr c,$+25; 5C5A cp d; 5C5B jr nc,$+38; 5C5D ld h,a; 5C5E ld l,000h; 5C60 add a,e; 5C61 cp d; 5C62 jr nc,$+4; 5C64 ld a,e; 5C65 ret; 5C66 ld a,d; 5C67 sub h; 5C68 ret; 5C69 ld hl,00000h; 5C6C ld a,e; 5C6D cp d; 5C6E ret c; 5C6F ld a,d; 5C70 ret; 5C71 ld h,000h; 5C73 neg; 5C75 ld l,a; 5C76 cp e; 5C77 jr nc,$+10; 5C79 neg; 5C7B add a,e; 5C7C cp d ...]
+= 4 instructions A 491B-4920 B 5C85-5C8A
+insert A(0) []
+   B(9) [5C8E ret; 5C8F pop hl; 5C90 ld de,08d80h; 5C93 and a; 5C94 sbc hl,de; 5C96 ret c; 5C97 ld de,00780h; 5C9A sbc hl,de; 5C9C ccf]
+= 16 instructions A 4924-4947 B 5C9D-5CC0
+delete A(7) [4949 xor a; 494A ld (04a2ch),a; 494D ld (04a48h),a; 4950 ld a,(02928h); 4953 sub 004h; 4955 ld (04a28h),a; 4958 ld (04a44h),a]
+   B(0) []
+= 11 instructions A 495B-496D B 5CC2-5CD4
+replace A(1) [496E jr z,$+73]
+   B(1) [5CD5 jr z,$+70]
+= 11 instructions A 4970-4986 B 5CD7-5CED
+replace A(1) [4988 jr $+46]
+   B(1) [5CEF jr $+43]
+= 1 instructions A 498A-498A B 5CF1-5CF1
+replace A(1) [498B jr nc,$+43]
+   B(1) [5CF2 jr nc,$+40]
+= 2 instructions A 498D-4990 B 5CF4-5CF7
+replace A(1) [4991 jr nc,$+37]
+   B(1) [5CF8 jr nc,$+34]
+= 1 instructions A 4993-4993 B 5CFA-5CFA
+replace A(1) [4997 jr nz,$+31]
+   B(1) [5CFE jr nz,$+28]
+= 10 instructions A 4999-49AC B 5D00-5D13
+delete A(1) [49AD ld a,(ix+002h)]
+   B(0) []
+= 10 instructions A 49B0-49C0 B 5D14-5D24
+replace A(1) [49C1 jr nz,$-87]
+   B(1) [5D25 jr nz,$-84]
+= 6 instructions A 49C3-49C8 B 5D27-5D2C
+replace A(1) [49C9 djnz $-103]
+   B(1) [5D2D djnz $-100]
+= 18 instructions A 49CB-49E5 B 5D2F-5D49
+replace A(1) [49E7 ld l,a]
+   B(1) [5D4B ld l,(ix+002h)]
+= 6 instructions A 49E8-49ED B 5D4E-5D53
+replace A(1) [49EE ld a,083h]
+   B(1) [5D54 ld a,06dh]
+= 1 instructions A 49F0-49F0 B 5D56-5D56
+delete A(17) [49F1 ld h,a; 49F2 exx; 49F3 ld h,091h; 49F5 exx; 49F6 bit 7,c; 49F8 jr nz,$+26; 49FA ld a,c; 49FB and 070h; 49FD rrca; 49FE ld h,a; 49FF ld a,c; 4A00 rrca; 4A01 rrca; 4A02 rrca; 4A03 and 001h; 4A05 or h; 4A06 add a,0c6h]
+   B(0) []
+= 3 instructions A 4A08-4A0A B 5D57-5D59
+replace A(1) [4A0C jr c,$+40]
+   B(5) [5D5B ld a,(02dd7h); 5D5E jr c,$+52; 5D60 sub 004h; 5D62 ld (04e87h),a; 5D65 bit 7,(ix+002h)]
+= 1 instructions A 4A0E-4A0E B 5D69-5D69
+replace A(1) [4A0F ld h,08fh]
+   B(3) [5D6A ld h,09dh; 5D6C jr z,$+4; 5D6E ld h,09fh]
+= 22 instructions A 4A11-4A2A B 5D70-5D89
+delete A(1) [4A2B ld a,000h]
+   B(0) []
+= 1 instructions A 4A2D-4A2D B 5D8A-5D8A
+insert A(0) []
+   B(1) [5D8B sub e]
+= 3 instructions A 4A2E-4A30 B 5D8C-5D8E
+replace A(1) [4A31 jr nz,$-29]
+   B(1) [5D8F jr nz,$-28]
+= 1 instructions A 4A33-4A33 B 5D91-5D91
+insert A(0) []
+   B(2) [5D92 sub 004h; 5D94 ld (04ea8h),a]
+= 3 instructions A 4A34-4A36 B 5D97-5D99
+replace A(1) [4A37 ld b,008h]
+   B(1) [5D9A ld bc,00804h]
+= 8 instructions A 4A39-4A46 B 5D9D-5DAA
+delete A(1) [4A47 ld a,000h]
+   B(0) []
+= 1 instructions A 4A49-4A49 B 5DAB-5DAB
+insert A(0) []
+   B(1) [5DAC sub e]
+= 1 instructions A 4A4A-4A4A B 5DAD-5DAD
+replace A(1) [4A4B djnz $-18]
+   B(1) [5DAE djnz $-17]
+= 2 instructions A 4A4D-4A4E B 5DB0-5DB1
+delete A(13) [4A4F nop; 4A50 ld h,b; 4A51 ld b,b; 4A52 nop; 4A53 nop; 4A54 ld b,004h; 4A56 nop; 4A57 nop; 4A58 and b; 4A59 ret nz; 4A5A rst 38h; 4A5B nop; 4A5C jp m,0fffch]
+   B(0) []
+= 1 instructions A 4A5F-4A5F B 5DB2-5DB2
+replace A(1) [4A62 ld a,0fch]
+   B(2) [5DB5 ld ix,090aah; 5DB9 ld a,004h]
+= 1 instructions A 4A64-4A64 B 5DBB-5DBB
+insert A(0) []
+   B(1) [5DBE inc a]
+= 1 instructions A 4A67-4A67 B 5DBF-5DBF
+replace A(1) [4A6A ld a,007h]
+   B(1) [5DC2 ld a,001h]
+= 1 instructions A 4A6C-4A6C B 5DC4-5DC4
+insert A(0) []
+   B(1) [5DC7 inc a]
+= 1 instructions A 4A6F-4A6F B 5DC8-5DC8
+replace A(13) [4A72 ld ix,08aaah; 4A76 ld iy,04a4fh; 4A7A ld (iy+000h),004h; 4A7E ld (iy+004h),001h; 4A82 ld (iy+008h),005h; 4A86 ld (iy+00ch),002h; 4A8A ld c,008h; 4A8C ld iy,04a4fh; 4A90 ld b,004h; 4A92 push bc; 4A93 ld b,(iy+000h); 4A96 inc (iy+000h); 4A99 inc (iy+000h)]
+   B(42) [5DCB ld a,014h; 5DCD cp 014h; 5DCF ret nc; 5DD0 ld b,a; 5DD1 inc a; 5DD2 inc a; 5DD3 ld (04ecch),a; 5DD6 ld a,b; 5DD7 ld bc,00060h; 5DDA ld hl,00050h; 5DDD call 04f18h; 5DE0 ld a,00fh; 5DE2 ld b,a; 5DE3 inc a; 5DE4 inc a; 5DE5 ld (04ee1h),a; 5DE8 ld a,b; 5DE9 ld bc,00006h; 5DEC ld hl,00004h; 5DEF call 04f18h; 5DF2 ld a,00fh; 5DF4 ld b,a; 5DF5 inc a; 5DF6 inc a; 5DF7 ld (04ef3h),a; 5DFA ld a,b; 5DFB ld bc,0ffa0h; 5DFE ld hl,0ffb0h; 5E01 call 04f18h; 5E04 ld a,00fh ...]
+= 7 instructions A 4A9C-4AA8 B 5E20-5E2C
+replace A(2) [4AAB ld b,(iy+003h); 4AAE ld c,(iy+001h)]
+   B(1) [5E2F ld bc,00000h]
+= 1 instructions A 4AB1-4AB1 B 5E32-5E32
+replace A(2) [4AB3 ld h,b; 4AB4 ld l,(iy+002h)]
+   B(1) [5E34 ld hl,00000h]
+= 3 instructions A 4AB7-4AB9 B 5E37-5E39
+replace A(7) [4ABA djnz $-30; 4ABC ld bc,00004h; 4ABF add iy,bc; 4AC1 pop bc; 4AC2 djnz $-48; 4AC4 dec c; 4AC5 jr nz,$-57]
+   B(1) [5E3A djnz $-26]
+= 3 instructions A 4AC7-4AC9 B 5E3C-5E3E
+replace A(1) [4ACA call 049e5h]
+   B(44) [5E3F ld h,000h; 5E41 ld l,a; 5E42 add hl,hl; 5E43 add hl,hl; 5E44 add hl,hl; 5E45 add hl,hl; 5E46 add hl,hl; 5E47 ld c,a; 5E48 ld a,06dh; 5E4A add a,h; 5E4B ld h,a; 5E4C bit 7,c; 5E4E exx; 5E4F ld h,09dh; 5E51 jr z,$+4; 5E53 ld h,09fh; 5E55 exx; 5E56 ld c,008h; 5E58 ld b,004h; 5E5A ld a,(hl); 5E5B exx; 5E5C ld l,a; 5E5D ld c,(hl); 5E5E inc h; 5E5F ld b,(hl); 5E60 ld a,(de); 5E61 and b; 5E62 or c; 5E63 ld (de),a; 5E64 dec h ...]
+= 1180 instructions A 4ACD-52C2 B 5E77-666C
+replace A(4) [52C4 rst 28h; 52C5 ld a,0c3h; 52C7 xor b; 52C8 add hl,sp]
+   B(3) [666E add a,(hl); 666F ld b,e; 6670 jp 03e5bh]
+= 262 instructions A 52C9-5420 B 6673-67CA
+replace A(2) [5422 ld (hl),c; 5423 ld c,e]
+   B(2) [67CC dec de; 67CD ld d,b]
+= 20 instructions A 5424-543B B 67CE-67E5
+replace A(2) [543D ld a,h; 543E ld c,e]
+   B(1) [67E7 ld h,050h]
+= 109 instructions A 543F-54D6 B 67E9-6880
+replace A(3) [54D9 add hl,sp; 54DA call 039aeh; 54DD jr nz,$+9]
+   B(4) [6883 ld a,0cdh; 6885 ld h,c; 6886 ld a,020h; 6888 rlca]
+= 3 instructions A 54DF-54E5 B 6889-688F
+replace A(3) [54E7 xor b; 54E8 add hl,sp; 54E9 rst 8]
+   B(2) [6891 ld e,e; 6892 ld a,0cfh]
+= 116 instructions A 54EA-5581 B 6894-692B
+replace A(2) [5583 ret c; 5584 dec sp]
+   B(2) [692D sub h; 692E ld b,b]
+= 169 instructions A 5585-5669 B 692F-6A13
+replace A(2) [566B ld a,h; 566C ld c,e]
+   B(1) [6A15 ld h,050h]
+= 63 instructions A 566D-56BD B 6A17-6A67
+replace A(1) [56BF and 03eh]
+   B(2) [6A69 ld a,l; 6A6A ld b,e]
+= 131 instructions A 56C1-577E B 6A6B-6B28
+replace A(2) [5781 add hl,sp; 5782 rst 8]
+   B(1) [6B2B ld a,0cfh]
+= 9 instructions A 5783-578E B 6B2D-6B38
+replace A(3) [5790 xor b; 5791 add hl,sp; 5792 rst 8]
+   B(2) [6B3A ld e,e; 6B3B ld a,0cfh]
+= 62 instructions A 5793-57E8 B 6B3D-6B92
+replace A(1) [57EB ld c,e]
+   B(1) [6B95 ld d,b]
+= 13 instructions A 57EC-57FB B 6B96-6BA5
+replace A(2) [57FD ld (hl),c; 57FE ld c,e]
+   B(2) [6BA7 dec de; 6BA8 ld d,b]
+= 245 instructions A 57FF-5956 B 6BA9-6D00
+replace A(1) [5959 ld c,e]
+   B(1) [6D03 ld d,b]
+= 105 instructions A 595A-59E0 B 6D04-6D8A
+replace A(2) [59E3 cp e; 59E4 ld c,e]
+   B(2) [6D8D ld h,l; 6D8E ld d,b]
+= 91 instructions A 59E5-5A61 B 6D8F-6E0B
+replace A(10) [5A64 ld (hl),l; 5A65 ld e,d; 5A66 sub c; 5A67 ld e,d; 5A68 jp po,0e95ah; 5A6B ld e,d; 5A6C call m,00f5ah; 5A6F ld e,e; 5A70 inc de; 5A71 ld e,e]
+   B(14) [6E0E rra; 6E0F ld e,a; 6E10 dec sp; 6E11 ld e,a; 6E12 adc a,h; 6E13 ld e,a; 6E14 sub e; 6E15 ld e,a; 6E16 and (hl); 6E17 ld e,a; 6E18 cp c; 6E19 ld e,a; 6E1A cp l; 6E1B ld e,a]
+= 33 instructions A 5A72-5AA6 B 6E1C-6E50
+replace A(2) [5AA8 dec sp; 5AA9 dec sp]
+   B(2) [6E52 rst 30h; 6E53 ccf]
+= 158 instructions A 5AAA-5B96 B 6E54-6F40
+replace A(1) [5B99 dec sp]
+   B(1) [6F43 ld b,b]
+= 58 instructions A 5B9A-5BE1 B 6F44-6F8B
+replace A(3) [5BE4 defb 0ddh,05fh,0cdh ;illegal sequence; 5BE7 halt; 5BE8 ld h,b]
+   B(3) [6F8E add a,a; 6F8F ld h,h; 6F90 call 06520h]
+= 8 instructions A 5BE9-5BF2 B 6F93-6F9C
+replace A(2) [5BF4 dec d; 5BF5 ccf]
+   B(2) [6F9E xor h; 6F9F ld b,e]
+= 21 instructions A 5BF6-5C0F B 6FA0-6FB9
+replace A(1) [5C12 ccf]
+   B(1) [6FBC ld b,e]
+= 155 instructions A 5C13-5CE9 B 6FBD-7093
+replace A(4) [5CEC add hl,sp; 5CED jr nz,$+19; 5CEF rst 8; 5CF0 sbc a,c]
+   B(2) [7096 ld a,020h; 7098 ld de,099cfh]
+= 26 instructions A 5CF1-5D14 B 709B-70BE
+replace A(3) [5D16 push hl; 5D17 add hl,sp; 5D18 jr $+12]
+   B(3) [70C0 sbc a,b; 70C1 ld a,018h; 70C3 ld a,(bc)]
+= 89 instructions A 5D1A-5D8B B 70C4-7135
+replace A(3) [5D8E xor (hl); 5D8F add hl,sp; 5D90 jr nz,$+5]
+   B(3) [7138 ld h,c; 7139 ld a,020h; 713B inc bc]
+= 12 instructions A 5D92-5D9D B 713C-7147
+replace A(3) [5DA0 ld d,b; 5DA1 ld e,(hl); 5DA2 rst 8]
+   B(1) [714A jp m,0cf62h]
+= 139 instructions A 5DA3-5E58 B 714D-7202
+replace A(2) [5E5A dec h; 5E5B ld e,a]
+   B(2) [7204 rst 8; 7205 ld h,e]
+= 33 instructions A 5E5C-5E88 B 7206-7232
+replace A(2) [5E8A dec h; 5E8B ld e,a]
+   B(2) [7234 rst 8; 7235 ld h,e]
+= 8 instructions A 5E8C-5E94 B 7236-723E
+replace A(1) [5E97 ld e,a]
+   B(1) [7241 ld h,e]
+= 32 instructions A 5E98-5EC1 B 7242-726B
+replace A(2) [5EC3 ld a,h; 5EC4 ld c,e]
+   B(1) [726D ld h,050h]
+= 53 instructions A 5EC5-5F0B B 726F-72B5
+replace A(2) [5F0D dec h; 5F0E ld e,a]
+   B(2) [72B7 rst 8; 72B8 ld h,e]
+= 16 instructions A 5F0F-5F20 B 72B9-72CA
+replace A(1) [5F23 ld e,a]
+   B(1) [72CD ld h,e]
+= 121 instructions A 5F24-5FC8 B 72CE-7372
+replace A(2) [5FCB inc h; 5FCC ld d,c]
+   B(1) [7375 adc a,055h]
+= 11 instructions A 5FCD-5FDD B 7377-7387
+replace A(9) [5FE0 xor 05fh; 5FE2 xor 05fh; 5FE4 ret m; 5FE5 ld e,a; 5FE6 xor 05fh; 5FE8 nop; 5FE9 ld h,b; 5FEA ld (de),a; 5FEB ld h,b]
+   B(12) [738A sbc a,b; 738B ld h,h; 738C sbc a,b; 738D ld h,h; 738E and d; 738F ld h,h; 7390 sbc a,b; 7391 ld h,h; 7392 xor d; 7393 ld h,h; 7394 cp h; 7395 ld h,h]
+= 15 instructions A 5FEC-5FFE B 7396-73A8
+insert A(0) []
+   B(2488) [73AA rst 8; 73AB xor h; 73AC ld bc,0203eh; 73AF ex af,af'; 73B0 rst 10h; 73B1 and d; 73B2 ld b,b; 73B3 jr nz,$-39; 73B5 and e; 73B6 nop; 73B7 ret; 73B8 rst 10h; 73B9 and e; 73BA ld bc,0d7c9h; 73BD and e; 73BE sub a; 73BF ret; 73C0 call 03f10h; 73C3 pop de; 73C4 ld h,h; 73C5 rst 10h; 73C6 ld h,h; 73C7 sbc a,064h; 73C9 sbc a,b; 73CA ld h,h; 73CB cp h; 73CC ld h,h; 73CD call po,00064h; 73D0 nop; 73D1 rst 10h ...]
+# equal 12724 of A 14819 / B 20659

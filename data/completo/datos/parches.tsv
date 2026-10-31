@@ -1,0 +1,4 @@
+# made by tools/datos128.py (do not edit): values of the full game inside other blocks
+name	offset	bytes	why
+D64_GAME_START_POS	0	88a8	the start square: Guillermo x 88h, y A8h (the entrance; PC 1000:1F41), Adso beside him
+D64_AI_BERENGAR_PLACES	13	a8	Berengar's place at the start square (9Ch on the 64 KiB game)

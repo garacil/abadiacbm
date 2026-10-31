@@ -1,0 +1,11 @@
+al 00BB00 .MARCADOR
+al 00BF00 .PAGINA2
+al 00C700 .PAGINA3
+al 000100 .ZP_KERNAL
+al 00C5FA .arreglos
+al 00C5EF .error
+al 00C634 .fin
+al 00C595 .fin_linea
+al 00C3E8 .inicio
+al 00C538 .leer
+al 00C6CE .salto

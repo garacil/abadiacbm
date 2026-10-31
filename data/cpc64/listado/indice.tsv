@@ -1,0 +1,294 @@
+addr64	name	pc	cpc6128	times	lines	executed	file
+0008	f_0008			1741238	8	1	0008_f_0008.asm
+0010	f_0010			284561	638	2	0010_f_0010.asm
+036D	f_036D			26960	11	11	036D_f_036D.asm
+038E	ai_update_abbot	0B04	071E	26960	71	63	038E_ai_update_abbot.asm
+042D	chr_path_add_targets_around	0BAF	07BD	64419	11	11	042D_chr_path_add_targets_around.asm
+0442	chr_path_add_target_beside	0BC5	07D2	193257	48	48	0442_chr_path_add_target_beside.asm
+04A0	ai_update_berengar	0C2A	0830	26960	11	11	04A0_ai_update_berengar.asm
+04C1	ai_update_severin	0C4B	0851	26960	11	11	04C1_ai_update_severin.asm
+04E2	ai_check_planned_move	0C6A	0872	0	4	4	04E2_ai_check_planned_move.asm
+04EB	ai_update_adso	0C72	087B	26960	29	29	04EB_ai_update_adso.asm
+052E	chr_cmd_discard	0CC0	08BE	285	83	83	052E_chr_cmd_discard.asm
+05FA	chr_path_find	0DA5	098A	64490	101	45	05FA_chr_path_find.asm
+06C8	chr_path_face_target	0EA5	0A58	1040	13	13	06C8_chr_path_face_target.asm
+06E3	chr_cmd_rewind	0EC6	0A73	188	11	11	06E3_chr_cmd_rewind.asm
+06FE	chr_room_coords	0EE3	0A8E	3583	15	15	06FE_chr_room_coords.asm
+0713	chr_path_clear_room_marks	0F02	0AA3	3583	11	11	0713_chr_path_clear_room_marks.asm
+0724	chr_path_via_rooms	0F17	0AB4	0	43	43	0724_chr_path_via_rooms.asm
+077E	chr_path_search_to_dest	0F83	0B0E	0	44	44	077E_chr_path_search_to_dest.asm
+07E6	chr_path_restore_screen_grid	0FF4	0B76	4033	10	10	07E6_chr_path_restore_screen_grid.asm
+07FF	iso_grid_set_origin	100B	0B8F	12456	13	13	07FF_iso_grid_set_origin.asm
+081E	chr_path_clear_grid_marks	102B	0BAE	28587	11	11	081E_chr_path_clear_grid_marks.asm
+082F	chr_path_build_grid	1041	0BBF	6177	87	80	082F_chr_path_build_grid.asm
+08E5	chr_room_distance_near	1111	0C75	12624	27	0	08E5_chr_room_distance_near.asm
+090A	f_090A			2072	9	9	090A_f_090A.asm
+091C	chr_path_mark_exit_right	1140	0CAC	424	3	3	091C_chr_path_mark_exit_right.asm
+0924	chr_path_mark_exit_left	1148	0CB4	284	2	2	0924_chr_path_mark_exit_left.asm
+0929	chr_path_mark_exit_down	114D	0CB9	435	2	2	0929_chr_path_mark_exit_down.asm
+092E	iso_grid_cell_of	1152	0CBE	779347	10	10	092E_iso_grid_cell_of.asm
+0944	iso_grid_cell_ptr	116D	0CD4	1456787	16	0	0944_iso_grid_cell_ptr.asm
+0959	chr_cmd_write_bits	118E	0CE9	31743	19	19	0959_chr_cmd_write_bits.asm
+0983	obj_redraw_one_object	11C1	0D13	0	7	7	0983_obj_redraw_one_object.asm
+0993	obj_place_objects_in_room	11D4	0D23	102	4	4	0993_obj_place_objects_in_room.asm
+09A0	obj_place_doors_in_room	11DF	0D30	102	3	3	09A0_obj_place_doors_in_room.asm
+09AB	obj_for_each_visible	11E8	0D3B	8	18	18	09AB_obj_for_each_visible.asm
+09D7	obj_update_doors	1217	0D67	26960	36	29	09D7_obj_update_doors.asm
+0A2B	obj_object_sprite_update	126E	0DBB	10	11	11	0A2B_obj_object_sprite_update.asm
+0A42	obj_door_sprite_update	1288	0DD2	9330	37	37	0A42_obj_door_sprite_update.asm
+0A89	obj_door_mark_cells	12DE	0E19	20896	9	9	0A89_obj_door_mark_cells.asm
+0A9C	obj_door_cells	12F5	0E2C	46694	20	15	0A9C_obj_door_cells.asm
+0ABC	spr_project_entity	1314	0E4C	190360	7	7	0ABC_spr_project_entity.asm
+0ACA	spr_project_entity_inner	1326	0E5A	190360	6	6	0ACA_spr_project_entity_inner.asm
+0AD6	obj_door_flip_graphics	1332	0E66	26960	10	10	0AD6_obj_door_flip_graphics.asm
+0AEC	obj_door_camera_adjust	134D	0E7C	9330	9	9	0AEC_obj_door_camera_adjust.asm
+0AFC	obj_door_adjust_grid_pos	1361	0E8C	9330	22	9	0AFC_obj_door_adjust_grid_pos.asm
+0B1D	obj_door_check_open_close	1374	0EAD	188720	86	86	0B1D_obj_door_check_open_close.asm
+0BDC	obj_door_unpermitted_near	146D	0F6C	269600	12	12	0BDC_obj_door_unpermitted_near.asm
+0BEC	util_read_indirect_pair	1486	0F7C	674000	12	12	0BEC_util_read_indirect_pair.asm
+0BF8	chr_path_reset_alternatives	1498	0F88	3215	96	8	0BF8_chr_path_reset_alternatives.asm
+0C6D	snd_stub_mirror_open	6360	0FFD	0	2	0	0C6D_snd_stub_mirror_open.asm
+0C72	snd_play_footstep	6361	1002	1942	2	2	0C72_snd_play_footstep.asm
+0C77	snd_play_music_if_idle	6367	1007	29	2	2	0C77_snd_play_music_if_idle.asm
+0C7C	snd_stub_event	636D	100C	0	2	0	0C7C_snd_stub_event.asm
+0C81	snd_stub_bells	636E	1011	21	2	2	0C81_snd_stub_bells.asm
+0C86	snd_stub_door_close	636F	1016	0	2	0	0C86_snd_stub_door_close.asm
+0C8B	snd_play_door_open	6370	101B	0	2	0	0C8B_snd_play_door_open.asm
+0C90	snd_play_beep	6376	1020	17645	2	2	0C90_snd_play_beep.asm
+0C95	snd_play_object_taken	637C	1025	2	2	2	0C95_snd_play_object_taken.asm
+0C9A	snd_stub_counter	6382	102A	0	2	0	0C9A_snd_stub_counter.asm
+0C9F	snd_play_object_dropped	6383	102F	8	2	2	0C9F_snd_play_object_dropped.asm
+0CA4	snd_start_if_idle	0543	1034	0	10	9	0CA4_snd_start_if_idle.asm
+0CBF	snd_start	0553	104F	0	7	7	0CBF_snd_start.asm
+0CD0	f_0CD0			893376	51	51	0CD0_f_0CD0.asm
+0D40	f_0D40			2405898	56	33	0D40_f_0D40.asm
+0DBC	f_0DBC			2405898	111	106	0DBC_f_0DBC.asm
+0EA1	f_0EA1			546064	30	30	0EA1_f_0EA1.asm
+0EE5	f_0EE5			751230	15	15	0EE5_f_0EE5.asm
+0F0B	f_0F0B			39704	81	41	0F0B_f_0F0B.asm
+0FB8	f_0FB8			787742	6	6	0FB8_f_0FB8.asm
+0FBE	snd_stub_psg_write	63A2	134E	1544120	16	16	0FBE_snd_stub_psg_write.asm
+0FDC	f_0FDC			19550	7	7	0FDC_f_0FDC.asm
+0FE6	snd_silence_if_idle	63A3	1376	67	477	7	0FE6_snd_silence_if_idle.asm
+128F	util_add_bx_al	289C	162D	2415530	6	6	128F_util_add_bx_al.asm
+1295	iso_put_tile	28A7	1633	64240	565	76	1295_iso_put_tile.asm
+1611	iso_draw_room	2945	19D8	102	18	16	1611_iso_draw_room.asm
+163F	iso_build_room	2967	1A0A	102	57	57	163F_iso_build_room.asm
+16A1	f_16A1			13	2	2	16A1_f_16A1.asm
+16A5	iso_clear_tile_buffer	29E1	1A70	102	5	5	16A5_iso_clear_tile_buffer.asm
+16B2	vid_fill_play_area	29F6	1A7D	0	215	16	16B2_vid_fill_play_area.asm
+17EE	iso_enter_block_keep_tiles	2A1B	1BB9	0	2	0	17EE_iso_enter_block_keep_tiles.asm
+17F1	iso_enter_block	2A1E	1BBC	0	576	10	17F1_iso_enter_block.asm
+1BC6	iso_block_depth	287D	1FB8	4703	100	29	1BC6_iso_block_depth.asm
+1C40	iso_op_end	2A58	2032	0	16	16	1C40_iso_op_end.asm
+1C60	iso_op_x_inc	2A82	2052	0	4	4	1C60_iso_op_x_inc.asm
+1C66	iso_op_x_dec	2A8A	2058	0	25	20	1C66_iso_op_x_dec.asm
+1C95	iso_reg_add	2AC0	2087	0	7	7	1C95_iso_reg_add.asm
+1C9F	iso_op_loop_p1	2AD2	2091	0	34	34	1C9F_iso_op_loop_p1.asm
+1CE5	iso_op_next	2B17	20D7	0	18	13	1CE5_iso_op_next.asm
+1D0A	iso_tile_run	2B3E	20FC	44268	14	14	1D0A_iso_tile_run.asm
+1D26	f_1D26			19342	18	7	1D26_f_1D26.asm
+1D48	iso_put_tile_times	2B87	213A	0	4	0	1D48_iso_put_tile_times.asm
+1D4F	iso_op_set	2B8F	2141	0	20	19	1D4F_iso_op_set.asm
+1D74	iso_expression	2BC4	2166	8435	17	17	1D74_iso_expression.asm
+1D90	iso_fetch_word	2BE5	2182	6919	5	5	1D90_iso_fetch_word.asm
+1D9B	iso_op_mirror	2BEC	218D	0	8	8	1D9B_iso_op_mirror.asm
+1DAF	iso_op_jump	2C06	21A1	0	4	4	1DAF_iso_op_jump.asm
+1DB8	iso_op_call_keep	2C0E	21AA	0	4	0	1DB8_iso_op_call_keep.asm
+1DC2	iso_op_call	2C18	21B4	0	31	31	1DC2_iso_op_call.asm
+1DFE	iso_call_return	2C5E	21F0	0	18	18	1DFE_iso_call_return.asm
+1E22	f_1E22			96353	2	2	1E22_f_1E22.asm
+1E27	iso_operand_value	2C88	2219	18257	37	21	1E27_iso_operand_value.asm
+1E6E	f_1E6E			46	236	15	1E6E_f_1E6E.asm
+1F79	iso_update_camera_room	1D3F	2355	26960	139	117	1F79_iso_update_camera_room.asm
+2082	spr_project_or_hide	1E83	245E	612	5	5	2082_spr_project_or_hide.asm
+208C	spr_update_char_sprite	1E8C	2468	612	5	5	208C_spr_update_char_sprite.asm
+2097	iso_floor_base	1E97	2473	1192716	8	8	2097_iso_floor_base.asm
+20A4	iso_orient_relative	1EA8	2480	121456	3	3	20A4_iso_orient_relative.asm
+20A9	iso_rotate_cam1	1EAF	2485	11545	4	4	20A9_iso_rotate_cam1.asm
+20AE	iso_rotate_cam0	1EB7	248A	23257	1	1	20AE_iso_rotate_cam0.asm
+20AF	iso_rotate_cam2	1EB8	248B	0	7	0	20AF_iso_rotate_cam2.asm
+20B8	iso_rotate_cam3	1EC5	2494	2775	147	124	20B8_iso_rotate_cam3.asm
+2226	game_run_npc_behaviours	2059	2664	26960	6	6	2226_game_run_npc_behaviours.asm
+2236	spr_draw_or_darken	2069	2674	26960	22	3	2236_spr_draw_or_darken.asm
+2265	spr_place_light	20A4	26A3	26960	49	5	2265_spr_place_light.asm
+22D4	f_22D4			42	2	2	22D4_f_22D4.asm
+22D8	chr_step_table	2189	2783	102661	5	5	22D8_chr_step_table.asm
+22E7	f_22E7			161717	9	9	22E7_f_22E7.asm
+22F0	chr_to_hbuf_coords	21A9	279B	618858	19	19	22F0_chr_to_hbuf_coords.asm
+2309	chr_probe_ahead_flat	21D6	27B4	19524	3	3	2309_chr_probe_ahead_flat.asm
+230D	chr_probe_ahead	21DC	27B8	66731	11	11	230D_chr_probe_ahead.asm
+2320	chr_probe_cells	21F6	27CB	0	170	98	2320_chr_probe_cells.asm
+2444	chr_mark_hbuf	2315	28EF	287505	21	21	2444_chr_mark_hbuf.asm
+2472	chr_update	2349	291D	163900	15	15	2472_chr_update.asm
+249A	chr_think_or_step	2370	2945	163900	6	6	249A_chr_think_or_step.asm
+24A9	chr_try_advance	2384	2954	21994	42	42	24A9_chr_try_advance.asm
+2503	chr_orientation_parity	23FA	29AE	2873	5	5	2503_chr_orientation_parity.asm
+250C	chr_try_advance_2x2	2405	29B7	0	21	21	250C_chr_try_advance_2x2.asm
+2539	chr_apply_step	2437	29E4	49146	8	8	2539_chr_apply_step.asm
+2549	chr_step_level	2449	29F4	0	6	4	2549_chr_step_level.asm
+2553	chr_step_and_animate	2455	29FE	0	6	6	2553_chr_step_and_animate.asm
+2561	chr_turn	2462	2A0C	0	10	10	2561_chr_turn.asm
+257C	chr_animate	247D	2A27	0	28	28	257C_chr_animate.asm
+25B6	chr_select_frame	24BE	2A61	51494	51	51	25B6_chr_select_frame.asm
+2605	spr_save_old_rect	2527	2AB0	173230	9	9	2605_spr_save_old_rect.asm
+261E	chr_project_or_hide	2540	2AC9	50882	3	3	261E_chr_project_or_hide.asm
+2623	spr_mark_leaving	2545	2ACE	2	6	6	2623_spr_mark_leaving.asm
+2632	chr_project	2556	2ADD	241854	185	110	2632_chr_project.asm
+274B	chr_load_params	2681	2BF6	163900	15	15	274B_chr_load_params.asm
+2765	chr_command_bit	26A5	2C10	55141	20	20	2765_chr_command_bit.asm
+278F	chr_ai_follow_commands	26D6	2C3A	0	63	60	278F_chr_ai_follow_commands.asm
+280D	chr_read_command	277A	2CB8	30221	31	25	280D_chr_read_command.asm
+2855	iso_select_room	27C8	2D00	102	18	18	2855_iso_select_room.asm
+2873	chr_fill_height_buffer	27E9	2D22	6279	17	16	2873_chr_fill_height_buffer.asm
+2899	sys_tick	281E	2D48	0	11	11	2899_sys_tick.asm
+28AD	chr_backup_args	2834	2D5C	30686	633	7	28AD_chr_backup_args.asm
+2D50	f_2D50			32034	46	46	2D50_f_2D50.asm
+2D99	game_input_and_mirror	2DD8	3311	26973	60	9	2D99_game_input_and_mirror.asm
+2DFC	game_check_qr_mirror	2EAB	33F1	26973	46	5	2DFC_game_check_qr_mirror.asm
+2E42	f_2E42			346854	32	32	2E42_f_2E42.asm
+2E7D	sys_key_pressed	2F30	3472	130447	12	12	2E7D_sys_key_pressed.asm
+2E8D	sys_key_down	2F4D	3482	212089	7	7	2E8D_sys_key_down.asm
+2E98	sys_test_key	2EEB	348D	596686	26	21	2E98_sys_test_key.asm
+2EBB	obj_init_mirror	2F86	34B0	21	4	4	2EBB_obj_init_mirror.asm
+2EC4	obj_close_mirror	2F90	34B9	21	22	14	2EC4_obj_close_mirror.asm
+2EE7	spr_flip_adso	2FB4	34E2	389	9	9	2EE7_spr_flip_adso.asm
+2F00	spr_flip_malachi	2FCD	34FB	0	6	0	2F00_spr_flip_malachi.asm
+2F10	spr_flip_abbot	2FDE	350B	897	6	6	2F10_spr_flip_abbot.asm
+2F20	spr_flip_berengar	2FEF	351B	0	6	0	2F20_spr_flip_berengar.asm
+2F30	spr_flip_severin	3000	352B	73	6	6	2F30_spr_flip_severin.asm
+2F40	spr_flip_guillermo	3011	353B	130	8	8	2F40_spr_flip_guillermo.asm
+2F57	spr_flip_graphics_h	3028	3552	540	65	65	2F57_spr_flip_graphics_h.asm
+2FAD	obj_open_left_wing_doors	30DB	3585	0	5	0	2FAD_obj_open_left_wing_doors.asm
+2FB9	sys_check_pause_save_load	311E	359D	26973	69	3	2FB9_sys_check_pause_save_load.asm
+304F	spr_unflip_monk_faces	3283	36C4	0	28	0	304F_spr_unflip_monk_faces.asm
+3087	obj_fix_owner_pointers	32DF	371A	0	59	0	3087_obj_fix_owner_pointers.asm
+30FD	spr_tile_ptr_check	3351	37A5	991838	10	10	30FD_spr_tile_ptr_check.asm
+310E	game_snapshot_initial_state	3364	37B6	8	1	1	310E_game_snapshot_initial_state.asm
+3111	game_for_each_state_block	3367	37B9	21	55	15	3111_game_for_each_state_block.asm
+3166	game_state_block_save	338B	380E	128	4	4	3166_game_state_block_save.asm
+316B	game_state_block_restore	339B	3813	336	2	2	316B_game_state_block_restore.asm
+316E	util_clear_bytes	33A7	3816	42	6	6	316E_util_clear_bytes.asm
+3176	game_init_new_game	33BB	381E	21	44	29	3176_game_init_new_game.asm
+31DF	f_31DF			26973	337	3	31DF_f_31DF.asm
+3456	chr_hbuf_fill_room	34C3	3945	0	9	9	3456_chr_hbuf_fill_room.asm
+346E	f_346E			6279	106	106	346E_f_346E.asm
+3521	f_3521			2964	8	8	3521_f_3521.asm
+352C	f_352C			4679	6	6	352C_f_352C.asm
+3535	f_3535			4424	8	8	3535_f_3535.asm
+3540	f_3540			1336	6	6	3540_f_3540.asm
+3549	f_3549			1330797	2	2	3549_f_3549.asm
+354D	f_354D			209024	7	6	354D_f_354D.asm
+3558	f_3558			547936	13	12	3558_f_3558.asm
+3568	f_3568			8	21	21	3568_f_3568.asm
+3598	f_3598			8	8	8	3598_f_3598.asm
+35B0	f_35B0			24	12	12	35B0_f_35B0.asm
+35C3	f_35C3			8	32	31	35C3_f_35C3.asm
+35F8	chr_hbuf_skip_list	379D	3AC2	8	11	11	35F8_chr_hbuf_skip_list.asm
+3607	vid_init_stub	37AF	3AD1	0	53	53	3607_vid_init_stub.asm
+3649	txt_draw_char_inverted	37B4	3B13	18314	2	2	3649_txt_draw_char_inverted.asm
+364D	txt_draw_char	37B0	3B17	0	40	40	364D_txt_draw_char.asm
+368A	txt_phrase_tick	3820	3B54	893376	119	119	368A_txt_phrase_tick.asm
+3770	txt_skip_words	3953	3C3A	3409	5	5	3770_txt_skip_words.asm
+3778	f_3778			258366	11	11	3778_f_3778.asm
+3786	f_3786			1678554	294	49	3786_f_3786.asm
+3910	f_3910			2719540	18	18	3910_f_3910.asm
+3926	f_3926			2025799	70	68	3926_f_3926.asm
+3994	f_3994			5099644	18	18	3994_f_3994.asm
+39AE	ai_guillermo_is_close	5CBC	3E61	37925	36	30	39AE_ai_guillermo_is_close.asm
+39F1	f_39F1			136940	30	30	39F1_f_39F1.asm
+3A30	f_3A30			1643280	6	6	3A30_f_3A30.asm
+3A37	f_3A37			26960	17	8	3A37_f_3A37.asm
+3A5D	f_3A5D			21	33	16	3A5D_f_3A5D.asm
+3A83	f_3A83			8	2	2	3A83_f_3A83.asm
+3A88	f_3A88			21	22	19	3A88_f_3A88.asm
+3AAF	f_3AAF			21	10	10	3AAF_f_3AAF.asm
+3AC3	f_3AC3			42	19	19	3AC3_f_3AC3.asm
+3AF6	iso_draw_room_spiral	1BD6	4EB2	0	24	24	3AF6_iso_draw_room_spiral.asm
+3B2A	f_3B2A			215040	29	13	3B2A_f_3B2A.asm
+3B5C	iso_draw_tile_run	1C53	4F18	0	8	0	3B5C_iso_draw_tile_run.asm
+3B66	f_3B66			23628	180	3	3B66_f_3B66.asm
+3C8F	f_3C8F			26960	16	9	3C8F_f_3C8F.asm
+3CAE	f_3CAE			26960	15	3	3CAE_f_3CAE.asm
+3CC5	f_3CC5			26960	26	26	3CC5_f_3CC5.asm
+3CFE	f_3CFE			29	3	3	3CFE_f_3CFE.asm
+3D05	f_3D05			77505	2	2	3D05_f_3D05.asm
+3D07	f_3D07			21	10	6	3D07_f_3D07.asm
+3D15	f_3D15			26960	24	10	3D15_f_3D15.asm
+3D3C	f_3D3C			26973	29	5	3D3C_f_3D3C.asm
+3D6A	f_3D6A			26973	39	5	3D6A_f_3D6A.asm
+3DA8	f_3DA8			13	38	32	3DA8_f_3DA8.asm
+3DEE	f_3DEE			26960	29	14	3DEE_f_3DEE.asm
+3E29	f_3E29			26973	171	31	3E29_f_3E29.asm
+3F56	f_3F56			24637	41	15	3F56_f_3F56.asm
+3F92	f_3F92			26068	4	4	3F92_f_3F92.asm
+3F9E	f_3F9E			5512	103	103	3F9E_f_3F9E.asm
+4077	f_4077			5546462	4	4	4077_f_4077.asm
+4080	f_4080			6479	67	65	4080_f_4080.asm
+40FA	f_40FA			648	54	54	40FA_f_40FA.asm
+4164	f_4164			630	37	12	4164_f_4164.asm
+41A8	f_41A8			2085	6	6	41A8_f_41A8.asm
+41B8	f_41B8			2085	7	7	41B8_f_41B8.asm
+41C9	f_41C9			2144	103	103	41C9_f_41C9.asm
+4292	f_4292			24231	49	49	4292_f_4292.asm
+42FA	game_update_camera_and_bonus	3F72	5691	0	29	29	42FA_game_update_camera_and_bonus.asm
+432C	f_432C			3095	20	20	432C_f_432C.asm
+434F	f_434F			4229	25	25	434F_f_434F.asm
+438F	f_438F			3583	27	27	438F_f_438F.asm
+43C7	ai_malachi_think	406D	575E	0	31	31	43C7_ai_malachi_think.asm
+4404	f_4404			275762	13	13	4404_f_4404.asm
+441E	f_441E			76643	415	356	441E_f_441E.asm
+4717	f_4717			841898	104	36	4717_f_4717.asm
+47E7	f_47E7			25467	100	100	47E7_f_47E7.asm
+4886	f_4886			25468	60	60	4886_f_4886.asm
+48EB	f_48EB			110024	11	11	48EB_f_48EB.asm
+48FC	f_48FC			25468	23	23	48FC_f_48FC.asm
+491B	f_491B			1535658	5	5	491B_f_491B.asm
+4925	f_4925			67499	99	99	4925_f_4925.asm
+49E5	f_49E5			463353	136	123	49E5_f_49E5.asm
+4AC8	f_4AC8			47617	109	5	4AC8_f_4AC8.asm
+4B43	f_4B43			26973	1	1	4B43_f_4B43.asm
+4B44	f_4B44			52	9	9	4B44_f_4B44.asm
+4B57	f_4B57			306	16	16	4B57_f_4B57.asm
+4B71	f_4B71			285	5	5	4B71_f_4B71.asm
+4B7C	f_4B7C			260	31	31	4B7C_f_4B7C.asm
+4BB2	f_4BB2			545	22	6	4BB2_f_4BB2.asm
+4BDE	f_4BDE			10	10	10	4BDE_f_4BDE.asm
+4BEC	f_4BEC			26960	44	44	4BEC_f_4BEC.asm
+4C46	f_4C46			26960	113	84	4C46_f_4C46.asm
+4D2A	f_4D2A			21	3	3	4D2A_f_4D2A.asm
+4D30	f_4D30			10	60	60	4D30_f_4D30.asm
+4D97	f_4D97			26960	27	27	4D97_f_4D97.asm
+4DC3	f_4DC3			26960	111	102	4DC3_f_4DC3.asm
+4EA5	f_4EA5			161717	23	23	4EA5_f_4EA5.asm
+4ECA	f_4ECA			26960	14	14	4ECA_f_4ECA.asm
+4EF4	f_4EF4			26960	9	9	4EF4_f_4EF4.asm
+4F03	f_4F03			53920	106	5	4F03_f_4F03.asm
+4FEF	f_4FEF			26960	31	31	4FEF_f_4FEF.asm
+5028	f_5028			21	5	5	5028_f_5028.asm
+5035	f_5035			21	23	23	5035_f_5035.asm
+5060	f_5060			42	16	16	5060_f_5060.asm
+507D	f_507D			26973	25	12	507D_f_507D.asm
+50AF	f_50AF			21	20	18	50AF_f_50AF.asm
+50D9	f_50D9			63	32	32	50D9_f_50D9.asm
+510C	f_510C			26973	14	14	510C_f_510C.asm
+5124	f_5124			285	3	2	5124_f_5124.asm
+5129	f_5129			306	31	31	5129_f_5129.asm
+5164	f_5164			612	104	14	5164_f_5164.asm
+51E7	f_51E7			26960	8	1	51E7_f_51E7.asm
+51F3	parch_show	06D7	659D	0	14	1	51F3_parch_show.asm
+5205	parch_draw_blank	06ED	65AF	0	84	10	5205_parch_draw_blank.asm
+5271	parch_draw_hborder	078B	661B	0	14	1	5271_parch_draw_hborder.asm
+5284	parch_draw_vborder	07A8	662E	0	12	0	5284_parch_draw_vborder.asm
+5294	parch_restore_top_right_border	07C8	663E	0	25	2	5294_parch_restore_top_right_border.asm
+52B4	f_52B4			26960	42	9	52B4_f_52B4.asm
+52ED	parch_turn_page	0860	6697	0	83	0	52ED_parch_turn_page.asm
+535B	parch_restore_bottom_border	0900	6705	0	27	0	535B_parch_restore_bottom_border.asm
+537B	parch_write_text	0932	6725	0	119	10	537B_parch_write_text.asm
+541C	parch_delay	0A26	67C6	0	95	2	541C_parch_delay.asm
+5495	f_5495			26960	91	4	5495_f_5495.asm
+551D	parch_get_vram_offset	0A7F	68C7	0	50	6	551D_parch_get_vram_offset.asm
+555C	parch_draw_curl	0A86	6906	0	327	16	555C_parch_draw_curl.asm
+571C	f_571C			26960	343	18	571C_f_571C.asm
+58F7	f_58F7			29100	381	32	58F7_f_58F7.asm
+5B21	f_5B21			26960	189	23	5B21_f_5B21.asm

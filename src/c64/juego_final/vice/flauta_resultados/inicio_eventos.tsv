@@ -1,0 +1,12 @@
+cycle	frame	event	x	y	a
+1624145	1	s_pon	00	12	FF
+1627138	1	s_pon	18	2A	FF
+4023508	10	snd_play_footstep	14	0B	01
+4023549	10	s_pon	30	EE	FE
+4299890	12	snd_play_footstep	14	0B	01
+4299931	12	s_pon	30	EE	FE
+4578270	14	snd_play_footstep	14	0B	01
+4578311	14	s_pon	30	EE	FE
+4851197	16	snd_play_footstep	14	0B	01
+4851238	16	s_pon	30	EE	FE
+11333933	67	s_pon	30	56	FE

@@ -1,0 +1,2 @@
+instructions 86501
+A=01 F=55 B=03 C=FF D=5F E=FF H=B9 L=00 SP=BFF2 PC=6000

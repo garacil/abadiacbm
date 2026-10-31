@@ -1,0 +1,1694 @@
+# The game's data on the C64 (inventario64.py): blocks of c64/juego/bloques64.tsv and data/c64graf/graficos64.tsv,
+# then the ranges not needed.  read/written: bytes of the block the 8 sessions read / wrote as data; readers/writers:
+# the functions (data/cpc64/accesos/quien.tsv); pointers: pointer fields inside it (c64/juego/punteros64.tsv).
+name	cpc_start	cpc_end	len	len_c64	kind	zone	mode	read	written	readers	writers	names	pointers	desc
+D64_SYS_STARTUP_DONE	00FE	00FE	1	1	var	var	copia	1	1	iso_rotate_cam3	f_3568	D64_SYS_STARTUP_DONE	0	0Dh once the start-up has run (20BE skips it then)
+D64_GAME_INITIAL_STATE	0103	01A9	167	167	buffer	datos	copia	167	167	game_state_block_restore	game_state_block_save	D64_CHR_ROOM_LINKS_SIZE D64_GAME_INITIAL_STATE	14	copy of the 16 state blocks taken at start-up (a new game restores it)
+D64_CHR_PATH_SLOT	0201	0214	20	20	var	var	copia	18	18	ai_update_abbot chr_path_face_target chr_path_find chr_path_search_to_dest iso_grid_cell_of	ai_update_abbot chr_path_add_target_beside chr_path_reset_alternatives chr_path_search_to_dest	D64_CHR_PATH_ALTERNATIVES D64_CHR_PATH_ALT_PTR D64_CHR_PATH_SLOT	1	0201 slot - 2, 0203 alternatives (5 x 3 + FF), 0213 pointer to the one tried
+D64_CHR_BESIDE_OFFSETS	0215	021C	8	8	tabla	hueco	copia	8	0	chr_path_add_target_beside		D64_CHR_BESIDE_OFFSETS	0	dx, dy per orientation beside a target
+D64_OBJ_DOOR_ORIENT_TABLE	021D	023C	32	32	tabla	hueco	copia	6	0	obj_door_adjust_grid_pos obj_door_sprite_update		D64_OBJ_DOOR_ORIENT_TABLE	0	door sprites, 4 entries of 8 bytes
+D64_CHR_ROOM_LINKS	023D	036C	304	304	var	datos	copia	304	304	chr_path_clear_room_marks f_39F1 f_438F f_4404 f_4DC3	chr_path_clear_room_marks f_39F1 f_438F f_4404	D64_CHR_HBUF_SIZE D64_CHR_ROOM_LINKS D64_CHR_ROOM_LINKS_FLOOR1 D64_CHR_ROOM_LINKS_FLOOR2	0	room links of the 3 floors (023D, 02ED, 02F5); the room search marks them
+D64_AI_BERENGAR_DOOR_MASK	04B0	04B0	1	1	smc	zp	copia	0	0			D64_AI_BERENGAR_DOOR_MASK	0	script var A9, operand of LD C,n at 04AF
+D64_CHR_GUILLERMO_ANIM_COPY	0600	0600	1	1	smc	zp	copia	0	1		iso_rotate_cam3	D64_CHR_GUILLERMO_ANIM_COPY	0	copy of [2B87] taken by the main loop (217D)
+D64_CHR_STAIRS_HEIGHT	0692	0692	1	1	smc	zp	copia	0	0			D64_CHR_STAIRS_HEIGHT	0	height of the stairs cells (0Dh up, 01h down)
+D64_CHR_EXIT_MARK_ROUTINE	076B	076C	2	2	smc	var	copia	0	2		chr_path_via_rooms	D64_CHR_EXIT_MARK_ROUTINE	1	code pointer: the exit band routine (091C/0924/0929)
+D64_CHR_GRID_OWNER	08A0	08A1	2	2	smc	zp	copia	2	2	chr_path_build_grid	chr_path_build_grid	D64_CHR_GRID_OWNER	1	pointer: the character record the grid is built for
+D64_CHR_EXIT_TABLE	08FA	0909	16	16	tabla	hueco	copia	16	0	chr_path_via_rooms		D64_CHR_EXIT_TABLE	4	4 x (code pointer, grid x y)
+D64_OBJ_ENTITY_CALLBACK	09BA	09BB	2	2	smc	var	copia	0	2		obj_for_each_visible	D64_OBJ_ENTITY_CALLBACK	1	code pointer: 0A2B objects / 0A42 doors
+D64_OBJ_FOR_EACH_PATCH	09D4	09D4	1	1	smc	zp	copia	0	1		obj_redraw_one_object	D64_OBJ_FOR_EACH_PATCH	0	opcode 00 (NOP) / C9 (RET): obj_for_each_visible stops after one entry
+D64_OBJ_ROOM_REDRAW	0A6D	0A6D	1	1	smc	zp	copia	0	1		iso_rotate_cam3	D64_OBJ_ROOM_REDRAW	0	ORed into byte 0 of every door sprite
+D64_OBJ_DOOR_MOVED	0A6F	0A6F	1	1	smc	zp	copia	0	1		obj_door_check_open_close obj_update_doors	D64_OBJ_DOOR_MOVED	0	80h while the door processed changes state
+D64_OBJ_DOOR_CELL_STEPS	0AB4	0ABB	8	8	tabla	hueco	copia	8	0	obj_door_cells		D64_OBJ_DOOR_CELL_STEPS	0	height-buffer steps along a door leaf
+D64_OBJ_DOOR_CAMERA_OFFSETS	0B0D	0B1C	16	16	tabla	hueco	copia	4	0	obj_door_adjust_grid_pos obj_door_camera_adjust		D64_OBJ_DOOR_CAMERA_OFFSETS	0	door sprite offsets per camera
+D64_SND_MIXER	0C06	0C54	79	79	var	var	copia	75	66	f_0CD0 f_0D40 f_0DBC f_0EA1 f_0EE5 f_0F0B snd_start_if_idle	f_0CD0 f_0D40 f_0DBC f_0EA1 f_0EE5 f_0F0B snd_silence_if_idle snd_start	D64_SND_CHANNEL_A D64_SND_CHANNEL_B D64_SND_CHANNEL_C D64_SND_CHANNEL_MASK_COPY D64_SND_ENV_PERIOD_HI D64_SND_ENV_PERIOD_LO D64_SND_ENV_SHAPE D64_SND_MIXER D64_SND_MIXER_SENT D64_SND_NOISE_PERIOD D64_SND_TEMPO	9	sound state: 0C06-0C0C mixer, tempo, envelope, noise; 3 channel records of 18h from 0C0D (3 fixed bytes + 21)
+D64_SND_NOTE_PERIODS	0C55	0C6C	24	24	tabla	hueco	copia	10	0	f_0DBC		D64_SND_NOTE_PERIODS	0	12 AY tone periods of the lowest octave
+D64_SND_TEMPO_RELOAD	0CF6	0CF6	1	1	smc	zp	copia	0	1		iso_rotate_cam3	D64_SND_TEMPO_RELOAD	0	operand of LD A,n at 0CF5: the tempo reload (6), set by the start-up (20E5)
+D64_SND_COMMANDS	0F76	0F87	18	18	tabla	hueco	copia	12	0	f_0DBC		D64_SND_COMMANDS	6	6 x (command byte, code pointer)
+D64_SND_DATA	0FF8	11D9	482	482	var	hueco	copia	136	5	f_0DBC f_0EA1 f_0F0B	f_4B7C txt_phrase_tick	D64_SND_PHRASE_VOICE D64_SND_SEQ_BEEP D64_SND_SEQ_DOOR_CLOSE D64_SND_SEQ_DOOR_OPEN D64_SND_SEQ_FOOTSTEP D64_SND_SEQ_HOUR_BELLS D64_SND_SEQ_MIRROR_OPEN D64_SND_SEQ_MUSIC D64_SND_SEQ_OBJECT_DROPPED D64_SND_SEQ_OBJECT_TAKEN D64_SND_SEQ_SEVERINO D64_SND_SEQ_TERCIA_BELLS D64_SND_VOICE_LEVEL D64_SND_VOICE_TONE_A D64_SND_VOICE_TONE_B D64_SND_VOICE_TONE_NEG	49	envelopes (0FF8-1069) and sequences (106E-11D9); the phrase voice rewrites 0FF9, 0FFC, 0FFF, 1032, 1127
+D64_ISO_ROOM_PTR	11DA	11DC	3	3	var	var	copia	3	3	iso_draw_room spr_draw_or_darken spr_place_light	iso_select_room iso_update_camera_room	D64_ISO_ROOM_DARK D64_ISO_ROOM_PTR	1	pointer to the room record shown; 11DC dark flag
+D64_ISO_BLOCK_TABLE	11DD	128C	176	176	tabla	datos	copia	116	0	iso_build_room		D64_ISO_BLOCK_TABLE	88	88 pointers: block type -> block (78 types used)
+D64_ISO_PUT_TILE_JUMP	12C0	12C1	2	2	smc	var	copia	0	2		iso_draw_room	D64_ISO_PUT_TILE_JUMP	1	code pointer: 12C9 / 12C2
+D64_ISO_BLOCK_DATA_1	12F5	1610	796	796	tabla	datos	copia	757	0	f_1E22 iso_block_depth iso_build_room iso_enter_block iso_expression iso_fetch_word iso_op_call iso_op_loop_p1 iso_op_set iso_operand_value iso_tile_run			103	block scripts and tile lists
+D64_ISO_CUR_BLOCK	1697	1698	2	2	smc	zp	copia	0	2		iso_build_room	D64_ISO_CUR_BLOCK	1	pointer: the block of the room entry being built
+D64_VID_FILL_BYTE	16C0	16C0	1	1	smc	zp	copia	0	1		vid_fill_play_area	D64_VID_FILL_BYTE	0	fill byte of vid_fill_play_area (a CPC pixel byte)
+D64_ISO_BLOCK_DATA_2	16CE	17ED	288	288	tabla	datos	copia	267	0	f_1E22 iso_block_depth iso_build_room iso_enter_block iso_expression iso_fetch_word iso_op_call iso_op_loop_p1 iso_op_set iso_tile_run			18	block scripts and tile lists
+D64_ISO_BLOCK_DATA_3	1804	1BC5	962	962	tabla	datos	copia	544	0	f_1E22 iso_block_depth iso_build_room iso_enter_block iso_expression iso_fetch_word iso_op_call iso_op_loop_p1 iso_op_set iso_operand_value iso_tile_run			60	block scripts and tile lists
+D64_ISO_KEEP_FLAG	1BDC	1BED	18	18	var	var	copia	17	18	iso_op_call iso_op_end iso_op_set iso_operand_value iso_put_tile	iso_block_depth iso_build_room iso_call_return iso_enter_block iso_op_end iso_op_set iso_reg_add	D64_ISO_BLOCK_HEIGHT D64_ISO_BLOCK_P1 D64_ISO_BLOCK_P2 D64_ISO_BLOCK_TILES D64_ISO_DEPTH_X D64_ISO_DEPTH_Y D64_ISO_KEEP_FLAG	0	block interpreter registers: keep flag, tiles t1-t12, p1, p2, height, depth x, y
+D64_ISO_BLOCK_OPCODE_TABLE	1BEE	1C25	56	56	tabla	hueco	copia	40	0	iso_block_depth		D64_ISO_BLOCK_OPCODE_TABLE	28	28 code pointers: the block opcodes' handlers
+D64_ISO_OP_X_INC_INSN	1C60	1C60	1	1	smc	zp	copia	1	1	iso_op_call	iso_call_return iso_op_end iso_op_mirror	D64_ISO_OP_X_INC D64_ISO_OP_X_INC_INSN	0	opcode INC L / DEC L of X_INC
+D64_ISO_OP_X_DEC_INSN	1C66	1C66	1	1	smc	zp	copia	1	1	iso_op_call	iso_call_return iso_op_end iso_op_mirror	D64_ISO_OP_X_DEC D64_ISO_OP_X_DEC_INSN	0	opcode DEC L / INC L of X_DEC
+D64_ISO_STEP_RIGHT_INSN	1D06	1D06	1	1	smc	zp	copia	1	1	iso_op_call iso_tile_run	iso_call_return iso_op_end iso_op_mirror	D64_ISO_STEP_RIGHT_INSN	0	opcode INC L / DEC L after TILES_RIGHT
+D64_ISO_TILE_STEP_INSN	1D29	1D29	1	1	smc	zp	copia	0	1		iso_tile_run	D64_ISO_TILE_STEP_INSN	0	the step opcode of iso_put_tile_step
+D64_ISO_ENTER_VECTOR	1DFC	1DFD	2	2	smc	var	copia	0	2		iso_op_call	D64_ISO_ENTER_VECTOR	1	code pointer: 17F1 / 17EE
+D64_ISO_MIRROR	1E3E	1E3E	1	1	smc	zp	copia	1	1	iso_op_call	iso_call_return iso_op_end iso_op_mirror	D64_ISO_MIRROR	0	1 while the block is mirrored
+D64_ISO_CAMERA_ROTATIONS	1E81	1E88	8	8	tabla	hueco	copia	6	0	iso_update_camera_room		D64_ISO_CAMERA_ROTATIONS	4	4 code pointers: the camera transforms
+D64_ISO_FLOOR_MAPS	1E89	1F78	240	240	tabla	datos	copia	12	0	iso_update_camera_room		D64_ISO_FLOOR1_MAP D64_ISO_FLOOR2_MAP	0	room numbers of the 3 floors by (y << 4 | x); bases 1E79h, 1F09h, 1F11h
+D64_ISO_FLOOR_MAP_PTR	2013	2014	2	2	smc	zp	copia	0	0			D64_ISO_FLOOR_MAP_PTR	1	pointer: the floor map shown (a virtual base 0Fh/1Fh before the data)
+D64_ISO_SETUP_SPRITE	2070	2071	2	2	smc	zp	copia	0	2		iso_update_camera_room	D64_ISO_SETUP_SPRITE	1	pointer: sprite record being set up
+D64_ISO_SETUP_RECORD	2074	2075	2	2	smc	zp	copia	0	2		iso_update_camera_room	D64_ISO_SETUP_RECORD	1	pointer: its character record
+D64_ISO_CAMERA_ORIENT	20A5	20A5	1	1	smc	zp	copia	1	1	iso_update_camera_room	iso_update_camera_room	D64_ISO_CAMERA_ORIENT	0	camera orientation of the room shown
+D64_SYS_FRAME_TICKS	21DA	21DA	1	1	smc	zp	copia	0	1		f_3CFE iso_rotate_cam3	D64_SYS_FRAME_TICKS	0	frame budget of the main loop
+D64_CHR_HBUF_ORIGIN_Y	22F2	22F2	1	1	smc	zp	copia	1	1	chr_hbuf_fill_room	iso_grid_set_origin	D64_CHR_HBUF_ORIGIN_Y	0	world y of row 0 of the height buffer
+D64_CHR_HBUF_ORIGIN_X	22FE	22FE	1	1	smc	zp	copia	1	1	chr_hbuf_fill_room f_4F03	iso_grid_set_origin	D64_CHR_HBUF_ORIGIN_X	0	world x of column 0
+D64_CHR_PROBE_HEIGHT	2374	2374	1	1	smc	zp	copia	0	1		chr_probe_cells	D64_CHR_PROBE_HEIGHT	0	height subtracted from each probed cell
+D64_CHR_PROBE_INNER	2378	2379	2	2	smc	zp	copia	0	2		chr_probe_cells	D64_CHR_PROBE_INNER	0	inner stride of the 4x4 probe (a height-buffer step)
+D64_CHR_PROBE_OUTER	237F	2380	2	2	smc	zp	copia	0	2		chr_probe_cells	D64_CHR_PROBE_OUTER	0	outer stride
+D64_CHR_STEP_TABLE_2X2	23A2	23E1	64	64	tabla	hueco	copia	64	0	chr_apply_step chr_probe_cells f_4EA5		D64_CHR_STEP_TABLE D64_CHR_STEP_TABLE_1X1 D64_CHR_STEP_TABLE_2X2	0	steps per orientation, 2x2 and 1x1 characters
+D64_CHR_GUILLERMO_STATE	23E4	23E4	1	1	smc	zp	copia	0	1		iso_rotate_cam3	D64_CHR_GUILLERMO_STATE	0	0 normal, >1 scripted fall counter
+D64_CHR_GUILLERMO_FALL_DY	2406	2406	1	1	smc	zp	copia	0	1		iso_rotate_cam3	D64_CHR_GUILLERMO_FALL_DY	0	sprite y step while falling
+D64_CHR_CUR_SPRITE	2477	2478	2	2	smc	zp	copia	0	2		chr_load_params	D64_CHR_CUR_SPRITE	1	pointer: sprite record of the character updated
+D64_CHR_CUR_DATA	247E	247F	2	2	smc	zp	copia	0	2		chr_load_params	D64_CHR_CUR_DATA	1	pointer: its character record
+D64_CHR_CUR_BEHAVIOUR	24A6	24A7	2	2	smc	var	copia	0	2		chr_load_params	D64_CHR_CUR_BEHAVIOUR	1	code pointer: 23E2 / 278F
+D64_CHR_CUR_FLIP	25AE	25AF	2	2	smc	var	copia	0	2		chr_load_params iso_update_camera_room	D64_CHR_CUR_FLIP	1	code pointer: the flip routine (2EE7-2F40, 4FC9)
+D64_CHR_CUR_ANIM	25D9	25DA	2	2	smc	zp	copia	0	2		chr_load_params iso_update_camera_room	D64_CHR_CUR_ANIM	1	pointer: its animation table, or the tag C000h+2*monk
+D64_CHR_ROOM_ORIGIN_X	2636	2636	1	1	smc	zp	copia	0	1		iso_update_camera_room	D64_CHR_ROOM_ORIGIN_X	0	(room x & F0) - 0Ch
+D64_CHR_ROOM_ORIGIN_Y	2640	2640	1	1	smc	zp	copia	0	1		iso_update_camera_room	D64_CHR_ROOM_ORIGIN_Y	0	(room y & F0) - 0Ch
+D64_CHR_ROOM_FLOOR	264E	264E	1	1	smc	zp	copia	0	0			D64_CHR_ROOM_FLOOR	0	floor base of the room shown
+D64_CHR_CAMERA_TRANSFORM	2656	2657	2	2	smc	var	copia	0	2		iso_update_camera_room	D64_CHR_CAMERA_TRANSFORM	1	code pointer: 20AE / 20A9 / 20AF / 20B8
+D64_CHR_PROJECT_TEST	2684	2684	1	1	smc	zp	copia	0	1		spr_project_entity	D64_CHR_PROJECT_TEST	0	opcode 00 / C9: chr_project returns after the position
+D64_CHR_TABLE	2703	2740	62	62	tabla	hueco	copia	62	0	chr_load_params chr_path_build_grid iso_update_camera_room		D64_CHR_TABLE D64_CHR_TABLE_ABBOT D64_CHR_TABLE_ADSO D64_CHR_TABLE_BERENGAR D64_CHR_TABLE_MALACHI D64_CHR_TABLE_SEVERIN	30	6 x (sprite, record, behaviour, flip, animation) and FFFF
+D64_CHR_PARAM_TARGETS	2741	274A	10	10	tabla	hueco	copia	10	0	chr_load_params		D64_CHR_PARAM_TARGETS	5	5 pointers: the operands chr_load_params fills
+D64_SYS_TICKS	289C	289C	1	1	smc	zp	copia	1	1	iso_rotate_cam3	f_41C9 iso_rotate_cam3 sys_tick	D64_SYS_TICKS	0	the 300 Hz tick counter (written by the interrupt)
+D64_CHR_BACKUP	28B9	2967	175	175	var	var	copia	166	155	ai_check_planned_move ai_update_abbot ai_update_adso chr_ai_follow_commands chr_cmd_discard chr_fill_height_buffer chr_path_build_grid chr_path_clear_grid_marks chr_path_find chr_path_restore_screen_grid chr_path_search_to_dest chr_path_via_rooms chr_probe_ahead chr_probe_cells chr_project f_090A f_346E f_3994 f_3A37 f_3B66 f_3CAE f_3CC5 f_3D3C f_3D6A f_3DA8 f_3DEE f_3E29 f_3F56 f_3F92 f_3F9E f_4080 f_41C9 f_438F f_441E f_4886 f_4925 f_4B7C f_4BEC f_4C46 f_4D2A f_4D97 f_4DC3 f_4EA5 f_4ECA f_4FEF f_5035 f_5060 f_507D f_5129 game_input_and_mirror game_state_block_save iso_grid_cell_of iso_grid_cell_ptr iso_grid_set_origin iso_rotate_cam3 iso_update_camera_room obj_door_check_open_close obj_door_flip_graphics obj_door_sprite_update obj_door_unpermitted_near obj_update_doors txt_draw_char txt_phrase_tick util_clear_bytes util_read_indirect_pair	ai_update_adso chr_ai_follow_commands chr_animate chr_cmd_discard chr_cmd_rewind chr_path_build_grid chr_path_find chr_path_restore_screen_grid chr_path_search_to_dest chr_path_via_rooms chr_probe_cells chr_try_advance chr_try_advance_2x2 f_3786 f_3A37 f_3AAF f_3D15 f_3DEE f_3E29 f_3F9E f_4080 f_41C9 f_438F f_441E f_4886 f_4B71 f_4B7C f_4BEC f_4C46 f_4D97 f_4DC3 f_4EF4 f_4FEF f_5028 f_5035 f_5060 f_50AF f_5129 game_state_block_restore iso_grid_set_origin iso_rotate_cam3 iso_select_room iso_update_camera_room obj_door_flip_graphics obj_door_sprite_update obj_init_mirror obj_update_doors txt_draw_char txt_phrase_tick util_clear_bytes	D64_AI_ADSO_BLOCKED_COUNT D64_AI_HOUR_FRAMES_LEFT D64_B2_GUILLERMO_OBJECTS D64_CHR_BACKUP D64_CHR_CAMERA_TARGET D64_CHR_HBUF_PTR D64_CHR_MOVED D64_CHR_PATH_DEST D64_CHR_PATH_FOUND_NOW D64_CHR_PATH_ORIGIN D64_CHR_PATH_RESULT D64_CHR_PATH_SAVED_SP D64_CHR_PROBE D64_CHR_ROOM_X D64_CHR_ROOM_Y D64_CHR_ROOM_Z D64_CHR_SHOWN_FLOOR D64_CHR_SPRITE_OFFSETS D64_GAME_ADSO_LAMP D64_GAME_BONUS D64_GAME_BONUS2 D64_GAME_DAY D64_GAME_HOUR D64_GUILLERMO_OBJECTS D64_HUD_HOUR_NAME_PTR D64_HUD_HOUR_SCROLL_STEPS D64_HUD_OBSEQUIUM D64_ISO_CAMERA_RECORD D64_ISO_MIRROR_STATE_ADSO D64_ISO_MIRROR_STATE_GUILLERMO D64_ISO_ROOM_CHANGED D64_ISO_ROOM_NUMBER D64_OBJ_ABBOT_HOLDER D64_OBJ_ABBOT_OBJECTS D64_OBJ_ABBOT_TAKEMASK D64_OBJ_ADSO_OBJECTS D64_OBJ_BERENGAR_OBJECTS D64_OBJ_BERENGAR_TAKEMASK D64_OBJ_CHAR_OBJECTS D64_OBJ_DOOR_FLIP_WANTED D64_OBJ_DOOR_GFX_FLIPPED D64_OBJ_DOOR_PERMISSIONS D64_OBJ_DOOR_PERMISSIONS_ADSO D64_OBJ_GUILLERMO_OBJECTS_BEFORE D64_OBJ_MALACHI_HOLDER D64_OBJ_MALACHI_OBJECTS D64_OBJ_MALACHI_TAKEMASK D64_OBJ_MIRROR_CLOSED D64_OBJ_MIRROR_NUMERAL D64_OBJ_SEVERIN_HOLDER D64_OBJ_SEVERIN_OBJECTS D64_SPR_RECT_POS D64_SPR_RECT_SIZE D64_STATE_PART1 D64_SYS_SAVED_SP D64_TXT_CURSOR D64_TXT_PHRASE_ACTIVE D64_TXT_PHRASE_BUSY D64_TXT_PHRASE_PTR D64_TXT_SCROLL_TIMER D64_TXT_TRAILING_BLANKS D64_TXT_WORD_DONE D64_TXT_WORD_PTR	19	28B9-2967: backup, camera record, clock, camera target, height buffer pointer, text, mirror states, path, probe, door permissions, object holders
+D64_SPR_TABLE	2968	2B34	461	461	regs	var	copia	190	182	chr_project chr_select_frame f_441E f_4717 f_47E7 f_4D30 f_4EF4 game_init_new_game obj_door_adjust_grid_pos obj_door_check_open_close obj_for_each_visible obj_update_doors spr_mark_leaving spr_save_old_rect	chr_animate chr_project chr_select_frame f_441E f_4717 f_4EF4 game_init_new_game iso_update_camera_room obj_door_adjust_grid_pos obj_door_sprite_update obj_for_each_visible obj_object_sprite_update spr_mark_leaving spr_place_light spr_project_entity_inner spr_project_or_hide spr_save_old_rect	D64_OBJ_SPRITES D64_SPR_ADSO D64_SPR_GUILLERMO D64_SPR_LIGHT D64_SPR_TABLE	23	23 sprite records of 20 bytes and FF (graphics pointer at +7)
+D64_OBJ_DOORS	2B35	2B58	36	36	regs	var	copia	36	32	chr_path_build_grid chr_project game_state_block_save iso_grid_cell_of obj_door_cells obj_door_check_open_close obj_door_sprite_update obj_for_each_visible obj_update_doors	game_state_block_restore obj_door_check_open_close	D64_OBJ_DOORS D64_OBJ_DOOR_WING1 D64_OBJ_DOOR_WING2	0	7 doors x 5 and FF
+D64_OBJ_OBJECTS	2B59	2B86	46	46	regs	var	copia	44	37	chr_project f_3F56 f_4BEC f_4C46 f_4DC3 game_state_block_save obj_for_each_visible obj_object_sprite_update	f_4BEC f_4C46 f_4DC3 game_state_block_restore	D64_OBJ_OBJECTS D64_OBJ_PARCHMENT	0	9 objects x 5 and FF
+D64_CHR_GUILLERMO	2B87	2BE0	90	90	regs	var	copia	85	64	ai_guillermo_is_close ai_update_abbot ai_update_adso chr_ai_follow_commands chr_animate chr_apply_step chr_cmd_discard chr_cmd_write_bits chr_command_bit chr_mark_hbuf chr_orientation_parity chr_path_add_target_beside chr_path_add_targets_around chr_path_build_grid chr_path_face_target chr_path_find chr_path_search_to_dest chr_path_via_rooms chr_probe_ahead chr_probe_cells chr_project chr_read_command chr_room_coords chr_select_frame chr_step_and_animate chr_step_table chr_think_or_step chr_try_advance chr_try_advance_2x2 chr_turn chr_update f_3994 f_3A37 f_4080 f_40FA f_4164 f_41B8 f_41C9 f_4292 f_434F f_4EA5 game_check_qr_mirror game_state_block_save game_update_camera_and_bonus iso_grid_cell_of iso_grid_set_origin iso_rotate_cam3 iso_update_camera_room spr_flip_abbot spr_flip_adso spr_flip_guillermo spr_flip_severin util_read_indirect_pair	chr_ai_follow_commands chr_apply_step chr_cmd_discard chr_cmd_rewind chr_cmd_write_bits chr_command_bit chr_read_command chr_step_and_animate chr_try_advance chr_try_advance_2x2 chr_turn f_41B8 f_41C9 f_4292 f_434F game_init_new_game game_state_block_restore game_update_camera_and_bonus iso_rotate_cam3 spr_flip_abbot spr_flip_adso spr_flip_guillermo spr_flip_severin	D64_ADSO_X D64_ADSO_Z D64_BERENGAR_X D64_BERENGAR_Y D64_CHR_ABBOT D64_CHR_ADSO D64_CHR_ADSO_FLIP D64_CHR_ADSO_XY D64_CHR_ADSO_Z D64_CHR_BERENGAR D64_CHR_GUILLERMO D64_CHR_GUILLERMO_FLIP D64_CHR_GUILLERMO_XY D64_CHR_GUILLERMO_Z D64_CHR_MALACHI D64_CHR_SEVERIN D64_GUILLERMO_X D64_GUILLERMO_Y D64_GUILLERMO_Z	6	6 character records of 15 bytes (command buffer pointer at +0Ch)
+D64_SPR_SORTED_TOP	2BE1	2BE7	7	7	var	var	copia	6	6	f_441E f_4925	f_441E	D64_SPR_SORTED_CURSOR D64_SPR_SORTED_TOP D64_SPR_TILE_POS	3	sprite list pointers (2BE1, 2BE3: Z80 stack addresses), 2BE6 tile-buffer entry
+D64_SPR_MONK_FACES	2BE8	2BEF	8	8	tabla	hueco	copia	8	0	chr_select_frame spr_flip_abbot spr_flip_severin		D64_SPR_MONK_FACES	4	4 pointers: the monks' faces
+D64_CHR_SPRITE_OFFSET_TABLES	2BF0	2CEF	256	256	tabla	datos	copia	146	0	chr_project		D64_CHR_SPRITE_OFFSET_TABLES D64_ENDING_BLOCK_LEN	0	4 orientations x 40h
+D64_CHR_ANIM_GUILLERMO	2CF0	2D4F	96	96	var	datos	copia	96	16	chr_animate	chr_select_frame	D64_CHR_ANIM_ADSO D64_CHR_ANIM_GUILLERMO D64_CHR_ANIM_MONK	24	animation tables (graphics pointer, width, height) of Guillermo, Adso, the monks (the monks' face word is rewritten)
+D64_SYS_KEYS_DOWN	2DE8	2DFB	20	20	var	var	copia	20	20	f_2D50 sys_key_pressed sys_test_key	f_2D50 sys_key_pressed	D64_SYS_KEYS_DOWN D64_SYS_KEYS_PENDING	0	keys down, presses pending (CPC matrix bitmaps, active low)
+D64_SYS_KEY_SINGLE	2E2C	2E2D	2	2	var	var	copia	2	1	f_2E42	f_2E42	D64_SYS_KEY_SINGLE	0	the key being tested + FF
+D64_SYS_KEY_ALIAS_LEFT	2E2E	2E41	20	20	tabla	hueco	copia	20	0	f_2E42		D64_SYS_KEY_ALIAS_012 D64_SYS_KEY_ALIAS_LEFT D64_SYS_KEY_ALIAS_SPACE	0	keys and their aliases
+D64_SYS_KEY_BITMAP	2E6A	2E6B	2	2	smc	zp	copia	0	2		f_2E42	D64_SYS_KEY_BITMAP	1	pointer: the key bitmap tested (2DE8h or 2DF2h)
+D64_SYS_BIT_MASKS	2EB3	2EBA	8	8	tabla	hueco	copia	8	0	sys_key_pressed sys_test_key		D64_SYS_BIT_MASKS	0	01 02 04 ... 80
+D64_OBJ_MIRROR_HEIGHT_PTR	2EDE	2EE6	9	9	var	var	copia	9	4	obj_close_mirror	f_35C3	D64_OBJ_MIRROR_CLOSED_HEIGHTS D64_OBJ_MIRROR_ENTRY_PTR D64_OBJ_MIRROR_HEIGHT_PTR	2	pointer into the library heights, the 5 closed heights, pointer into the room table
+D64_SPR_FLIP_WIDTH	2FA3	2FA4	2	2	smc	zp	copia	0	2		spr_flip_graphics_h	D64_SPR_FLIP_WIDTH	0	row width of spr_flip_graphics_h (CPC bytes)
+D64_CHR_POS_PTRS	30F0	30FB	12	12	tabla	hueco	copia	0	0			D64_CHR_POS_PTRS	6	6 pointers to the characters' x
+D64_GAME_STATE_BLOCK_FN	312A	312B	2	2	smc	var	copia	0	2		game_for_each_state_block	D64_GAME_STATE_BLOCK_FN	1	code pointer: 3166 save / 316B restore
+D64_GAME_STATE_BLOCKS	3134	3165	50	50	tabla	hueco	copia	50	0	game_for_each_state_block		D64_GAME_STATE_BLOCKS D64_GAME_STATE_BLOCKS_END	16	16 x (pointer, length) and 0000
+D64_TXT_PUNCTUATION	3447	344B	5	5	tabla	hueco	copia	2	0	txt_phrase_tick		D64_TXT_PUNCTUATION	0	glyph codes of the phrase bytes FA-FE
+glifo_blanco	344C	3453	8	4	graf	graf	conv	8	0	txt_draw_char		D64_TXT_GLYPH_BLANK	0	as the font; the glyph of code 20h
+D64_CHR_FLOOR_HEIGHTS_PTR	3454	3455	2	2	var	var	copia	2	2	chr_hbuf_fill_room	chr_fill_height_buffer	D64_CHR_FLOOR_HEIGHTS_PTR	1	pointer: the height list of the current floor
+D64_CHR_HBUF_FLAT_WIDTH_OP	34EA	34EA	1	1	smc	zp	copia	0	1		f_346E	D64_CHR_HBUF_FLAT_WIDTH_OP	0	visible columns of a flat block
+D64_CHR_HBUF_SLOPE_WIDTH_OP	3510	3510	1	1	smc	zp	copia	0	1		f_346E	D64_CHR_HBUF_SLOPE_WIDTH_OP	0	visible columns of a slope
+D64_CHR_HBUF_COL_STEP_OP	3515	3515	1	1	smc	zp	copia	0	1		f_346E f_3521 f_3535	D64_CHR_HBUF_COL_STEP_OP	0	opcode NOP / INC C / DEC C
+D64_CHR_HBUF_ROW_STEP_OP	351C	351C	1	1	smc	zp	copia	0	1		f_346E f_352C f_3540	D64_CHR_HBUF_ROW_STEP_OP	0	opcode NOP / INC C / DEC C
+D64_CHR_HBUF_WIN_X_OP	354A	354A	1	1	smc	zp	copia	0	1		chr_hbuf_fill_room	D64_CHR_HBUF_WIN_X_OP	0	the window's world x
+D64_CHR_HBUF_WIN_Y_OP	354E	354E	1	1	smc	zp	copia	0	1		chr_hbuf_fill_room	D64_CHR_HBUF_WIN_Y_OP	0	the window's world y
+D64_CHR_COMMAND_BUFFERS	3568	3648	225	225	buffer	datos	copia	26	26	chr_command_bit f_39F1	chr_cmd_discard chr_cmd_write_bits iso_rotate_cam3	D64_CHR_CMD_BUFFER_HEADS D64_CHR_COMMAND_BUFFERS D64_STATE_PART3	0	5 command buffers of 2Dh (Malachi, abbot, Berengar, Severin, Adso), over the start-up code
+D64_OBJ_DOOR_LINK_TABLE	37B4	37D1	30	30	tabla	hueco	copia	30	0	f_39F1		D64_OBJ_DOOR_LINK_TABLE	0	per door: (room link index, bits), FF
+D64_GAME_BOOK_POISON_COUNT	37D2	3869	152	152	var	var	copia	76	50	ai_update_abbot ai_update_adso chr_path_add_target_beside chr_path_add_targets_around chr_probe_cells f_3994 f_39F1 f_3A37 f_3CC5 f_3D15 f_3D3C f_3DA8 f_3E29 f_3F56 f_5129 game_state_block_save obj_door_check_open_close util_clear_bytes	ai_update_abbot ai_update_adso ai_update_berengar ai_update_severin f_036D f_3786 f_3994 f_39F1 f_3CC5 f_3D07 f_3E29 f_510C f_5129 game_state_block_restore util_clear_bytes	D64_AI_ABBOT_DEST D64_AI_ABBOT_PLACES D64_AI_ABBOT_REACHED D64_AI_ABBOT_STATE D64_AI_ADSO_DEST D64_AI_ADSO_PLACES D64_AI_ADSO_REACHED D64_AI_ADSO_STATE D64_AI_ADVANCE_HOUR D64_AI_BERENGAR_DEST D64_AI_BERENGAR_PLACES D64_AI_BERENGAR_REACHED D64_AI_BERENGAR_SLOT_BUSY D64_AI_BERENGAR_STATE D64_AI_CAMERA_TARGET D64_AI_DARK_COUNT D64_AI_GUILLERMO_IN_PLACE D64_AI_IDLE_FRAMES D64_AI_LAMP_EVENT D64_AI_LAMP_IN_USE D64_AI_LAMP_TIME D64_AI_LAST_HOUR_DONE D64_AI_MALACHI_DEST D64_AI_MALACHI_DYING D64_AI_MALACHI_PLACES D64_AI_MALACHI_REACHED D64_AI_MALACHI_STATE D64_AI_MALACHI_WARN_COUNT D64_AI_MONK_FLAGS D64_AI_NIGHT_ENDING D64_AI_NO_ROUTE D64_AI_PARCHMENT_AT_ABBOT D64_AI_PARCHMENT_REPORTED D64_AI_RANDOM D64_AI_READY_FOR_CEREMONY D64_AI_SEVERIN_BOOK_TOLD D64_AI_SEVERIN_DEST D64_AI_SEVERIN_PLACES D64_AI_SEVERIN_REACHED D64_AI_SEVERIN_SLOT_BUSY D64_AI_SEVERIN_STATE D64_AI_SLEEP_ANSWER_COUNT D64_AI_WAIT_COUNT D64_GAME_BOOK_POISON_COUNT D64_GAME_CAMERA_OTHER D64_GAME_GUILLERMO_DEAD D64_GAME_IDLE_FRAMES D64_GAME_INVESTIGATION_OPEN D64_OBJ_DOOR_CHECK_MASK D64_OBJ_LAMP_PLACED D64_STATE_PART2	0	37D2-37F7 logic variables, 37F8-3869 the places tables with their reached/state/destination bytes
+D64_AI_SCRIPT_VARS	386A	38EB	130	130	tabla	datos	copia	70	0	f_3910		D64_AI_SCRIPT_VARS	65	65 pointers: the address of script variable 80h+i
+D64_AI_CLOSE_BOX_TABLE	38EC	38FB	16	16	tabla	hueco	copia	16	0	ai_guillermo_is_close		D64_AI_CLOSE_BOX_TABLE	0	4 x 4 per orientation
+D64_AI_SCRIPT_DEST_PTR	390D	390E	2	2	smc	zp	copia	0	2		f_3786	D64_AI_SCRIPT_DEST_PTR	1	pointer: the script variable assigned last
+D64_OBJ_DOOR_ALLOW_OP	3A24	3A24	1	1	smc	zp	copia	0	1		f_39F1	D64_OBJ_DOOR_ALLOW_OP	0	opcode CCF (door allowed) / NOP
+D64_AI_PHRASE_PARAM	3A5B	3A5B	1	1	smc	zp	copia	0	0			D64_AI_PHRASE_PARAM	0	script var A2: the inline phrase byte of CALL 4B7C at 3A58
+D64_VID_PALETTE_BLACK	3A73	3A81	15	15	conv	hueco	conv	10	0	f_3A88		D64_VID_PALETTE_BLACK D64_VID_PALETTE_DAY D64_VID_PALETTE_NIGHT	0	3 palettes x 5 (pens 3, 2, 1, 0, border) as C64 colours (c64/datos/paleta.tsv)
+D64_VID_SPIRAL_SIDES	3AAB	3AAE	4	4	var	var	copia	4	4	f_3AC3 iso_draw_room_spiral	f_3AC3 iso_draw_room_spiral	D64_VID_SPIRAL_SIDES	0	side lengths of vid_spiral_pass (rewritten)
+D64_AI_UNUSED_3CAD	3CAD	3CAD	1	1	var	var	copia	0	0			D64_AI_UNUSED_3CAD	0	script var BC (written only)
+D64_CHR_RECORD_PTRS	3D30	3D3B	12	12	tabla	hueco	copia	2	0	f_3D15		D64_CHR_RECORD_PTRS	6	6 pointers: character records by camera index
+D64_GAME_PERCENT_DIGITS	3E61	3E63	3	3	var	var	copia	3	3	f_3E29 f_4B44	f_3DA8	D64_GAME_PERCENT_DIGITS	0	the digits of " xx  POR CIENTO" (inline text of game_check_end)
+D64_CHR_MALACHI_RISING	3EED	3EEE	2	2	var	var	copia	1	1	chr_update	chr_update	D64_CHR_MALACHI_RISE_DELAY D64_CHR_MALACHI_RISING	0	Malachi rising, its delay
+D64_CHR_PATH_ROOM_LINKS_PTR	3F73	3F74	2	2	var	var	copia	2	2	f_441E	chr_path_find	D64_CHR_PATH_ROOM_LINKS_PTR	1	pointer: room links of the floor searched
+D64_CHR_CMD_TURN_LEN	3F75	3F80	12	12	tabla	hueco	copia	9	0	f_432C		D64_CHR_CMD_TURN_BITS D64_CHR_CMD_TURN_LEN	0	bit counts and bits of the turn commands
+D64_CHR_PATH_ORIENTATION	3F81	3F82	2	2	var	var	copia	2	2	chr_cmd_discard chr_path_via_rooms f_3F9E f_4080 f_41C9	f_3F9E f_4077 f_4080	D64_CHR_PATH_LENGTH D64_CHR_PATH_ORIENTATION	0	orientation and length of the last search
+D64_CHR_CMD_STEP_TABLE	3F83	3F91	15	15	tabla	hueco	copia	12	0	game_update_camera_and_bonus		D64_CHR_CMD_STEP_TABLE	0	5 x (bits high, low, count) of the step commands
+D64_CHR_PATH_HEIGHT	4085	4085	1	1	smc	zp	copia	0	1		f_3F9E f_40FA	D64_CHR_PATH_HEIGHT	0	height of the cell expanded
+D64_CHR_PATH_SMC_RET	40C2	40C2	1	1	smc	zp	copia	0	1		f_3F9E f_40FA f_4164	D64_CHR_PATH_SMC_RET	0	opcode C9 / 00: check only or search
+D64_CHR_DIR_BUFFER_STEP	4180	41A7	40	40	tabla	hueco	copia	30	0	f_40FA		D64_CHR_ADSO_DIR_CHOICES D64_CHR_DIR_BUFFER_STEP	0	height-buffer step per orientation; Adso's 8 x 4 orientation choices
+D64_CHR_PATH_SOLUTION	41D4	41D5	2	2	smc	zp	copia	0	2		chr_cmd_discard chr_path_search_to_dest	D64_CHR_PATH_SOLUTION	1	pointer: the queue entry that reached the target (the path scratch)
+D64_CHR_PATH_DY_TMP	4211	4211	1	1	smc	zp	copia	0	1		f_41C9	D64_CHR_PATH_DY_TMP	0	dy+1 while the path is rebuilt
+D64_CHR_PATH_CANDIDATE	422C	422D	2	2	smc	zp	copia	0	2		f_41C9	D64_CHR_PATH_CANDIDATE	0	the queued cell next to the current one (grid x, y)
+D64_CHR_CMD_GENERATOR	436A	436B	2	2	smc	var	copia	0	2		f_41A8	D64_CHR_CMD_GENERATOR	1	code pointer: 41C9 / 41B8
+D64_CHR_PATH_FLOOR_TARGET_TEST	440D	440D	1	1	smc	zp	copia	0	1		chr_path_find	D64_CHR_PATH_FLOOR_TARGET_TEST	0	76h / 66h / 6Eh: the BIT n,(HL) tested
+D64_SPR_MONK_ROBES	4431	4450	32	32	tabla	hueco	copia	32	0	f_441E		D64_SPR_MONK_ROBES	16	16 pointers to the robes, bit 14 = drawn mirrored
+luz	4451	446E	30	30	graf	graf	conv	0	0			D64_SPR_LIGHT_PATTERN	0	as on the CPC: 15 big-endian words, one bit per CPC byte = per C64 nibble (0 = dark); not pixels: unchanged
+D64_SPR_BUF_FREE	4471	4476	6	6	var	var	copia	6	6	f_441E f_4717	f_441E	D64_SPR_BUF_FREE D64_SPR_OVERLAY_CURSOR D64_SPR_SAVED_SP	3	pointer: first free byte of the sprite buffer; 4473 saved SP; 4475 overlay cursor (Z80 stack)
+D64_SPR_OV_SRC_Y	4614	4615	2	2	smc	zp	copia	0	1		f_441E	D64_SPR_OV_SRC_Y	0	sprite lines skipped (x the width)
+D64_SPR_OV_SRC_X	467C	467C	1	1	smc	zp	copia	1	1	f_441E	f_441E	D64_SPR_OV_SRC_X	0	sprite bytes skipped
+D64_SPR_OV_DST_Y	4684	4685	2	2	smc	zp	copia	0	1		f_441E	D64_SPR_OV_DST_Y	0	first line in the rectangle (x its width)
+D64_SPR_CUR_BUFFER	4690	4691	2	2	smc	zp	copia	2	2	f_4925	f_441E	D64_SPR_CUR_BUFFER	1	pointer: the buffer of the rectangle (sprite buffer)
+D64_SPR_OV_DST_X	4694	4694	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_OV_DST_X	0	first byte in the rectangle
+D64_SPR_OV_LINE	46A1	46A1	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_OV_LINE	0	sprite line counter start
+D64_SPR_OV_LINES	46A4	46A4	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_OV_LINES	0	lines to merge
+D64_SPR_OV_WIDTH	46A7	46A7	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_OV_WIDTH	0	bytes per line to merge
+D64_SPR_OV_MIRROR_CALL	46AE	46AE	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_OV_MIRROR_CALL	0	opcode CALL Z / CALL NZ (mirrored)
+D64_SPR_OV_SRC_STEP	46C3	46C3	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_OV_SRC_STEP	0	opcode INC HL / DEC HL (mirrored)
+D64_SPR_OV_SRC_STRIDE	46C9	46CA	2	2	smc	zp	copia	0	1		f_441E	D64_SPR_OV_SRC_STRIDE	0	the sprite's width
+D64_SPR_OV_SRC_X_ROBE	4703	4703	1	1	smc	zp	copia	1	1	f_441E	f_441E	D64_SPR_OV_SRC_X_ROBE	0	bytes skipped in the robe
+D64_SPR_OV_DST_STRIDE	470B	470B	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_OV_DST_STRIDE	0	the rectangle's width
+D64_SPR_LIGHT_FILL_A	4738	4739	2	2	smc	zp	copia	0	0			D64_SPR_LIGHT_FILL_A	0	the light's top band (bytes)
+D64_SPR_LIGHT_DX	4756	4756	1	1	smc	zp	copia	0	0			D64_SPR_LIGHT_DX	0	dark bytes left of the circle
+D64_SPR_LIGHT_FLIP	476D	476D	1	1	smc	zp	copia	0	0			D64_SPR_LIGHT_FLIP D64_SPR_LIGHT_FLIP_PATCH	0	opcode ADD HL,HL / NOP when Adso is flipped
+D64_SPR_LIGHT_DX_REST	4782	4782	1	1	smc	zp	copia	0	0			D64_SPR_LIGHT_DX_REST	0	dark bytes right of the circle
+D64_SPR_LIGHT_FILL_B	479E	479F	2	2	smc	zp	copia	0	0			D64_SPR_LIGHT_FILL_B	0	the light's bottom band
+D64_SPR_BLIT_LINES	4863	4863	1	1	smc	zp	copia	0	1		f_47E7	D64_SPR_BLIT_LINES	0	lines of the blit
+D64_SPR_BLIT_WIDTH	4868	4869	2	2	smc	zp	copia	0	1		f_47E7	D64_SPR_BLIT_WIDTH	0	width of the blit
+D64_SPR_BLIT_SKIP	486D	486D	1	1	smc	zp	copia	0	1		f_47E7	D64_SPR_BLIT_SKIP	0	bytes skipped per line of the blit
+D64_SPR_TILE_UNMARK_HOOK	491B	491B	1	1	smc	zp	copia	0	1		f_441E	D64_SPR_TILE_UNMARK_HOOK	0	opcode C9 / 00
+D64_SPR_DEPTH_UPPER	4972	4973	2	2	smc	zp	copia	2	2	f_4925	f_441E f_4925	D64_SPR_DEPTH_UPPER	0	depth limit (x, y)
+D64_SPR_DEPTH_LOWER	4975	4976	2	2	smc	zp	copia	0	2		f_4925	D64_SPR_DEPTH_LOWER	0	previous depth limit
+D64_SPR_TILE_TEST_JUMP	497D	497E	2	2	smc	var	copia	0	2		f_4925	D64_SPR_TILE_TEST_JUMP	1	code pointer: 497F / 49AA
+D64_SPR_TILE_DST_SKIP	4A28	4A28	1	1	smc	zp	copia	0	1		f_4925 f_49E5	D64_SPR_TILE_DST_SKIP	0	next-line step of the tile merge, low
+D64_SPR_TILE_DST_SKIP_HI	4A2C	4A2C	1	1	smc	zp	copia	0	1		f_4925 f_49E5	D64_SPR_TILE_DST_SKIP_HI	0	high
+D64_SPR_TILE_COPY_SKIP	4A44	4A44	1	1	smc	zp	copia	0	1		f_4925 f_49E5	D64_SPR_TILE_COPY_SKIP	0	next-line step of the opaque copy, low
+D64_SPR_TILE_COPY_SKIP_HI	4A48	4A48	1	1	smc	zp	copia	0	1		f_4925 f_49E5	D64_SPR_TILE_COPY_SKIP_HI	0	high
+D64_ISO_SPIRAL_RUNS	4A4F	4A5E	16	16	var	var	copia	16	4	f_49E5	f_49E5	D64_ISO_SPIRAL_RUNS	0	4 runs of iso_draw_room_spiral (rewritten)
+D64_AI_HOUR_DURATIONS	4AD0	4B42	115	115	var	datos	copia	12	1	f_4FEF f_5060 f_50D9	iso_rotate_cam3	D64_AI_HOUR_DURATIONS D64_HUD_HOUR_NAMES D64_HUD_ROMAN_DAYS D64_VEC_4AFC	0	hour durations (7 x 7, overlapping the next), roman days (7 x 3), hour names (7 x 7); 4AFC set to C3h by a new game
+D64_OBJ_HOLDER_LOCKED	4CAA	4CAA	1	1	smc	zp	copia	0	1		f_4C46	D64_OBJ_HOLDER_LOCKED	0	holder +0 bit 0
+D64_OBJ_FRONT_Z	4CBD	4CBD	1	1	smc	zp	copia	0	1		f_4EA5	D64_OBJ_FRONT_Z	0	height in front of the holder
+D64_OBJ_FRONT_X	4CC4	4CC4	1	1	smc	zp	copia	0	1		f_4EA5	D64_OBJ_FRONT_X	0	x in front
+D64_OBJ_FRONT_Y	4CC9	4CC9	1	1	smc	zp	copia	0	1		f_4EA5	D64_OBJ_FRONT_Y	0	y in front
+D64_OBJ_DROP_LEVEL	4E17	4E17	1	1	smc	zp	copia	0	1		f_4DC3	D64_OBJ_DROP_LEVEL	0	height above the floor of a dropped object
+D64_OBJ_DROP_INDEX	4E4A	4E4A	1	1	smc	zp	copia	0	1		f_4DC3	D64_OBJ_DROP_INDEX	0	1-based object index
+D64_ISO_MIRROR_OLD_POS_OP	4F9A	4F9B	2	2	smc	zp	copia	0	0			D64_ISO_MIRROR_OLD_POS_OP	1	pointer: mirror state + 1 (28DFh / 28E4h)
+D64_ISO_MIRROR_OLD_SIZE_OP	4F9E	4F9F	2	2	smc	zp	copia	0	0			D64_ISO_MIRROR_OLD_SIZE_OP	1	pointer: mirror state + 3
+D64_ISO_MIRROR_NEW_POS_OP	4FA2	4FA3	2	2	smc	zp	copia	0	0			D64_ISO_MIRROR_NEW_POS_OP	1	pointer: mirror state + 1
+D64_ISO_MIRROR_NEW_SIZE_OP	4FA6	4FA7	2	2	smc	zp	copia	0	0			D64_ISO_MIRROR_NEW_SIZE_OP	1	pointer: mirror state + 3
+D64_ISO_MIRROR_SHOWN	4FA9	4FA9	1	1	smc	zp	copia	0	0			D64_ISO_MIRROR_SHOWN	0	mirror state + 0 (00 drawn, FE not)
+D64_ISO_MIRROR_BUFFER	4FD9	4FDA	2	2	smc	zp	copia	0	2		f_4F03	D64_ISO_MIRROR_BUFFER	1	pointer: the mirror image buffer (855Ch / 8656h)
+fila_blanca	50D7	50D8	2	1	graf	graf	conv	2	0	f_50D9		D64_HUD_GFX_ROMAN_BLANK	0	1 byte (pen 3); CPC FF FF
+D64_HUD_DAY_GLYPH_STEP	50FE	50FE	1	1	smc	zp	copia	0	1		f_50D9	D64_HUD_DAY_GLYPH_STEP	0	opcode INC BC / DEC BC
+D64_OBJ_MIRROR_NUMERALS	5177	517F	9	9	tabla	hueco	copia	0	0			D64_OBJ_MIRROR_NUMERALS	0	the 3 numerals of the mirror riddle
+cola_obsequium	5180	5183	4	4	graf	graf	conv	3	0	f_5129		D64_HUD_OBSEQUIUM_TAIL	0	4 nibbles (low 4 bits): the partial nibble of the bar for obsequium & 3; full nibble pen 2 = F, empty pen 3 = 0 (CPC 0Fh, FFh)
+D64_TXT_PHRASE_SOUND	51AF	51E6	56	56	tabla	hueco	copia	4	0	f_4B7C		D64_TXT_PHRASE_SOUND	0	the voice byte of each of the 56 phrases
+D64_ISO_ROOM_TABLE	6100	7B97	6808	6808	var	datos	copia	1127	2	f_35C3 iso_build_room iso_select_room	f_35C3 obj_close_mirror	D64_ISO_ROOM_TABLE	0	129 room records (length byte first); the mirror's entry in room 72h rewritten (7ABCh)
+D64_CHR_FLOOR0_HEIGHTS	7B98	7F30	921	921	tabla	datos	copia	791	0	f_346E		D64_CHR_FLOOR0_HEIGHTS	0	height list of the ground floor, FF
+D64_SPR_BUFFER	7F80	855B	1500	1500	buffer	datos	copia	1500	1500	chr_fill_height_buffer chr_mark_hbuf chr_path_clear_grid_marks chr_probe_cells f_090A f_3568 f_3F92 f_3F9E f_4077 f_4080 f_41C9 f_441E f_47E7 f_49E5 iso_grid_cell_ptr	chr_fill_height_buffer chr_mark_hbuf chr_path_clear_grid_marks f_090A f_346E f_3F92 f_3F9E f_4080 f_41C9 f_441E f_49E5 obj_door_mark_cells	D64_CHR_PATH_GRID D64_HUD_HIDDEN_ROWS_SRC D64_ISO_TILE_GFX_HIGH D64_SPR_BUFFER D64_STATE_BLOCK_END D64_STATE_BUFFER	0	scratch 7F80-855B: the sprite buffer (C64 format when a sprite routine uses it: see resultados.tsv), the path records of chr_cmd_write_path, the path grid 8174-83B3, the bottom of the path queue
+baldosas	8300	9E3F	6976	3488	graf	graf	conv	6096	4094	ai_malachi_think chr_fill_height_buffer chr_mark_hbuf chr_path_clear_grid_marks chr_probe_cells f_090A f_3568 f_3F92 f_3F9E f_4077 f_4080 f_41C9 f_438F f_4404 f_441E f_47E7 f_491B f_4925 f_49E5 f_4D30 iso_clear_tile_buffer iso_grid_cell_ptr iso_put_tile	ai_malachi_think chr_fill_height_buffer chr_mark_hbuf chr_path_clear_grid_marks f_090A f_346E f_3F92 f_3F9E f_4080 f_438F f_4404 f_441E f_491B f_4925 f_49E5 iso_clear_tile_buffer iso_put_tile vid_init_stub	D64_ENDING_BLOCK_END D64_HUD_HIDDEN_ROWS_SRC D64_ISO_MIRROR_BUF_ADSO D64_ISO_MIRROR_BUF_GUILLERMO D64_ISO_TILE_BUFFER D64_ISO_TILE_GFX_HIGH D64_ISO_TILE_MARKS D64_PATH_QUEUE D64_STATE_BLOCK_END D64_VID_COLOUR_TABLES D64_VID_TILE_OR_A D64_VID_TILE_OR_B	0	tile n at +16n: 2 byte columns x 8 lines, column-major; objects row-major 2 x 12 at (CPC offset)/2; tape image 8300h-9E3Fh = tile n at 8300h + 32n (after start-up tiles 00-7F live in the screen gaps C6xx-FFxx); slots 00 73 85 86 unused (6D unused by the rooms); objects in 2D-2F, A1-A6
+D64_ISO_MIRROR_BUF_GUILLERMO	855C	874F	500	500	buffer	sigue	nada	500	500	ai_malachi_think f_3568 f_3F9E f_4077 f_4080 f_41C9 f_438F f_4404 f_441E f_47E7 f_4925 f_49E5 iso_grid_cell_ptr	ai_malachi_think f_3F9E f_4080 f_4404 f_441E f_49E5	D64_ISO_MIRROR_BUF_ADSO D64_ISO_MIRROR_BUF_GUILLERMO	0	the two mirror image buffers (graphics, C64 format: not compared byte by byte); the deep end of the path queue
+D64_PATH_QUEUE_TOP	8750	877F	48	48	buffer	sigue	copia	48	46	ai_malachi_think f_3568 f_3F9E f_4077 f_4080 f_41C9 f_438F f_4404 f_441E f_4925 iso_grid_cell_ptr	ai_malachi_think f_3F9E f_4080 f_438F f_4404	D64_PATH_QUEUE	0	the top of the path queue (grows down from 877Eh)
+D64_ISO_TILE_BUFFER	8780	8EFF	1920	1920	buffer	sigue	copia	1920	1920	f_3568 f_3F9E f_4080 f_491B f_4925 f_49E5 iso_clear_tile_buffer iso_put_tile	f_3F9E f_4080 f_491B f_4925 iso_clear_tile_buffer iso_put_tile	D64_ENDING_BLOCK_END D64_ISO_TILE_BUFFER	0	the tile buffer: 20 x 16 cells x 6 bytes; right after the path scratch as on the CPC: the path searches compute cells past the 24 x 24 grid (8174h) that land in it (chr_path_room_to_marked 3F92h marks bit 6 there)
+D64_CHR_FLOOR1_HEIGHTS	9E40	9F39	250	250	tabla	datos	copia	226	0	f_346E		D64_CHR_FLOOR1_HEIGHTS	0	height list of the first floor, FF
+D64_CHR_FLOOR2_HEIGHTS	9F60	A2F4	917	917	var	datos	copia	288	5	chr_hbuf_skip_list f_49E5	obj_close_mirror	D64_CHR_FLOOR2_HEIGHTS	0	height list of the library, FF; the mirror's 5 bytes at A2F0-A2F4
+personajes	A300	AA2C	1837	1053	graf	graf	conv	1837	1837	f_441E spr_flip_graphics_h	spr_flip_graphics_h	D64_SPR_ADSO_GFX_W4 D64_SPR_ADSO_GFX_W5 D64_SPR_GUILLERMO_GFX_W4 D64_SPR_GUILLERMO_GFX_W5 D64_TXT_STRIP_CURSOR	0	row-major, ceil(w/2) bytes a line, odd w: low nibble of the last byte = padding 01; 4 sub-blocks (Guillermo 5x174, 4x33, Adso 5x95, 4x90); AA2Dh-AA48h unused
+puerta	AA49	AB38	240	120	graf	graf	conv	240	240	f_441E spr_flip_graphics_h	spr_flip_graphics_h	D64_OBJ_DOOR_GFX	0	row-major, 3 bytes x 40 lines; 
+romanos	AB39	AB58	32	16	graf	graf	conv	16	0	f_50D9		D64_HUD_GFX_ROMAN_I D64_HUD_GFX_ROMAN_V	0	row-major, 1 byte x 8 lines each (V, I); the blank glyph row 50D7h (FF FF) = 1 byte 00
+habitos	AB59	AE2D	725	435	graf	graf	conv	725	0	f_441E iso_rotate_cam3		D64_SPR_GFX_SOURCE	0	row-major, 3 bytes a line (w 5); 6 robes of 26, 24, 24, 25, 23, 23 lines; 2126h copies them to AE2Eh and flips the copy (dead: overwritten by the height buffer, B06E-B102 never read)
+D64_CHR_HEIGHT_BUFFER	AE2E	B06D	576	576	buffer	datos	copia	576	576	chr_fill_height_buffer chr_mark_hbuf chr_path_add_target_beside chr_path_clear_grid_marks chr_probe_cells f_3F92 f_3F9E f_4077 f_4080 f_40FA f_4164 f_4DC3 spr_flip_graphics_h	chr_fill_height_buffer chr_mark_hbuf chr_path_clear_grid_marks f_346E f_3F92 f_3F9E f_4080 f_40FA f_4164 iso_rotate_cam3 spr_flip_graphics_h	D64_CHR_HEIGHT_BUFFER D64_SPR_GFX_COPY	0	the 24 x 24 height buffer of the room shown
+caras	B103	B3BE	700	420	graf	graf	conv	200	200	f_441E spr_flip_graphics_h	spr_flip_graphics_h		0	row-major, 3 bytes a line; 7 x (2 faces x 10 lines); pointers: 2BE8h table, 2D30h animation (face, face + 32h), code 3B9Fh, 3BAFh, 3BCBh, 3BDEh
+fuente	B400	B56F	368	184	graf	graf	conv	192	0	txt_draw_char		D64_TXT_CURSOR_HOUR_NAME D64_TXT_FONT	0	4 bytes a glyph (2Dh-5Ah): rows 2k / 2k+1 in the high / low nibble, bit 3 = left pixel; rule der, N redrawn, ';' from the left pixels
+D64_TXT_WORDS	B580	BA68	1257	1257	var	datos	copia	413	0	txt_phrase_tick txt_skip_words		D64_TXT_WORDS D64_TXT_WORD_AAA	0	239 words (bit 7 ends a word); the mirror numeral written into B59E
+D64_TXT_PHRASES	BB00	BE9B	924	924	texto	datos	copia	272	0	f_4BB2 txt_phrase_tick		D64_TXT_PHRASES	0	56 phrases, FF-terminated
+D64_SYS_FRAME_TICKS_NORMAL	BF49	BF52	10	10	tabla	hueco	copia	6	0	f_3CFE f_5028 iso_rotate_cam3		D64_GAME_START_DAY D64_GAME_START_HOUR D64_GAME_START_POS D64_GAME_START_Z D64_SYS_FRAME_TICKS_NORMAL	0	speed, start hour (BF4E), day (BF4F), Guillermo's start x, y, (BF50-BF52)
+marcador	C600	CDFF	2048	1024	graf	graf	conv	1835	2048	f_35B0 f_49E5 f_4B57 f_4FEF txt_phrase_tick vid_fill_play_area	f_3568 f_35B0 f_3B2A f_47E7 f_49E5 f_4B57 f_4D30 f_4FEF f_50D9 f_5164 txt_draw_char txt_phrase_tick vid_fill_play_area	D64_SCR_OBSEQUIUM_BAR D64_SCR_ROW24	0	C64 bitmap order: 4 character rows x 32 cells x 8 bytes (cells 4-35 of bitmap rows 20-23); rule izq; CPC sources C600h, D600h, E600h, F600h (512 bytes each, hidden rows of the tape image); goes straight into the bitmap
+ISO_VM_STACK	-	-	0	64	buffer	c4	nada	0	0				0	the block interpreter's stack (the Z80 used its own stack)
+SPR_SORTED_LIST	-	-	0	48	buffer	c4	nada	0	0				0	the sorted sprite list (the Z80 pushed it on its stack)
+tabla_and_tile_a	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_or_tile_a	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_and_tile_b	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_or_tile_b	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_and_spr	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_or_spr	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_espejo_nibble	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_espejo_byte	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_nibbles	-	-	0	256	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+tabla_fuente_nibble	-	-	0	16	graf	graf	conv	0	0				0	table built at start-up by the 6502 code; (written for the host's checks)
+# not needed on the C64
+-	0000	0038	57	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0039	00FD	197	0	other	-	no						0	RST vectors and the firmware's low page: the 6502 calls the RST helpers by JSR, its own vectors
+-	00FF	0102	4	0	other	-	no						0	the tape loader's jump (0100h)
+-	01AA	0200	87	0	other	-	no						0	the rest of the tape loader (0200h is JP 20BEh at load, then data)
+-	036D	04AF	323	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	04B1	05FF	335	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0601	0691	145	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0693	076A	216	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	076D	089F	307	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	08A2	08F9	88	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	090A	09B9	176	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	09BC	09D3	24	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	09D5	0A6C	152	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0A6E	0A6E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0A70	0AB3	68	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0ABC	0B0C	81	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0B1D	0C05	233	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0C6D	0CF5	137	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0CF7	0F75	639	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	0F88	0FF7	112	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	128D	128E	2	0	other	-	no						0	the block table's entry of type B0h (no room uses it; the next ones overlap the code at 128Fh)
+-	128F	12BF	49	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	12C2	12F4	51	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1611	1696	134	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1699	16BF	39	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	16C1	16CD	13	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	17EE	1803	22	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1BC6	1BDA	21	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1BDB	1BDB	1	0	other	-	no						0	1 byte before the block interpreter's registers, never accessed
+-	1C26	1C5F	58	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1C61	1C65	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1C67	1D05	159	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1D07	1D28	34	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1D2A	1DFB	210	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1DFE	1E3D	64	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1E3F	1E49	11	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1E4A	1E4A	1	0	other	-	no						0	dead Z80 code: an unreachable byte between routines
+-	1E4B	1E65	27	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1E66	1E6C	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	1E6D	1E80	20	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	1F79	2012	154	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2015	206F	91	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2072	2073	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2076	20A4	47	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	20A6	20CA	37	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	20CB	20D1	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	20D2	2173	162	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2174	2174	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	2175	21D9	101	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	21DB	221D	67	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	221E	2225	8	0	other	-	no						0	dead Z80 code: LD BC,7F89h / OUT (C),C / JP 0591h, never reached (a 6128 leftover)
+-	2226	22F1	204	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	22F3	22FD	11	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	22FF	2373	117	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2375	2377	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	237A	237E	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2381	23A1	33	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	23E2	23E3	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	23E5	2405	33	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2407	2476	112	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2479	247D	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2480	24A5	38	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	24A8	254E	167	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	254F	2552	4	0	other	-	no						0	dead Z80 code: LD (IY+4),E / RET after a JR, never reached
+-	2553	25AD	91	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	25B0	25D8	41	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	25DB	2635	91	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2637	263F	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2641	264D	13	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	264F	2655	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2658	2683	44	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2685	2702	126	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	274B	289B	337	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	289D	28B8	28	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2D50	2DCB	124	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2DCC	2DCC	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	2DCD	2DE7	27	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2DFC	2E2B	48	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2E42	2E69	40	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2E6C	2EB2	71	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2EBB	2EDD	35	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2EE7	2FA2	188	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	2FA5	30EF	331	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	30FC	30FC	1	0	other	-	no						0	dead Z80 code: a RET after chr_pos_ptrs, never reached
+-	30FD	3129	45	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	312C	3133	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3166	328A	293	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	328B	3292	8	0	other	-	no						0	8 bytes nothing reads (between 328A RET and the tape code)
+-	3293	3446	436	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3456	34E9	148	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	34EB	350F	37	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3511	3514	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3516	351B	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	351D	3549	45	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	354B	354D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	354F	3566	24	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3567	3567	1	0	other	-	no						0	dead Z80 code: a second RET, never reached
+-	3649	37B3	363	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	38FC	390C	17	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	390F	3A23	277	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3A25	3A5A	54	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3A5C	3A72	23	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3A82	3A82	1	0	other	-	no						0	dead Z80 code: a RET after the palettes, never reached
+-	3A83	3AAA	40	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3AAF	3B5E	176	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3B5F	3B65	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3B66	3B73	14	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3B74	3B7A	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3B7B	3B94	26	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3B95	3B9B	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3B9C	3BA4	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3BA5	3BAB	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3BAC	3BB4	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3BB5	3BBB	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3BBC	3BD0	21	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3BD1	3BD7	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3BD8	3C1E	71	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C1F	3C25	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C26	3C28	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C29	3C2F	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C30	3C37	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C38	3C3E	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C3F	3C4A	12	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C4B	3C51	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C52	3C54	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C55	3C5B	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C5C	3C5E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C5F	3C65	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C66	3C68	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C69	3C6F	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C70	3C72	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C73	3C79	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C7A	3C7C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3C7D	3C83	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3C84	3CAC	41	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3CAE	3D29	124	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3D2A	3D2F	6	0	other	-	no						0	6 bytes of a 6128 table nothing reads
+-	3D3C	3D9F	100	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3DA0	3DA6	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3DA7	3DA7	1	0	other	-	no						0	dead Z80 code: a RET after inline data, never reached
+-	3DA8	3E26	127	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3E27	3E27	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3E28	3E46	31	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3E47	3E56	16	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3E57	3E5F	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3E60	3E60	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3E64	3E6F	12	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3E70	3E78	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3E79	3E8C	20	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3E8D	3E9C	16	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3E9D	3EB7	27	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3EB8	3EC8	17	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3EC9	3EE2	26	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	3EE3	3EEC	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3EEF	3F72	132	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	3F92	4084	243	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4086	40C1	60	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	40C3	40E6	36	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	40E7	40EA	4	0	other	-	no						0	dead bytes after a RET (C4 A9 1E 63), never reached
+-	40EB	417F	149	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	41A8	41D3	44	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	41D6	4210	59	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4212	422B	26	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	422E	4369	316	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	436C	440C	161	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	440E	442D	32	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	442E	4430	3	0	other	-	no						0	dead Z80 code: JP 20BEh before the robe table, never reached
+-	446F	4470	2	0	other	-	no						0	2 bytes after the light pattern (the 6128's 16th row), never read
+-	4477	4613	413	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4616	467B	102	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	467D	4683	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4686	468F	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4692	4693	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4695	46A0	12	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	46A2	46A3	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	46A5	46A6	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	46A8	46AD	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	46AF	46C2	20	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	46C4	46C8	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	46CB	4702	56	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4704	470A	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	470C	4737	44	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	473A	4755	28	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4757	476C	22	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	476E	4781	20	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4783	479D	27	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	47A0	4862	195	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4864	4867	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	486A	486C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	486E	491A	173	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	491C	4971	86	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4974	4974	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4977	497C	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	497F	4A27	169	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4A29	4A2B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4A2D	4A43	23	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4A45	4A47	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4A49	4A4E	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4A5F	4ACE	112	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4ACF	4ACF	1	0	other	-	no						0	1 byte before the hour durations, never read
+-	4B43	4BCC	138	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4BCD	4BD0	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	4BD1	4BD6	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4BD7	4BDA	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	4BDB	4CA9	207	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4CAB	4CBC	18	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4CBE	4CC3	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4CC5	4CC8	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4CCA	4E16	333	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4E18	4E49	50	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4E4B	4F99	335	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4F9C	4F9D	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4FA0	4FA1	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4FA4	4FA5	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4FA8	4FA8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4FAA	4FD8	47	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	4FDB	50D6	252	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	50D9	50FD	37	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	50FF	5126	40	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5127	5127	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5128	5176	79	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5184	5196	19	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5197	5197	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5198	51AE	23	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	51E7	51E7	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	51E8	51F6	15	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	51F7	51F9	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	51FA	51FB	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	51FC	51FD	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	51FE	5210	19	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5211	5213	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5214	5215	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5216	5217	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5218	5223	12	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5224	5226	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5227	5228	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5229	522A	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	522B	522E	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	522F	5231	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5232	5233	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5234	5235	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5236	5237	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5238	5238	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5239	523D	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	523E	5240	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5241	5247	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5248	524A	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	524B	524E	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	524F	524F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5250	5256	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5257	5259	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	525A	525D	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	525E	525E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	525F	5265	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5266	5268	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5269	526D	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	526E	526E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	526F	5275	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5276	5278	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5279	527C	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	527D	527D	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	527E	5280	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5281	5283	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5284	528A	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	528B	528D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	528E	5292	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5293	5293	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5294	529A	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	529B	529D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	529E	52A2	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52A3	52A3	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52A4	52A7	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52A8	52A8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52A9	52AB	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52AC	52AE	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52AF	52B2	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52B3	52B4	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52B5	52B7	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52B8	52BD	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52BE	52C0	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52C1	52C9	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52CA	52CC	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52CD	52D2	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52D3	52D9	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52DA	52DC	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52DD	52DE	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52DF	52DF	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52E0	52E1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52E2	52E3	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52E4	52E6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52E7	52EA	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52EB	52ED	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52EE	52F0	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52F1	52F3	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52F4	52F4	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52F5	52F8	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52F9	52FB	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52FC	52FD	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	52FE	52FE	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	52FF	5300	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5301	5302	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5303	5305	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5306	5308	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5309	530A	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	530B	530B	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	530C	530D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	530E	530E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	530F	5311	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5312	5314	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5315	5316	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5317	531A	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	531B	531D	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	531E	5320	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5321	5323	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5324	5326	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5327	5329	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	532A	532C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	532D	532E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	532F	5330	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5331	5333	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5334	533D	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	533E	533E	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	533F	533F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5340	5341	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5342	5342	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5343	5344	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5345	5346	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5347	5349	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	534A	534C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	534D	5350	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5351	5351	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5352	5355	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5356	535A	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	535B	535B	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	535C	535C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	535D	535E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	535F	5360	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5361	5363	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5364	5366	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5367	5368	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5369	5369	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	536A	536C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	536D	536F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5370	5374	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5375	537A	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	537B	537C	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	537D	537D	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	537E	5381	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5382	5382	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5383	5386	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5387	5388	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5389	538B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	538C	538E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	538F	5390	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5391	5391	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5392	5394	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5395	5395	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5396	5398	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5399	539B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	539C	539D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	539E	53A1	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53A2	53A4	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53A5	53A7	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53A8	53A9	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53AA	53AD	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53AE	53B0	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53B1	53B3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53B4	53B6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53B7	53B9	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53BA	53BB	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53BC	53BD	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53BE	53C0	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53C1	53C3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53C4	53C6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53C7	53C9	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53CA	53D0	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53D1	53D3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53D4	53D5	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53D6	53D6	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53D7	53D8	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53D9	53DB	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53DC	53DC	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53DD	53DF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53E0	53E2	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53E3	53E5	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53E6	53E7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53E8	53E8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53E9	53EA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53EB	53EC	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53ED	53EF	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53F0	53F2	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53F3	53F4	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53F5	53F5	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53F6	53F7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53F8	53FB	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	53FC	53FE	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	53FF	5408	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5409	540B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	540C	540E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	540F	5412	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5413	5415	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5416	5418	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5419	541B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	541C	5420	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5421	5423	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5424	5424	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5425	5427	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5428	542B	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	542C	542E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	542F	5433	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5434	5436	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5437	543B	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	543C	543E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	543F	543F	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5440	5443	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5444	5446	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5447	544F	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5450	5453	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5454	5461	14	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5462	5463	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5464	5465	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5466	5467	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5468	5469	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	546A	546C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	546D	546F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5470	5476	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5477	5479	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	547A	547B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	547C	547C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	547D	5483	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5484	5486	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5487	5488	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5489	5489	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	548A	548B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	548C	548D	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	548E	548F	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5490	5490	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5491	5492	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5493	5495	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5496	5498	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5499	549E	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	549F	54A1	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54A2	54A4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54A5	54A7	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54A8	54AD	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54AE	54B0	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54B1	54B3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54B4	54B6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54B7	54B9	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54BA	54BC	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54BD	54BF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54C0	54C1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54C2	54C5	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54C6	54C8	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54C9	54D2	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54D3	54D3	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54D4	54D4	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54D5	54D6	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54D7	54E1	11	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54E2	54E2	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54E3	54E3	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54E4	54E5	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54E6	54E9	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54EA	54EC	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54ED	54EF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54F0	54F1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54F2	54F2	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54F3	54F4	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54F5	54F5	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54F6	54F8	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54F9	54FD	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	54FE	54FE	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	54FF	54FF	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5500	5502	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5503	5505	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5506	5507	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5508	5509	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	550A	550C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	550D	550F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5510	5511	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5512	5513	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5514	5516	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5517	5519	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	551A	551B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	551C	551D	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	551E	5520	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5521	5523	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5524	5526	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5527	5529	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	552A	552B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	552C	552C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	552D	552E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	552F	552F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5530	5531	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5532	5532	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5533	5535	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5536	5538	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5539	553A	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	553B	553C	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	553D	553F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5540	5543	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5544	5546	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5547	554A	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	554B	554D	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	554E	5550	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5551	5553	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5554	5554	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5555	5557	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5558	555A	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	555B	555C	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	555D	555E	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	555F	5561	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5562	5562	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5563	5569	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	556A	556C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	556D	556F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5570	5572	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5573	5574	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5575	5575	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5576	5577	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5578	5579	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	557A	557C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	557D	557F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5580	5581	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5582	5586	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5587	5588	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5589	558A	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	558B	558D	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	558E	5590	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5591	5597	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5598	559D	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	559E	559F	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55A0	55A0	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55A1	55A2	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55A3	55A4	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55A5	55A7	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55A8	55AB	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55AC	55AE	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55AF	55B1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55B2	55B5	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55B6	55B6	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55B7	55BE	8	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55BF	55C1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55C2	55C4	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55C5	55C7	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55C8	55C9	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55CA	55CB	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55CC	55CD	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55CE	55D2	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55D3	55D5	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55D6	55D8	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55D9	55DB	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55DC	55DC	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55DD	55E0	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55E1	55E3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55E4	55E6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55E7	55E7	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55E8	55E9	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55EA	55EA	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55EB	55EC	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55ED	55ED	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55EE	55F1	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55F2	55F3	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55F4	55F6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	55F7	55FE	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	55FF	5600	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5601	5601	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5602	5603	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5604	560B	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	560C	560C	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	560D	560F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5610	5611	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5612	5616	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5617	5621	11	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5622	5624	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5625	5627	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5628	562A	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	562B	562D	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	562E	5633	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5634	5636	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5637	5639	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	563A	563C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	563D	5640	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5641	5644	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5645	5647	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5648	5648	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5649	564C	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	564D	564E	2	0	other	-	no						0	dead bytes in the monk scripts (JR after a RET), never reached
+-	564F	564F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5650	5652	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5653	5655	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5656	5657	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5658	565D	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	565E	5662	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5663	5665	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5666	5669	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	566A	566C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	566D	566D	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	566E	566F	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5670	5672	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5673	5675	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5676	567A	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	567B	567B	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	567C	567D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	567E	567E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	567F	5680	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5681	5682	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5683	5685	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5686	5688	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5689	568B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	568C	568E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	568F	5692	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5693	5694	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5695	5697	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5698	569B	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	569C	56A5	10	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56A6	56A8	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56A9	56AA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56AB	56AB	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56AC	56AD	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56AE	56AE	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56AF	56B0	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56B1	56B2	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56B3	56B7	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56B8	56BA	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56BB	56BD	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56BE	56C1	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56C2	56C3	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56C4	56C5	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56C6	56D2	13	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56D3	56D5	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56D6	56D7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56D8	56D8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56D9	56DA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56DB	56DC	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56DD	56DE	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56DF	56E2	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56E3	56E7	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56E8	56EA	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56EB	56ED	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56EE	56F0	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56F1	56F3	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56F4	56F9	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	56FA	56FC	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	56FD	5701	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5702	5702	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5703	570D	11	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	570E	570F	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5710	5711	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5712	5713	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5714	5717	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5718	571A	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	571B	571C	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	571D	571F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5720	5725	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5726	5728	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5729	572C	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	572D	572F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5730	5732	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5733	5735	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5736	573B	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	573C	573D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	573E	5741	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5742	5744	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5745	5747	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5748	574B	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	574C	5753	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5754	5754	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5755	5755	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5756	5757	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5758	575B	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	575C	575E	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	575F	5761	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5762	5765	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5766	5768	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5769	576B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	576C	576E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	576F	5773	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5774	5776	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5777	5779	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	577A	577C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	577D	577E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	577F	5782	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5783	5785	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5786	578A	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	578B	578B	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	578C	578C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	578D	578E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	578F	5792	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5793	5795	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5796	5798	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5799	579B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	579C	579E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	579F	57A0	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57A1	57A1	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57A2	57A3	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57A4	57A6	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57A7	57A7	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57A8	57AB	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57AC	57AE	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57AF	57B1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57B2	57B5	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57B6	57B6	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57B7	57B9	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57BA	57BF	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57C0	57C1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57C2	57C5	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57C6	57C7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57C8	57C8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57C9	57CA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57CB	57CF	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57D0	57D2	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57D3	57D5	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57D6	57E0	11	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57E1	57E3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57E4	57E5	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57E6	57E6	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57E7	57E8	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57E9	57EB	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57EC	57EC	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57ED	57ED	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57EE	57EF	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57F0	57F1	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57F2	57F4	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57F5	57F7	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57F8	57FB	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	57FC	57FE	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	57FF	57FF	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5800	5800	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5801	5802	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5803	5806	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5807	580D	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	580E	5810	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5811	5812	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5813	5813	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5814	5815	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5816	5817	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5818	581A	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	581B	581D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	581E	5825	8	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5826	5829	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	582A	582B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	582C	582C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	582D	5833	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5834	5836	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5837	5839	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	583A	583C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	583D	583E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	583F	5840	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5841	5843	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5844	5844	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5845	5848	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5849	584D	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	584E	584E	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	584F	584F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5850	5851	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5852	5853	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5854	5856	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5857	5859	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	585A	585B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	585C	585D	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	585E	5860	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5861	5864	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5865	5874	16	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5875	5877	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5878	587C	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	587D	5884	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5885	5886	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5887	5887	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5888	588A	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	588B	588D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	588E	588E	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	588F	5890	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5891	5895	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5896	5898	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5899	589B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	589C	589C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	589D	589F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58A0	58A2	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58A3	58A4	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58A5	58A5	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58A6	58A7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58A8	58A8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58A9	58AC	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58AD	58AE	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58AF	58B2	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58B3	58B5	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58B6	58B8	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58B9	58BD	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58BE	58BE	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58BF	58BF	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58C0	58C1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58C2	58C3	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58C4	58C6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58C7	58C9	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58CA	58CC	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58CD	58D2	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58D3	58D9	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58DA	58DC	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58DD	58DF	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58E0	58E7	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58E8	58E8	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58E9	58EA	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58EB	58EC	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58ED	58EF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58F0	58F1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58F2	58F3	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58F4	58F5	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58F6	58F7	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	58F8	58FC	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	58FD	58FF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5900	5901	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5902	5902	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5903	5905	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5906	590A	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	590B	590B	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	590C	590C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	590D	590F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5910	5912	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5913	5914	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5915	5917	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5918	5918	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5919	5919	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	591A	591C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	591D	591F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5920	5921	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5922	5922	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5923	5924	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5925	5925	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5926	5927	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5928	5930	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5931	5931	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5932	5932	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5933	5935	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5936	5938	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5939	593B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	593C	593E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	593F	5942	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5943	5945	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5946	5947	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5948	5949	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	594A	594D	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	594E	594E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	594F	5951	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5952	5954	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5955	5956	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5957	5959	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	595A	595A	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	595B	595E	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	595F	5962	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5963	5965	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5966	5968	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5969	5969	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	596A	596D	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	596E	5972	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5973	5973	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5974	5974	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5975	5976	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5977	5978	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5979	597A	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	597B	597C	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	597D	597E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	597F	597F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5980	5981	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5982	5982	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5983	5985	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5986	5988	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5989	598A	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	598B	598B	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	598C	598D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	598E	598E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	598F	5990	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5991	5994	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5995	599B	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	599C	599E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	599F	59A0	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59A1	59A1	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59A2	59A3	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59A4	59A4	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59A5	59A6	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59A7	59AA	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59AB	59AD	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59AE	59B0	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59B1	59B2	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59B3	59B3	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59B4	59B5	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59B6	59B7	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59B8	59BA	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59BB	59BE	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59BF	59C1	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59C2	59C4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59C5	59C7	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59C8	59CA	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59CB	59CC	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59CD	59CD	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59CE	59D0	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59D1	59D3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59D4	59D6	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59D7	59D9	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59DA	59DB	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59DC	59DD	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59DE	59E1	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59E2	59E5	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59E6	59EA	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59EB	59FC	18	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	59FD	59FE	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	59FF	5A00	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A01	5A02	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A03	5A04	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A05	5A07	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A08	5A08	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A09	5A0B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A0C	5A0E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A0F	5A12	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A13	5A16	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A17	5A18	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A19	5A19	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A1A	5A1C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A1D	5A24	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A25	5A28	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A29	5A2B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A2C	5A2D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A2E	5A2E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A2F	5A30	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A31	5A33	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A34	5A34	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A35	5A36	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A37	5A39	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A3A	5A3B	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A3C	5A3E	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A3F	5A4A	12	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A4B	5A4C	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A4D	5A4D	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A4E	5A4E	1	0	other	-	no						0	dead bytes in the monk scripts (a second RET), never reached
+-	5A4F	5A4F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A50	5A52	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A53	5A55	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A56	5A57	2	0	other	-	no						0	dead bytes in the monk scripts (JR after a RET), never reached
+-	5A58	5A58	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A59	5A5A	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A5B	5A5D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A5E	5A5E	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A5F	5A5F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A60	5A60	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A61	5A63	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A64	5A73	16	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A74	5A74	1	0	other	-	no						0	dead bytes in the monk scripts, never reached
+-	5A75	5A75	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A76	5A78	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A79	5A81	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A82	5A84	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A85	5A8D	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A8E	5A8F	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A90	5A94	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5A95	5A97	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5A98	5AA1	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AA2	5AA4	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AA5	5AAD	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AAE	5AB0	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AB1	5AB6	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AB7	5AB9	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5ABA	5AC2	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AC3	5AC4	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AC5	5AC5	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AC6	5AC7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AC8	5AC8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AC9	5ACB	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5ACC	5AD1	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AD2	5AD3	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AD4	5AD4	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AD5	5ADB	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5ADC	5AEC	17	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AED	5AEF	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AF0	5AF5	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AF6	5AF7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AF8	5AF8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5AF9	5AFA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5AFB	5AFF	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B00	5B02	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B03	5B05	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B06	5B07	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B08	5B08	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B09	5B0A	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B0B	5B19	15	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B1A	5B1C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B1D	5B21	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B22	5B2C	11	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B2D	5B2F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B30	5B31	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B32	5B32	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B33	5B39	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B3A	5B3C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B3D	5B3E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B3F	5B3F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B40	5B41	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B42	5B43	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B44	5B46	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B47	5B49	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B4A	5B4C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B4D	5B52	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B53	5B55	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B56	5B59	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B5A	5B5C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B5D	5B61	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B62	5B62	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B63	5B63	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B64	5B65	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B66	5B67	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B68	5B6C	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B6D	5B76	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B77	5B77	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B78	5B78	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B79	5B7B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B7C	5B7C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B7D	5B7E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B7F	5B80	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B81	5B82	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B83	5B84	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B85	5B91	13	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B92	5B94	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B95	5B96	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5B97	5B9A	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5B9B	5BA1	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BA2	5BA4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BA5	5BA6	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BA7	5BA7	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BA8	5BA9	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BAA	5BAA	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BAB	5BAD	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BAE	5BB0	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BB1	5BB2	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BB3	5BB4	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BB5	5BB8	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BB9	5BBB	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BBC	5BBE	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BBF	5BC1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BC2	5BC5	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BC6	5BC8	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BC9	5BCB	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BCC	5BCD	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BCE	5BD0	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BD1	5BD3	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BD4	5BD5	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BD6	5BD9	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BDA	5BDB	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BDC	5BDC	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BDD	5BDE	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BDF	5BDF	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BE0	5BE2	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BE3	5BEA	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BEB	5BED	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BEE	5BF0	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BF1	5BF2	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BF3	5BF6	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BF7	5BF8	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BF9	5BF9	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BFA	5BFB	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5BFC	5BFC	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5BFD	5BFF	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C00	5C07	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C08	5C0A	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C0B	5C0D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C0E	5C0F	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C10	5C13	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C14	5C15	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C16	5C16	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C17	5C18	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C19	5C19	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C1A	5C1B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C1C	5C1C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C1D	5C1F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C20	5C27	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C28	5C2E	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C2F	5C31	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C32	5C33	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C34	5C34	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C35	5C37	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C38	5C3C	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C3D	5C3D	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C3E	5C3F	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C40	5C42	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C43	5C45	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C46	5C48	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C49	5C4C	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C4D	5C51	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C52	5C54	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C55	5C56	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C57	5C57	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C58	5C5A	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C5B	5C5B	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C5C	5C5D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C5E	5C64	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C65	5C68	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C69	5C70	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C71	5C71	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C72	5C72	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C73	5C74	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C75	5C75	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C76	5C79	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C7A	5C7C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C7D	5C7F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C80	5C81	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C82	5C84	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C85	5C88	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C89	5C8B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C8C	5C8E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C8F	5C91	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C92	5C94	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C95	5C96	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C97	5C97	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C98	5C99	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5C9A	5C9E	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5C9F	5CA1	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CA2	5CA4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CA5	5CA8	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CA9	5CAB	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CAC	5CAD	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CAE	5CB4	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CB5	5CB6	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CB7	5CB9	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CBA	5CBA	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CBB	5CBC	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CBD	5CC0	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CC1	5CC1	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CC2	5CC4	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CC5	5CC7	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CC8	5CC9	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CCA	5CCB	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CCC	5CCE	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CCF	5CD1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CD2	5CD5	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CD6	5CD8	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CD9	5CDA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CDB	5CDC	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CDD	5CE0	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CE1	5CE1	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CE2	5CE4	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CE5	5CE7	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CE8	5CE9	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CEA	5CEF	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CF0	5CF2	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CF3	5CFA	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CFB	5CFB	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CFC	5CFC	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5CFD	5CFE	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5CFF	5D00	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D01	5D03	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D04	5D05	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D06	5D08	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D09	5D0B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D0C	5D0F	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D10	5D12	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D13	5D14	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D15	5D1D	9	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D1E	5D1F	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D20	5D20	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D21	5D23	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D24	5D25	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D26	5D28	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D29	5D2B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D2C	5D2D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D2E	5D2E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D2F	5D33	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D34	5D35	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D36	5D38	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D39	5D3C	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D3D	5D3E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D3F	5D3F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D40	5D46	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D47	5D49	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D4A	5D4B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D4C	5D4C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D4D	5D4E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D4F	5D4F	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D50	5D52	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D53	5D55	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D56	5D58	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D59	5D5B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D5C	5D5F	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D60	5D60	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D61	5D6E	14	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D6F	5D71	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D72	5D73	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D74	5D75	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D76	5D78	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D79	5D7B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D7C	5D83	8	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D84	5D86	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D87	5D88	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D89	5D89	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D8A	5D8B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D8C	5D92	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D93	5D94	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D95	5D95	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D96	5D98	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D99	5D9B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5D9C	5D9E	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5D9F	5DA2	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DA3	5DA5	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DA6	5DA9	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DAA	5DAC	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DAD	5DAF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DB0	5DB1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DB2	5DB2	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DB3	5DB5	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DB6	5DB8	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DB9	5DBA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DBB	5DBC	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DBD	5DBF	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DC0	5DC9	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DCA	5DCA	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DCB	5DCB	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DCC	5DCD	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DCE	5DCE	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DCF	5DD1	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DD2	5DD2	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DD3	5DD4	2	0	other	-	no						0	dead bytes in the monk scripts (JR after a RET), never reached
+-	5DD5	5DD5	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DD6	5DD7	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DD8	5DDF	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DE0	5DE2	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DE3	5DE5	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DE6	5DEA	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DEB	5DED	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DEE	5DEF	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DF0	5DF2	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DF3	5DF5	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DF6	5DF8	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DF9	5DFA	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DFB	5DFD	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5DFE	5DFE	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5DFF	5DFF	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E00	5E02	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E03	5E05	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E06	5E07	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E08	5E08	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E09	5E0D	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E0E	5E10	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E11	5E12	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E13	5E13	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E14	5E16	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E17	5E19	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E1A	5E1E	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E1F	5E21	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E22	5E23	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E24	5E26	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E27	5E29	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E2A	5E2C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E2D	5E2E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E2F	5E31	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E32	5E32	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E33	5E33	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E34	5E36	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E37	5E39	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E3A	5E3B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E3C	5E3C	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E3D	5E41	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E42	5E44	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E45	5E46	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E47	5E49	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E4A	5E4A	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E4B	5E50	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E51	5E53	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E54	5E56	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E57	5E58	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E59	5E5C	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E5D	5E5F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E60	5E62	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E63	5E69	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E6A	5E71	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E72	5E73	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E74	5E75	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E76	5E78	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E79	5E7B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E7C	5E7F	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E80	5E80	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E81	5E82	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E83	5E86	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E87	5E88	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E89	5E8C	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E8D	5E8F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E90	5E92	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E93	5E94	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E95	5E98	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E99	5E9B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5E9C	5E9E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5E9F	5EA1	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EA2	5EA4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EA5	5EA7	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EA8	5EAA	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EAB	5EAD	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EAE	5EB3	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EB4	5EB7	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EB8	5EB8	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EB9	5EBB	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EBC	5EBF	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EC0	5EC1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EC2	5EC4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EC5	5EC5	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EC6	5EC6	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EC7	5EC8	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EC9	5ECA	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5ECB	5ED1	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5ED2	5ED4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5ED5	5ED6	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5ED7	5ED7	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5ED8	5EDA	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EDB	5EE2	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EE3	5EE4	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EE5	5EE9	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EEA	5EEC	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EED	5EEF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EF0	5EF1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EF2	5EF2	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EF3	5EF4	2	0	other	-	no						0	dead bytes in the monk scripts (JR after a RET), never reached
+-	5EF5	5EF7	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EF8	5EF8	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EF9	5EF9	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EFA	5EFB	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5EFC	5EFD	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5EFE	5EFF	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F00	5F03	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F04	5F06	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F07	5F09	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F0A	5F0B	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F0C	5F0F	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F10	5F12	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F13	5F15	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F16	5F17	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F18	5F18	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F19	5F1B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F1C	5F1E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F1F	5F20	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F21	5F25	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F26	5F28	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F29	5F2E	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F2F	5F31	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F32	5F38	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F39	5F41	9	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F42	5F44	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F45	5F47	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F48	5F4D	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F4E	5F4F	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F50	5F50	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F51	5F55	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F56	5F58	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F59	5F5A	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F5B	5F5C	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F5D	5F61	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F62	5F64	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F65	5F66	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F67	5F67	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F68	5F6A	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F6B	5F6D	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F6E	5F73	6	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F74	5F76	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F77	5F79	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F7A	5F7E	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F7F	5F7F	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F80	5F80	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F81	5F82	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F83	5F83	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F84	5F86	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F87	5F89	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F8A	5F8C	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F8D	5F8F	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F90	5F91	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F92	5F92	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F93	5F94	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F95	5F95	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F96	5F98	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F99	5F9B	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F9C	5F9D	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5F9E	5F9E	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5F9F	5FA0	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FA1	5FA5	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FA6	5FA8	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FA9	5FAB	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FAC	5FAE	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FAF	5FB1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FB2	5FB3	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FB4	5FBB	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FBC	5FBD	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FBE	5FC2	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FC3	5FC6	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FC7	5FD0	10	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FD1	5FD5	5	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FD6	5FD8	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FD9	5FD9	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FDA	5FDF	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FE0	5FED	14	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FEE	5FEE	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FEF	5FF6	8	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FF7	5FF8	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	5FF9	5FFE	6	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	5FFF	6000	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6001	6003	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6004	6006	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6007	6009	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	600A	600A	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	600B	600C	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	600D	600E	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	600F	6010	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6011	6012	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6013	6014	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6015	6018	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6019	6026	14	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6027	6027	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6028	6029	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	602A	602D	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	602E	6030	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6031	6034	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6035	6036	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6037	603A	4	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	603B	603C	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	603D	6042	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6043	604E	12	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	604F	6050	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6051	605B	11	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	605C	605E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	605F	6060	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6061	6062	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6063	6069	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	606A	606C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	606D	606E	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	606F	6070	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6071	6074	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6075	6076	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6077	6079	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	607A	607C	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	607D	607F	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6080	6082	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6083	6085	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6086	6088	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6089	608B	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	608C	608E	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	608F	6090	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6091	6093	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	6094	6094	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	6095	609A	6	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	609B	609D	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	609E	60A0	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60A1	60A3	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60A4	60A6	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60A7	60AA	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60AB	60AB	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60AC	60AE	3	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60AF	60B1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60B2	60B3	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60B4	60B6	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60B7	60B7	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60B8	60BF	8	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60C0	60C1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60C2	60C2	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60C3	60C9	7	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60CA	60CC	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60CD	60CE	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60CF	60CF	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60D0	60D1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60D2	60D4	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60D5	60D5	1	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60D6	60DA	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60DB	60DE	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60DF	60E1	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60E2	60E3	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60E4	60E4	1	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60E5	60E6	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60E7	60E8	2	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60E9	60EC	4	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60ED	60EF	3	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60F0	60F1	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60F2	60F6	5	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	60F7	60F8	2	0	inline	-	no						0	data inline in the Z80 code (script expressions after RST 08h/10h, inline call data, texts): it moves with the code
+-	60F9	60FF	7	0	code	-	no						0	Z80 code (becomes 6502 code)
+-	7F31	7F7F	79	0	other	-	no						0	after the ground-floor heights: leftover bytes
+-	9F3A	9F5F	38	0	other	-	no						0	after the first-floor heights: zeros
+-	A2F5	A2FF	11	0	other	-	no						0	after the library heights and the mirror's entry
+-	AA2D	AA48	28	0	other	-	no						0	graphics area: see data/c64graf/graficos64.tsv (converted blocks) and c64/NOTAS_GRAFICOS.md
+-	B06E	B102	149	0	other	-	no						0	the tail of a dead copy of the robes: a new game copies AB59h-AE2Dh to AE2Eh (2126h, LDIR 2D5h) and flips it; the height buffer overwrites AE2E-B06D and nothing draws from B06E-B102 (the robes are mirrored while drawing, bit 14 of their pointers)
+-	B3BF	B3FF	65	0	other	-	no						0	graphics area: see data/c64graf/graficos64.tsv (converted blocks) and c64/NOTAS_GRAFICOS.md
+-	B570	B57F	16	0	other	-	no						0	16 bytes between the font and the words (a graphics fragment), never read
+-	BA69	BAFF	151	0	other	-	no						0	after the last word: zeros
+-	BE9C	BF48	173	0	other	-	no						0	after the 56th phrase: leftover phrases and stack filler, never read
+-	BF53	BFFF	173	0	other	-	no						0	the Z80 stack (SP = C000h); the 6502 has its own at $0100
+-	C000	FFFF	16384	0	screen	-	no						0	the CPC screen: the visible part becomes the C64 bitmap $E000 + screen RAM $C000; the hidden parts (offsets 600h-7FFh of each 2 KiB line block) hold the tiles 00h-7Fh after the start-up (they are converted and placed at $D000 directly) and, at load, the score bar's source (converted, init-only)

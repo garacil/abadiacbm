@@ -1,0 +1,2 @@
+instructions 20000000
+A=78 F=28 B=00 C=78 D=2D E=FA H=2D L=F0 SP=BFFC PC=2D8A

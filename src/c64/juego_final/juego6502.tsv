@@ -1,0 +1,12 @@
+# What the whole-game check (hibrido --juego6502) does not compare, with the reason:
+#   BLOCK                a block of mapa64.tsv, never
+#   nuevo BLOCK          a block, at the first frame point after a new game (game_init_new_game)
+#   @XXXX N              N bytes from the CPC address XXXX (inside a copied block), never
+D64_SPR_BUFFER	the sprite buffer: sprites composed in the C64 format (the per-call check of spr_draw_all compares their drawing exactly)
+D64_ISO_MIRROR_BUF_GUILLERMO	the mirror's image buffers: C64-format graphics
+@2913 2	the SP saved at 215Eh: only the tape loader and the dead debug exit read it (principal.s leaves it out)
+nuevo D64_CHR_HEIGHT_BUFFER	the robes copied and flipped to AE2Eh at a new game (2126-2136), left out on the C64: the height buffer overwrites them before anything reads them
+D64_SPR_FLIP_WIDTH	spr_flip_graphics_h's width operand: each flip sets it first; the Z80's robes flip at a new game (left out on the C64) leaves its width there until the next flip
+D64_SPR_TILE_TEST_JUMP	spr_draw_tiles_in_depth_range's jump target (497Fh / 49AAh): reset at each cell before use, its final value depends on the order of the cells (c64/juego_logica_a/NOTAS.md)
+D64_PATH_QUEUE_TOP	past the mirror buffers, where the CPC's sprite rectangles may reach (as spr_draw_all's own check): the path search writes it before reading
+final @28E8 1	the text cursor's x at the ending: before 31CF the CPC prints "PON EL CASSETTE EN MARCHA" (25 characters from 8006h: x = 38h) and the C64 "CARGANDO EL FINAL" (17: x = 28h), the ending being loaded from disk (principal.s, game_ending)

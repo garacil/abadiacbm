@@ -1,0 +1,2 @@
+instructions 8000000
+A=8C F=02 B=0B C=8C D=0B E=00 H=5D L=BE SP=BFF6 PC=39A0

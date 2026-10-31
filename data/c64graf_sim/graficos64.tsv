@@ -1,0 +1,24 @@
+# the CPC 64 KiB game's graphics in their C64 formats (c64_graficos.py; c64/NOTAS_GRAFICOS.md)
+name	cpc_start	cpc_len	c64_len	format	transparent_merge	flipped_in_place	notes
+baldosas	8300	6976	3488	tile n at +16n: 2 byte columns x 8 lines, column-major; objects row-major 2 x 12 at (CPC offset)/2	tiles 01-0A opaque copy; 0B-7F pen 2 (11) transparent; 80-D9 pen 1 (10) transparent; objects pen 0 (01) transparent (sprite merge), opaque in the score bar	n	tape image 8300h-9E3Fh = tile n at 8300h + 32n (after start-up tiles 00-7F live in the screen gaps C6xx-FFxx); slots 00 73 85 86 unused (6D unused by the rooms); objects in 2D-2F, A1-A6
+personajes	A300	1837	1053	row-major, ceil(w/2) bytes a line, odd w: low nibble of the last byte = padding 01	sprite: pen 0 (01) transparent	y (2EE7, 2F40: spr_flip_graphics_h)	4 sub-blocks (Guillermo 5x174, 4x33, Adso 5x95, 4x90); AA2Dh-AA48h unused; rule aislado, Adso w4 sim; hand retouches c64/datos/retoques64.txt
+puerta	AA49	240	120	row-major, 3 bytes x 40 lines	sprite: pen 0 (01) transparent	y (obj door flip, 28C9h state)	
+romanos	AB39	32	16	row-major, 1 byte x 8 lines each (V, I)	opaque (score bar)	n	the blank glyph row 50D7h (FF FF) = 1 byte 00
+habitos	AB59	725	435	row-major, 3 bytes a line (w 5)	sprite: pen 0 (01) transparent	mirrored at draw time (bit 14 of the robe pointer)	6 robes of 26, 24, 24, 25, 23, 23 lines; 2126h copies them to AE2Eh and flips the copy (dead: overwritten by the height buffer, B06E-B102 never read)
+caras	B103	700	420	row-major, 3 bytes a line; 7 x (2 faces x 10 lines)	sprite: pen 0 (01) transparent	y (2F00-2F30, 304F unflip)	pointers: 2BE8h table, 2D30h animation (face, face + 32h), code 3B9Fh, 3BAFh, 3BCBh, 3BDEh
+fuente	B400	368	184	4 bytes a glyph (2Dh-5Ah): rows 2k / 2k+1 in the high / low nibble, bit 3 = left pixel	drawn opaque: set pixel pen 3 (00) on pen 2 (11); inverted = EOR FFh	n	rule der, N redrawn, ';' from the left pixels
+glifo_blanco	344C	8	4	as the font	as the font	n	the glyph of code 20h
+marcador	C600	2048	1024	C64 bitmap order: 4 character rows x 32 cells x 8 bytes (cells 4-35 of bitmap rows 20-23)	opaque	n	rule izq; CPC sources C600h, D600h, E600h, F600h (512 bytes each, hidden rows of the tape image); goes straight into the bitmap
+luz	4451	30	30	as on the CPC: 15 big-endian words, one bit per CPC byte = per C64 nibble (0 = dark)	writes dark (pen 3 = 00) nibbles into the sprite buffer	shift (476Dh)	not pixels: unchanged
+cola_obsequium	5180	4	4	4 nibbles (low 4 bits): the partial nibble of the bar for obsequium & 3	opaque	n	full nibble pen 2 = F, empty pen 3 = 0 (CPC 0Fh, FFh)
+fila_blanca	50D7	2	1	1 byte (pen 3)	opaque	n	CPC FF FF
+tabla_and_tile_a	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_or_tile_a	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_and_tile_b	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_or_tile_b	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_and_spr	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_or_spr	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_espejo_nibble	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_espejo_byte	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_nibbles	-	0	256	table built at start-up by the 6502 code	-	n	(written for the host's checks)
+tabla_fuente_nibble	-	0	16	table built at start-up by the 6502 code	-	n	(written for the host's checks)
