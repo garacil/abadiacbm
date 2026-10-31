@@ -88,7 +88,7 @@ The releases themselves are tested in VICE, from the tape or the disk as a playe
 
 | Test | What it checks |
 |---|---|
-| `src/c64/cinta/prueba_cinta.py OUT [--opciones KEYS] [--final]` | the tape: the menu, every block loaded, the game's memory at its first instruction equal to its image, the options' NOPs, the ending loaded from the tape |
+| `src/c64/cinta/prueba_cinta.py OUT [--opciones KEYS] [--final]` | the tape: the menu, every block loaded, the game's memory at its first instruction equal to its image, the options (the footstep's and the beep's notes as rests), the ending loaded from the tape |
 | `prueba_cinta.py OUT --disco [--unidad 1541\|1571]` | the same on the C64 disk, with each drive |
 | `src/c64/disco128/prueba128.py OUT [--opciones 1234] [--final\|--guarda] [--unidad 1571\|1541]` | the C128 disk: the boot, both blocks of memory, the options, saving and loading, the ending; with each drive |
 | `src/c64/presentacion/pruebas/disco_prueba/prueba.py` | the parchments' pages and music, the picture during the load |

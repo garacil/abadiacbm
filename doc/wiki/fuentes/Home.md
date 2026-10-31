@@ -14,6 +14,8 @@ Commodore versions:
 
 The releases, their packages and the videos of complete games: [abbeyofcrime.com](https://abbeyofcrime.com).
 
+*En español: [Inicio](es/Inicio.md), la misma wiki en español, más detallada, rutina a rutina.*
+
 Every code excerpt is taken from the sources when the wiki is built (`tools/wiki.py`), with its file and line
 numbers, so it always matches the code in this repository.
 

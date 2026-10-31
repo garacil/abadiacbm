@@ -32,7 +32,6 @@ KEYS = {"up": (0, 0), "right": (0, 1), "down": (0, 2),
 CHARS = [0x2B87 + 15 * n for n in range(6)]
 FOLLOW_DISTANCE = int(os.environ.get("ABADIA_FOLLOW_DISTANCE", "2"))
 FOLLOW_RADIUS = int(os.environ.get("ABADIA_FOLLOW_RADIUS", "2"))
-VAIVEN = 200                            # follow(): the abbot's steps that make a standstill (state 13h)
 FOLLOW_QUANTUM = int(os.environ.get("ABADIA_FOLLOW_QUANTUM", "2"))
 
 
@@ -562,29 +561,6 @@ class Pilot:
                 progress = (x, y)
             still_npc = still_npc + 1 if last_npc == npc else 0
             last_npc = npc
-            vaiven = getattr(self, "vaiven", None)          # (kept between calls: follow() comes in stretches)
-            if vaiven is None or vaiven[0] != who:
-                vaiven = self.vaiven = [who, []]
-            vaiven[1] = (vaiven[1] + [(x, y)])[-VAIVEN:]
-            tramo = vaiven[1]
-            if (who == 3 and self.b(0x3814) == 0x13 and len(tramo) == VAIVEN and abs(gx - x) + abs(gy - y) <= 4
-                    and max(p[0] for p in tramo) - min(p[0] for p in tramo) <= 6
-                    and max(p[1] for p in tramo) - min(p[1] for p in tramo) <= 6):
-                # the abbot leading Guillermo to his place (state 13h) gets nowhere: Guillermo beside him is in his
-                # way (the P500's day 5), the abbot goes round him and Guillermo with him; Guillermo to his other side
-                self.log("El abad no avanza con Guillermo a su lado: Guillermo se pasa a su otro lado")
-                sx, sy = (gx > x) - (gx < x), (gy > y) - (gy < y)
-                for tx, ty in ((2 * x - gx, 2 * y - gy), (x - 3 * sx, y - 3 * sy), (x - 3 * sx, y), (x, y - 3 * sy)):
-                    if (tx, ty) not in ((gx, gy), (x, y)) and route(self.map(), (gx, gy), (tx, ty)):
-                        if hasattr(self.e, "clear_guillermo_goal"):
-                            self.e.clear_guillermo_goal()
-                        try:
-                            self.goto(tx, ty, limit=80)
-                        except Blocked as exc:          # (not reached in time: the following goes on from there)
-                            self.log(f"Guillermo no llega al otro lado del abad: {exc}")
-                        break
-                vaiven[1] = []
-                continue
             if still_npc > 25 and not self.b(0x28F2) and abs(gx - x) + abs(gy - y) <= 5:
                 self.log("Dejamos paso al personaje que seguimos")
                 o = self.pos(who)[0]

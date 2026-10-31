@@ -17,6 +17,7 @@
 """The project's wiki (German: «create a wiki about how the abbey works. all parts with code lines explain
 all important things all in english»): doc/wiki/*.md made from the templates doc/wiki/fuentes/*.md, every code
 excerpt taken from the sources at the moment of the build, so that no excerpt is copied by hand or goes stale.
+The same for the Spanish wiki: doc/wiki/es/*.md from doc/wiki/es/fuentes/*.md (its captions in Spanish).
 
 A template line
 
@@ -28,7 +29,13 @@ all; a caption names the file and the line numbers, linked to them.  Inside the 
 `}` `\x7d` (the directive's own characters).  An excerpt longer than 80 lines, a pattern that
 matches no line or more than one, or a missing file stops everything.
 
-    tools/wiki.py            # writes doc/wiki/*.md
+    {{rutinas PATH}}
+
+becomes a table of the routines of PATH: every `.proc NAME` and every label at the start of a line with a comment
+just above it, with the address of the original's function when that comment starts with one (`; 5060 ...`,
+`; ---- 20BE ...`), each linked to its line.
+
+    tools/wiki.py            # writes doc/wiki/*.md and doc/wiki/es/*.md
     tools/wiki.py --check    # only checks that every page is up to date (exit 1 if not)"""
 import re, sys
 from pathlib import Path
@@ -36,17 +43,25 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[1]
 FUENTES = RAIZ / "doc" / "wiki" / "fuentes"
 SALIDA = RAIZ / "doc" / "wiki"
+# each wiki: its templates, its pages, and its words (the caption's "lines", the routines' table, the warning)
+IDIOMAS = [dict(fuentes=FUENTES, salida=SALIDA, lineas="lines", tabla=("Original", "Routine", "Line"),
+                aviso="<!-- Made by tools/wiki.py from doc/wiki/fuentes/{n}: edit the template, not this page. -->\n"),
+           dict(fuentes=SALIDA / "es" / "fuentes", salida=SALIDA / "es", lineas="líneas",
+                tabla=("Original", "Rutina", "Línea"),
+                aviso="<!-- Hecha por tools/wiki.py desde doc/wiki/es/fuentes/{n}: se edita la plantilla, no esta "
+                      "página. -->\n")]
 LENGUAJE = {".s": "asm", ".inc": "asm", ".py": "python", ".c": "c", ".h": "c", ".sh": "bash", ".cfg": "text",
             ".tsv": "text", ".md": "markdown", "": "text"}
 MAX_LINEAS = 80
 DIRECTIVA = re.compile(r"^\{\{code (?P<ruta>[^|]+?)\s*\|\s*(?P<ini>.+?)\s*\|\s*(?P<fin>.+?)\s*\}\}$")
+RUTINAS = re.compile(r"^\{\{rutinas (?P<ruta>[^}]+?)\s*\}\}$")
 
 
 def falla(pagina, msg):
     sys.exit(f"wiki.py: {pagina}: {msg}")
 
 
-def extracto(pagina, ruta, ini, fin):
+def extracto(pagina, ruta, ini, fin, idioma):
     f = RAIZ / ruta
     if not f.is_file():
         falla(pagina, f"{ruta}: no such file")
@@ -69,46 +84,73 @@ def extracto(pagina, ruta, ini, fin):
     b = min(b, len(lineas) - 1)
     if b - a + 1 > MAX_LINEAS:
         falla(pagina, f"{ruta}: the excerpt from line {a + 1} has {b - a + 1} lines (at most {MAX_LINEAS})")
-    profundidad = "../../"
-    titulo = f"[`{ruta}`]({profundidad}{ruta}#L{a + 1}-L{b + 1}), lines {a + 1}–{b + 1}"
+    profundidad = "../" * len(idioma["salida"].relative_to(RAIZ).parts)
+    titulo = f"[`{ruta}`]({profundidad}{ruta}#L{a + 1}-L{b + 1}), {idioma['lineas']} {a + 1}–{b + 1}"
     codigo = "\n".join(lineas[a:b + 1]).replace("\t", "    ")
     return f"{titulo}:\n\n```{LENGUAJE.get(f.suffix, 'text')}\n{codigo}\n```"
 
 
-def pagina(fuente):
+def rutinas(pagina, ruta, idioma):
+    """the table of the routines of ruta (see the module's text)"""
+    f = RAIZ / ruta
+    if not f.is_file():
+        falla(pagina, f"{ruta}: no such file")
+    lineas = f.read_text(encoding="utf-8", errors="replace").split("\n")
+    profundidad = "../" * len(idioma["salida"].relative_to(RAIZ).parts)
+    filas = []
+    for i, l in enumerate(lineas):
+        m = re.match(r"^\.proc\s+([A-Za-z_][A-Za-z_0-9]*)", l) or re.match(r"^([A-Za-z_][A-Za-z_0-9]*):", l)
+        if not m or i == 0 or not lineas[i - 1].startswith(";"):
+            continue
+        k = i - 1
+        while k > 0 and lineas[k - 1].startswith(";"):
+            k -= 1
+        d = re.match(r"^;\s*(?:-+\s*)?([0-9A-F]{4})\b", lineas[k])
+        filas.append(f"| {d.group(1) + 'h' if d else '—'} | [`{m.group(1)}`]({profundidad}{ruta}#L{i + 1}) | {i + 1} |")
+    if not filas:
+        falla(pagina, f"{ruta}: no routine with a comment above it")
+    o, r_, n = idioma["tabla"]
+    return "\n".join([f"| {o} | {r_} | {n} |", "|---|---|---|"] + filas)
+
+
+def pagina(fuente, idioma):
     salida = []
     for n, l in enumerate(fuente.read_text(encoding="utf-8").split("\n"), 1):
         m = DIRECTIVA.match(l.strip())
+        mr = RUTINAS.match(l.strip())
         if m:
-            salida.append(extracto(f"{fuente.name}:{n}", m["ruta"].strip(), m["ini"], m["fin"]))
-        elif l.strip().startswith("{{code"):
-            falla(f"{fuente.name}:{n}", "a malformed {{code PATH | START | END}}")
+            salida.append(extracto(f"{fuente.name}:{n}", m["ruta"].strip(), m["ini"], m["fin"], idioma))
+        elif mr:
+            salida.append(rutinas(f"{fuente.name}:{n}", mr["ruta"].strip(), idioma))
+        elif l.strip().startswith(("{{code", "{{rutinas")):
+            falla(f"{fuente.name}:{n}", "a malformed {{code PATH | START | END}} or {{rutinas PATH}}")
         else:
             salida.append(l)
-    aviso = (f"<!-- Made by tools/wiki.py from doc/wiki/fuentes/{fuente.name}: edit the template, not this page. -->\n")
-    return aviso + "\n".join(salida)
+    return idioma["aviso"].format(n=fuente.name) + "\n".join(salida)
 
 
 def main():
     comprueba = "--check" in sys.argv
-    viejas = []
-    fuentes = sorted(FUENTES.glob("*.md"))
-    if not fuentes:
-        sys.exit("wiki.py: no templates in doc/wiki/fuentes/")
-    for f in fuentes:
-        texto = pagina(f)
-        destino = SALIDA / f.name
-        if comprueba:
-            if not destino.exists() or destino.read_text(encoding="utf-8") != texto:
-                viejas.append(f.name)
-        else:
-            destino.write_text(texto, encoding="utf-8")
+    viejas, total = [], 0
+    for idioma in IDIOMAS:
+        fuentes = sorted(idioma["fuentes"].glob("*.md"))
+        if not fuentes:
+            sys.exit(f"wiki.py: no templates in {idioma['fuentes'].relative_to(RAIZ)}/")
+        for f in fuentes:
+            texto = pagina(f, idioma)
+            destino = idioma["salida"] / f.name
+            if comprueba:
+                if not destino.exists() or destino.read_text(encoding="utf-8") != texto:
+                    viejas.append(str(destino.relative_to(RAIZ)))
+            else:
+                destino.write_text(texto, encoding="utf-8")
+        total += len(fuentes)
     if comprueba:
         if viejas:
             sys.exit("wiki.py: out of date: " + ", ".join(viejas))
-        print(f"wiki.py: {len(fuentes)} pages up to date")
+        print(f"wiki.py: {total} pages up to date")
     else:
-        print(f"wiki.py: {len(fuentes)} pages written to doc/wiki/")
+        print(f"wiki.py: {total} pages written to doc/wiki/ and doc/wiki/es/")
 
 
 if __name__ == "__main__":
