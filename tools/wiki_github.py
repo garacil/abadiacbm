@@ -57,7 +57,8 @@ def main():
     (out / "_Sidebar.md").write_text("\n".join(lado) + "\n", encoding="utf-8")
     (out / "_Footer.md").write_text(f"*La abadía del crimen* for Commodore computers — [abbeyofcrime.com]({WEB}) — "
                                     f"[the repository](https://github.com/garacil/abadiacbm)\n", encoding="utf-8")
-    sueltos = [n for f in out.glob("*.md") for n in re.findall(r"\]\(([^):/#]+)(?:#[^)]*)?\)", f.read_text())
+    sin_codigo = lambda texto: re.sub(r"^```.*?^```$", "", texto, flags=re.M | re.S)   # (code shown is not a link)
+    sueltos = [n for f in out.glob("*.md") for n in re.findall(r"\]\(([^):/#]+)(?:#[^)]*)?\)", sin_codigo(f.read_text()))
                if not (out / (n + ".md")).exists()]
     if sueltos:
         sys.exit("wiki_github.py: links to no page: " + " ".join(sorted(set(sueltos))))
