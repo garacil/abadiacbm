@@ -103,6 +103,10 @@ def main():
               ("intro", rel("introduccion") - 1, rel("carga_juego") + 15),
               ("juego", rel("juego") - 1.5, rel("final_carga") + 4),
               ("final", rel("final") - 1, rel("final_fin") + 15)]
+    for i in range(1, len(piezas)):        # (the P500 starts its parchment 1.3 s after the menu's space, less than the
+        n, a, b = piezas[i]                 #  margins above: a piece then begins where the one before ends)
+        if a < piezas[i - 1][2]:
+            piezas[i] = (n, piezas[i - 1][2], b)
     for i in range(1, len(piezas)):
         assert piezas[i][1] >= piezas[i - 1][2], f"the pieces overlap: {piezas[i - 1]} {piezas[i]}"
     if prueba:
