@@ -20,7 +20,7 @@
 # RAM of session 1 at frame 3000.   juego/pruebas_estado_texto/sintetica.sh
 set -euo pipefail
 P=$(dirname "$(realpath "$0")"); J=$(dirname "$P")
-T=${ABADIA64_TRABAJO:-$(dirname "$J")/trabajo}
+T=${ABADIA64_TRABAJO:-$(dirname "$(dirname "$J")")/data}
 O=$(mktemp -d)
 make -s -C "$J" hibrido
 "$J/hibrido" "$T/cpc64/inicio_juego/ram.bin" "$T/cpc64/inicio_juego/estado.txt" "$T/sincrono/puntos64.txt" \

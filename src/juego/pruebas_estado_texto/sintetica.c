@@ -96,7 +96,7 @@ static unsigned azar(void) { semilla = semilla * 1103515245u + 12345u; return (s
 
 int main(void)
 {
-    const char *T = getenv("ABADIA64_TRABAJO") ? getenv("ABADIA64_TRABAJO") : "/home/german/proyectos/abadia64ks/trabajo";
+    const char *T = getenv("ABADIA64_TRABAJO") ? getenv("ABADIA64_TRABAJO") : "../../data";   /* (run from src/juego) */
     char p1[256], p2[256];
     unsigned i, k;
     static const char *expr[] = {

@@ -164,8 +164,9 @@ Dt_X0 = 76
 
 
 def lee(nombre):
-    t = open(os.path.join(D, nombre), encoding="ascii").read()
+    t = open(os.path.join(D, nombre), encoding="utf-8").read()       # (my licence header: utf-8, '#' lines)
     t = "\n".join(l for l in t.split("\n") if not l.startswith("#"))
+    assert t.isascii(), f"{nombre}: not ASCII outside the comments"
     return [" ".join(p.split()) for p in t.split("\n\n") if p.strip()]
 
 

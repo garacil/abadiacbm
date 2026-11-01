@@ -19,7 +19,7 @@
 # of session 1 at frame 2000.  Exit 1 on any difference.
 set -uo pipefail
 D=$(dirname "$(realpath "$0")"); J=$(dirname "$D")
-T=${ABADIA64_TRABAJO:-$(dirname "$J")/trabajo}
+T=${ABADIA64_TRABAJO:-$(dirname "$(dirname "$J")")/data}
 W=$(mktemp -d); trap 'rm -rf "$W"' EXIT
 make -s -C "$J" hibrido || exit 2
 "$J/hibrido" "$T/cpc64/inicio_juego/ram.bin" "$T/cpc64/inicio_juego/estado.txt" "$T/sincrono/puntos64.txt" \

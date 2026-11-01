@@ -1,7 +1,24 @@
 <!-- Made by tools/wiki.py from doc/wiki/fuentes/Graphics.md: edit the template, not this page. -->
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # Graphics and tools
 
-[Home](Home.md) · previous: [Building and certification](Building.md) · next: [Glossary](Glossary.md)
+[Home](Home.md) · previous: [Building and certification](Building.md) · next: [My tools](Tools.md)
 
 ## From the CPC's pixels to the C64's
 
@@ -58,6 +75,8 @@ one bit a pixel, for the VIC-II's hires sprites (see [The Commodore 128](C128.md
 
 ## Other tools
 
+All my tools are listed in `doc/HERRAMIENTAS.md`, and the main ones explained in [My tools](Tools.md).
+
 | Tool | What |
 |---|---|
 | `tools/c64_compara_pc.py` | sheets comparing each graphic: the PC EGA one, the C64 one, the rules side by side, with measures of the strokes lost |
@@ -67,7 +86,7 @@ one bit a pixel, for the VIC-II's hires sprites (see [The Commodore 128](C128.md
 | `tools/cpc_velocidad.py` | the CPC game's real speed in Caprice32, for the speed comparisons |
 | `tools/guion_azar.py` | random key scripts for the certification sessions |
 | `tools/genera_todo.sh`, `tools/genera_cinta.sh` | the releases in one go |
-| `tools/sincroniza.sh` | the project copied to the other two PCs, the graphic edits compared first |
+| `tools/sincroniza.sh` | the project copied to my other machines, the graphic edits compared first |
 | `tools/wiki.py` | this wiki: every code excerpt taken from the sources when it is built |
 | `src/c64/mapa/hoja64.py`, `mapa64.py` | a sheet of every C64 graphic, and the whole abbey's map as the C64 draws it |
 

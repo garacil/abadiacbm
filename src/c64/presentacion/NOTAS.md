@@ -1,6 +1,23 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # The presentation and parchments on the C64 disk (src/c64/presentacion)
 
-The parchment program in C (cc65, September 2016: "/home/german/classic computers/Commodore/abadia"), without music,
+The parchment program in C (cc65, September 2016: "~/classic computers/Commodore/abadia"), without music,
 is the introduction and ending parchments and the loading picture, its C code kept entirely.  The order: first the
 parchment; on SPACE, the loading picture, and then the game loads.  The program had no ending text: it comes from the
 tape.  The credits of this Commodore version go on the introduction.
@@ -28,7 +45,7 @@ the pre-update baseline; current results are in `src/c64/cinta/FLUJO.md`.
 
 | Path | What |
 |---|---|
-| `original/` | **the files as they are** (copied from "/home/german/classic computers/Commodore/abadia", never edited): `src/` (abadia.c, io.c, io.h, manuscrito.c, manuscrito.h, c64.cfg, abadiac64.bat), `graphics/abadia.koa`, `graphics/pergamino/` (pp.bin, text1.bin, README.txt), the disk `abadiac64.d64` |
+| `original/` | **the files as they are** (copied from "~/classic computers/Commodore/abadia", never edited): `src/` (abadia.c, io.c, io.h, manuscrito.c, manuscrito.h, c64.cfg, abadiac64.bat), `graphics/abadia.koa`, `graphics/pergamino/` (pp.bin, text1.bin, README.txt), the disk `abadiac64.d64` |
 | `abadia.c`, `io.c`, `io.h`, `manuscrito.c`, `manuscrito.h` | the sources with the changes below (line endings as the originals: CRLF but abadia.c) |
 | `c64.cfg` | the linker configuration in cc65 2.19's form (below) |
 | `presentacion.c`, `presentacion.h` | what this build adds to the code: `musicstart`, `musicstop`, `gameload` |

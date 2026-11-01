@@ -1,4 +1,21 @@
 <!-- Made by tools/wiki.py from doc/wiki/fuentes/Loading.md: edit the template, not this page. -->
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # Loading: tape and disks
 
 [Home](Home.md) · previous: [The Commodore P500](P500.md) · next: [Presentation and ending](Parchments.md)
@@ -50,7 +67,7 @@ first program puts in the cassette buffer:
 
 The blocks, in their order on the tape:
 
-[`src/c64/cinta/cinta.inc`](../../src/c64/cinta/cinta.inc#L27-L36), lines 27–36:
+[`src/c64/cinta/cinta.inc`](../../src/c64/cinta/cinta.inc#L42-L51), lines 42–51:
 
 ```asm
 ; the blocks' ids, in their order on the tape (cinta.py)
@@ -76,7 +93,7 @@ be started again (*PON EL CASSETTE EN MARCHA*) and the KERNAL reads "FINAL" from
 The same release on a 1541 or a 1571: the menu, the presentation and the ending crunched with Exomizer, the game's
 stream read with the KERNAL as it comes, the English bytes as their own file, and the games saved on the disk:
 
-[`src/c64/disco64/NOTAS.md`](../../src/c64/disco64/NOTAS.md#L15-L22), lines 15–22:
+[`src/c64/disco64/NOTAS.md`](../../src/c64/disco64/NOTAS.md#L32-L39), lines 32–39:
 
 ```markdown
 | File | What |
@@ -93,7 +110,7 @@ stream read with the KERNAL as it comes, the English bytes as their own file, an
 
 The C128 boots from the disk's boot sector, and loads everything at once, file by file, every file crunched:
 
-[`src/c64/disco128/NOTAS.md`](../../src/c64/disco128/NOTAS.md#L24-L31), lines 24–31:
+[`src/c64/disco128/NOTAS.md`](../../src/c64/disco128/NOTAS.md#L41-L48), lines 41–48:
 
 ```markdown
 | track 1 sector 0 | the boot sector (`arranque128.py`): "CBM", no more sectors, the message ABADIA DEL CRIMEN, the program M, then `JMP $1300` (run by the KERNAL's BOOT_CALL in bank 15) | $0B00 (the KERNAL's buffer) |

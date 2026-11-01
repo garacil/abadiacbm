@@ -1,8 +1,25 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # What the CPC 64 KiB version removed (measured)
 
 The CPC 464/664 tape version of La Abadía del Crimen ("ABADIA64", archive.org item
 `amstrad_abadia_del_crimen_64`, transfer of the original cassette) compared with the full game (the
-6128 disk version and the rebuild of the PC version, `/home/german/proyectos/abadia`).  Everything
+6128 disk version and my rebuild of the PC version, `~/Proyectos/abadia`).  Everything
 here was measured by the tools on the unpacked 64 KiB memory (`data/cpc64/juego/ram.bin`, the game
 at its start, 20BEh); sources on the web only said that "corridors without influence on the plot" and
 "the crosses of the windows" were removed, and that the start point changed.

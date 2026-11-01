@@ -1,3 +1,17 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.  If not, see
+# <https://www.gnu.org/licenses/>.
 # the CPC 64 KiB game's graphics in their C64 formats (c64_graficos.py; c64/NOTAS_GRAFICOS.md)
 name	cpc_start	cpc_len	c64_len	format	transparent_merge	flipped_in_place	notes
 baldosas	8300	6976	3488	tile n at +16n: 2 byte columns x 8 lines, column-major; objects row-major 2 x 12 at (CPC offset)/2	tiles 01-0A opaque copy; 0B-7F pen 2 (11) transparent; 80-D9 pen 1 (10) transparent; objects pen 0 (01) transparent (sprite merge), opaque in the score bar	n	tape image 8300h-9E3Fh = tile n at 8300h + 32n (after start-up tiles 00-7F live in the screen gaps C6xx-FFxx); slots 00 73 85 86 unused (6D unused by the rooms); objects in 2D-2F, A1-A6

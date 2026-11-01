@@ -1,3 +1,18 @@
+; abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+;
+; Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+;
+; This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+; Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+; option) any later version.
+;
+; This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+; implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+; for more details.
+;
+; You should have received a copy of the GNU General Public License along with this program.  If not, see
+; <https://www.gnu.org/licenses/>.
+
 ; abadia64ks, 6502 code of the game: group motor_iso, spr_update_char_sprite (208C).  Pending: rename to
 ; motor_iso_spr.s once the group personajes exports chr_project (2632) and chr_show_frame (2589, the tail of
 ; chr_animate) with the Z80's conventions (see motor_iso.s); chr_select_frame (25B6) is a trap until then.

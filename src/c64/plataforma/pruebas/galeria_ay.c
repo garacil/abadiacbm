@@ -137,6 +137,14 @@ static void genera(float *out, unsigned n)
 static void escribe_u32(FILE *f, uint32_t v) { fwrite(&v, 4, 1, f); }
 static void escribe_u16(FILE *f, uint16_t v) { fwrite(&v, 2, 1, f); }
 
+/* my licence header at the top of a data file: its '#' lines, skipped before an fscanf reading */
+static void salta_cabecera(FILE *f)
+{
+    int c;
+    while ((c = fgetc(f)) == '#') while ((c = fgetc(f)) != '\n' && c != EOF) ;
+    if (c != EOF) ungetc(c, f);
+}
+
 static int sintetiza(const char *log, const char *wav)
 {
     FILE *f = fopen(log, "r"), *o = fopen(wav, "wb");
@@ -146,6 +154,7 @@ static int sintetiza(const char *log, const char *wav)
     int hay;
     if (!f || !o) { fprintf(stderr, "cannot open %s or %s\n", log, wav); return 2; }
     fseek(o, 44, SEEK_SET);
+    salta_cabecera(f);
     hay = fscanf(f, "%lu %u %u", &t, &r, &v) == 3;
     while (hay) {
         ultimo = t;

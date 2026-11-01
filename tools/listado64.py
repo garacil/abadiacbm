@@ -33,7 +33,7 @@ def main():
         t = line.rstrip("\n").split("\t")
         fun.append((int(t[0], 16), t[1], t[2], t[3], t[4], t[5]))
     fun.sort()
-    cov = set(int(l, 16) for l in open(sys.argv[2]))
+    cov = set(int(l, 16) for l in open(sys.argv[2]) if not l.startswith("#"))   # (my licence header)
     ram = open(sys.argv[3], "rb").read()
     out = sys.argv[4]
     os.makedirs(out, exist_ok=True)

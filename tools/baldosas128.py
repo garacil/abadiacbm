@@ -36,7 +36,7 @@ P = os.path.normpath(os.path.join(AQUI, ".."))
 sys.path.insert(0, AQUI)
 import bloques_base as B, salas64 as S
 
-PC_PROGRAMA = "/home/german/Proyectos/abadia/trabajo/re/disco/programa.bin"
+PC_PROGRAMA = os.path.join(os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia")), "trabajo/re/disco/programa.bin")
 OBJETOS_64K = set(range(0x2D, 0x30)) | set(range(0xA1, 0xA7))     # c64_graficos.py SLOTS_OBJETOS
 NBALDOSAS_64K = 0xDA
 

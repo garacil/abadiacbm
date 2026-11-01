@@ -39,6 +39,7 @@ for f in sorted(glob.glob(os.path.join(J, "datos_*.h"))):
 acc = {}
 for f in glob.glob(os.path.join(P, "data", "cpc64", "accesos", "azar*.txt")):
     for l in open(f):
+        if l.startswith("#"): continue                      # (my licence header)
         a, fl = l.split(); a = int(a, 16)
         acc[a] = acc.get(a, 0) | (1 if "r" in fl else 0) | (2 if "w" in fl else 0)
 codigo = set()

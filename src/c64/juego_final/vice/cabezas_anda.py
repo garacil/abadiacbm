@@ -1,3 +1,18 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.  If not, see
+# <https://www.gnu.org/licenses/>.
+
 """The heads' build (milestone H7 on the C64 hardware disk; H10 on the C128: cabezas128.s) in VICE with Guillermo
 walking: as arranca.py the image written into the RAM and started at principal_inicio (the C128: x128, block 0 and
 block 1 from juego.bin.banco1, as c64/certifica/vice_cert.py); the CPC keys held as the host's scripts do (the

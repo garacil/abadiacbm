@@ -38,7 +38,7 @@ def main():
     d = os.path.dirname(out)
     ram = bytearray(open(os.path.join(P, "data/cpc64/cinta/juego.bin"), "rb").read())
     ram[TRAMPA:TRAMPA + 2] = b"\x18\xFE"                              # JR $
-    tintas = [int(x, 16) for x in open(os.path.join(P, "data/cpc64/cinta/tintas.txt")).read().split()]
+    tintas = [int(x, 16) for l in open(os.path.join(P, "data/cpc64/cinta/tintas.txt")) if not l.startswith("#") for x in l.split()]
     e = {k: 0 for k in ("A", "B", "C", "D", "E", "H", "L", "IXh", "IXl", "IYh", "IYl", "I", "R",
                         "A'", "F'", "B'", "C'", "D'", "E'", "H'", "L'", "F")}
     e.update({"SP": 0xC000, "PC": TRAMPA, "IFF": 0, "IM": 1, "mode": 0, "palette": tintas,

@@ -120,7 +120,7 @@ static void c_interrupcion(void) { sys_interrupt(); }
 
 int main(void)
 {
-    const char *T = getenv("ABADIA64_TRABAJO") ? getenv("ABADIA64_TRABAJO") : "/home/german/proyectos/abadia64ks/trabajo";
+    const char *T = getenv("ABADIA64_TRABAJO") ? getenv("ABADIA64_TRABAJO") : "../../data";   /* (run from src/juego) */
     char p1[256], p2[256];
     unsigned k;
     static const uint8_t tab_esc[] = { 0x10, 0x04, 0x00 };   /* row 8: TAB (bit 4), then ESC (bit 2), then up */

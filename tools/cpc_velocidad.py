@@ -15,7 +15,7 @@
 # <https://www.gnu.org/licenses/>.
 
 """The CPC 64K game's real speed, measured on the Caprice32 with its control socket
-(/home/german/retro/amstrad/computer, doc/control_fifo.md): the game's state at its start (20BEh,
+(~/retro/amstrad/computer or ABADIA_CAPRICE, doc/control_fifo.md): the game's state at its start (20BEh,
 data/cpc64/inicio_juego: RAM and registers) as a .sna, run on Xvfb :99 with no keys, and a count of the
 game's frames read with the emulator's frame counter (complete video frames, 50.08 Hz: 312 lines of 64 us).
 Commands run at the top of an emulated frame, so each reading pairs an exact emulated time with the game's
@@ -32,14 +32,14 @@ is memory the game never touches: data/cpc64/accesos; 86 T-states more a frame, 
 import os, socket, struct, subprocess, sys, time
 
 P = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-CAP = "/home/german/retro/amstrad/computer"
+CAP = os.environ.get("ABADIA_CAPRICE", os.path.expanduser("~/retro/amstrad/computer"))
 CUENTA = 0x01F0                                  # the frames counted by the patch
 PARCHE = 0x01C0
 
 
 def lee_estado(f):
     e = {}
-    t = open(f).read().split()
+    t = [x for l in open(f) if not l.startswith("#") for x in l.split()]   # (my licence header)
     i = 0
     while i < len(t):
         k = t[i]

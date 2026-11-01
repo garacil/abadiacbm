@@ -29,7 +29,7 @@ done
 wait
 mal=0
 for s in 1 2 3 4 5 6 7 8; do
-    if cmp -s $W/c_$s.tsv $T/puro/ref/z80_$s.tsv; then echo "sesion $s: identical ($(tail -1 $W/log_$s))"
-    else mal=1; echo "sesion $s: DIFFERENT from frame $(diff $W/c_$s.tsv $T/puro/ref/z80_$s.tsv | grep '^<' | head -1) ($(tail -1 $W/log_$s))"; fi
+    if cmp -s $W/c_$s.tsv <(grep -v "^#" $T/puro/ref/z80_$s.tsv); then echo "sesion $s: identical ($(tail -1 $W/log_$s))"
+    else mal=1; echo "sesion $s: DIFFERENT from frame $(diff $W/c_$s.tsv <(grep -v "^#" $T/puro/ref/z80_$s.tsv) | grep '^<' | head -1) ($(tail -1 $W/log_$s))"; fi
 done
 exit $mal

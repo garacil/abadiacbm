@@ -69,7 +69,7 @@ def c64_imagen(mod):
 def main():
     out = sys.argv[1]
     os.makedirs(out, exist_ok=True)
-    tintas = [int(x, 16) for x in open(os.path.join(P, "..", "data/cpc64/cinta/tintas.txt")).read().split()]
+    tintas = [int(x, 16) for l in open(os.path.join(P, "..", "data/cpc64/cinta/tintas.txt")) if not l.startswith("#") for x in l.split()]
     pens = pens_ok()
     rgb_cpc = [CPC[tintas[p]] for p in pens]
     if len(sys.argv) > 2:                      # Caprice32's screenshot: the same pixels (mode 0 pixel = 4 x 2 there)

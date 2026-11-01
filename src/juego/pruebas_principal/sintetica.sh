@@ -19,7 +19,7 @@
 # its Z80 original, from the RAM of session 1 at frame 3000.   juego/pruebas_principal/sintetica.sh
 set -euo pipefail
 P=$(dirname "$(realpath "$0")"); J=$(dirname "$P")
-T=${ABADIA64_TRABAJO:-$(dirname "$J")/trabajo}
+T=${ABADIA64_TRABAJO:-$(dirname "$(dirname "$J")")/data}
 O=$(mktemp -d); trap 'rm -rf "$O"' EXIT
 make -s -C "$J" hibrido
 "$J/hibrido" "$T/cpc64/inicio_juego/ram.bin" "$T/cpc64/inicio_juego/estado.txt" "$T/sincrono/puntos64.txt" \

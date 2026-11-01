@@ -1,3 +1,20 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # The game in pure C: development log
 
 Built in a separate working copy of `src/juego/` (based on the master files of that time: the first snapshot plus
@@ -13,7 +30,7 @@ logica_b and the master's hibrido.c/Makefile/grupos.c/juego.h; since merged and 
 * `herr/prototipos64.py` — tools/prototipos64.py with one change: functions with z80
   parameters (the hybrid's result checks of funciones.c) are left out of juego64.h (juego.h declares
   them, inside its hybrid part).  The master's tool needs the same line.
-* `src/juego/pruebas_extra.sh` (with `ABADIA64_TRABAJO=/home/german/proyectos/abadia64ks/trabajo`).
+* `src/juego/pruebas_extra.sh` (`ABADIA64_TRABAJO`: the project's `data/` by default).
 
 ## Step 1: the C functions call each other (done)
 

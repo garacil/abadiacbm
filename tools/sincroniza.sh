@@ -13,32 +13,36 @@
 #
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
-# The project from hal9000 to the other two PCs (synchronised from here on, to both once everything is
-# ready): hal9000c 172.29.253.204 and hal9000asus
-# 172.29.253.205, the same directory, user german, over the VPN.  The graphics are edited with c64_editor.py on
-# hal9000asus or here: src/c64/datos/editados64.txt, when the two differ, the newer one (its modification time) wins; the
-# other is kept in respaldos/<date>/ first.  rsync adds and updates, never deletes.
+# The project from this machine to the others named in tools/maquinas.conf (not in the repository: a name, an SSH host,
+# and its VPN address a line), at the same place under the home directory, over SSH.  The graphics are edited with
+# c64_editor.py on any of them: src/c64/datos/editados64.txt, when this machine's and another's differ, the newer one
+# (its modification time) wins; the other is kept in respaldos/<date>/ first.  rsync adds and updates, never deletes.
 #
-#   sincroniza.sh          Exit status 0 when both PCs were updated.
+#   sincroniza.sh          Exit status 0 when every machine was updated.
 set -euo pipefail
 H=$(dirname "$(realpath "$0")"); R=$(dirname "$H")
+REL=${R#"$HOME"/}                                       # the project's place under the home directory, the same there
 E=src/c64/datos/editados64.txt
-suyo=$(ssh hal9000asus "sha256sum ~/Proyectos/abadiacbm/$E 2>/dev/null | cut -c1-64" || true)
-nuestro=$(sha256sum "$R/$E" | cut -c1-64)
-if [ -n "$suyo" ] && [ "$suyo" != "$nuestro" ]; then
-    mkdir -p "$R/respaldos/$(date +%F)"
-    t_suyo=$(ssh hal9000asus "stat -c %Y ~/Proyectos/abadiacbm/$E")
-    t_nuestro=$(stat -c %Y "$R/$E")
-    if [ "$t_suyo" -gt "$t_nuestro" ]; then
-        cp -p "$R/$E" "$R/respaldos/$(date +%F)/editados64_aqui_$(date +%H%M%S).txt"
-        scp -qp "hal9000asus:Proyectos/abadiacbm/$E" "$R/$E"
-        echo "editados64.txt: hal9000asus's is newer: brought here (ours in respaldos/$(date +%F))"
-    else
-        scp -qp "hal9000asus:Proyectos/abadiacbm/$E" "$R/respaldos/$(date +%F)/editados64_asus_$(date +%H%M%S).txt"
-        echo "editados64.txt: ours is newer: sent to hal9000asus (its old one in respaldos/$(date +%F))"
+[ -f "$H/maquinas.conf" ] || { echo "sincroniza.sh: no tools/maquinas.conf" >&2; exit 1; }
+MAQUINAS=$(awk '!/^#/ && NF {print $1}' "$H/maquinas.conf")
+for pc in $MAQUINAS; do
+    suyo=$(ssh "$pc" "sha256sum ~/$REL/$E 2>/dev/null | cut -c1-64" || true)
+    nuestro=$(sha256sum "$R/$E" | cut -c1-64)
+    if [ -n "$suyo" ] && [ "$suyo" != "$nuestro" ]; then
+        mkdir -p "$R/respaldos/$(date +%F)"
+        t_suyo=$(ssh "$pc" "stat -c %Y ~/$REL/$E")
+        t_nuestro=$(stat -c %Y "$R/$E")
+        if [ "$t_suyo" -gt "$t_nuestro" ]; then
+            cp -p "$R/$E" "$R/respaldos/$(date +%F)/editados64_aqui_$(date +%H%M%S).txt"
+            scp -qp "$pc:$REL/$E" "$R/$E"
+            echo "editados64.txt: $pc's is newer: brought here (ours in respaldos/$(date +%F))"
+        else
+            scp -qp "$pc:$REL/$E" "$R/respaldos/$(date +%F)/editados64_${pc}_$(date +%H%M%S).txt"
+            echo "editados64.txt: ours is newer: sent to $pc (its old one in respaldos/$(date +%F))"
+        fi
     fi
-fi
-for pc in hal9000c hal9000asus; do
-    rsync -a --exclude=__pycache__ --exclude=src/c64/video/grabaciones/ "$R/" "$pc:Proyectos/abadiacbm/"   # (the videos' recordings: GBs, written while they run)
+done
+for pc in $MAQUINAS; do
+    rsync -a --exclude=__pycache__ --exclude=src/c64/video/grabaciones/ "$R/" "$pc:$REL/"   # (the videos' recordings: GBs, written while they run)
     echo "$pc: synchronised"
 done

@@ -22,7 +22,7 @@
  * functions over their inputs.  Each check is the hybrid host's own (llamada_traducida: C and Z80 from
  * the same state, all the RAM compared).  It also writes cobertura_prueba.txt (the Z80 instructions
  * of 128F-2225 that the originals ran).  From juego/:
- *   T=/home/german/proyectos/abadia64ks/trabajo
+ *   T=../../data
  *   ./hibrido $T/cpc64/inicio_juego/ram.bin $T/cpc64/inicio_juego/estado.txt $T/sincrono/puntos64.txt \
  *       --guion $T/cpc64/exploracion/azar1.txt --hasta 2000 --solo nada --ram-final /tmp/ram_f2000.bin
  *   gcc -std=c99 -O2 -I. -o /tmp/prueba_motor_iso pruebas_motor_iso/prueba_motor_iso.c f_motor_iso.c \

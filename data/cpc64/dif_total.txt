@@ -1,3 +1,12 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# I made this file from the original game, La Abadía del Crimen (Opera Soft): what it holds of the original (its
+# code, data, music or texts) belongs to the original and is not under my licence.  The rest is free software:
+# you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the
+# Free Software Foundation, either version 3 of the License, or (at your option) any later version, WITHOUT ANY
+# WARRANTY (see COPYING or <https://www.gnu.org/licenses/>).
 insert A(0) []
    B(477) [0100 di; 0101 ld sp,00100h; 0104 ld hl,00300h; 0107 push hl; 0108 ld bc,07f8dh; 010B out (c),c; 010D call 00182h; 0110 nop; 0111 nop; 0112 nop; 0113 nop; 0114 nop; 0115 nop; 0116 nop; 0117 nop; 0118 nop; 0119 nop; 011A nop; 011B nop; 011C nop; 011D nop; 011E nop; 011F nop; 0120 nop; 0121 ld a,001h; 0123 ld bc,0fa7eh; 0126 out (c),a; 0128 ld a,003h; 012A call 001b5h; 012D ld bc,001c7h ...]
 = 2 instructions A 0100-0101 B 03FF-0400

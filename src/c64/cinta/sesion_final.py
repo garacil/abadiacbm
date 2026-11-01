@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 
-"""A session watched on a desktop screen (the tape loaded in VICE on hal9000asus, played up to the
+"""A session watched on a desktop screen (the tape loaded in VICE on another of my PCs, played up to the
 end, to see that the ending loads): the tape in a VICE already running there
 (remoto.py: its binary monitor on the VPN), driven as prueba_cinta.py --final does: the menu (the options typed),
 the presentation passed, the game loaded from the tape, a few seconds of play, then the state one step from 100 %

@@ -1,4 +1,21 @@
 <!-- Made by tools/wiki.py from doc/wiki/fuentes/Building.md: edit the template, not this page. -->
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # Building and certification
 
 [Home](Home.md) · previous: [Presentation and ending](Parchments.md) · next: [Graphics and tools](Graphics.md)
@@ -65,7 +82,7 @@ plays to the 100 % ending.
 same keys as the original Z80, the same random byte and the same interrupt model, and compares at every frame the C64's
 whole RAM with the CPC's memory through the map:
 
-[`src/c64/certifica/certifica.py`](../../src/c64/certifica/certifica.py#L1-L8), lines 1–8:
+[`src/c64/certifica/certifica.py`](../../src/c64/certifica/certifica.py#L16-L23), lines 16–23:
 
 ```python
 """The certification of the C64 game against the CPC 64 KiB original (the whole game
@@ -73,7 +90,7 @@ certified: the monks' behaviour of the Amstrad CPC 64 KiB original and of this C
 appearing where and when they must, every room walkable): the hybrid host runs the CPC's Z80 from a
 start state with a key script, and in step with it the real C64 build in VICE (vice_cert.py) gets the same keys, the
 same R and the host's interrupt model; at every frame the host compares the C64's whole RAM with the Z80's memory
-through the build's own memory map (every data block of mapa64.tsv: the characters, their AI state and commands, the
+through the build's own memory map (every data block of mapa64.tsv: the characters, their behaviour state and commands, the
 objects and their holders, the doors, the clock, the scripts' variables, the sound state...), with the exclusions of
 c64/juego_final/juego6502.tsv.
 ```

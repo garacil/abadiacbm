@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 
-"""A recording to its YouTube kit (everything into /home/german/Escritorio/abbeyofcrime/c64/ with its
+"""A recording to its YouTube kit (everything into ~/Escritorio/abbeyofcrime/c64/, or ABADIA_ENTREGA/c64/, with its
 thumbnails, its title, description, keywords and links, and the game beside the videos in a zip): the cut video (monta.py: title card, the loads cut, chapters inside), its text (textos.py), its
 thumbnail (miniaturas.py, made from the loading picture) and the release's zip (empaqueta.py), into
 ~/Escritorio/abbeyofcrime/c64 (abadia64ks) or c128 (abadia128ks), with the names below.  Then the MP4 is decoded
@@ -25,7 +25,7 @@ import os, shutil, subprocess, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ESCRITORIO = Path("/home/german/Escritorio/abbeyofcrime")
+ESCRITORIO = Path(os.environ.get("ABADIA_ENTREGA", os.path.expanduser("~/Escritorio/abbeyofcrime")))
 NOMBRES = {("64", "en"): "Abbey_of_Crime_C64_English_full_playthrough_20261030",
            ("64", "es"): "La_Abadia_del_Crimen_C64_espanol_partida_completa_20261030",
            ("128", "en"): "Abbey_of_Crime_C128_English_full_playthrough_20261030",

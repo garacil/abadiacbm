@@ -14,9 +14,9 @@
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 
-"""The project's wiki (German: «create a wiki about how the abbey works. all parts with code lines explain
-all important things all in english»): doc/wiki/*.md made from the templates doc/wiki/fuentes/*.md, every code
-excerpt taken from the sources at the moment of the build, so that no excerpt is copied by hand or goes stale.
+"""My wiki of the project, how the abbey works, part by part, with its code: doc/wiki/*.md made from the templates
+doc/wiki/fuentes/*.md, every code excerpt taken from the sources at the moment of the build, so that no excerpt is
+copied by hand or goes stale.
 The same for the Spanish wiki: doc/wiki/es/*.md from doc/wiki/es/fuentes/*.md (its captions in Spanish).
 
 A template line

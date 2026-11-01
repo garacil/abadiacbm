@@ -1,4 +1,21 @@
 <!-- Made by tools/wiki.py from doc/wiki/fuentes/From-Z80-to-6502.md: edit the template, not this page. -->
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # From the Z80 to the 6502
 
 [Home](Home.md) · previous: [The abbey as a game](The-abbey.md) · next: [Memory map](Memory-map.md)
@@ -20,7 +37,7 @@ Each function of the original exists three times in the repository:
 Example: `ai_clock_load_duration` (Z80 address 5060h) loads the length of the current hour from a table of seven
 entries per day.  The Z80:
 
-[`data/cpc64/listado/5060_f_5060.asm`](../../data/cpc64/listado/5060_f_5060.asm#L3-L18), lines 3–18:
+[`data/cpc64/listado/5060_f_5060.asm`](../../data/cpc64/listado/5060_f_5060.asm#L12-L27), lines 12–27:
 
 ```text
 5060 * ld a,(028d1h)
@@ -134,7 +151,7 @@ Every datum the Z80 program reaches by address has a name `D64_NAME`, defined on
 (`src/juego/datos_*.h`) with its CPC address.  The C64 memory map is generated from a hand-written list of blocks,
 and gives every name its C64 address (see [Memory map](Memory-map.md)):
 
-[`src/c64/juego_final/bloques64.tsv`](../../src/c64/juego_final/bloques64.tsv#L19-L26), lines 19–26:
+[`src/c64/juego_final/bloques64.tsv`](../../src/c64/juego_final/bloques64.tsv#L33-L40), lines 33–40:
 
 ```text
 # ---- zero page: the operands the Z80 code rewrites (its fastest variables) ----

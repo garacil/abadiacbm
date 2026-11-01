@@ -1,3 +1,20 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # The GNU version from start to end: development log (H2)
 
 Built in a separate working copy of `src/juego/` (since merged and removed).  Tools and checks:
@@ -21,7 +38,7 @@ New:
 Changed:
 * `src/juego/gnu/abadia64ks.c`: the phases (introduction, loading screen, game, ending), the screen placed by
   R2/R7 and blank when R1 or R6 is 0, the sound clock shared by the parchments and the game, test options.
-* `src/juego/gnu/Makefile`: `TRABAJO ?=` (the copy is built with `make TRABAJO=/home/german/proyectos/abadia64ks/trabajo`).
+* `src/juego/gnu/Makefile`: `TRABAJO ?=` (by default the project's `data/`).
 * `src/juego/hibrido.c`, 3 lines, inert unless a front-end sets it:
   `uint16_t parada;` after `static int retoma;`, the comment of `corre_frame` (returns 2 at `parada`), and
   in `corre_frame` after `ultimos[nult++ & 15] = pc0;`: `if (parada && pc0 == parada) return 2;`.

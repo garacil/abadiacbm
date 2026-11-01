@@ -14,11 +14,11 @@
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 
-# The PC rebuild as abadia128ks's reference (milestone H10, the full game): a copy of /home/german/Proyectos/abadia/c
+# The PC rebuild as abadia128ks's reference (milestone H10, the full game): a copy of the rebuild's c/ (~/Proyectos/abadia/c, or ABADIA_PC/c)
 # (left untouched) in DIR with the two hooks of arnes.c in game_input_and_mirror, built as DIR/abadia.
 #   construye.sh DIR
 set -euo pipefail
-PC=${ABADIA_PC:-/home/german/Proyectos/abadia/c}
+PC=${ABADIA_PC:-$HOME/Proyectos/abadia}/c
 AQUI=$(cd "$(dirname "$0")" && pwd)
 DIR=$1
 rm -rf "$DIR"; mkdir -p "$DIR"

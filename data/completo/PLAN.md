@@ -1,9 +1,26 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # abadia128ks: the full game (milestone H10)
 
 how to add the 128 KiB rooms.  The choice: the full game (the map *and* the logic of the full game,
 certified), taken from the PC EGA version rather than the CPC 6128 one (they are the same game, and I already have
 the PC one): the PC version is the reference.  So the reference and the data source are the PC version: the rebuild
-`/home/german/Proyectos/abadia/c` (verified frame by frame against the original) and its resources (`/home/german/Proyectos/abadia/c/res/`).
+`~/Proyectos/abadia/c` (verified frame by frame against the original) and its resources (`~/Proyectos/abadia/c/res/`).
 
 The 6502 game stays the translation of the 64 KiB code (certified against the CPC 64 KiB); abadia128ks adds, under
 its own assembler condition, every difference of the full game.  abadia64ks (C64 tape and disk) stays byte for byte
@@ -80,7 +97,7 @@ the walk of cabezas_anda.py, 4000 frames: 0 differences.
 
 ## The work
 
-1. The data blocks of the full game for the C128 build, generated from `/home/german/Proyectos/abadia/c/res` by a tool: the room table (block 1),
+1. The data blocks of the full game for the C128 build, generated from `~/Proyectos/abadia/c/res` by a tool: the room table (block 1),
    the three height lists (the library's with the mirror's closing entry as the 64 KiB keeps it), the block table and
    data (their PC pointers relocated: the pointer fields found by `bloques_base.py`'s disassembler), the room links,
    the start square (`GAME_START_POS` = 88h, A8h) and Berengar's place.

@@ -30,7 +30,7 @@ F = 19968.0                                   # microseconds a frame (312 lines 
 
 
 def main():
-    filas = [l.rstrip("\n").split("\t") for l in open(sys.argv[1])][1:]
+    filas = [l.rstrip("\n").split("\t") for l in open(sys.argv[1]) if not l.startswith("#")][1:]   # (my licence header)
     R = [dict(frame=int(r[0]), PC=int(r[1], 16), SP=int(r[2], 16), BC=int(r[3], 16), w0=int(r[5], 16),
               w2=int(r[7], 16)) for r in filas]
     largas = [r for r in R if r["w0"] == 0x6765 and 0x672C <= r["PC"] <= 0x6732]

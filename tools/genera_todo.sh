@@ -14,15 +14,16 @@
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 
-# The three releases in one go (a deterministic tool that makes the tape automatically, compiling
-# everything too; both versions, tape and disk; the 128 KiB disk, milestone H10):
+# All my releases in one go (a deterministic tool that makes the tape automatically, compiling
+# everything too; both versions, tape and disk; the 128 KiB disk, milestone H10; the P500's disks):
 #   1. the C64 tape: src/c64/cinta/abadia64ks.tap (src/c64/cinta/construye.sh);
 #   2. the C64 disk: src/c64/disco64/abadia64ks.d64 (src/c64/disco64/construye.sh);
 #   3. the C128 disk: src/c64/disco128/abadia128ks.d64 (src/c64/disco128/construye.sh);
-#   with --prueba, each in VICE on Xvfb (DISPLAY_PRUEBAS, :99 by default): Spanish with everything on, English with
+#   4. the P500's disks: src/c64/discop500/abadia128ks_p500.d80 and .d64 (src/c64/discop500/construye.sh);
+#   with --prueba, the first three each in VICE on Xvfb (DISPLAY_PRUEBAS, :99 by default): Spanish with everything on, English with
 #   everything off, and the ending at 100 % from the disks.
 #
-#   genera_todo.sh [--prueba]      Exit status 0 only when every step passed; the three sha256 printed at the end.
+#   genera_todo.sh [--prueba]      Exit status 0 only when every step passed; the sha256 printed at the end.
 set -euo pipefail
 H=$(dirname "$(realpath "$0")"); P=$(dirname "$H")
 C=$P/src/c64/cinta
@@ -32,6 +33,8 @@ echo "== 2. the C64 disk"
 "$P/src/c64/disco64/construye.sh" > /tmp/genera_todo_disco64.txt || { tail -20 /tmp/genera_todo_disco64.txt; exit 1; }
 echo "== 3. the C128 disk"
 "$P/src/c64/disco128/construye.sh" > /tmp/genera_todo_disco128.txt || { tail -20 /tmp/genera_todo_disco128.txt; exit 1; }
+echo "== 4. the P500's disks"
+"$P/src/c64/discop500/construye.sh" > /tmp/genera_todo_discop500.txt || { tail -20 /tmp/genera_todo_discop500.txt; exit 1; }
 if [ "${1:-}" = --prueba ]; then
     O=$(mktemp -d /tmp/abadia_prueba_todo.XXXXXX)
     echo "== the tests in VICE (results in $O)"
@@ -45,6 +48,7 @@ if [ "${1:-}" = --prueba ]; then
     python3 -I "$P/src/c64/disco128/prueba128.py" "$O/disco128_en" --opciones 1234
     python3 -I "$P/src/c64/disco128/prueba128.py" "$O/disco128_final" --final --opciones 1
 fi
-for f in src/c64/cinta/abadia64ks.tap src/c64/disco64/abadia64ks.d64 src/c64/disco128/abadia128ks.d64; do
+for f in src/c64/cinta/abadia64ks.tap src/c64/disco64/abadia64ks.d64 src/c64/disco128/abadia128ks.d64 \
+         src/c64/discop500/abadia128ks_p500.d80 src/c64/discop500/abadia128ks_p500.d64; do
     echo "== $f $(sha256sum "$P/$f" | cut -c1-12)"
 done

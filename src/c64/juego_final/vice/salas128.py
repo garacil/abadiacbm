@@ -39,7 +39,7 @@ inc = {}
 for l in open(os.path.join(juego, "mapa64.inc")):
     p = l.split()
     if len(p) >= 3 and p[1] == "=" and p[2].startswith("$"): inc[p[0]] = int(p[2][1:], 16)
-ds = open("/home/german/Proyectos/abadia/trabajo/re/disco/programa.bin", "rb").read()[0x8000:0x18000]
+ds = open(os.path.join(os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia")), "trabajo/re/disco/programa.bin"), "rb").read()[0x8000:0x18000]
 salas, vistas = [], set()
 # (the PC's maps: floor 0 rows 1-10 of 16 rooms, floors 1 and 2 rows 2-6 of 8, interleaved in 16-byte rows)
 for base, z, filas, cols in ((0xAD23, 0x00, range(1, 11), 16), (0xADB3, 0x0B, range(2, 7), 8), (0xADBB, 0x16, range(2, 7), 8)):

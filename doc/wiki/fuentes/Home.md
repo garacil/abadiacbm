@@ -1,3 +1,20 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # How the abbey works — the abadiacbm wiki
 
 *La abadía del crimen* (The Abbey of Crime; Paco Menéndez and Juan Delcán, Opera Soft, 1987) is an isometric
@@ -43,6 +60,7 @@ numbers, so it always matches the code in this repository.
 | [Presentation and ending](Parchments.md) | the parchments with their music, written in C |
 | [Building and certification](Building.md) | the build chain, the generated data, the tests, the certification against the CPC and the PC |
 | [Graphics and tools](Graphics.md) | the CPC graphics on the C64, the conversion, the editor, the other tools |
+| [My tools](Tools.md) | how I build, prove and measure the game: the hybrid host, the certification, the cycle analyzer, the measurement in VICE, the licence, this wiki |
 | [Glossary](Glossary.md) | the Spanish names used in the code and the game's terms |
 
 ## Reading the code

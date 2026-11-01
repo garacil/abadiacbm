@@ -15,13 +15,13 @@
 # <https://www.gnu.org/licenses/>.
 
 """A function of the 64 KiB game (its C in src/c64/certifica/anfitrion/f_*.c) next to the full game's (the PC
-rebuild, /home/german/Proyectos/abadia/c/src), for reading the differences (milestone H10, the full game).
+rebuild, ~/Proyectos/abadia/c/src or ABADIA_PC), for reading the differences (milestone H10, the full game).
 
     par_funcion.py NAME [PC_NAME]
 """
 import glob, os, re, sys
 P = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-PC = "/home/german/Proyectos/abadia/c/src"
+PC = os.path.join(os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia")), "c/src")
 def busca(ficheros, cab):
     for f in ficheros:
         t = open(f).read()

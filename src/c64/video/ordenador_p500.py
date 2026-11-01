@@ -36,6 +36,16 @@ def tecla(d, x, y, w, h, color=TECLA, alta=TECLA_ALTA, k=1.0):
     d.rounded_rectangle([x + 4 * k, y + 3 * k, x + w - 4 * k, y + h - 7 * k], radius=r, fill=alta)
 
 
+def maquina(ancho):
+    """the computer for the cover and the thumbnail: the photograph in ABADIA_FOTO_P500 (an RGBA PNG, transparent
+    around the case; not in the repository: the photograph is its author's) at width ancho, or else this drawing"""
+    foto = os.environ.get("ABADIA_FOTO_P500")
+    if foto and os.path.isfile(foto):
+        im = Image.open(foto).convert("RGBA")
+        return im.resize((ancho, round(im.height * ancho / im.width)), Image.LANCZOS)
+    return dibuja(ancho)
+
+
 def dibuja(ancho=1200):
     k = ancho / 1200
     alto = int(560 * k)

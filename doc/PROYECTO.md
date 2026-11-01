@@ -1,24 +1,42 @@
-# abadiacbm — the project's working reference
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
 
-What is needed to carry the project on: the releases, how they are built and proved, the machines and how they are kept
-in step, the decisions behind each release, the videos, and the rules of the project.  The history is in `ESTADO.md`,
-the milestones in `HITOS.md`, the machines' official facts in `referencias/` (`referencias/INDICE.md`).
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
+# abadiacbm — my working reference
+
+What I need to carry the project on: the releases, how I build and prove them, how I keep my machines in step, the
+decisions behind each release, the videos, and the rules I keep to.  The history is in `ESTADO.md`, the milestones in
+`HITOS.md`, every tool and how it works in `HERRAMIENTAS.md`, the machines' official facts in `referencias/`
+(`referencias/INDICE.md`).
 
 ## The releases
 
 | Release | File | sha256 (first 12) | Download zip (abbeyofcrime.com) |
 |---|---|---|---|
-| abadia64ks, Commodore 64, tape | `src/c64/cinta/abadia64ks.tap` | `5d78daffca90` | `abadia64ks_c64.zip` (tape + disk + README) |
-| abadia64ks, Commodore 64, disk | `src/c64/disco64/abadia64ks.d64` | `1522b2cf83aa` | (the same zip) |
-| abadia128ks, Commodore 128, disk | `src/c64/disco128/abadia128ks.d64` | `7e30824463c1` | `abadia128ks_c128.zip` (disk + README) |
-| abadia128ks, Commodore P500, disk for an 8050 | `src/c64/discop500/abadia128ks_p500.d80` | `a3731768097f` | `abadia128ks_p500.zip` (both disks + README) |
-| abadia128ks, Commodore P500, disk for a 2031 / 4040 | `src/c64/discop500/abadia128ks_p500.d64` | `8a61b8627d8a` | (the same zip) |
+| abadia64ks, Commodore 64, tape | `src/c64/cinta/abadia64ks.tap` | `b71b0054bb14` | `abadia64ks_c64.zip` (tape + disk + README) |
+| abadia64ks, Commodore 64, disk | `src/c64/disco64/abadia64ks.d64` | `2aab55a407e8` | (the same zip) |
+| abadia128ks, Commodore 128, disk | `src/c64/disco128/abadia128ks.d64` | `ee42c9e23e9d` | `abadia128ks_c128.zip` (disk + README) |
+| abadia128ks, Commodore P500, disk for an 8050 | `src/c64/discop500/abadia128ks_p500.d80` | `3ed50bd6bcfe` | `abadia128ks_p500.zip` (both disks + README) |
+| abadia128ks, Commodore P500, disk for a 2031 / 4040 | `src/c64/discop500/abadia128ks_p500.d64` | `ece905579358` | (the same zip) |
 
 * The zips are made by `src/c64/video/empaqueta.py OUT.zip [--c128 | --p500]` with `src/c64/video/entrega/README.txt` /
   `README500.txt` (the P500's) /
-  `README128.txt` (English and Spanish, signed by the author).  Links: `https://abbeyofcrime.com/download/abadia64ks_c64.zip`,
+  `README128.txt` (English and Spanish, signed by me).  Links: `https://abbeyofcrime.com/download/abadia64ks_c64.zip`,
   `https://abbeyofcrime.com/download/abadia128ks_c128.zip`.
-* Only the current releases are kept; older ones were deleted.  Both disks work with a 1541 and a 1571.
+* I keep only the current releases; I deleted the older ones.  Both disks work with a 1541 and a 1571.
 * Every build is deterministic: rebuilding from these sources gives the files above byte for byte (checked after the
   reorganisation).
 
@@ -45,29 +63,25 @@ Rules: any change to `src/c64/plataforma/c128.s`, the disks or the loaders is te
 they must work with both drives).  The defaults (Spanish, every sound on) are the original game; the
 certifications run with them.
 
-## The machines
+## My machines
 
-The project lives at the same path, `/home/german/Proyectos/abadiacbm`, on each.
+I work on one PC and keep the project, at the same place in my home directory, on two more: one for backups and tests
+(the videos' kits on its Desktop), the other a second workstation.
 
-| PC | VPN address | Role |
-|---|---|---|
-| hal9000 | 172.29.253.32 | development |
-| hal9000c | 172.29.253.204 | backup and tests; the videos' kit on its Desktop |
-| hal9000asus | 172.29.253.205 | the other workstation |
-
-* `tools/sincroniza.sh` copies the project to hal9000c and hal9000asus (rsync, never deletes; the recordings and
-  `__pycache__` left out).  `src/c64/datos/editados64.txt` (the graphic edits) is compared first: the newer one
-  wins and the other is kept in `respaldos/<date>/`.
-* SSH between the three as german (port 55000 on hal9000c and hal9000asus), over the VPN.
-* The repository: GitHub `garacil/abadiacbm`, private, branch `main`; every machine has the same working tree.
-  Commits are the author's (`Germán Luis Aracil Boned <garacilb@gmail.com>`).  Not in the repository: `respaldos/`, the
-  recordings, `tools/terceros/`, build outputs (`.gitignore`).
+* `tools/sincroniza.sh` copies the project to the machines named in `tools/maquinas.conf` (a name, an SSH host, and its
+  VPN address a line; not in the repository), with rsync, never deleting, the recordings and `__pycache__` left out.
+  `src/c64/datos/editados64.txt` (the graphic edits) is compared first: the newer one wins and the other is kept in
+  `respaldos/<date>/`.  `tools/vice_remoto.sh MACHINE FILE [EMULATOR]` starts VICE on another machine's desktop, its
+  binary monitor on that machine's VPN address only.
+* The repository: GitHub `garacil/abadiacbm`, public, branch `main`; every machine has the same working tree.  The
+  commits are mine (`Germán Luis Aracil Boned <garacilb@gmail.com>`).  Not in the repository: `respaldos/`, the
+  recordings, `tools/terceros/`, `tools/maquinas.conf`, build outputs (`.gitignore`).
 
 ## Graphics
 
 * `tools/c64_editor.py` (PySide6): the PC EGA graphic beside the C64 one, pixel editing, animation of Guillermo and
   Adso, the background tiles; it writes `src/c64/datos/editados64.txt`, which `tools/c64_graficos.py` applies.
-* The rules: the existing graphics are not changed; new graphics needed by the full game are converted the same
+* My rules: the existing graphics are not changed; new graphics needed by the full game are converted the same
   way as the existing ones, and the 64ks and 128ks releases share the same tiles (no difference in the common ones);
   the bricks of tile 0A are all orange.
 
@@ -97,7 +111,7 @@ game in bank 0, its rooms, texts, the heads' blacks and the Ave Maria in bank 1,
 
 ## The videos
 
-Tools in `src/c64/video/` (run as german):
+Tools in `src/c64/video/` (run as my user, not as root):
 
 * `genera_sesion64.py` / `genera_sesion128.py` make `sesion64.py` / `sesion128.py`: VICE driven through its binary
   monitor (127.0.0.1 only), the game played from the start menu to the ending parchment by the automatic player
@@ -109,24 +123,29 @@ Tools in `src/c64/video/` (run as german):
 * `graba64.sh` / `graba128.sh` / `graba500.sh LANG DISPLAY PORT` record in real time (Xvfb `:95`/`:96`, ports 6517/6516, about two
   hours), into `src/c64/video/grabaciones/` (not in the repository).
 * `entrega.py RECORDING VIDEO.mkv es|en [--c128 | --p500]` makes the kit into `~/Escritorio/abbeyofcrime/c64`, `c128` or
-  `p500` (the P500's title card and thumbnail with the computer drawn by `ordenador_p500.py`; its loading picture from
-  `captura_carga500.py`): the
+  `p500` (`ABADIA_ENTREGA` names another place; the P500's title card and thumbnail with a photograph of the computer
+  when `ABADIA_FOTO_P500` names one, an RGBA PNG transparent around the case, not in the repository, or else the
+  computer drawn by `ordenador_p500.py`; its loading picture from `captura_carga500.py`): the
   title card (7 s), the cut video at 1920x1080 with its chapters, the thumbnail, the text (`textos.py`: title,
-  description signed by the author, with the three download links, chapters, credits, tags, in the video's language) and
-  the zip.  The kit is mirrored to hal9000c's Desktop and checked by sha256.
+  description signed by me, with the download links, chapters, credits, tags, in the video's language) and
+  the zip.  I mirror the kit to my test PC's Desktop and check it by sha256.
 * The language is called «español» (on the C64 screens «ESPANOL»), never «castellano».
 
 ## The wiki
 
-`doc/wiki/` explains how the game works, part by part, with excerpts of the code (21 pages, from `Home.md`).  The pages
-are made by `tools/wiki.py` from the templates in `doc/wiki/fuentes/`: every excerpt is taken from the sources when
-the wiki is built, so `tools/wiki.py --check` after a change of the code says which pages must be made again.
+`doc/wiki/` explains how the game works, part by part, with excerpts of the code: in English (from `Home.md`) and in
+Spanish (`doc/wiki/es/`, from `Inicio.md`).  `tools/wiki.py` makes the pages from the templates in `doc/wiki/fuentes/`
+and `doc/wiki/es/fuentes/`: every excerpt is taken from the sources when the wiki is built, so `tools/wiki.py --check`
+after a change of the code says which pages must be made again; `tools/wiki_github.py` publishes both languages in the
+repository's GitHub wiki.
 
-## The rules of the project
+## My rules
 
 * Every hardware fact (addresses, cycles, KERNAL routines, drive protocol) is taken from official documentation or
   measured in the machine, never assumed; the sources are recorded in `doc/referencias/`.
 * Everything is proved: builds compared byte for byte, the tests above, the certifications with 0 differences.
 * Nothing broken is shipped; nothing is deleted without a decision to delete it.
-* The repository stays private until everything has been checked, holds only the current Commodore releases and their
-  sources, no PC release and no old material.
+* The repository holds only the current Commodore releases and their sources and tools: no PC release and no old
+  material.
+* Before each commit: `tools/licencia.py --comprueba --git` (my licence header on every text file) and
+  `tools/wiki.py --check` (the wiki up to date with the code).

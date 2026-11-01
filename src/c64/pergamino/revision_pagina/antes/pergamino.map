@@ -1,3 +1,17 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.  If not, see
+# <https://www.gnu.org/licenses/>.
 Modules list:
 -------------
 main.c.777273.0.o:
@@ -26,103 +40,103 @@ datos.c.777273.6.o:
     RODATA            Offs=000F9E  Size=001E1F  Align=00001  Fill=0000
 carga.c.777273.7.o:
     RODATA            Offs=002DBD  Size=000601  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(add.o):
+tools/terceros/cc65/lib/c64.lib(add.o):
     CODE              Offs=001B69  Size=00001C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(addeqsp.o):
+tools/terceros/cc65/lib/c64.lib(addeqsp.o):
     CODE              Offs=001B85  Size=000011  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(addysp.o):
+tools/terceros/cc65/lib/c64.lib(addysp.o):
     CODE              Offs=001B96  Size=00000E  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax1.o):
+tools/terceros/cc65/lib/c64.lib(aslax1.o):
     CODE              Offs=001BA4  Size=000008  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax2.o):
+tools/terceros/cc65/lib/c64.lib(aslax2.o):
     CODE              Offs=001BAC  Size=00000B  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax3.o):
+tools/terceros/cc65/lib/c64.lib(aslax3.o):
     CODE              Offs=001BB7  Size=00000E  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(aslax4.o):
+tools/terceros/cc65/lib/c64.lib(aslax4.o):
     CODE              Offs=001BC5  Size=000011  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(asrax2.o):
+tools/terceros/cc65/lib/c64.lib(asrax2.o):
     CODE              Offs=001BD6  Size=00000F  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(callmain.o):
+tools/terceros/cc65/lib/c64.lib(callmain.o):
     CODE              Offs=001BE5  Size=000017  Align=00001  Fill=0000
     DATA              Offs=000000  Size=000004  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(condes.o):
+tools/terceros/cc65/lib/c64.lib(condes.o):
     CODE              Offs=001BFC  Size=00000C  Align=00001  Fill=0000
     DATA              Offs=000004  Size=000025  Align=00001  Fill=0000
     ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(crt0.o):
+tools/terceros/cc65/lib/c64.lib(crt0.o):
     STARTUP           Offs=000000  Size=000033  Align=00001  Fill=0000
     ONCE              Offs=00000C  Size=00001A  Align=00001  Fill=0000
     INIT              Offs=000000  Size=00001C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(decax3.o):
+tools/terceros/cc65/lib/c64.lib(decax3.o):
     CODE              Offs=001C08  Size=000007  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(decax4.o):
+tools/terceros/cc65/lib/c64.lib(decax4.o):
     CODE              Offs=001C0F  Size=000007  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(decaxy.o):
+tools/terceros/cc65/lib/c64.lib(decaxy.o):
     CODE              Offs=001C16  Size=000009  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(exehdr.o):
+tools/terceros/cc65/lib/c64.lib(exehdr.o):
     EXEHDR            Offs=000000  Size=00000C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(icmp.o):
+tools/terceros/cc65/lib/c64.lib(icmp.o):
     CODE              Offs=001C1F  Size=00002E  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax1.o):
+tools/terceros/cc65/lib/c64.lib(incax1.o):
     CODE              Offs=001C4D  Size=000007  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax2.o):
+tools/terceros/cc65/lib/c64.lib(incax2.o):
     CODE              Offs=001C54  Size=000007  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax3.o):
+tools/terceros/cc65/lib/c64.lib(incax3.o):
     CODE              Offs=001C5B  Size=000005  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax5.o):
+tools/terceros/cc65/lib/c64.lib(incax5.o):
     CODE              Offs=001C60  Size=000005  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax6.o):
+tools/terceros/cc65/lib/c64.lib(incax6.o):
     CODE              Offs=001C65  Size=000005  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incax7.o):
+tools/terceros/cc65/lib/c64.lib(incax7.o):
     CODE              Offs=001C6A  Size=000005  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incaxy.o):
+tools/terceros/cc65/lib/c64.lib(incaxy.o):
     CODE              Offs=001C6F  Size=00000B  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incsp1.o):
+tools/terceros/cc65/lib/c64.lib(incsp1.o):
     CODE              Offs=001C7A  Size=000007  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incsp2.o):
+tools/terceros/cc65/lib/c64.lib(incsp2.o):
     CODE              Offs=001C81  Size=000016  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incsp3.o):
+tools/terceros/cc65/lib/c64.lib(incsp3.o):
     CODE              Offs=001C97  Size=000005  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(incsp4.o):
+tools/terceros/cc65/lib/c64.lib(incsp4.o):
     CODE              Offs=001C9C  Size=000005  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(kernal.o):
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(ldaxi.o):
+tools/terceros/cc65/lib/c64.lib(kernal.o):
+tools/terceros/cc65/lib/c64.lib(ldaxi.o):
     CODE              Offs=001CA1  Size=00000D  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(ldaxsp.o):
+tools/terceros/cc65/lib/c64.lib(ldaxsp.o):
     CODE              Offs=001CAE  Size=000009  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(ldptr1sp.o):
+tools/terceros/cc65/lib/c64.lib(ldptr1sp.o):
     CODE              Offs=001CB7  Size=00000C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(loadaddr.o):
+tools/terceros/cc65/lib/c64.lib(loadaddr.o):
     LOADADDR          Offs=000000  Size=000002  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(makebool.o):
+tools/terceros/cc65/lib/c64.lib(makebool.o):
     CODE              Offs=001CC3  Size=00002C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(memcpy.o):
+tools/terceros/cc65/lib/c64.lib(memcpy.o):
     CODE              Offs=001CEF  Size=00003C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(memset.o):
+tools/terceros/cc65/lib/c64.lib(memset.o):
     CODE              Offs=001D2B  Size=00005D  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(mul.o):
+tools/terceros/cc65/lib/c64.lib(mul.o):
     CODE              Offs=001D88  Size=000045  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(mul8.o):
+tools/terceros/cc65/lib/c64.lib(mul8.o):
     CODE              Offs=001DCD  Size=00003A  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(mulax3.o):
+tools/terceros/cc65/lib/c64.lib(mulax3.o):
     CODE              Offs=001E07  Size=000011  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(popptr1.o):
+tools/terceros/cc65/lib/c64.lib(popptr1.o):
     CODE              Offs=001E18  Size=00000E  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(pusha.o):
+tools/terceros/cc65/lib/c64.lib(pusha.o):
     CODE              Offs=001E26  Size=000016  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(pushax.o):
+tools/terceros/cc65/lib/c64.lib(pushax.o):
     CODE              Offs=001E3C  Size=00001A  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(pushwsp.o):
+tools/terceros/cc65/lib/c64.lib(pushwsp.o):
     CODE              Offs=001E56  Size=00001C  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(shrax3.o):
+tools/terceros/cc65/lib/c64.lib(shrax3.o):
     CODE              Offs=001E72  Size=00000E  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(staspidx.o):
+tools/terceros/cc65/lib/c64.lib(staspidx.o):
     CODE              Offs=001E80  Size=000016  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(sub.o):
+tools/terceros/cc65/lib/c64.lib(sub.o):
     CODE              Offs=001E96  Size=000015  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(zerobss.o):
+tools/terceros/cc65/lib/c64.lib(zerobss.o):
     CODE              Offs=001EAB  Size=000023  Align=00001  Fill=0000
-/home/german/proyectos/abadia64ks/herramientas/cc65/lib/c64.lib(zeropage.o):
+tools/terceros/cc65/lib/c64.lib(zeropage.o):
     ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
 
 
@@ -289,24 +303,24 @@ __DESTRUCTOR_COUNT__ ([linker generated]):
 __DESTRUCTOR_TABLE__ ([linker generated]):
     condes.o                  runtime/condes.s:19
 __EXEHDR__ (exehdr.o):
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:6
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:6
 __HEADER_LAST__ ([linker generated]):
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:14
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:14
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:14
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:14
 __HIMEM__ ([linker generated]):
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:14
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:15
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:14
 __LOADADDR__ (loadaddr.o):
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:5
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:5
 __MAIN_SIZE__ ([linker generated]):
     crt0.o                    c64/crt0.s:11
 __MAIN_START__ ([linker generated]):
     crt0.o                    c64/crt0.s:11
 __ONCE_RUN__ ([linker generated]):
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:15
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:15
 __STACKSIZE__ ([linker generated]):
-    [linker generated]        /home/german/proyectos/abadia64ks/herramientas/cc65/cfg/c64.cfg:15
+    [linker generated]        tools/terceros/cc65/cfg/c64.cfg:15
 __STARTUP__ (crt0.o):
     main.c.777273.0.o         main.c.777273.0.s:13
 ___bzero (memset.o):
@@ -432,7 +446,7 @@ c_sp (zeropage.o):
     incsp2.o                  runtime/incsp2.s:8
     incsp1.o                  runtime/incsp1.s:8
     icmp.o                    runtime/icmp.s:9
-    crt0.o                    /home/german/proyectos/abadia64ks/herramientas/cc65/asminc/zeropage.inc:11
+    crt0.o                    tools/terceros/cc65/asminc/zeropage.inc:11
     addeqsp.o                 runtime/addeqsp.s:8
     add.o                     runtime/add.s:12
     main.c.777273.0.o         main.c.777273.0.s:10

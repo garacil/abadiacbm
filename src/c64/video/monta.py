@@ -53,11 +53,22 @@ def portada(idioma, c128, captura, salida, p500=False):
     d = ImageDraw.Draw(lienzo)
     l1, l2, l3, l4 = PORTADA[idioma]
     l2 = l2.format(m="P500" if p500 else "128" if c128 else "64", r="abadia128ks" if c128 or p500 else "abadia64ks")
-    if p500:                                            # the P500: the computer drawn at the left of the picture
+    if p500:
         sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-        from ordenador_p500 import dibuja
-        maq = dibuja(440)
-        lienzo.paste(maq, ((520 - maq.width) // 2, 380 - maq.height // 2), maq)
+        from ordenador_p500 import maquina
+        if os.environ.get("ABADIA_FOTO_P500"):          # the photograph: a quarter of the width, in the top right corner
+            from PIL import ImageFilter
+            maq = maquina(480)
+            x, y = 1920 - maq.width - 20, 24
+            sombra = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
+            sombra.paste((0, 0, 0, 160), (x + 6, y + 8), maq.getchannel("A"))
+            lienzo = Image.alpha_composite(lienzo.convert("RGBA"), sombra.filter(ImageFilter.GaussianBlur(8)))
+            lienzo.alpha_composite(maq, (x, y))
+            lienzo = lienzo.convert("RGB")
+            d = ImageDraw.Draw(lienzo)
+        else:                                           # the computer drawn at the left of the picture
+            maq = maquina(440)
+            lienzo.paste(maq, ((520 - maq.width) // 2, 380 - maq.height // 2), maq)
     for texto, tam, y, color in ((l1, 64, 735, (255, 232, 130)), (l2, 44, 830, (255, 255, 255)),
                                  (l3, 44, 900, (255, 255, 255)), (l4, 24, 1000, (170, 170, 170))):
         f = ImageFont.truetype(FUENTES[0], tam)

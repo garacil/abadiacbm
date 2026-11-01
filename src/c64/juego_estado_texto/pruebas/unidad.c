@@ -26,11 +26,13 @@
 static char nombres[512][64]; static unsigned dirs[512]; static int n;
 static uint8_t img[65536];
 unsigned dir(const char *s) { int i; for (i = 0; i < n; ++i) if (!strcmp(nombres[i], s)) return dirs[i]; fprintf(stderr, "no %s\n", s); exit(1); }
-static unsigned sim(const char *s) { char l[256]; FILE *f = fopen("/home/german/proyectos/abadia64ks/c64/juego_estado_texto/mapa64.inc", "r"); unsigned v;
+static const char *grupo = "..";   /* the group's directory (argv[1]): juego.bin, juego.lbl, mapa64.inc */
+static unsigned sim(const char *s) { char l[256], m[512]; FILE *f; unsigned v; snprintf(m, sizeof m, "%s/mapa64.inc", grupo); f = fopen(m, "r");
     char k[80]; while (fgets(l, sizeof l, f)) if (sscanf(l, "%79s = $%x", k, &v) == 2 && !strcmp(k, s)) { fclose(f); return v; } fprintf(stderr, "no %s\n", s); exit(1); }
 static uint16_t rw(uint16_t a) { return (uint16_t)(Mem[a] | Mem[(uint16_t)(a + 1)] << 8); }
 int main(int argc, char **argv) {
     char p[512], l[256]; FILE *f; int t, k, bad = 0;
+    if (argc > 1) grupo = argv[1];
     unsigned OBJ = sim("D64_OBJ_OBJECTS"), CO = sim("D64_OBJ_CHAR_OBJECTS"), DP = sim("D64_OBJ_DOOR_PERMISSIONS"),
              PP = sim("D64_CHR_POS_PTRS"), LAMP = sim("D64_GAME_ADSO_LAMP"), DOORS = sim("D64_OBJ_DOORS"), GB = sim("D64_GAME_BOOK_POISON_COUNT");
     snprintf(p, sizeof p, "%s/juego.bin", argv[1]); f = fopen(p, "rb"); fread(img, 1, 65536, f); fclose(f);

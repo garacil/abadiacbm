@@ -1,9 +1,26 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # abadia64ks — rules of the translation of the CPC 64 KiB game to C
 
 The game of abadia64ks is the CPC 64 KiB version of La Abadía del Crimen (Amstrad tape), rebuilt in
 C function by function from its Z80 code, so that it can later be built with cc65 for the Commodore 64
 and the Atari 8-bit.  The reference is the CPC 64K binary; the full rebuild of the PC version
-(`/home/german/proyectos/abadia`, read-only: never write there) documents the same game logic and is
+(`~/Proyectos/abadia`, which I keep read-only) documents the same game logic and is
 the guide for names and meaning.
 
 ## 1. The data model
@@ -11,7 +28,7 @@ the guide for names and meaning.
 * `ds[]` (= `ram[]`, `juego.h`) is the CPC's 64 KiB of RAM; every address is the CPC 64K version's.
   Read and written with `rb/rw/wb/ww`.  The addresses a group uses are named in its header
   `datos_<group>.h` as `#define D64_<NAME> 0xXXXXu  /* what it is; PC name if the meaning matches */`;
-  with the PC rebuild's names (`/home/german/Proyectos/abadia/c/include/direcciones.h`) when the datum is the same thing.
+  with the PC rebuild's names (`~/Proyectos/abadia/c/include/direcciones.h`) when the datum is the same thing.
 * No other global state: what the Z80 keeps in memory stays in `ds[]` (self-modified operands
   included: they are data at their code address, named too).
 * **The screen.**  The CPC screen is C000h-FFFFh (mode 1, 64 bytes a line as the game sets the CRTC).
@@ -73,7 +90,6 @@ and hour of the game).
 * `data/cpc64/listado/XXXX_name.asm`: the Z80 listing of each function (`*` = executed);
   `data/cpc64/listado/indice.tsv`; `data/cpc64/juego/ram.bin` (the 64K image at the game's
   start); `z80dasm -a -g 0xXXXX file` for any range.
-* The PC rebuild: `/home/german/Proyectos/abadia/c/src/*.c`, `/home/german/Proyectos/abadia/c/include/direcciones.h`,
-  `/home/german/proyectos/abadia/trabajo/re/notas/*.md` (the analysis), and the Ghidra projects
+* My PC rebuild: `~/Proyectos/abadia/c/src/*.c`, `~/Proyectos/abadia/c/include/direcciones.h`,
+  `~/Proyectos/abadia/trabajo/re/notas/*.md` (the analysis), and the Ghidra projects
   **ghidra-abadia** (the PC program) and **ghidra-abadia64ks** (the Z80 64K program).
-* Never write in `/home/german/proyectos/abadia`.  Files written as root: `chown -R german:german`.

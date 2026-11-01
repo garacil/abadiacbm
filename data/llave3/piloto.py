@@ -36,6 +36,8 @@ def lee_traza(path):
     """frame -> dict of the trace fields (G/A/M as (o, x, y, z), the rest as byte lists)"""
     t = {}
     for linea in open(path):
+        if linea.startswith('#'):                               # (my licence header)
+            continue
         c = linea.rstrip('\n').split('\t')
         d = {}
         for campo in c[1:]:

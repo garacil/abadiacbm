@@ -1,3 +1,20 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # abadia64ks: the 6502 code of the game (C64, later Atari) — conventions (draft)
 
 The 6502 code is a hand translation of the game's Z80 functions, one 6502 routine per Z80 function,
@@ -135,7 +152,7 @@ drawing, the path search, the script interpreter).  `SOMBRA6502_CICLOS=file hibr
 routine runs) adds to every frame line the cycles spent in each module and the hit counts; `ciclos_categorias.py`
 groups the frames by the rectangles composed (hits of spr_blit_to_screen).  Over the 24 sessions (352 024 frames,
 no mass scene: at most 5-6 rectangles a frame): path search 46 % of all cycles (logica_a_cam 32.8 + camino 13.6),
-characters 12.4, sprite composition 11.8, height buffer / text 8.8, AI VM 8.7; a composed rectangle costs about
+characters 12.4, sprite composition 11.8, height buffer / text 8.8, behaviour VM 8.7; a composed rectangle costs about
 30 700 cycles (least squares); mean frame 131 000 cycles with 0-1 rectangles, 170 000 with 2, 187 000 with 3-4.
 So hardware sprites for Guillermo and Adso can save at most their rectangles' composition (about 30 000 cycles
 each, less the occlusion mask), not the monks' drawing nor the path search that dominates crowded scenes.

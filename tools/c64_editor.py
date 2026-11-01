@@ -64,6 +64,7 @@ GRIS = (60, 60, 72)                                      # the transparent pen o
 # the inks: the PC EGA option's (= the CPC's day inks) and VICE's colodore palette for the C64 colours of
 # src/c64/datos/paleta.tsv (cyan 3, orange 8, yellow 7, black 0), read from /usr/share/vice/C64/colodore.vpl
 import c64_colores as CO          # noqa: E402
+from licencia import cabecera     # noqa: E402  (my licence header, kept at the top of editados64.txt)
 _PAL = CO.vpl("/usr/share/vice/C64/colodore.vpl")
 INK_PC = {0: (0, 128, 128), 1: (255, 128, 0), 2: (255, 255, 128), 3: (0, 0, 0)}
 INK_C64 = {0: _PAL[3], 1: _PAL[8], 2: _PAL[7], 3: _PAL[0]}
@@ -163,7 +164,7 @@ def carga_editados(personajes, path):
 
 
 def texto_editados(personajes):
-    lineas = [CABECERA.rstrip("\n")]
+    lineas = [(cabecera("hash") + CABECERA).rstrip("\n")]
     for g in sorted(todos(personajes), key=lambda g: g.ca):
         for y in g.lineas_editadas():
             lineas.append(f"{g.ca:04X} {y} {''.join(CARACTER[p] for p in g.c64[y])}")

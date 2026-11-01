@@ -519,6 +519,14 @@ static void llamada_traducida(const traducida_t *t)
 
 /* ---- set-up ----------------------------------------------------------------------------------------- */
 
+/* my licence header at the top of a data file: its '#' lines, skipped before an fscanf reading */
+static void salta_cabecera(FILE *f)
+{
+    int c;
+    while ((c = fgetc(f)) == '#') while ((c = fgetc(f)) != '\n' && c != EOF) ;
+    if (c != EOF) ungetc(c, f);
+}
+
 static void carga_estado(const char *ram_file, const char *estado)
 {
     FILE *f = fopen(ram_file, "rb");
@@ -530,6 +538,7 @@ static void carga_estado(const char *ram_file, const char *estado)
     cpu.read_byte = lee; cpu.write_byte = escribe; cpu.port_in = puerto_in; cpu.port_out = puerto_out;
     f = fopen(estado, "r");
     if (!f) { fprintf(stderr, "cannot read %s\n", estado); exit(1); }
+    salta_cabecera(f);
     while (fscanf(f, "%31s %ld", nombre, &v) == 2) {
         if (!strcmp(nombre, "A")) cpu.a = (uint8_t)v;
         else if (!strcmp(nombre, "F")) {

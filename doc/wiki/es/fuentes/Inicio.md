@@ -1,3 +1,20 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # Cómo funciona la abadía — la wiki de abadiacbm
 
 *La abadía del crimen* (Paco Menéndez y Juan Delcán, Opera Soft, 1987) es una aventura isométrica en la que fray
@@ -45,6 +62,7 @@ fichero y sus números de línea enlazados, así que siempre coincide con el có
 | [Presentación y final](Pergaminos.md) | los pergaminos con su música, escritos en C |
 | [Construcción y certificación](Construccion.md) | la cadena de construcción, los datos generados, las pruebas, la certificación |
 | [Gráficos y herramientas](Graficos.md) | los gráficos del CPC en el C64, la conversión, el editor, las demás herramientas |
+| [Mis herramientas](Herramientas.md) | cómo construyo, pruebo y mido el juego: el anfitrión híbrido, la certificación, el analizador de ciclos, la medida en VICE, la licencia, esta wiki |
 | [Glosario](Glosario.md) | los nombres en español del código y los términos del juego |
 | [Índice de rutinas](Indice-de-rutinas.md) | todas las rutinas del juego, fichero a fichero, con la dirección de la función original |
 

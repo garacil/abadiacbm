@@ -21,8 +21,8 @@ origin: do they give the same 24x24 buffer?  (Milestone H10, the full game; step
 
     compara_alturas.py [STEP]
 """
-import sys
-R = "/home/german/Proyectos/abadia/c/res/"
+import os, sys
+R = os.path.join(os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia")), "c/res/")
 def clip(win, pos, ln, wl=24):
     a = (win - pos) & 255
     if a == 0: return True, (wl if wl < ln else ln), 0, 0

@@ -1,15 +1,31 @@
-# abadia64ks in British English (the C64 English release)
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
 
-everything translated into English, a separate release for the C64 entirely in English, a d64 disk with
-the same label and the suffix _english.d64, in British English, the text fitting where the Spanish did.
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
 
-The Spanish build is untouched (`src/c64/disco/abadia64ks.d64` is byte for byte what it was).  The English release is made beside it:
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
 
-    src/c64/ingles/construye.sh      ->  src/c64/disco/abadia64ks_english.d64      (disk header "abadia64ks,en")
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
 
-It takes about two seconds.  Nothing is edited by hand: the English data, graphics and the four build trees
-(`src/c64/plataforma_en`, `juego_final_en`, `presentacion_en`, `disco_en`: generated copies of the Spanish trees with exact, counted
-replacements, `prepara_arbol.py`; safe to delete) are made from the sources in this directory.
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
+# abadia64ks in British English
+
+Everything translated into English, in British English, the text fitting where the Spanish did.  It began as a
+separate English release for the C64 (a disk of its own, made from generated copies of the Spanish trees); now
+English is inside every release, chosen in the start menu, and the Spanish game is byte for byte what it was.
+
+`src/c64/ingles/datos.sh` makes the English data from the sources in this directory into `generado/` (the tape's
+`src/c64/cinta/construye.sh` runs it first; the disks' builds run it when it is missing): the CPC game's image with
+the English texts (`ram_en.bin`), its graphics converted for the C64, the parchments' files and the picture with
+the English title.  The game's English images are the same sources built with them (`src/c64/juego_final/construye.sh`
+with `IDIOMA=en`: the tape's, the C64 disk's, the C128's and the P500's).  Nothing is edited by hand.
 
 ## What is English
 
@@ -33,19 +49,23 @@ The three-letter word for the "OBSEQUIUM" bar is Latin and stays; so do OPERA so
 Brother William (of Occam in the parchment), Adso, Jorge, Malachi, Berengar, Severinus, Venantius, Bernard Gui: the usual English forms
 of the novel's names.  The game's Spanish "fray Guillermo" is "Brother William".
 
-## Checked (VICE x64sc, true 1541 drive, Xvfb :99; `pruebas/prueba_en.py`, derived from `src/c64/presentacion/pruebas/disco_prueba/prueba.py`)
+## Checked then, on the separate English disk (VICE x64sc, true 1541 drive, Xvfb :99; its test tools went with it)
 
 * the whole disk from `LOAD"*",8,1`: the introduction's nine pages are, on the emulated C64, exactly the page model made from the English
   files (0 bitmap bytes and 0 cell colours differ), its music is the CPC's (2828 AY writes); the picture, the loader reading GAME, the RAM
   equal to the image, the game's frames 50 and 200 equal to the image written straight into the RAM;
 * the ending program loaded by name from the English disk (ENDING): its fourteen pages exactly as the model, its music as the CPC's;
-* `pruebas/frase_en.py OUT N`: phrase N started in the running game as hud_say does and its strip captured every few frames (phrase 5,
+* phrase N started in the running game as hud_say does and its strip captured every few frames (phrase 5,
   with the new W, "... THE MANUSCRIPT, BROTHER WILLIAM" scrolls as written);
-* `pruebas/arranca_en.py`: the game from the image without the loader, screenshots at chosen frames.
+* the game from the image without the loader, screenshots at chosen frames.
 All these checks passed (the whole-disk run, ending included, on the disk before the title and "Day" were added; the disk with them was
 checked again up to the game's frame 200: the ending program is the same file in both).  Not run: the key Y (changed in the key table and read
 from it, not tried in an emulator), the ending through the game's own code (the Spanish test's part C builds a memory state from the
 Spanish game; here the ending program is loaded alone), a play through the game, the 56 phrases one by one on the screen.
+
+Since English joined the releases, their tests run it too (`tools/genera_todo.sh --prueba`: the tape and the C64 disk
+in English with every option off, the C128 disk in English), and I recorded complete games played through in English
+on the C64, the C128 and the P500 for the videos.
 
 ## What still needs a visual review (drawn programmatically or by hand, not by the original artists)
 

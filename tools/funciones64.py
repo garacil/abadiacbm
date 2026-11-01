@@ -44,7 +44,7 @@ def main():
     times = collections.Counter(); callers = collections.defaultdict(set)
     for path in sys.argv[2:]:
         for line in open(path):
-            if line.startswith("caller"): continue
+            if line.startswith(("caller", "#")): continue   # (and my licence header)
             c, t, k = line.split()
             times[int(t, 16)] += int(k); callers[int(t, 16)].add(int(c, 16))
     entries = set(times) | set(named)

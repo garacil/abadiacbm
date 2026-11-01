@@ -1,3 +1,20 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # abadia64ks on the C64: the graphics (H3)
 
 Every graphic the CPC 64 KiB game draws, where it is, who reads and writes it, what points into it, and its
@@ -207,7 +224,7 @@ Comparison tool: `tools/c64_compara_pc.py OUTDIR --grupo protagonistas|caras|hab
 graphic of the conversion kept in `data/c64graf_sim` (the rules before `trazos`) and the new one, on a
 sheet with the colodore colours, with the measures per graphic (strokes lost by kind, silhouette differences; the count
 of differing pixels is the same for every rule, one per mixed pair, and says nothing).  The samples I judged are on
-hal9000c's desktop (`muestra_graficos_c64/`).
+my test PC's desktop (`muestra_graficos_c64/`).
 
 ## The hardware-sprite build (`--hw`, src/c64/SPRITES_HW.md)
 

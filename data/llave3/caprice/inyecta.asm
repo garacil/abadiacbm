@@ -1,3 +1,17 @@
+; abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+;
+; Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+;
+; This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+; Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+; option) any later version.
+;
+; This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+; implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+; for more details.
+;
+; You should have received a copy of the GNU General Public License along with this program.  If not, see
+; <https://www.gnu.org/licenses/>.
 ; data/llave3/caprice/inyecta.asm: the key script inside the CPC game, for a run on Caprice32 where keys
 ; cannot be held from outside frame by frame.  CALLed from 2D77 (the IN A,(C) / LD B,A of sys_read_keyboard
 ; 2D50, patched into CALL 3200h): the row the keyboard gives, ANDed with the script's mask of this row for the

@@ -24,7 +24,7 @@ reason there).  Out: per datum, the first frame where it differs and how many fr
     compara.py JUEGO_DIR C128_DUMP PC_DUMP [FROM-TO]
 """
 import glob, os, re, sys
-PC = "/home/german/Proyectos/abadia/c"
+PC = os.path.join(os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia")), "c")   # the PC rebuild (ABADIA_PC: its directory)
 juego, f128, fpc = sys.argv[1], sys.argv[2], sys.argv[3]
 rango = sys.argv[4] if len(sys.argv) > 4 else None
 # not compared: run-time work areas whose layout or meaning is the machine's

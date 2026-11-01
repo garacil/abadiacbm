@@ -1,3 +1,17 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.  If not, see
+# <https://www.gnu.org/licenses/>.
 cycle	env3_0	env3_1	env3_2	env3_3	env3_4	env3_5	env3_6	env3_7	env3_8	env3_9	env3_10	env3_11	env3_12	env3_13	env3_14	env3_15	env3_16	env3_17	env3_18	env3_19	env3_20	env3_21	env3_22	env3_23	env3_24	env3_25	env3_26	env3_27
 57598210	0	0	0	0	0	0	8	111	213	194	93	68	68	68	68	68	68	68	51	35	34	22	17	11	6	2	0	0
 57831944	0	0	0	0	0	0	0	38	140	243	165	78	68	68	68	68	68	68	68	51	34	34	18	17	10	5	1	0

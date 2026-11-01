@@ -1,4 +1,21 @@
 <!-- Hecha por tools/wiki.py desde doc/wiki/es/fuentes/Carga.md: se edita la plantilla, no esta página. -->
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # La carga: cinta y discos
 
 [Inicio](Inicio.md) · anterior: [El Commodore P500](Commodore-P500.md) · siguiente: [Presentación y final](Pergaminos.md)
@@ -51,7 +68,7 @@ que el primer programa pone en el búfer del casete:
 
 Los bloques, en su orden en la cinta:
 
-[`src/c64/cinta/cinta.inc`](../../../src/c64/cinta/cinta.inc#L27-L36), líneas 27–36:
+[`src/c64/cinta/cinta.inc`](../../../src/c64/cinta/cinta.inc#L42-L51), líneas 42–51:
 
 ```asm
 ; the blocks' ids, in their order on the tape (cinta.py)
@@ -96,7 +113,7 @@ silencio:
 La misma edición en una 1541 o una 1571: el menú, la presentación y el final comprimidos con Exomizer, el flujo del
 juego leído con el KERNAL según llega, los bytes en inglés como un fichero propio y las partidas grabadas en el disco:
 
-[`src/c64/disco64/NOTAS.md`](../../../src/c64/disco64/NOTAS.md#L15-L22), líneas 15–22:
+[`src/c64/disco64/NOTAS.md`](../../../src/c64/disco64/NOTAS.md#L32-L39), líneas 32–39:
 
 ```markdown
 | File | What |
@@ -114,7 +131,7 @@ juego leído con el KERNAL según llega, los bytes en inglés como un fichero pr
 El C128 arranca desde el sector de arranque del disco y lo carga todo de una vez, fichero a fichero, cada fichero
 comprimido:
 
-[`src/c64/disco128/NOTAS.md`](../../../src/c64/disco128/NOTAS.md#L24-L31), líneas 24–31:
+[`src/c64/disco128/NOTAS.md`](../../../src/c64/disco128/NOTAS.md#L41-L48), líneas 41–48:
 
 ```markdown
 | track 1 sector 0 | the boot sector (`arranque128.py`): "CBM", no more sectors, the message ABADIA DEL CRIMEN, the program M, then `JMP $1300` (run by the KERNAL's BOOT_CALL in bank 15) | $0B00 (the KERNAL's buffer) |

@@ -1,3 +1,17 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.  If not, see
+# <https://www.gnu.org/licenses/>.
 Caprice32's screenshot: 24576 of 24576 pixels as decoded here (at 112, 144)
 before: mean CIEDE2000 18.83; pixels unlike the nearest colour of their pen 9671 of 24576; CPC edges lost 246 of 12683; cells lending a colour to the pink while loading 97
    each pen's colour (most of its pixels): 1:14->black, 13:1C->light blue, 5:0C->yellow, 0:07->light red, 12:00->orange, 2:0B->cyan, 4:06->white, 15:1B->cyan, 10:0E->grey, 6:04->blue, 14:1F->light blue, 3:03->light red, 9:05->purple, 7:15->blue

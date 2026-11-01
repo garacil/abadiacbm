@@ -37,8 +37,8 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
 import bloques_base as B
 
-RES = "/home/german/Proyectos/abadia/c/res"
-PC_PROGRAMA = "/home/german/Proyectos/abadia/trabajo/re/disco/programa.bin"
+RES = os.path.join(os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia")), "c/res")
+PC_PROGRAMA = os.path.join(RES, "../../trabajo/re/disco/programa.bin")
 TABLA, DATOS = 0xB71D, 0xAECC          # the PC's block table (96 words) and block data (2126 bytes)
 N_TABLA, N_DATOS = 192, 2126
 

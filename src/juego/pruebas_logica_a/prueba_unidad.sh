@@ -20,7 +20,7 @@
 set -uo pipefail
 U=$(dirname "$(realpath "$0")")
 J=$(dirname "$U")
-T=${ABADIA64_TRABAJO:-$(dirname "$J")/trabajo}
+T=${ABADIA64_TRABAJO:-$(dirname "$(dirname "$J")")/data}
 cd "$J"
 if ! make -s hibrido > /dev/null 2>&1 || ! gcc -std=c99 -O2 -Wall -Wextra -o "$U/unidad" "$U/unidad.c" $(ls *.c | grep -v hibrido.c) z80/z80.c; then
     echo "BUILD FAILED"; exit 2

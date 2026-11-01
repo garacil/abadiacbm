@@ -70,7 +70,7 @@ def pens_cinta():
 
 def distancias():
     """the CIEDE2000 distance of each CPC pen's colour (the loader's inks) to each C64 colour, and the palette"""
-    tintas = [int(x, 16) for x in open(os.path.join(P, "..", "data", "cpc64", "cinta", "tintas.txt")).read().split()]
+    tintas = [int(x, 16) for l in open(os.path.join(P, "..", "data", "cpc64", "cinta", "tintas.txt")) if not l.startswith("#") for x in l.split()]
     pal = vpl(PALETA)
     return [[de2000(lab(CPC[hw & 31]), lab(pal[i])) for i in range(16)] for hw in tintas[:16]], pal
 
@@ -89,7 +89,7 @@ def asignacion(pens, dist):
     distance plus, for each pair of neighbouring pixels of different pens given one colour, LAMBDA times the distance
     between the two CPC colours (the edge the picture loses); from the nearest colours, one pen changed at a time while
     the sum goes down (deterministic: pens and colours in order)"""
-    tintas = [int(x, 16) for x in open(os.path.join(P, "..", "data", "cpc64", "cinta", "tintas.txt")).read().split()]
+    tintas = [int(x, 16) for l in open(os.path.join(P, "..", "data", "cpc64", "cinta", "tintas.txt")) if not l.startswith("#") for x in l.split()]
     L = [lab(CPC[hw & 31]) for hw in tintas[:16]]
     cuenta, bordes = {}, {}
     for y in range(192):

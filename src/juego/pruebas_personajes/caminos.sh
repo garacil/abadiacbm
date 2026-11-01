@@ -19,10 +19,10 @@
 # height buffers, the mirror's Q+R on every step and numeral, the flips of Malachi and Berengar, every
 # key, chr_project directly in normal and test mode): from the RAM of session 5 at frames 1500 and 3000
 # with synthetic changes, each case checked as the host does (the C wrapper against the Z80 original).
-#   pruebas_personajes/caminos.sh        (ABADIA64_TRABAJO = the trabajo directory)
+#   pruebas_personajes/caminos.sh        (ABADIA64_TRABAJO: the data directory, data/)
 set -uo pipefail
 D=$(dirname "$(realpath "$0")"); J=$(dirname "$D")
-T=${ABADIA64_TRABAJO:-$(dirname "$J")/trabajo}
+T=${ABADIA64_TRABAJO:-$(dirname "$(dirname "$J")")/data}
 W=$(mktemp -d); trap 'rm -rf "$W"' EXIT
 make -s -C "$J" hibrido || exit 2
 gcc -std=c99 -O2 -Wall -Wno-unused-function -I"$J" -o "$W/prueba_caminos" "$D/prueba_caminos.c" \

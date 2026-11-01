@@ -1,9 +1,24 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.  If not, see
+# <https://www.gnu.org/licenses/>.
+
 """The certification of the C64 game against the CPC 64 KiB original (the whole game
 certified: the monks' behaviour of the Amstrad CPC 64 KiB original and of this C64 version the same, the objects
 appearing where and when they must, every room walkable): the hybrid host runs the CPC's Z80 from a
 start state with a key script, and in step with it the real C64 build in VICE (vice_cert.py) gets the same keys, the
 same R and the host's interrupt model; at every frame the host compares the C64's whole RAM with the Z80's memory
-through the build's own memory map (every data block of mapa64.tsv: the characters, their AI state and commands, the
+through the build's own memory map (every data block of mapa64.tsv: the characters, their behaviour state and commands, the
 objects and their holders, the doors, the clock, the scripts' variables, the sound state...), with the exclusions of
 c64/juego_final/juego6502.tsv.
 

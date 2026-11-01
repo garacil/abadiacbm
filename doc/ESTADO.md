@@ -1,3 +1,20 @@
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # abadia64ks — state of the work
 
 Read `HITOS.md` first (the milestones and the rules).  This file keeps what has been learnt and the
@@ -15,11 +32,11 @@ next steps, newest first inside each section.
 | `tools/` | the tools (see HITOS.md) |
 | `data/cpc64/` | outputs on the CPC 64 KiB version: `disco/` (files of the disk), `src/juego/ram.bin` (memory when the game starts, PC=20BE), `run4/` (a run to the first room, screenshots), `diferencias_codigo.txt`, `dif_total.txt` |
 | `data/cpc128/` | `pistas.bin`/`pistas_rev.bin` (sector stream of the CPC 6128 disk of the reference copies, forward and reversed), `memoria.bin` (the 128 KiB game's main memory view rebuilt from it) |
-| (removed) | the copy of the full C rebuild, the starting point of H2: the rebuild lives in `/home/german/proyectos/abadia/c` |
+| (removed) | the copy of the full C rebuild, the starting point of H2: the rebuild lives in `~/Proyectos/abadia/c` |
 
 System packages installed for the project: `vice-sdl2` (x64sc, c1541, petcat), `atari800` 7.2.1
-(AUR), `cc1541` 4.2 (AUR), `dir2atr` (AUR, AtariSIO tools), `asciidoc`, `lame`.  AUR builds in
-`/home/german/.cache/aurbuild-abadia64ks/`.
+(AUR), `cc1541` 4.2 (AUR), `dir2atr` (AUR, AtariSIO tools), `asciidoc`, `lame`.  I built the AUR
+packages in `~/.cache/aurbuild-abadia64ks/`.
 
 ## The lamp, the ending and the parchments' pace
 
@@ -216,7 +233,7 @@ System packages installed for the project: `vice-sdl2` (x64sc, c1541, petcat), `
   graphics at the same addresses (characters, robes, faces, tiles).
 * The tiles are the ones (`baldosas.bin` md5 b4acba4b…, the same in data/c64graf_sim, in
   the restored base and at $D000 of the current image); one Spanish disk (b6fd6942…) differs from the
-  morning's (cf66187f…, on hal9000c) only in the stream `juego`: the same needed bytes (0 differences after the
+  earlier one (cf66187f…, on my test PC) only in the stream `juego`: the same needed bytes (0 differences after the
   loader's model), the older one also carried 3953 unneeded bytes at $9CCD-$AC4C of an older map.
 * Verified by running: hand edits outside the CPC pair do not break the checks.  A scratch tree with
   symlinks to the project (herramientas, juego, data/* but a fresh c64graf) and a copy of src/c64/juego_final as
@@ -238,7 +255,7 @@ System packages installed for the project: `vice-sdl2` (x64sc, c1541, petcat), `
   keeps every stroke of the drawing whatever its pen (the monks are black with orange strokes, Guillermo orange with black
   ones) and drops one-pixel shading steps; replaces `aislado` and the hand retouches (kept, unused).  Comparison and
   sheets: `tools/c64_compara_pc.py`; the previous conversion kept in `data/c64graf_sim`.
-* Rejected after samples on hal9000c's desktop: 1:1 (every PC pixel a C64 pixel, twice as wide); hardware hires sprites
+* I rejected, after seeing samples on my test PC's desktop: 1:1 (every PC pixel a C64 pixel, twice as wide); hardware hires sprites
   for the black strokes (an engine change).  Another C64 conversion (video frames) was measured: its thin
   lines are 2 hires pixels, multicolour like ours.
 * Both disks rebuilt (`src/c64/presentacion/pruebas/disco_prueba/construye.sh`, `src/c64/ingles/construye.sh`); `src/c64/presentacion/pruebas/disco_prueba/prueba.py` and
@@ -496,7 +513,7 @@ opens it from the centre: the C64 first stage still imitates the repack and must
 
 ### The presentation and parchments on the disk (src/c64/presentacion): done
 
-* The parchment's own C code (cc65, September 2016: "/home/german/classic computers/Commodore/abadia": abadia.c, io.c, manuscrito.c, the
+* The parchment's own C code (cc65, September 2016: "~/classic computers/Commodore/abadia": abadia.c, io.c, manuscrito.c, the
   pp.bin, text1.bin, abadia.koa) for the parchments and the loading picture, as it was: the parchment first, then on
   space the picture while the game loads; the ending the parchment too; the credit on the introduction.
   `src/c64/presentacion/NOTAS.md` has every change as a diff with its reason; the files as they were in `original/`.
@@ -941,7 +958,7 @@ platform calls plat_crtc/tinta/modo/teclado_fila/psg/di/ei.
 
 ### Hardware sprites for Guillermo and Adso: the SPRHW build: REJECTED
 
-* Rejected after seeing it live on hal9000c: the black layer (sprites) and the body (bitmap)
+* I rejected it after seeing it live on my test PC: the black layer (sprites) and the body (bitmap)
   separate while walking (the VIC and the CPU are not synchronised: the sprite registers change when a rectangle
   is blitted, the bitmap over several raster frames) and the game lost speed (walking frames +105 000-190 000
   cycles).  The normal build is the game; the HW build stays as a record (`HW=1`), not shipped.  Next: the other
@@ -983,8 +1000,8 @@ platform calls plat_crtc/tinta/modo/teclado_fila/psg/di/ei.
   faces, robes, door and objects; the tiles were tried with `trazos` per class (807 runs of the source lost
   against 1373) and put back on `detalle` at once: live, the rooms looked worse (the per-tile choices break the continuity of courses and floor patterns).  `src/c64/NOTAS_GRAFICOS.md`, the sheets in `muestra_graficos_c64/muestra7/`.  The
   host's screen rule of hud_draw_guillermo_objects is `par` now (the objects are no longer `sim`): hybrid check 0
-  differences.  Not yet approved visually; watched live on hal9000 (vice/vivo.py on the Plasma session,
-  DISPLAY :1).
+  differences.  I had not yet approved it visually; I watched it live on my desktop (vice/vivo.py on the Plasma
+  session, DISPLAY :1).
 * ALL the graphics put back as they were (with `contorno` Adso going right-down loses his eyes in some
   frames, the forced contour eats the highlights next to the silhouette).  State left:
   `c64_graficos.py` as before those rules (characters/faces/robes `trazos`, door/objects `sim`, tiles
@@ -992,7 +1009,7 @@ platform calls plat_crtc/tinta/modo/teclado_fila/psg/di/ei.
   (6fb981ae203a); the Spanish disk rebuilt from that image was b6fd69421faa, not the earlier cf66187ff3f3 (the
   English disk from the same scripts identical).  The rule `contorno`, the `tr` parameter, `c64_compara_baldosas.py`
   and the `--columnas contorno` of the comparator stay as tools, not applied.
-* Open then: the Spanish disk's md5; sync hal9000c; the English C64 video re-recorded; the dead data's
+* Open then: the Spanish disk's md5; sync my other PCs; the English C64 video re-recorded; the dead data's
   removal in the normal builds (the memory gained to be used: 635 bytes of code and 392 of data free, use to be
   decided); Darksoft's look needs redrawn frames, not a rule (src/c64/NOTAS_GRAFICOS.md).
 

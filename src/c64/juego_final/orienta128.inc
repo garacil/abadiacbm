@@ -1,3 +1,18 @@
+; abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+;
+; Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+;
+; This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+; Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+; option) any later version.
+;
+; This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+; implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+; for more details.
+;
+; You should have received a copy of the GNU General Public License along with this program.  If not, see
+; <https://www.gnu.org/licenses/>.
+
 ; made by c64/certifica/pc/orienta128.py (do not edit): obj_drop_object's orientation quirk as the PC has
 ; it (abadia128ks, the full game): per height 00h-23h the byte at DS:hhF5 (Guillermo) / DS:hh22 (the abbot)
 ; as loaded (or the first frame's, selector 0), mirrored, and the selector (0 none, 1 Guillermo's frames,

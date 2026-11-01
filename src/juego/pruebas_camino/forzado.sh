@@ -16,11 +16,11 @@
 
 # The forced checks of the group camino (forzado.c): builds forzado and runs it from frames 1500 and 4000
 # of the 8 sessions, 2000 set-ups each (deterministic seeds); prints the totals; exit 1 on any difference.
-#   ABADIA64_TRABAJO=.../../data juego/pruebas_camino/forzado.sh [--cobertura-dir DIR]
+#   juego/pruebas_camino/forzado.sh [--cobertura-dir DIR]
 set -uo pipefail
 P=$(dirname "$(realpath "$0")")
 J=$(dirname "$P")
-T=${ABADIA64_TRABAJO:-$(dirname "$J")/trabajo}
+T=${ABADIA64_TRABAJO:-$(dirname "$(dirname "$J")")/data}
 O=${TMPDIR:-/tmp}/forzado_camino_$$
 mkdir -p "$O"
 cd "$P"

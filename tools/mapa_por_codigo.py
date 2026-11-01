@@ -32,7 +32,7 @@ import bisect, collections, difflib, glob, os, re, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from difcodigo import disasm, norm
 
-ABADIA = "/home/german/proyectos/abadia"
+ABADIA = os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia"))
 T = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 M64 = open(os.path.join(T, "cpc64", "juego", "ram.bin"), "rb").read()
 M128 = open(os.path.join(T, "cpc128", "memoria.bin"), "rb").read()

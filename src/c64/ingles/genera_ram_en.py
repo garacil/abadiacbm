@@ -63,8 +63,9 @@ def glifo_w():
 
 def frases_ingles():
     out = {}
-    for l in open(os.path.join(D, "frases_en.txt"), encoding="ascii"):
+    for l in open(os.path.join(D, "frases_en.txt"), encoding="utf-8"):    # (my licence header: utf-8, '#' lines)
         if l[0].isdigit():
+            assert l.isascii(), f"frases_en.txt: not ASCII: {l!r}"
             n, t = l.rstrip("\n").split("|", 1)
             out[int(n)] = t
     assert sorted(out) == list(range(1, N_FRASES)), "frases_en.txt: phrases 1-55 expected"

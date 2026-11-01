@@ -237,6 +237,14 @@ void puro_final(const char *f) { final_bin = f; }
 
 /* ---- set-up ---- */
 
+/* my licence header at the top of a data file: its '#' lines, skipped before an fscanf reading */
+static void salta_cabecera(FILE *f)
+{
+    int c;
+    while ((c = fgetc(f)) == '#') while ((c = fgetc(f)) != '\n' && c != EOF) ;
+    if (c != EOF) ungetc(c, f);
+}
+
 void carga_estado(const char *ram_file, const char *estado)
 {
     FILE *f = fopen(ram_file, "rb");
@@ -247,6 +255,7 @@ void carga_estado(const char *ram_file, const char *estado)
     fclose(f);
     f = fopen(estado, "r");
     if (!f) { fprintf(stderr, "cannot read %s\n", estado); exit(1); }
+    salta_cabecera(f);
     while (fscanf(f, "%31s %ld", nombre, &v) == 2) {
         if (!strcmp(nombre, "SP")) sp_juego = (uint16_t)v;
         else if (!strcmp(nombre, "PC")) pc = (uint16_t)v;
@@ -289,6 +298,7 @@ void carga_aleatorios(const char *p)
     FILE *f = fopen(p, "r");
     unsigned fr, v;
     if (!f) { fprintf(stderr, "cannot read %s\n", p); exit(1); }
+    salta_cabecera(f);
     while (naleatorios < sizeof aleatorios && fscanf(f, "%u %u", &fr, &v) == 2) aleatorios[naleatorios++] = (uint8_t)v;
     fclose(f);
 }

@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License along with this program.  If not, see
 # <https://www.gnu.org/licenses/>.
 
-"""The key-3 manoeuvre on the Caprice32 (/home/german/retro/amstrad/computer, doc/control_fifo.md): the
+"""The key-3 manoeuvre on the Caprice32 (~/retro/amstrad/computer or ABADIA_CAPRICE, doc/control_fifo.md): the
 original game with real CPC timing (the 300 Hz interrupt when the CRTC gives it, not at the hybrid host's wait
 points), on Xvfb :99.  Caprice32 cannot hold keys from outside frame by frame, so the key script goes inside
 the CPC: the unchanged start state data/puro/estados/ram_d2h4.bin with three patches in memory the run
@@ -125,8 +125,8 @@ def corre(hasta):
     e = cv.lee_estado(os.path.join(T, 'cpc64/inicio_juego/estado.txt'))
     sna = os.path.join(out, 'ram_d2h4_parcheada.sna')
     cv.sna(ram, e, sna)
-    fotos = [int(v) - BASE for v in open(os.path.join(L, 'fotos.txt')).read().split() if not v.startswith('#')
-             and v.strip().isdigit()]
+    fotos = [int(v) - BASE for l in open(os.path.join(L, 'fotos.txt')) if not l.startswith('#')
+             for v in l.split() if v.strip().isdigit()]
     c = cv.Cap(os.path.join(out, 'cap32.sock'), os.path.join(out, 'cap32.log'))
     try:
         c.orden('loadsnap %s' % sna)

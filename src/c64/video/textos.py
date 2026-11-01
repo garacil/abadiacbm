@@ -19,11 +19,12 @@ plain text to paste), with the chapters monta.py wrote (OUT.capitulos.txt), sign
 block (each package apart, its link, its MD5, the site's page) is the same in every video, the Commodore ones and the PC
 ones (../abadia/partida/entrega.py).
 textos.py es|en VIDEO.mp4 OUT.txt [--c128 | --p500]"""
+import os
 import sys
 from pathlib import Path
 
 import hashlib
-ESCRITORIO = Path("/home/german/Escritorio/abbeyofcrime")
+ESCRITORIO = Path(os.environ.get("ABADIA_ENTREGA", os.path.expanduser("~/Escritorio/abbeyofcrime")))
 U = "https://abbeyofcrime.com/download/"
 # the downloads, each with its MD5 (of the file beside the videos, the one the site serves): (path in ESCRITORIO,
 # Spanish, English); one missing is left out (the P500's until it is made)
@@ -213,7 +214,7 @@ CHAPTERS
 
 CREDITS
 La abadía del crimen: Paco Menéndez (author), Juan Delcán (graphics and cover), Opera Soft, 1987, after the novel The Name of the Rose by Umberto Eco.
-Commodore P500 and Commodore 128 version, automatic player and recording: Germán Luis Aracil Boned, 2026.
+Commodore P500 and Commodore 128 version, automatic player and recording: Germán Luis Aracil Boned, 2026.{foto}
 Dedicated to the whole Opera Soft team, with admiration and gratitude.
 
 Germán Luis Aracil Boned
@@ -244,7 +245,7 @@ CAPÍTULOS
 
 CRÉDITOS
 La abadía del crimen: Paco Menéndez (autor), Juan Delcán (gráficos y carátula), Opera Soft, 1987, basado en la novela El nombre de la rosa de Umberto Eco.
-Versión para Commodore P500 y Commodore 128, jugador automático y grabación: Germán Luis Aracil Boned, 2026.
+Versión para Commodore P500 y Commodore 128, jugador automático y grabación: Germán Luis Aracil Boned, 2026.{foto}
 Dedicado a todo el equipo de Opera Soft, con admiración y agradecimiento.
 
 Germán Luis Aracil Boned
@@ -265,7 +266,12 @@ def main():
     idioma, video, salida = args[:3]
     caps = Path(video).with_suffix(".capitulos.txt").read_text().strip()
     texto = (TEXTO500 if p500 else TEXTO128 if c128 else TEXTO)[idioma]
-    Path(salida).write_text(texto.format(descargas=descargas(idioma), capitulos=caps))
+    foto = ""                               # (the P500's photograph in the cover and the thumbnail: its author's)
+    if p500 and os.environ.get("ABADIA_FOTO_P500"):
+        foto = ("\nFoto del Commodore P500 de la portada y la miniatura: Nightfall Crew (nightfallcrew.com)." if idioma == "es"
+                else "\nPhotograph of the Commodore P500 in the cover and the thumbnail: Nightfall Crew (nightfallcrew.com).")
+    extra = dict(foto=foto) if p500 else {}
+    Path(salida).write_text(texto.format(descargas=descargas(idioma), capitulos=caps, **extra))
     print(salida)
 
 if __name__ == "__main__":

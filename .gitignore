@@ -1,3 +1,18 @@
+# abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+#
+# Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+#
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.  If not, see
+# <https://www.gnu.org/licenses/>.
+
 # abadiacbm: what the repository leaves out (only the current Commodore releases and their sources)
 
 # the build products: every build regenerates them (src/c64/*/construye.sh)
@@ -56,3 +71,4 @@ __pycache__/
 /src/c64/poc/
 *.log
 /src/c64/presentacion/pruebas/disco_prueba/flujo.txt
+/tools/maquinas.conf

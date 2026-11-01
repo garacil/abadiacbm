@@ -97,6 +97,7 @@ def main():
     acc = {}
     for f in glob.glob(os.path.join(C, "accesos", "azar*.txt")):
         for l in open(f):
+            if l.startswith("#"): continue                  # (my licence header)
             a, fl = l.split(); a = int(a, 16)
             acc[a] = acc.get(a, 0) | (1 if "r" in fl else 0)
     quien = {}

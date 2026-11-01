@@ -58,12 +58,21 @@ def main():
     if p500:
         # the P500: the computer itself, drawn (ordenador_p500.py), at the top right over the picture's corner
         sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-        from ordenador_p500 import dibuja
+        from ordenador_p500 import maquina
         lienzo = Image.open(salida).convert("RGBA")
-        maq = dibuja(420)
-        fondo = Image.new("RGBA", (maq.width + 24, maq.height + 16), (0, 0, 0, 170))
-        lienzo.alpha_composite(fondo, (1280 - fondo.width - 14, 14))
-        lienzo.alpha_composite(maq, (1280 - maq.width - 26, 22))
+        if os.environ.get("ABADIA_FOTO_P500"):  # the photograph: a quarter of the width, in the bottom right corner
+            from PIL import ImageFilter         # above the band, with a soft shadow (no box behind it)
+            maq = maquina(320)
+            x, y = 1280 - maq.width - 8, 560 - maq.height - 6
+            sombra = Image.new("RGBA", lienzo.size, (0, 0, 0, 0))
+            sombra.paste((0, 0, 0, 170), (x + 5, y + 6), maq.getchannel("A"))
+            lienzo.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(7)))
+            lienzo.alpha_composite(maq, (x, y))
+        else:
+            maq = maquina(420)
+            fondo = Image.new("RGBA", (maq.width + 24, maq.height + 16), (0, 0, 0, 170))
+            lienzo.alpha_composite(fondo, (1280 - fondo.width - 14, 14))
+            lienzo.alpha_composite(maq, (1280 - maq.width - 26, 22))
         lienzo.convert("RGB").save(salida, optimize=True)
     print(salida, FONT)
 

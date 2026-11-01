@@ -25,7 +25,7 @@ the report says how many bytes differ and shows both.
 """
 import os, re, sys
 P = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-PC = "/home/german/Proyectos/abadia"
+PC = os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia"))
 m64 = open(os.path.join(P, "data", "cpc64", "juego", "ram.bin"), "rb").read()
 ds = open(os.path.join(PC, "trabajo", "re", "disco", "programa.bin"), "rb").read()[0x8000:0x18000]
 pcs = {}

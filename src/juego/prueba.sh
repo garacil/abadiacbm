@@ -21,7 +21,7 @@
 #   juego/prueba.sh [--solo NAME] [--sesiones "1 2 3"] [--max-fallos N]
 set -uo pipefail
 J=$(dirname "$(realpath "$0")")
-T=${ABADIA64_TRABAJO:-$(dirname "$J")/trabajo}
+T=${ABADIA64_TRABAJO:-$(dirname "$(dirname "$J")")/data}
 cd "$J"
 if ! make -s hibrido > /tmp/prueba_make_$$.log 2>&1; then
     grep -v "unused" /tmp/prueba_make_$$.log | head -40; rm -f /tmp/prueba_make_$$.log

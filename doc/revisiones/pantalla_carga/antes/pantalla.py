@@ -64,7 +64,7 @@ def pens_cinta():
 
 def colores_c64():
     """the C64 colour of each CPC pen (the loader's inks)"""
-    tintas = [int(x, 16) for x in open(os.path.join(P, "..", "data", "cpc64", "cinta", "tintas.txt")).read().split()]
+    tintas = [int(x, 16) for l in open(os.path.join(P, "..", "data", "cpc64", "cinta", "tintas.txt")) if not l.startswith("#") for x in l.split()]
     pal = vpl(PALETA)
     return [min(range(16), key=lambda i: math.dist(lab(CPC[hw & 31]), lab(pal[i]))) for hw in tintas[:16]], pal
 

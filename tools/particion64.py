@@ -108,7 +108,7 @@ for l in open(os.path.join(C, "funciones64.tsv")):
     semilla(int(l.split("\t")[0], 16))
 for f in ("exploracion/cobertura_total.txt", "inicio_juego/cobertura.txt"):
     for l in open(os.path.join(C, f)):
-        if not l.strip(): continue
+        if not l.strip() or l.startswith("#"): continue     # (my licence header)
         a = int(l.split()[0], 16)
         # the start-up run also covers the tape loader (0100h-03FFh, gone once the game is loaded)
         if f.startswith("inicio") and a < 0x0400: continue

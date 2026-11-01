@@ -27,7 +27,9 @@ dumps show the leaf loaded mirrored), a face block by cabezas128.s's parity par_
     orienta128.py PC_DUMP OUT.inc
 """
 import os, re, sys
-PC = "/home/german/Proyectos/abadia/c"
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "..", "..", "..", "tools"))
+from licencia import cabecera   # my licence header, on the file written too
+PC = os.path.join(os.environ.get("ABADIA_PC", os.path.expanduser("~/Proyectos/abadia")), "c")   # the PC rebuild (ABADIA_PC: its directory)
 dump, out = sys.argv[1], sys.argv[2]
 pcs = {}
 for l in open(os.path.join(PC, "include", "direcciones.h")):
@@ -35,7 +37,7 @@ for l in open(os.path.join(PC, "include", "direcciones.h")):
     if m and not m.group(1).endswith("_SIZE"): pcs[m.group(1)] = int(m.group(2), 16)
 f = open(dump, "rb")
 d1 = f.read(0x10000)                                     # the first frame
-ds0 = open("/home/german/Proyectos/abadia/trabajo/re/disco/programa.bin", "rb").read()[0x8000:0x18000]   # as loaded
+ds0 = open(os.path.join(PC, "..", "trabajo/re/disco/programa.bin"), "rb").read()[0x8000:0x18000]   # as loaded
 flip = d1[pcs["SPR_FLIP_TABLE"]:pcs["SPR_FLIP_TABLE"] + 256]
 # the graphics mirrored in place: (start, width, lines, selector); selectors 1 Guillermo, 2 Adso, 3 doors, 4 + k face k
 BLOQUES = [(pcs["SPR_GUILLERMO_GFX_W5"], 5, 0xAE, 1), (pcs["SPR_GUILLERMO_GFX_W4"], 4, 0x21, 1),
@@ -86,6 +88,7 @@ if malos:
     print(f"{len(malos)} predictions wrong, first: {malos[:5]}")
 nota = "; the 6502 picks the second value when the graphic is mirrored"
 with open(out, "w") as o:
+    o.write(cabecera("asm") + "\n")
     o.write("; made by c64/certifica/pc/orienta128.py (do not edit): obj_drop_object's orientation quirk as the PC has\n"
             "; it (abadia128ks, the full game): per height 00h-23h the byte at DS:hhF5 (Guillermo) / DS:hh22 (the abbot)\n"
             "; as loaded (or the first frame's, selector 0), mirrored, and the selector (0 none, 1 Guillermo's frames,\n"

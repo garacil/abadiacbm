@@ -1,12 +1,29 @@
-# abadia64ks — milestones
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
 
-Started.  This file is the project's to-do list: read it first on every return to the work,
-tick a milestone only when its check has been run, and add what is learnt to `ESTADO.md`.
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
 
-## The rules
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
 
-* `/home/german/proyectos/abadia` (the full PC rebuild) is a **read-only reference**: never write
-  there, never run `make` or any tool that writes inside it.  Everything new lives here.
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
+# abadia64ks — my milestones
+
+My to-do list for the project: I read it first whenever I come back to the work, I tick a milestone only when its
+check has been run, and what I learn goes to `ESTADO.md`.
+
+## My rules
+
+* My full PC rebuild (`~/Proyectos/abadia`) is a **read-only reference**: I never write there, nor run `make` or
+  any tool that writes inside it.  Everything new lives here.
 * abadia64ks is the **64 KiB version** of La Abadía del Crimen, the equivalent of the Amstrad CPC
   464/664 tape version (which removed rooms and decoration from the 6128 game), cut further
   if needed, so that it fits in 64 KiB machines.
@@ -26,12 +43,10 @@ tick a milestone only when its check has been run, and add what is learnt to `ES
 * **The C64/Atari code is 6502 assembly with ca65** (the ca65 option, after the
   measurement: the game's C through cc65 is 65 KB of code, the C64 has 27 KB for it).  The C stays the
   reference and the GNU version; every 6502 routine is checked against the Z80 original.
-* **A note on the board (`tiza console ...`) when the C64 version is finished**.
-* **The reverse-engineering tools as before** (rea, Ghidra and its projects of the PC and CPC programs,
-  DOSBox-X, when useful) and **everything the project needs installed**.
-* The general rules of the projects apply: docs and code in English, the OS is called GNU, no GUI tests on
-  the desktop (Xvfb :99), deterministic automation, files owned by german (chown after root writes),
-  references only for cross-checking.
+* **The reverse-engineering tools as before** (Ghidra and its projects of the PC and CPC programs, DOSBox-X, when
+  useful) and **everything the project needs installed**.
+* The rules of all my projects: docs and code in English, the OS is called GNU, GUI tests never on the desktop
+  (Xvfb :99), deterministic tools, the references only for cross-checking.
 
 ## Milestones
 

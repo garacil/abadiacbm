@@ -15,7 +15,7 @@
 # <https://www.gnu.org/licenses/>.
 
 """The CPC's first page turn of the introduction parchment, captured on the Caprice32
-(/home/german/retro/amstrad/computer, doc/control_fifo.md) through its control socket, on Xvfb :99.
+(~/retro/amstrad/computer or ABADIA_CAPRICE, doc/control_fifo.md) through its control socket, on Xvfb :99.
 
 The first stage as the tape leaves it (data/cpc64/cinta/primera_etapa.bin, entered by the loader's CALL 6000h at
 0130h) becomes a .sna: PC = 6000h, SP = BFF8h with the return address 0133h, IM 1, interrupts

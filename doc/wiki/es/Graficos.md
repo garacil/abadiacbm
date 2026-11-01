@@ -1,7 +1,24 @@
 <!-- Hecha por tools/wiki.py desde doc/wiki/es/fuentes/Graficos.md: se edita la plantilla, no esta página. -->
+<!--
+  abadia64ks - La Abadia del Crimen (the Amstrad CPC 64 KiB tape version) for the Commodore 64 and other machines
+
+  Copyright (C) 2016-2026 Germán Luis Aracil Boned <garacilb@gmail.com> (Spain)
+
+  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+  for more details.
+
+  You should have received a copy of the GNU General Public License along with this program.  If not, see
+  <https://www.gnu.org/licenses/>.
+-->
+
 # Gráficos y herramientas
 
-[Inicio](Inicio.md) · anterior: [Construcción y certificación](Construccion.md) · siguiente: [Glosario](Glosario.md)
+[Inicio](Inicio.md) · anterior: [Construcción y certificación](Construccion.md) · siguiente: [Mis herramientas](Herramientas.md)
 
 ## De los píxeles del CPC a los del C64
 
@@ -60,6 +77,8 @@ monjes) se guarda a la anchura completa del PC, un bit por píxel, para los spri
 
 ## Otras herramientas
 
+Todas mis herramientas están en `doc/HERRAMIENTAS.md`, y las principales explicadas en [Mis herramientas](Herramientas.md).
+
 | Herramienta | Qué |
 |---|---|
 | `tools/c64_compara_pc.py` | hojas que comparan cada gráfico: el EGA del PC, el del C64, las reglas una al lado de otra, con medidas de los trazos perdidos |
@@ -69,7 +88,7 @@ monjes) se guarda a la anchura completa del PC, un bit por píxel, para los spri
 | `tools/cpc_velocidad.py` | la velocidad real del juego del CPC en Caprice32, para las comparaciones de velocidad |
 | `tools/guion_azar.py` | guiones de teclas al azar para las sesiones de certificación |
 | `tools/genera_todo.sh`, `tools/genera_cinta.sh` | las ediciones de una vez |
-| `tools/sincroniza.sh` | el proyecto copiado a los otros dos PC, comparando antes los retoques de los gráficos |
+| `tools/sincroniza.sh` | el proyecto copiado a mis otras máquinas, comparando antes los retoques de los gráficos |
 | `tools/wiki.py`, `tools/wiki_github.py` | esta wiki: cada fragmento de código tomado de las fuentes al construirla; y su copia en la wiki de GitHub |
 | `src/c64/mapa/hoja64.py`, `mapa64.py` | una hoja con todos los gráficos del C64, y el mapa de toda la abadía tal como la dibuja el C64 |
 
