@@ -2,8 +2,8 @@
 
 *La abadía del crimen* (The Abbey of Crime; Paco Menéndez and Juan Delcán, Opera Soft, 1987) for the Commodore 64,
 the Commodore 128 and the Commodore P500, written in 6502 assembler as a faithful translation of the original Z80
-program and certified frame by frame: the C64 game against the CPC original, the C128's against the PC rebuild (the
-P500 runs the C128's game on its own machine layer).
+program and certified frame by frame: the C64 game against the CPC original, the C128's and the P500's against the PC
+rebuild.
 
 **Downloads, videos and news: [abbeyofcrime.com](https://abbeyofcrime.com).**
 
@@ -51,13 +51,15 @@ Every build is deterministic: the same sources give the same images, byte for by
 
 ## Checking
 
-VICE 3.10 (`x64sc`, `x128`, `xcbm5x0`) runs the tests:
+VICE 3.10 (`x64sc`, `x128`, `xcbm5x0`) runs the tests and the certifications:
 
     src/c64/cinta/prueba_cinta.py OUT [--disco [--unidad 1541|1571]] [--opciones KEYS] [--final]   # the tape / the C64 disk
     src/c64/disco128/prueba128.py OUT [--opciones KEYS] [--final|--guarda] [--unidad 1571|1541]     # the C128 disk
     src/c64/certifica/lote.sh BUILD OUT N SESSION...                           # the C64 game against the CPC original
     src/c64/certifica/pc/lote.sh BUILD PC_BUILD OUT FRAMES N SEED...           # the C128 game against the PC rebuild
                                                                                # (PC_BUILD: outside this repository)
+    CORRE=corre500.py src/c64/certifica/pc/lote.sh src/c64/juego_final/p500 PC_BUILD OUT FRAMES N SEED...
+                                                                               # the P500 game against the PC rebuild
 
 ## Credits
 

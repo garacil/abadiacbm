@@ -66,3 +66,6 @@ languages; a long run with the interrupt and the main loop's frames always there
   game ports set again after.
 - The platform's code in the C128's fixed areas the P500 does not need for their purpose (COMUN $0800-$09FF, the C128
   KERNAL's page $0A00-$0AFF), the rest in CODE.
+- Certified against the PC rebuild as the C128: `CORRE=corre500.py src/c64/certifica/pc/lote.sh
+  src/c64/juego_final/p500 PC_BUILD OUT 6000 4 1 2 3 4`: four random sessions of 6000 frames from this disk (menu,
+  parchment, loader, stage), 237 data compared at every frame, 0 differences.

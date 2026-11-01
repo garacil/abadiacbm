@@ -45,7 +45,13 @@ cada fotograma toda la RAM del C64 con la memoria del CPC a través del mapa:
 
 El juego completo del C128 se certifica igual contra mi reconstrucción de la versión de PC (`src/c64/certifica/pc/`),
 que juega el juego completo y que a su vez verifiqué fotograma a fotograma contra el original de PC: sesiones al azar de
-4000 fotogramas, 0 diferencias.
+4000 fotogramas, 0 diferencias.  Y el del P500 también: `corre500.py` arranca el propio disco del P500 en el xcbm5x0 de
+VICE como lo haría un jugador (el menú, el pergamino, el cargador, la etapa del banco 1) y después, en cada fotograma,
+pone las mismas teclas y vuelca el banco 0 y los datos del banco 1.  Cuatro sesiones al azar de 6000 fotogramas (pasadas
+las primeras completas, con el abad persiguiendo a Guillermo y las puertas abriéndose y cerrándose), 237 datos
+comparados en cada fotograma, 0 diferencias: el P500 juega exactamente la misma partida que el PC original.
+
+{{code src/c64/certifica/pc/corre500.py | ^"""abadia128ks on the P500 against the PC | ^"""$}}
 
 ## Las pruebas de las ediciones
 

@@ -39,6 +39,7 @@ the tests (`x64sc`, `x128`); the tests use Xvfb `:99`.
 | C128 disk | `src/c64/disco128/prueba128.py OUT [--opciones 1\|234] [--final\|--guarda] --unidad 1571` and `--unidad 1541` | both drives |
 | C64 game against the CPC | `src/c64/certifica/certifica.py BUILD OUT NAME data/cpc64/inicio_juego/ram.bin data/cpc64/exploracion/NAME.txt FRAMES` | 0 differences |
 | C128 game against the PC rebuild | `src/c64/certifica/pc/lote.sh src/c64/juego_final/c128 PC_BUILD OUT FRAMES N SEED...` (PC_BUILD from `src/c64/certifica/pc/construye.sh`, the PC rebuild outside this repository) | 0 differences |
+| P500 game against the PC rebuild | `CORRE=corre500.py src/c64/certifica/pc/lote.sh src/c64/juego_final/p500 PC_BUILD OUT FRAMES N SEED...` (the P500's own disk in xcbm5x0, its menu, parchment and loader, up to the game) | 0 differences (4 random sessions of 6000 frames, past the first completas: 237 data a frame) |
 
 Rules: any change to `src/c64/plataforma/c128.s`, the disks or the loaders is tested with both drives (
 they must work with both drives).  The defaults (Spanish, every sound on) are the original game; the

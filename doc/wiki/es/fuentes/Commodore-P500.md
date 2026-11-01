@@ -80,3 +80,11 @@ pitido en silencio si se han quitado, ver [El sonido](Sonido.md)), carga el Ave 
 
 La etapa se queda en el banco 1 durante toda la partida: con el 100 % el juego vuelve a ella, y ella carga el final
 encima del juego y lo arranca como lo haría el `SYS` del BASIC (`src/c64/discop500/NOTAS.md`).
+
+## Certificado contra el PC
+
+El juego del P500 está certificado fotograma a fotograma contra mi reconstrucción del PC, igual que el del C128: cuatro
+sesiones al azar de 6000 fotogramas desde su propio disco, 237 datos comparados en cada fotograma, 0 diferencias (ver
+[Construcción y certificación](Construccion.md)).  Así que el P500 hace exactamente lo mismo que el PC original, también
+en sus rarezas: a completas el abad persigue a Guillermo hasta que entra en su celda, y su buscador de caminos puede
+dejarlo atascado en una puerta que se abre y se cierra a su paso.

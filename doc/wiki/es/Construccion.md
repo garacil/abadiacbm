@@ -82,7 +82,27 @@ c64/juego_final/juego6502.tsv.
 
 El juego completo del C128 se certifica igual contra mi reconstrucción de la versión de PC (`src/c64/certifica/pc/`),
 que juega el juego completo y que a su vez verifiqué fotograma a fotograma contra el original de PC: sesiones al azar de
-4000 fotogramas, 0 diferencias.
+4000 fotogramas, 0 diferencias.  Y el del P500 también: `corre500.py` arranca el propio disco del P500 en el xcbm5x0 de
+VICE como lo haría un jugador (el menú, el pergamino, el cargador, la etapa del banco 1) y después, en cada fotograma,
+pone las mismas teclas y vuelca el banco 0 y los datos del banco 1.  Cuatro sesiones al azar de 6000 fotogramas (pasadas
+las primeras completas, con el abad persiguiendo a Guillermo y las puertas abriéndose y cerrándose), 237 datos
+comparados en cada fotograma, 0 diferencias: el P500 juega exactamente la misma partida que el PC original.
+
+[`src/c64/certifica/pc/corre500.py`](../../../src/c64/certifica/pc/corre500.py#L17-L27), líneas 17–27:
+
+```python
+"""abadia128ks on the P500 against the PC (as corre128.py for the C128): the P500's own disk started in xcbm5x0 as a
+player would (c64/video/sesion500.py's Visible: DLOAD"ABADIA" and RUN, the menu with everything on and Spanish, the
+parchment, the loader, the stage in bank 1), up to the game's principal_inicio; then at every frame
+(game_input_and_mirror's entry) bank 0 and bank 1's data from $1000 (juego.bin.banco1's length) are appended to OUT,
+and right after sys_read_keyboard (game_input_and_mirror + 3) the CPC keys of the frame (KEYS: lines "f k k ...", as
+arnes.c reads them) are held: their bits cleared in D64_SYS_KEYS_DOWN and, for a new press, in D64_SYS_KEYS_PENDING.
+A frame not reached in 30 s ends the run (the game over's wait, or a hang: said so).  compara.py takes its dump as it
+takes the C128's.
+
+    corre500.py JUEGO_DIR KEYS FRAMES OUT       (JUEGO_DIR: c64/juego_final/p500; the disk: c64/discop500's .d80)
+"""
+```
 
 ## Las pruebas de las ediciones
 

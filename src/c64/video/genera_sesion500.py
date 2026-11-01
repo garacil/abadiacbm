@@ -112,10 +112,26 @@ r('    _, c = v.orden(V.CMD_CHECKPOINT_SET, struct.pack("<HHBBBBB", 0xA2, 0xA2, 
   '    _, c = v.orden(V.CMD_CHECKPOINT_SET, struct.pack("<HHBBBBB", _AB["time"], _AB["time"], 1, 1, 2, 0, 0))\n')
 r('        for _ in range(int(segundos * 60)):\n', '        for _ in range(int(segundos * 50)):\n')
 r('        if not args.ensayo_vice:\n            planning_out = out / "planificador"\n',
-  '        if True:                                # (the P500: VICE 3.10\'s xcbm5x0 restores a snapshot of the game\n'
-  '            # without its interrupt (checked: TPI 1 / the 6526 raise none afterwards), so the planner runs in a second\n'
-  '            # VICE, the rehearsal\'s too, and the visible one is never restored)\n'
+  '        if True:                                # (the P500: the planner runs in a second VICE, the rehearsal\'s too,\n'
+  '            # its snapshots restored without the game\'s interrupt, as it always ran; the visible one gets its\n'
+  '            # interrupt back after a restore: Visible.restaura)\n'
   '            planning_out = out / "planificador"\n')
+r('            oracle = Visible(planning_out, warp=True, disk=args.disco.resolve())\n',
+  '            oracle = Visible(planning_out, warp=True, disk=args.disco.resolve())\n'
+  '            oracle.oraculo = True\n')
+r('    def record(self, out, video=None):\n',
+  '    def restaura(self, nombre):\n'
+  '        """VICE 3.10\'s xcbm5x0 restores the 6526 with its interrupt pending and TPI 1 waiting for an edge that does not\n'
+  '        come (checked: ICR 81h, no tick afterwards): the game\'s own acknowledgement after the restore (the 6526\'s ICR\n'
+  '        read, TPI 1\'s AIR written back, the ICR read again, through the monitor\'s I/O bank 16) brings the tick back\n'
+  '        (checked).  Not on the planner\'s VICE, whose code always ran without it."""\n'
+  '        V.Vice.restaura(self, nombre)\n'
+  '        if not getattr(self, "oraculo", False):\n'
+  '            self.orden(V.CMD_MEM_GET, struct.pack("<BHHBH", 1, 0xDC0D, 0xDC0D, 0, 16))\n'
+  '            _, c = self.orden(V.CMD_MEM_GET, struct.pack("<BHHBH", 0, 0xDE07, 0xDE07, 0, 16))\n'
+  '            self.orden(V.CMD_MEM_SET, struct.pack("<BHHBH", 0, 0xDE07, 0xDE07, 0, 16) + c[2:3])\n'
+  '            self.orden(V.CMD_MEM_GET, struct.pack("<BHHBH", 1, 0xDC0D, 0xDC0D, 0, 16))\n\n'
+  '    def record(self, out, video=None):\n')
 r('        self.puerto = 6520 + os.getpid() % 1000 if warp else int(os.environ.get("ABADIA_PUERTO", "6519"))\n',
   '        Visible.n = getattr(Visible, "n", 0) + 1         # (the rehearsal\'s two VICEs, both in warp: a port each)\n'
   '        self.puerto = 6520 + os.getpid() % 500 * 2 + Visible.n if warp else int(os.environ.get("ABADIA_PUERTO", "6519"))\n')
@@ -145,7 +161,9 @@ r('def marca(out, nombre):\n',
   '            viejo.xvfb.wait(timeout=10)\n'
   '    except Exception:\n'
   '        pass\n'
-  '    return Visible(viejo.salida_dir, warp=True, disk=viejo.disco)\n\n\n'
+  '    nuevo = Visible(viejo.salida_dir, warp=True, disk=viejo.disco)\n'
+  '    nuevo.oraculo = True\n'
+  '    return nuevo\n\n\n'
   'def marca(out, nombre):\n')
 r('        if oracle:\n'
   '            oracle.orden(V.CMD_QUIT)\n'

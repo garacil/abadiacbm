@@ -18,6 +18,7 @@
 # (tools/guion_azar.py: walking, turns, cursor down, space, pauses), the PC rebuild with arnes.c and
 # the C128 build in x128 (corre128.py) with the same keys, then compara.py; the reports in OUT/resumen.txt.
 #   lote.sh JUEGO_DIR PC_BUILD_DIR OUT FRAMES PARALLEL SEED...
+#   (CORRE=corre500.py and JUEGO_DIR c64/juego_final/p500: the P500 build on its own disk instead of the C128's)
 set -uo pipefail
 AQUI=$(cd "$(dirname "$0")" && pwd)
 P=$(cd "$AQUI/../../.." && pwd)
@@ -37,7 +38,7 @@ for l in sys.stdin:
     for k in range(f, f + n): held.setdefault(k, []).append(8 * int(r) + int(b))
 for f in sorted(held): print(f, *held[f])' > "$d/teclas"
     ARNES_TECLAS="$d/teclas" ARNES_VOLCADO="$d/pc.vol" ARNES_FOTOGRAMAS=$N "$PCB/abadia" --verificar "$OUT/entra.guion" --salida "$d" --segundos 36000 > "$d/pc.log" 2>&1
-    DISPLAY=:99 timeout 14400 python3 -I "$AQUI/corre128.py" "$J" "$d/teclas" "$N" "$d/c128.vol" > "$d/c128.log" 2>&1
+    DISPLAY=:99 timeout 14400 python3 -I "$AQUI/${CORRE:-corre128.py}" "$J" "$d/teclas" "$N" "$d/c128.vol" > "$d/c128.log" 2>&1
     python3 -I "$AQUI/compara.py" "$J" "$d/c128.vol" "$d/pc.vol" > "$d/compara.txt" 2>&1
     { echo "azar$s: $(tail -1 "$d/c128.log"); $(head -1 "$d/compara.txt")"; sed -n '2,6p' "$d/compara.txt"; } >> "$OUT/resumen.txt"
     rm -f "$d/pc.vol" "$d/c128.vol"

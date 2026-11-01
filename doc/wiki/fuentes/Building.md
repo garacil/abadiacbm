@@ -43,7 +43,12 @@ whole RAM with the CPC's memory through the map:
 
 The C128's full game is certified the same way against the PC version's rebuild (`src/c64/certifica/pc/`), which plays
 the full game and was itself verified frame by frame against the PC original: random sessions of 4000 frames, 0
-differences.
+differences.  The P500's too: `corre500.py` starts the P500's own disk in xcbm5x0 as a player would (the menu, the
+parchment, the loader, the stage in bank 1), then holds the same keys at every frame and dumps bank 0 and bank 1's
+data; four random sessions of 6000 frames (past the first completas, the abbot after Guillermo, the doors opening and
+closing), 237 data compared at every frame, 0 differences:
+
+{{code src/c64/certifica/pc/corre500.py | ^"""abadia128ks on the P500 against the PC | ^"""$}}
 
 ## The tests of the releases
 

@@ -80,7 +80,26 @@ c64/juego_final/juego6502.tsv.
 
 The C128's full game is certified the same way against the PC version's rebuild (`src/c64/certifica/pc/`), which plays
 the full game and was itself verified frame by frame against the PC original: random sessions of 4000 frames, 0
-differences.
+differences.  The P500's too: `corre500.py` starts the P500's own disk in xcbm5x0 as a player would (the menu, the
+parchment, the loader, the stage in bank 1), then holds the same keys at every frame and dumps bank 0 and bank 1's
+data; four random sessions of 6000 frames (past the first completas, the abbot after Guillermo, the doors opening and
+closing), 237 data compared at every frame, 0 differences:
+
+[`src/c64/certifica/pc/corre500.py`](../../src/c64/certifica/pc/corre500.py#L17-L27), lines 17–27:
+
+```python
+"""abadia128ks on the P500 against the PC (as corre128.py for the C128): the P500's own disk started in xcbm5x0 as a
+player would (c64/video/sesion500.py's Visible: DLOAD"ABADIA" and RUN, the menu with everything on and Spanish, the
+parchment, the loader, the stage in bank 1), up to the game's principal_inicio; then at every frame
+(game_input_and_mirror's entry) bank 0 and bank 1's data from $1000 (juego.bin.banco1's length) are appended to OUT,
+and right after sys_read_keyboard (game_input_and_mirror + 3) the CPC keys of the frame (KEYS: lines "f k k ...", as
+arnes.c reads them) are held: their bits cleared in D64_SYS_KEYS_DOWN and, for a new press, in D64_SYS_KEYS_PENDING.
+A frame not reached in 30 s ends the run (the game over's wait, or a hang: said so).  compara.py takes its dump as it
+takes the C128's.
+
+    corre500.py JUEGO_DIR KEYS FRAMES OUT       (JUEGO_DIR: c64/juego_final/p500; the disk: c64/discop500's .d80)
+"""
+```
 
 ## The tests of the releases
 

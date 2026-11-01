@@ -187,7 +187,9 @@ def nuevo_oraculo(viejo):
             viejo.xvfb.wait(timeout=10)
     except Exception:
         pass
-    return Visible(viejo.salida_dir, warp=True, disk=viejo.disco)
+    nuevo = Visible(viejo.salida_dir, warp=True, disk=viejo.disco)
+    nuevo.oraculo = True
+    return nuevo
 
 
 def marca(out, nombre):
@@ -331,6 +333,18 @@ class Visible(V.Vice):
         arranca_p500(self)                      # DLOAD, RUN: the menu
         if not warp and GRABAR:
             self.record(out, video)
+
+    def restaura(self, nombre):
+        """VICE 3.10's xcbm5x0 restores the 6526 with its interrupt pending and TPI 1 waiting for an edge that does not
+        come (checked: ICR 81h, no tick afterwards): the game's own acknowledgement after the restore (the 6526's ICR
+        read, TPI 1's AIR written back, the ICR read again, through the monitor's I/O bank 16) brings the tick back
+        (checked).  Not on the planner's VICE, whose code always ran without it."""
+        V.Vice.restaura(self, nombre)
+        if not getattr(self, "oraculo", False):
+            self.orden(V.CMD_MEM_GET, struct.pack("<BHHBH", 1, 0xDC0D, 0xDC0D, 0, 16))
+            _, c = self.orden(V.CMD_MEM_GET, struct.pack("<BHHBH", 0, 0xDE07, 0xDE07, 0, 16))
+            self.orden(V.CMD_MEM_SET, struct.pack("<BHHBH", 0, 0xDE07, 0xDE07, 0, 16) + c[2:3])
+            self.orden(V.CMD_MEM_GET, struct.pack("<BHHBH", 1, 0xDC0D, 0xDC0D, 0, 16))
 
     def record(self, out, video=None):
         target = Path(video).resolve() if video else out / "partida.mkv"
@@ -742,12 +756,13 @@ def main():
     print("Salida:", out, flush=True)
     v = oracle = None
     try:
-        if True:                                # (the P500: VICE 3.10's xcbm5x0 restores a snapshot of the game
-            # without its interrupt (checked: TPI 1 / the 6526 raise none afterwards), so the planner runs in a second
-            # VICE, the rehearsal's too, and the visible one is never restored)
+        if True:                                # (the P500: the planner runs in a second VICE, the rehearsal's too,
+            # its snapshots restored without the game's interrupt, as it always ran; the visible one gets its
+            # interrupt back after a restore: Visible.restaura)
             planning_out = out / "planificador"
             planning_out.mkdir()
             oracle = Visible(planning_out, warp=True, disk=args.disco.resolve())
+            oracle.oraculo = True
         v = Visible(out, warp=args.ensayo_vice, disk=args.disco.resolve(), video=args.video)
         ab = V.etiquetas(str(PRES / "abadia.lbl"))
         fi = V.etiquetas(str(PRES / "final.lbl"))

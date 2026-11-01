@@ -32,6 +32,7 @@ KEYS = {"up": (0, 0), "right": (0, 1), "down": (0, 2),
 CHARS = [0x2B87 + 15 * n for n in range(6)]
 FOLLOW_DISTANCE = int(os.environ.get("ABADIA_FOLLOW_DISTANCE", "2"))
 FOLLOW_RADIUS = int(os.environ.get("ABADIA_FOLLOW_RADIUS", "2"))
+TRAS_ABAD = 2                           # follow(): the abbot leading Guillermo, Guillermo this many of his places behind
 FOLLOW_QUANTUM = int(os.environ.get("ABADIA_FOLLOW_QUANTUM", "2"))
 
 
@@ -541,7 +542,19 @@ class Pilot:
     def follow(self, who, until, limit=5000):
         last_npc, still_npc = None, 0
         progress = None
+        traza = os.environ.get("ABADIA_TRAZA_SEGUIR") == "1"     # (a line a step, and the heights around, to study)
+        rastro = []                     # the abbot's places while he leads Guillermo, in order
         for iteration in range(limit):
+            if traza:
+                o, x, y, z = self.pos(who)
+                go, gx, gy, gz = self.pos()
+                print(f"SEG f={self.e.frame} who={who} npc=({o},{x},{y},{z}) G=({go},{gx},{gy},{gz}) estado={self.b(0x3814):02X} "
+                      f"destino={self.b(0x3815):02X} obs={self.b(0x28D0)}", flush=True)
+                if iteration == 0:
+                    m = self.map()
+                    print("MAPA x " + " ".join(f"{c:02d}"[-2:] for c in range(x - 12, x + 13)), flush=True)
+                    for cy in range(y - 12, y + 25):
+                        print(f"MAPA {cy:3d} " + " ".join(f"{m[cy & 255][c & 255]:2x}" for c in range(x - 12, x + 13)), flush=True)
             if iteration % 150 == 0:
                 self.log("Seguimiento")
             if until():
@@ -561,6 +574,35 @@ class Pilot:
                 progress = (x, y)
             still_npc = still_npc + 1 if last_npc == npc else 0
             last_npc = npc
+            if who == 3 and self.b(0x28D1) == 5 and self.b(0x28D2) == 4 and self.floor(z) == self.floor(gz):
+                # day 5, nona: the abbot leads Guillermo to his place 8 and takes 2 of obsequium each time Guillermo is
+                # not in the box in front of him (ai_guillermo_is_close: from 6 places behind to 17 ahead, he walking
+                # +y); the usual rules leave Guillermo 7 behind or beside him in the narrow way (the P500's rehearsal).
+                # So Guillermo walks on the abbot's own trail, TRAS_ABAD of his places behind him, and stands still while
+                # the abbot, offended (bit 7 of his state), comes back for him.
+                if self.b(0x3814) & 0x80:
+                    rastro.clear()
+                    self.step()
+                    continue
+                if not rastro or rastro[-1] != (x, y):
+                    rastro.append((x, y))
+                if len(rastro) > TRAS_ABAD:
+                    meta = rastro[-1 - TRAS_ABAD]
+                    r = route(self.map(), (gx, gy), meta) if (gx, gy) != meta else None
+                    if r and r[1]:
+                        o = self.pos()[0]
+                        if o != r[1][0]:                # a turn takes one frame (the game turns on the key's press;
+                            key = "left" if (r[1][0] - o) % 4 in (1, 2) else "right"     # the next "up" releases it)
+                            self.step(() if self.last_key and key in self.last_key else (key,))
+                        else:
+                            self.step(("up",))
+                        continue
+                    if (gx, gy) == meta:
+                        self.step()
+                        continue
+                elif abs(gx - x) + abs(gy - y) <= 4:     # (he has not set off yet: wait near him, out of the way
+                    self.step()                         #  rules that would move Guillermo aside or round him)
+                    continue
             if still_npc > 25 and not self.b(0x28F2) and abs(gx - x) + abs(gy - y) <= 5:
                 self.log("Dejamos paso al personaje que seguimos")
                 o = self.pos(who)[0]
@@ -606,7 +648,10 @@ class Pilot:
                 if r and r[1]:
                     wanted = r[1][0]
                     if self.pos()[0] != wanted:
-                        self.turn(wanted)
+                        try:
+                            self.turn(wanted)
+                        except Blocked:                 # (the game lets him not turn there: a frame, and on)
+                            self.step()
                     else:
                         self.step(("up",))
                     break
